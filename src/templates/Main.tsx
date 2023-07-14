@@ -1,77 +1,102 @@
-import Link from 'next/link';
+// Libraries
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 
+import { ExternalLinkIcon } from '@/components/Icons';
+// Internal imports
 import { AppConfig } from '@/utils/AppConfig';
 
+// Types
 type IMainProps = {
   meta: ReactNode;
   children: ReactNode;
 };
 
-const Main = (props: IMainProps) => (
-  <div className="w-full px-1 text-gray-700 antialiased">
-    {props.meta}
+// Navigation links
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/resume', label: 'Resume' },
+  {
+    href: 'https://github.com/worthingtravis',
+    label: 'GitHub',
+    icon: <ExternalLinkIcon />,
+    external: true,
+  },
+  {
+    href: 'https://github.com/Worthingtravis/IGot99ProblemsButCodeAintOne',
+    label: 'Code for this site',
+    icon: <ExternalLinkIcon />,
+    external: true,
+  },
+];
 
-    <div className="mx-auto max-w-screen-md">
-      <header className="border-b border-gray-300">
-        <div className="pb-8 pt-16">
-          <h1 className="text-3xl font-bold text-gray-900">
-            {AppConfig.title}
-          </h1>
-          <h2 className="text-xl">{AppConfig.description}</h2>
-        </div>
-        <nav>
-          <ul className="flex flex-wrap text-xl">
-            <li className="mr-6">
-              <Link
-                href="/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="mr-6">
-              <Link
-                href="/about/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                About
-              </Link>
-            </li>
-            <li className="mr-6">
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
-            </li>
-            <li className="mr-6">
-              <Link
-                href="/blog/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Blog
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+const Main = (props: IMainProps) => {
+  const router = useRouter();
 
-      <main className="content py-5 text-xl">{props.children}</main>
+  useEffect(() => {
+    const handleRouteChange = (_url: any, { shallow }: any) => {
+      if (!shallow) {
+        window.scrollTo(0, 0);
+      }
+    };
 
-      <footer className="border-t border-gray-300 py-8 text-center text-sm">
-        © Copyright {new Date().getFullYear()} {AppConfig.title}. Made with{' '}
-        <a href="https://creativedesignsguru.com">CreativeDesignsGuru</a>.
-        {/*
-         * PLEASE READ THIS SECTION
-         * I'm an indie maker with limited resources and funds, I'll really appreciate if you could have a link to my website.
-         * The link doesn't need to appear on every pages, one link on one page is enough.
-         * For example, in the `About` page. Thank you for your support, it'll mean a lot to me.
-         */}
-      </footer>
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  const isActiveRoute = (href: string) => router.pathname === href;
+
+  return (
+    <div className="relative bg-gray-900 px-1 text-white antialiased">
+      <div className="relative z-20 mx-auto max-w-screen-md bg-gray-900">
+        {props.meta}
+        <header className="my-20">
+          <nav>
+            <ul className="flex flex-wrap border-0 text-xl text-white hover:text-white/50">
+              {navLinks.map((link) => (
+                <li className="group relative mr-6 border-0" key={link.href}>
+                  <a
+                    className={clsx(
+                      'flex items-center gap-2 rounded-md border-0 border-transparent px-3 py-2 transition-colors duration-300 hover:border-0',
+                      isActiveRoute(link.href) ? 'text-white' : 'text-white/50'
+                    )}
+                    href={link.href}
+                    {...(link.external
+                      ? {
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                        }
+                      : {})}
+                  >
+                    {link.label}
+                    {link.icon}
+                  </a>
+                  <div
+                    className={clsx('absolute h-1 w-full bg-white', {
+                      'opacity-0 group-hover:opacity-100': !isActiveRoute(
+                        link.href
+                      ),
+                      'opacity-100': isActiveRoute(link.href),
+                    })}
+                  />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </header>
+        <main className="content py-5 text-xl">{props.children}</main>
+        <footer className="border-t border-gray-300 py-8 text-center text-sm">
+          © Copyright {new Date().getFullYear()} {AppConfig.title}
+        </footer>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export { Main };

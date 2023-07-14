@@ -19,3 +19,38 @@ a:hover {
 .content ul {
   @apply my-6;
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-lg::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: rgba(103, 115, 136, 0);
+  }
+
+  .scrollbar::-webkit-scrollbar-track:hover {
+    background: rgba(103, 115, 136, 0.1);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(103, 115, 136, 0.3);
+    border-radius: 100vh;
+    visibility: visible;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(103, 115, 136, 0.6);
+  }
+
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+}

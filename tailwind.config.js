@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  variants: {
+    extend: {
+      textDecoration: ['responsive', 'hover', 'focus', 'active'],
+    },
+  },
   theme: {
     fontSize: {
       xs: '0.75rem',
@@ -16,6 +21,17 @@ module.exports = {
     },
     extend: {
       colors: {
+        secondary: {
+          100: '#F5F5F5',
+          200: '#EEEEEE',
+          300: '#E0E0E0',
+          400: '#BDBDBD',
+          500: '#9E9E9E',
+          600: '#757575',
+          700: '#616161',
+          800: '#424242',
+          900: '#212121',
+        },
         gray: {
           100: '#f7fafc',
           200: '#edf2f7',
