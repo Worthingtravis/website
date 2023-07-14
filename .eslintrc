@@ -43,6 +43,9 @@
             "endOfLine": "auto"
           }
         ],
+        "react/jsx-curly-brace-presence": "off", // Disable curly brace rule because it's not working with Next.js
+        "sort-imports": "off", // Disable sort-imports because it's already handled by `eslint-plugin-simple-import-sort`
+        "import/no-extraneous-dependencies": "off",
         "react/function-component-definition": "off", // Disable Airbnb's specific function type
         "react/destructuring-assignment": "off", // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
         "react/require-default-props": "off", // Allow non-defined react props as undefined
@@ -77,7 +80,22 @@
         "plugin:jest-formatting/recommended",
         "plugin:testing-library/react",
         "plugin:jest-dom/recommended"
-      ]
+      ],
+      "rules": {
+        "strict": "off",
+        "jest/expect-expect": "off",
+        "jest/no-standalone-expect": "off",
+        "jest/valid-expect": "off",
+        "jest/valid-expect-in-promise": "off",
+        "jest/no-conditional-expect": "off",
+        "jest/no-restricted-matchers": "off",
+        "jest/no-try-expect": "off",
+        "jest/no-alias-methods": "off",
+        "jest-formatting/padding-around-all": "off",
+        "jest-formatting/padding-around-test-blocks": "off",
+        "react/button-has-type": "off",
+        "testing-library/prefer-screen-queries": "off"
+      }
     },
     // Configuration for e2e testing (Cypress)
     {
