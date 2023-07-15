@@ -1,158 +1,50 @@
-import type { ReactNode } from 'react';
-import React, { useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import clsx from 'clsx';
 
-interface AnimatedSVGProps {
-  children: ReactNode;
-  isDisabled: boolean | undefined;
-  reverse?: boolean | undefined;
-  duration?: number;
-  animateStroke?: boolean;
-  openColor?: string;
-  openedColor?: string;
-  closeColor?: string;
-  closedColor?: string;
-  scaleDurationByLength?: boolean;
-  calculatePathLength?: boolean;
-  baseOpacity?: number;
-}
-
-type Elements = (SVGPathElement | SVGCircleElement | SVGRectElement)[];
-export function AnimatedSVG({
-  children,
-  isDisabled,
-  reverse,
-  duration = 0.5,
-  animateStroke = true,
-  openColor = 'currentColor',
-  openedColor = 'currentColor',
-  closeColor = 'currentColor',
-  closedColor = 'currentColor',
-  scaleDurationByLength = false,
-  calculatePathLength = true,
-  baseOpacity = 0.5,
-}: AnimatedSVGProps) {
-  const svgRef = useRef<HTMLDivElement | null>(null);
-  const staticRef = useRef<HTMLDivElement | null>(null);
-
-  const elementsRef = useRef<HTMLDivElement[]>([]);
-  /* eslint-disable no-param-reassign */
-  useEffect(() => {
-    if (!svgRef.current) return;
-
-    const elements: Elements = Array.from(
-      svgRef.current.querySelectorAll('path, circle, rect')
-    );
-
-    elements.forEach((element) => {
-      element.style[animateStroke ? 'stroke' : 'fill'] = closedColor;
-    });
-  }, [animateStroke, closedColor]);
-
-  useEffect(() => {
-    if (!svgRef.current || !staticRef.current) return;
-
-    const elements: Elements = Array.from(
-      svgRef.current.querySelectorAll('path, circle, rect')
-    );
-    const staticElements: Elements = Array.from(
-      staticRef.current.querySelectorAll('path, circle, rect')
-    );
-
-    // reverse the order of the elements
-    if (reverse) {
-      elements.reverse();
-    }
-
-    // Compute and store path data
-    if (calculatePathLength && !elementsRef.current.length) {
-      const maxElementLength = Math.max(
-        ...elements.map((element) =>
-          element?.getTotalLength
-            ? element.getTotalLength()
-            : Math.max(
-                // @ts-ignore
-                element.height.baseVal.value,
-                // @ts-ignore
-                element.width.baseVal.value
-              )
-        )
-      );
-
-      elements.forEach((element) => {
-        const length = element.getTotalLength
-          ? element.getTotalLength()
-          : // @ts-ignore
-            Math.max(element.height.baseVal.value, element.width.baseVal.value);
-        const elementDuration = scaleDurationByLength
-          ? (length / maxElementLength) * duration
-          : duration;
-        element.style.transition = animateStroke
-          ? `stroke-dashoffset ${elementDuration}s ease-in, stroke ${elementDuration}s `
-          : `fill ${elementDuration}s`;
-        // @ts-ignore
-        elementsRef.current.push({ element, length });
-      });
-    }
-    // @ts-ignore
-    elementsRef.current.forEach(({ element, length }) => {
-      const onTransitionEnd = () => {
-        if (isDisabled) {
-          element.style[animateStroke ? 'stroke' : 'fill'] = closedColor;
-        } else if (isDisabled === false) {
-          element.style[animateStroke ? 'stroke' : 'fill'] = openedColor;
-        }
-        element.removeEventListener('transitionend', onTransitionEnd);
-      };
-
-      element.removeEventListener('transitionend', onTransitionEnd);
-      element.addEventListener('transitionend', onTransitionEnd);
-
-      if (isDisabled) {
-        element.style[animateStroke ? 'stroke' : 'fill'] = closeColor;
-        element.style.strokeDasharray = animateStroke ? `${length}` : '';
-        element.style.strokeDashoffset = animateStroke ? '0' : '';
-      } else if (isDisabled === false) {
-        if (reverse) {
-          element.style.transitionDelay = `${duration}s`;
-          element.style[animateStroke ? 'stroke' : 'fill'] = closedColor;
-          element.style.strokeDasharray = animateStroke ? `${length}` : '';
-        }
-        element.style[animateStroke ? 'stroke' : 'fill'] = openColor;
-        element.style.strokeDasharray = animateStroke ? `${length}` : '';
-        element.style.strokeDashoffset = animateStroke ? `${length}` : '';
-      }
-    });
-
-    // Apply stroke color to static SVG
-    staticElements.forEach((element) => {
-      element.style.stroke = isDisabled ? openedColor : closedColor;
-    });
-  }, [
-    isDisabled,
-    duration,
-    animateStroke,
-    openColor,
-    closeColor,
-    openedColor,
-    closedColor,
-    calculatePathLength,
-    scaleDurationByLength,
-  ]);
-
+function AnimatedCheckIcon({
+  initial = true,
+  isVisible = false,
+  path = 'M5 13l4 4L19 7',
+  duration = 0.3,
+}) {
   return (
-    <div style={{ position: 'relative' }}>
-      <div
-        ref={staticRef}
-        style={{
-          position: 'absolute',
-          opacity: baseOpacity,
-        }}
+    <AnimatePresence initial={initial} mode={'wait'}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={clsx('relative h-6 w-6 text-current')}
       >
-        {children}
-      </div>
-      <div ref={svgRef}>{children}</div>
-    </div>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength={1}
+          d={path}
+          className={clsx('absolute left-0 top-0 opacity-5')}
+        />
+
+        <motion.path
+          layout
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{
+            pathLength: isVisible ? 1 : 0,
+            opacity: isVisible ? 1 : 0,
+          }}
+          exit={{ pathLength: 0 }}
+          transition={{
+            type: 'tween',
+            duration,
+            ease: isVisible ? 'easeOut' : 'easeIn',
+          }}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d={path}
+          className={clsx('absolute left-0 top-0')}
+        />
+      </svg>
+    </AnimatePresence>
   );
 }
-
-export default AnimatedSVG;
+export default AnimatedCheckIcon;
