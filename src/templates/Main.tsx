@@ -53,8 +53,8 @@ const Main = (props: IMainProps) => {
   const isActiveRoute = (href: string) => router.pathname === href;
 
   return (
-    <div className="relative bg-gray-900 px-1 text-white antialiased">
-      <div className="relative z-20 mx-auto max-w-screen-md bg-gray-900">
+    <div className="relative mx-auto max-w-screen-2xl bg-gray-900 px-1 text-white antialiased ">
+      <div className="relative z-20 bg-gray-900">
         {props.meta}
         <header className="my-20">
           <nav>
@@ -90,7 +90,7 @@ const Main = (props: IMainProps) => {
             </ul>
           </nav>
         </header>
-        <main className="content py-5 text-xl">{props.children}</main>
+        <main className="content py-5 text-sm">{props.children}</main>
         <footer className="border-t border-gray-300 py-8 text-center text-sm">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>
