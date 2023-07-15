@@ -43,6 +43,7 @@
             "endOfLine": "auto"
           }
         ],
+        "react/jsx-boolean-value": "off", // Disable boolean value rule because I don't like it.
         "react/jsx-curly-brace-presence": "off", // Disable curly brace rule because it's not working with Next.js
         "sort-imports": "off", // Disable sort-imports because it's already handled by `eslint-plugin-simple-import-sort`
         "import/no-extraneous-dependencies": "off",

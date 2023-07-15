@@ -4,46 +4,21 @@ import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 const topics = [
-  `Welcome!`,
-  `I'm Travis Worthing, a seasoned Full Stack Software Developer
-        deeply immersed in the Web3 ecosystem since 2017. I hold a Bachelor's
-        Degree in Computer Science from the University of British Columbia
-        Okanagan (UBCO). My technical acumen and leadership skills have been
-        honed through significant roles, where I've orchestrated projects
-        including decentralized applications (dApps) for marketplaces, token
-        swapping platforms, and key integrations for member onboarding.`,
-
-  `Throughout my career, I've had the privilege of managing dynamic
-        development teams, varying in size from 4 to 6 individuals, located
-        across the globe. This experience has not only enhanced my leadership
-        skills, but also equipped me to efficiently navigate multicultural and
-        geographically dispersed work environments.`,
-
-  `I've been instrumental in the creation of cryptocurrency wallets for two
-        renowned companies, reflecting my versatility in the blockchain domain.
-        Recently, my focus has shifted towards integrating sophisticated
-        contracts such as ERC721, ERC20, zk-SNARK, and UniRep, and I've
-        successfully developed and deployed contracts on platforms like
-        Avalanche.`,
-  ` When it comes to testing, my toolkit of choice includes Jest and
-        Playwright. My technical proficiency is backed by an extensive
-        experience with a broad spectrum of technologies, including ReactJS,
-        NextJS, MySQL, Express, Laravel, TailwindCSS, SCSS, and Material-UI,
-        with particular confidence in leveraging React, Tailwind, MySQL, and
-        NextJS.`,
-  `Driven by a relentless pursuit of innovation, I'm excited to
-            continue my journey in the world of Web3 and blockchain, delivering
-            cutting-edge technology solutions that shape the future.`,
+  `Welcome! I'm Travis Worthing, a seasoned Full Stack Software Developer driven by two core beliefs: technology should primarily drive innovation and economic growth, and user privacy and security are paramount. Since 2017, I've been harnessing my Bachelor's Degree in Computer Science from the University of British Columbia Okanagan (UBCO) to create cutting-edge decentralized applications (dApps).`,
+  `I have a notable track record in the blockchain and Web3 domain, leading diverse and globally distributed teams to success. I've designed and built cryptocurrency wallets for two high-profile companies, contributing to the proliferation and adoption of digital currencies. Despite the success of these projects being hard to measure in terms of user base, the real triumph lies in their smooth operation, robust security, and the considerable transactions they facilitate daily.`,
+  `Beyond that, my contributions have significantly boosted operational efficiency and reduced costs, showcasing my ability to add value to any project I'm part of. My strength lies in developing and deploying sophisticated contracts like ERC721, ERC20, zk-SNARK, and UniRep on platforms like Avalanche.`,
+  `Currently, I am open to full-time job opportunities, consultancy roles, and collaborations on projects related to Web3 technologies, where I can bring my expertise to create innovative and secure tech solutions. My toolset ranges from Jest and Playwright for testing to a broad range of technologies like ReactJS, NextJS, MySQL, Express, Laravel, TailwindCSS, SCSS, and Material-UI.`,
+  `I invite anyone interested in discussing potential collaborations, job opportunities, or just passionate about the immense potential of the blockchain and Web3 space, to reach out. Together, we can leverage technology to drive economic growth and ensure user security.`,
 ];
 
 const TextBlock: FC<TextBlockProps> = ({ children }) => (
   <div className="mb-10 text-2xl text-white/50">{children}</div>
 );
 
-// Your tag component
 const Tag: FC<TextBlockProps> = ({ children }) => {
   return <TextBlock>{children}</TextBlock>;
 };
+
 const About = () => (
   <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
     <div className="bg-gray-900">
