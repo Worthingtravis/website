@@ -36,7 +36,10 @@ export function AnimatedText() {
           'col-span-1 flex flex-col gap-4 border bg-gray-800 p-2 shadow-lg'
         }
       >
-        <div className={`mt-2 grid grid-cols-5 justify-items-center gap-4`}>
+        <div
+          className={`mt-2 grid grid-cols-5 items-center justify-items-center gap-4 px-2`}
+        >
+          Animation:
           {Object.entries(animationOptions).map(([key, value]) => (
             <Button
               key={key}

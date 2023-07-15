@@ -261,7 +261,6 @@ const positionOptions = {
       justifyBetween: 'justify-between',
       justifyAround: 'justify-around',
       justifyEvenly: 'justify-evenly',
-      justifyNone: 'justify-none', // justify-content: normal
     },
     alignSelf: {
       alignSelfStart: 'self-start', // align individual items as flex-start
