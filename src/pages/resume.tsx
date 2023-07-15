@@ -121,6 +121,8 @@ const MainPage = () => {
   return (
     <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
       <Tabs tabs={['experience', 'contact']} tab={tab} setTab={setTab} />
+      <br />
+      <br />
       <AnimatePresence mode="wait">
         {tab === undefined && <LoadingComponent />}
         {tab === 'experience' && (
