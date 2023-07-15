@@ -1,5 +1,7 @@
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
+import { AnimatedText } from '@/components/AnimatingText/AnimatedText';
+import { LoginExamples } from '@/components/LoginForm/LoginForm';
 
 const Index = () => {
   return (
@@ -11,7 +13,10 @@ const Index = () => {
         />
       }
     >
-      &nbsp;
+      <div className={'flex flex-col gap-2'}>
+        <AnimatedText />
+        <LoginExamples />
+      </div>
     </Main>
   );
 };
