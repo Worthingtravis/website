@@ -3,7 +3,8 @@ import { useState } from 'react';
 import type { AnimateTextProps } from '@/components/AnimatingText/AnimateText';
 import { AnimateText } from '@/components/AnimatingText/AnimateText';
 
-import { Button } from '../Button';
+import TwoColumnLayout from '@/templates/TwoColumnLayout';
+import { OptionButtonGroup, RadioOptionGroup } from '../OptionGroups';
 
 interface AnimationOptions {
   fade: AnimateTextProps['variant'];
@@ -19,105 +20,85 @@ const animationOptions: AnimationOptions = {
   slide: 'slide',
 };
 
-// import other necessary libraries and components
-
-export function AnimatedText() {
+export function AnimatedText({ customText }: { customText?: string }) {
   const [animation, setAnimation] =
     useState<AnimateTextProps['variant']>('fade');
 
   const [splitBy, setSplitBy] = useState<AnimateTextProps['splitBy']>('word');
 
-  const [text, setText] = useState<string>('Welcome to my website!');
+  const [text, setText] = useState<string>(
+    customText || 'Welcome to my website!'
+  );
+
+  const [speed, setSpeed] = useState<number>(0.5);
+
+  const leftColumnContent = (
+    <>
+      <OptionButtonGroup
+        title="Animation"
+        options={Object.entries(animationOptions).map(([key, value]) => ({
+          key,
+          value,
+        }))}
+        activeValue={animation}
+        setActiveValue={setAnimation}
+      />
+      <OptionButtonGroup
+        title="Speed"
+        options={[
+          { key: 'xfast', value: 0.01 },
+          { key: 'fast', value: 0.05 },
+          { key: 'normal', value: 0.5 },
+          { key: 'slow', value: 1 },
+          { key: 'xslow', value: 2 },
+        ]}
+        activeValue={speed}
+        setActiveValue={setSpeed}
+      />
+      <hr />
+      <RadioOptionGroup
+        title="Animate by"
+        options={[
+          { key: 'Word', value: 'word' },
+          { key: 'Letter', value: 'letter' },
+        ]}
+        activeValue={splitBy}
+        setActiveValue={setSplitBy}
+      />
+      <hr />
+      <div className="flex flex-col gap-2">
+        <label
+          aria-label={'changing animating text'}
+          htmlFor={'text'}
+          className="text-white"
+        >
+          Text:
+        </label>
+        <textarea
+          id={'text'}
+          rows={24}
+          name="text"
+          className="scrollbar rounded-md bg-gray-700 p-2"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      </div>
+    </>
+  );
+
+  const rightColumnContent = (
+    <AnimateText
+      text={text}
+      variant={animation}
+      splitBy={splitBy}
+      speed={speed}
+    />
+  );
 
   return (
-    <div className={'grid grid-cols-4 gap-2 text-sm'}>
-      <div
-        className={
-          'col-span-1 flex flex-col gap-4 border bg-gray-800 p-2 shadow-lg'
-        }
-      >
-        <div
-          className={`mt-2 grid grid-cols-5 items-center justify-items-center gap-4 px-2`}
-        >
-          Animation:
-          {Object.entries(animationOptions).map(([key, value]) => (
-            <Button
-              key={key}
-              onClick={() => setAnimation(value)}
-              active={value === animation}
-            >
-              {key}
-            </Button>
-          ))}
-        </div>
-
-        <hr />
-
-        <div className="flex  gap-2">
-          <h1>Animate by:</h1>
-
-          <label
-            className="inline-flex items-center text-white"
-            aria-label={''}
-            htmlFor={'radio-colors-1'}
-          >
-            <input
-              type="radio"
-              id={'radio-colors-1'}
-              className="form-radio h-5 w-5"
-              name="radio-colors"
-              value="1"
-              checked={splitBy === 'word'}
-              onChange={() => setSplitBy('word')}
-            />
-            <span className="ml-2 ">Word</span>
-          </label>
-          <label
-            className="inline-flex items-center"
-            aria-label={'letter'}
-            htmlFor={'radio-colors-2'}
-          >
-            <input
-              id={'radio-colors-2'}
-              type="radio"
-              className="form-radio h-5 w-5 "
-              name="radio-colors"
-              value="2"
-              checked={splitBy === 'letter'}
-              onChange={() => setSplitBy('letter')}
-            />
-            <span className="ml-2">Letter</span>
-          </label>
-        </div>
-
-        <hr />
-        <div className="flex flex-col gap-2">
-          <label
-            aria-label={'changing animating text'}
-            htmlFor={'text'}
-            className="text-white"
-          >
-            Text:
-          </label>
-          <input
-            name="text"
-            className="rounded-md bg-gray-700 p-2"
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div
-        className={
-          'scrollbar col-span-3 flex max-h-[calc(100vh-22rem)] flex-col items-center justify-center gap-4 overflow-y-auto border border-gray-600 p-2 shadow-lg'
-        }
-      >
-        <h1 className="text-6xl font-bold">
-          <AnimateText text={text} variant={animation} splitBy={splitBy} />
-        </h1>
-      </div>
-    </div>
+    <TwoColumnLayout
+      leftColumn={leftColumnContent}
+      rightColumn={rightColumnContent}
+    />
   );
 }
