@@ -11,6 +11,8 @@ import type { Config } from '@/components/LoginForm/LoginForm.config';
 import { configs } from '@/components/LoginForm/LoginForm.config';
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { DynamicLayout } from '@/templates/DynamicLayout';
+import { OptionButtonGroup } from '../OptionGroups';
 
 const variants = {
   outline: {
@@ -292,89 +294,60 @@ export const LoginExamples = () => {
   const isMounted = useIsMounted();
   if (!isMounted) return null;
 
-  return (
-    <div className={'grid grid-cols-4 gap-2 text-sm'}>
-      <div
-        className={
-          'col-span-1 flex flex-col gap-4 border bg-gray-800 p-2 shadow-lg'
-        }
-      >
-        <h3 className="text-lg font-semibold text-white">Config</h3>
-        <div className={'flex flex-wrap'}>
-          <Button onClick={() => setShowConfig(!showConfig)}>
-            {showConfig ? 'Hide' : 'Show'} Config{' '}
-            <AnimatedCheckIcon isVisible={showConfig} initial={true} />
-          </Button>
-        </div>
-        <h3 className="text-lg font-semibold text-white">Layout</h3>
-        <div className={`mt-2 grid grid-cols-2 gap-4`}>
-          {Object.entries(layoutOptions).map(([key, value]) => (
-            <Button
-              key={key}
-              onClick={() => setLayout(value)}
-              active={value === layout}
-            >
-              {_.startCase(key)}
-            </Button>
-          ))}
-        </div>
-        {Object.entries(positionOptions[layoutType]).map(
-          ([positionType, values]) => (
-            <div key={positionType}>
-              <h3 className="text-lg font-semibold text-white">
-                {_.startCase(positionType)}
-              </h3>
-              <div className={`mt-2 grid grid-cols-2 gap-4`}>
-                {Object.entries(values).map(([key, value]) => (
-                  <Button
-                    key={key}
-                    aria-label={key}
-                    onClick={() =>
-                      setPositions((prev) => ({
-                        ...prev,
-                        [positionType]: value,
-                      }))
-                    }
-                    active={value === positions[positionType]}
-                  >
-                    {_.startCase(key)}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )
-        )}
+  const leftColumn = (
+    <>
+      <h3 className="text-lg font-semibold text-white">Config</h3>
+      <div className={'flex flex-wrap'}>
+        <Button onClick={() => setShowConfig(!showConfig)}>
+          {showConfig ? 'Hide' : 'Show'} Config{' '}
+          <AnimatedCheckIcon isVisible={showConfig} initial={true} />
+        </Button>
       </div>
+      <OptionButtonGroup
+        title="Layout"
+        options={Object.entries(layoutOptions).map(([key, value]) => ({ key, value }))}
+        activeValue={layout}
+        setActiveValue={setLayout}
+      />
+      {Object.entries(positionOptions[layoutType]).map(
+        ([positionType, values]) => (
+          <div key={positionType}>
+            <h3 className="text-lg font-semibold text-white">
+              {_.startCase(positionType)}
+            </h3>
+            <OptionButtonGroup
+              options={Object.entries(values).map(([key, value]) => ({ key, value }))}
+              activeValue={positions[positionType]}
+              setActiveValue={value => setPositions((prev) => ({...prev, [positionType]: value}))}
+            />
+          </div>
+        )
+      )}
+    </>
+  );
 
-      <div
-        className={
-          'scrollbar col-span-3 max-h-[calc(100vh-22rem)] overflow-y-auto border border-gray-600'
-        }
-      >
-        <div
-          className={clsx(
-            layout,
-            Object.values(positions),
-            'gap-4 shadow-neutral-950 '
-          )}
-        >
-          {configs.map((config) => (
-            <div key={config.variant} className={clsx(`my-8 gap-8`)}>
-              <motion.div layout>
-                <h2 className="my-4 text-center text-2xl font-semibold">
-                  {_.startCase(config.variant)}
-                </h2>
-                <LoginForm config={config} />
-              </motion.div>
-              {showConfig && (
-                <pre className="w-full rounded bg-gray-900 p-4 text-xs">
-                  <code>{JSON.stringify(config, null, 2)} </code>
-                </pre>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+  const mainContent = configs.map((config) => (
+    <div key={config.variant} className={clsx('my-8 gap-8')}>
+      <motion.div layout>
+        <h2 className="my-4 text-center text-2xl font-semibold">
+          {_.startCase(config.variant)}
+        </h2>
+        <LoginForm config={config} />
+      </motion.div>
+      {showConfig && (
+        <pre className="w-full rounded bg-gray-900 p-4 text-xs">
+          <code>{JSON.stringify(config, null, 2)} </code>
+        </pre>
+      )}
     </div>
+  ));
+
+  return (
+    <DynamicLayout
+      layout={layout}
+      positions={positions}
+      leftColumn={leftColumn}
+      mainContent={mainContent}
+    />
   );
 };

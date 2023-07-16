@@ -14,6 +14,8 @@ const Index = () => {
       }
     >
       <div className={'flex flex-col gap-2'}>
+        The components were made for the sole purpose of demonstrating ability
+        to create reusable, configurable components...
         <AnimatedText />
         <LoginExamples />
       </div>
