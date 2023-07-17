@@ -1,6 +1,12 @@
 import React from 'react';
 
-const TwoColumnLayout = ({ leftColumn, rightColumn }) => {
+const TwoColumnLayout = ({
+  leftColumn,
+  rightColumn,
+}: {
+  leftColumn: React.ReactNode;
+  rightColumn: React.ReactNode;
+}) => {
   return (
     <div className="grid grid-cols-4 gap-2 text-sm">
       <div className="col-span-1 flex flex-col gap-4 border bg-gray-800 p-2 shadow-lg">

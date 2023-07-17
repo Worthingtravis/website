@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import _ from 'lodash';
 import type { Dispatch, SetStateAction } from 'react';
 
+import { Button } from './Button';
+
 export const Tabs = ({
   tabs,
   tab,
@@ -14,8 +16,7 @@ export const Tabs = ({
   return (
     <div className="flex flex-row items-center justify-start space-x-4">
       {tabs.map((t) => (
-        <button
-          type="button"
+        <Button
           key={t}
           onClick={() => setTab(t)}
           className={clsx(
@@ -26,7 +27,7 @@ export const Tabs = ({
           )}
         >
           {_.capitalize(t)}
-        </button>
+        </Button>
       ))}
     </div>
   );

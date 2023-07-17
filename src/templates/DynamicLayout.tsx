@@ -1,5 +1,6 @@
-import TwoColumnLayout from './TwoColumnLayout'; // assuming the file path
 import clsx from 'clsx';
+
+import TwoColumnLayout from './TwoColumnLayout'; // assuming the file path
 
 // DynamicLayout.js
 export const DynamicLayout = ({
@@ -7,20 +8,30 @@ export const DynamicLayout = ({
   positions,
   leftColumn,
   mainContent,
+}: {
+  layout: string;
+  positions: {
+    items: string;
+    justify: string;
+    alignSelf?: string;
+  };
+  leftColumn: React.ReactNode;
+  mainContent: React.ReactNode;
 }) => {
-  const dynamicContent = (
-    <div
-      className={clsx(
-        layout,
-        Object.values(positions),
-        'gap-4 shadow-neutral-950 '
-      )}
-    >
-      {mainContent}
-    </div>
-  );
-
   return (
-    <TwoColumnLayout leftColumn={leftColumn} rightColumn={dynamicContent} />
+    <TwoColumnLayout
+      leftColumn={leftColumn}
+      rightColumn={
+        <div
+          className={clsx(
+            layout,
+            Object.values(positions),
+            'gap-4 shadow-neutral-950 '
+          )}
+        >
+          {mainContent}
+        </div>
+      }
+    />
   );
 };

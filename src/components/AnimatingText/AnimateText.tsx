@@ -1,10 +1,22 @@
 import { motion } from 'framer-motion';
+import { nanoid } from 'nanoid';
 import { useMemo, useState } from 'react';
+
+import { Button } from '../Button';
 
 interface AnimationVariants {
   initial: object;
   animate: object;
   transition: (index: number, delay: number, speed: number) => object;
+}
+
+export type SplitBy = 'word' | 'letter';
+export interface AnimateProps {
+  text?: string;
+  delay?: number;
+  variant?: 'default' | 'fade' | 'slide' | 'scale' | 'rotate';
+  splitBy?: SplitBy;
+  speed?: number;
 }
 
 const animationVariants: { [key: string]: AnimationVariants } = {
@@ -49,16 +61,10 @@ const animationVariants: { [key: string]: AnimationVariants } = {
     }),
   },
 };
-export type SplitBy = 'word' | 'letter';
-export interface AnimateTextProps {
-  text?: string;
-  delay?: number;
-  variant?: 'default' | 'fade' | 'slide' | 'scale' | 'rotate';
-  splitBy?: SplitBy;
-  speed?: number;
-}
 
-export const AnimateText: React.FC<AnimateTextProps> = ({
+const ParagraphBreak = () => <div className={'w-full grow bg-gray-400'} />;
+
+export const AnimateText: React.FC<AnimateProps> = ({
   text,
   delay = 0.1,
   variant = 'default',
@@ -70,11 +76,10 @@ export const AnimateText: React.FC<AnimateTextProps> = ({
     if (!text) {
       return [];
     }
-
     const lines = text.split('\n');
     let result = [];
 
-    for (let line of lines) {
+    for (const line of lines) {
       if (splitBy === 'word') {
         result.push(line.split(' '));
       } else if (splitBy === 'letter') {
@@ -92,51 +97,30 @@ export const AnimateText: React.FC<AnimateTextProps> = ({
 
     return result;
   }, [text, variant, splitBy, speed]);
-
-  if (isSkipping) {
-    return (
-      <>
-        <button
-          onClick={() => setIsSkipping(false)}
-          className="mb-4 self-start rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-        >
-          Restart
-        </button>
-        <span className="flex flex-wrap gap-2">
-          {textArray?.map((part, index) =>
-            part.includes('\n') ? (
-              <div className={'w-full grow bg-gray-400'}></div>
-            ) : (
-              <motion.span key={part + index}>{part}</motion.span>
-            )
-          )}
-        </span>
-      </>
-    );
-  }
-
   return (
     <>
-      <button
-        onClick={() => setIsSkipping(true)}
-        className="mb-4 self-start rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-      >
-        Skip to end
-      </button>
+      <Button onClick={() => setIsSkipping(!isSkipping)}>
+        {isSkipping ? 'Restart' : 'Skip to end'}
+      </Button>
+      <br />
       <div className="flex flex-wrap gap-2">
         {textArray?.map((part, index) =>
           part.includes('\n') ? (
-            <div className={'w-full flex-grow bg-gray-400'}></div>
+            <ParagraphBreak key={nanoid()} />
           ) : (
             <motion.span
-              key={part + index + speed}
-              initial={animationVariants[variant]?.initial}
-              animate={animationVariants[variant]?.animate}
-              transition={animationVariants[variant]?.transition(
-                index,
-                delay,
-                speed
-              )}
+              key={nanoid()}
+              initial={
+                isSkipping ? undefined : animationVariants[variant]?.initial
+              }
+              animate={
+                isSkipping ? undefined : animationVariants[variant]?.animate
+              }
+              transition={
+                isSkipping
+                  ? undefined
+                  : animationVariants[variant]?.transition(index, delay, speed)
+              }
               onAnimationComplete={() => {
                 if (index === textArray.length - 1) {
                   setIsSkipping(true);

@@ -1,16 +1,17 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
-import type { AnimateTextProps } from '@/components/AnimatingText/AnimateText';
+import type { AnimateProps } from '@/components/AnimatingText/AnimateText';
 import { AnimateText } from '@/components/AnimatingText/AnimateText';
-
 import TwoColumnLayout from '@/templates/TwoColumnLayout';
+
 import { OptionButtonGroup, RadioOptionGroup } from '../OptionGroups';
 
 interface AnimationOptions {
-  fade: AnimateTextProps['variant'];
-  rotate: AnimateTextProps['variant'];
-  scale: AnimateTextProps['variant'];
-  slide: AnimateTextProps['variant'];
+  fade: AnimateProps['variant'];
+  rotate: AnimateProps['variant'];
+  scale: AnimateProps['variant'];
+  slide: AnimateProps['variant'];
 }
 
 const animationOptions: AnimationOptions = {
@@ -20,16 +21,15 @@ const animationOptions: AnimationOptions = {
   slide: 'slide',
 };
 
-export function AnimatedText({ customText }: { customText?: string }) {
-  const [animation, setAnimation] =
-    useState<AnimateTextProps['variant']>('fade');
+interface AnimatedTextProps {
+  _text?: string;
+  className?: string;
+}
 
-  const [splitBy, setSplitBy] = useState<AnimateTextProps['splitBy']>('word');
-
-  const [text, setText] = useState<string>(
-    customText || 'Welcome to my website!'
-  );
-
+export function AnimatedText({ _text, className }: AnimatedTextProps) {
+  const [animation, setAnimation] = useState<AnimateProps['variant']>('fade');
+  const [splitBy, setSplitBy] = useState<AnimateProps['splitBy']>('word');
+  const [text, setText] = useState<string>(_text || 'Welcome to my website!');
   const [speed, setSpeed] = useState<number>(0.5);
 
   const leftColumnContent = (
@@ -40,8 +40,8 @@ export function AnimatedText({ customText }: { customText?: string }) {
           key,
           value,
         }))}
-        activeValue={animation}
-        setActiveValue={setAnimation}
+        activeValue={animation as string}
+        setActiveValue={setAnimation as (value: any) => void}
       />
       <OptionButtonGroup
         title="Speed"
@@ -52,8 +52,8 @@ export function AnimatedText({ customText }: { customText?: string }) {
           { key: 'slow', value: 1 },
           { key: 'xslow', value: 2 },
         ]}
-        activeValue={speed}
-        setActiveValue={setSpeed}
+        activeValue={speed.toString()}
+        setActiveValue={setSpeed as (value: any) => void}
       />
       <hr />
       <RadioOptionGroup
@@ -62,8 +62,8 @@ export function AnimatedText({ customText }: { customText?: string }) {
           { key: 'Word', value: 'word' },
           { key: 'Letter', value: 'letter' },
         ]}
-        activeValue={splitBy}
-        setActiveValue={setSplitBy}
+        activeValue={splitBy as string}
+        setActiveValue={setSplitBy as (value: any) => void}
       />
       <hr />
       <div className="flex flex-col gap-2">
@@ -76,7 +76,7 @@ export function AnimatedText({ customText }: { customText?: string }) {
         </label>
         <textarea
           id={'text'}
-          rows={24}
+          rows={12}
           name="text"
           className="scrollbar rounded-md bg-gray-700 p-2"
           value={text}
@@ -87,12 +87,14 @@ export function AnimatedText({ customText }: { customText?: string }) {
   );
 
   const rightColumnContent = (
-    <AnimateText
-      text={text}
-      variant={animation}
-      splitBy={splitBy}
-      speed={speed}
-    />
+    <div className={clsx('p-4', className)}>
+      <AnimateText
+        text={text}
+        variant={animation}
+        splitBy={splitBy}
+        speed={speed}
+      />
+    </div>
   );
 
   return (

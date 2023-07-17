@@ -10,8 +10,11 @@ Currently, I am open to full-time job opportunities, consultancy roles, and coll
 ];
 const About = () => (
   <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
-    <div className="space-y-10 p-5">
-      <AnimatedText customText={topics.join('\n')} />
+    <div>
+      <AnimatedText
+        _text={topics.join('\n')}
+        className="space-y-10 p-5 text-xl"
+      />
     </div>
   </Main>
 );
