@@ -42,9 +42,7 @@ const Main = (props: IMainProps) => {
         window.scrollTo(0, 0);
       }
     };
-
     router.events.on('routeChangeComplete', handleRouteChange);
-
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
@@ -91,7 +89,7 @@ const Main = (props: IMainProps) => {
           </nav>
         </header>
         <main className="content py-5 text-sm">{props.children}</main>
-        <footer className="border-t border-gray-300 py-8 text-center text-sm">
+        <footer className="border-t border-gray-300 py-8 text-sm">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>
       </div>

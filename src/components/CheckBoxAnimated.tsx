@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /* eslint-disable no-param-reassign */
 const initializeCircle = ({ ref, isChecked }: { ref: any; isChecked: any }) => {
@@ -131,7 +131,7 @@ function CheckIconAnimated({
 }
 
 export const CheckBox = ({ isChecked }: { isChecked: boolean }) => {
-  const [initialRender, setInitialRender] = React.useState(true);
+  const [initialRender, setInitialRender] = useState<boolean>(true);
 
   React.useEffect(() => {
     if (initialRender && isChecked) {

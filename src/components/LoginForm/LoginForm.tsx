@@ -8,39 +8,17 @@ import AnimatedCheckIcon from '@/components/AnimatedSVG';
 import { Button } from '@/components/Button';
 import { ErrorIcon, LoadingIcon, SubmitOutlineIcon } from '@/components/Icons';
 import type { Config } from '@/components/LoginForm/LoginForm.config';
-import { configs } from '@/components/LoginForm/LoginForm.config';
+import {
+  layoutOptions,
+  variants,
+  positionOptions,
+  configs,
+} from '@/components/LoginForm/LoginForm.config';
+
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { DynamicLayout } from '@/templates/DynamicLayout';
 import { OptionButtonGroup } from '../OptionGroups';
-
-const variants = {
-  outline: {
-    background: 'bg-gray-900',
-    text: 'text-white',
-    border: 'border-gray-900',
-    focus: 'focus:ring-gray-900',
-    ring: 'ring-2',
-  },
-  default: {
-    background: 'bg-transparent',
-    text: 'text-white',
-    border: 'border-white',
-    focus: 'focus:ring-white',
-  },
-  questionable: {
-    background: 'bg-teal-500',
-    text: 'text-white',
-    border: 'border-white',
-    focus: 'focus:ring-white',
-  },
-  dark: {
-    background: 'bg-gray-950',
-    text: 'text-white',
-    border: 'border-gray-950',
-    focus: 'focus:ring-gray-900',
-  },
-};
 
 export const LoginForm = ({ config }: { config: Config }) => {
   const classNames = variants[config.variant];
@@ -51,8 +29,8 @@ export const LoginForm = ({ config }: { config: Config }) => {
     )
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const checkForErrors = useCallback(() => {
     setLoading(true);
@@ -216,63 +194,6 @@ export const LoginForm = ({ config }: { config: Config }) => {
   );
 };
 
-const layoutOptions = {
-  grid1: 'grid grid-cols-1',
-  grid2: 'grid grid-cols-2',
-  grid3: 'grid grid-cols-3',
-  grid4: 'grid grid-cols-4',
-  grid211: 'grid grid-cols-4 grid-span-2-1-1',
-  grid12: 'grid grid-cols-3 grid-span-1-2',
-  flex: 'flex',
-  flexcol: 'flex flex-col',
-  flexWrap: 'flex flex-wrap',
-  flexNoWrap: 'flex flex-no-wrap',
-  flexColWrap: 'flex flex-col flex-wrap',
-  flexColNoWrap: 'flex flex-col flex-no-wrap',
-};
-
-const positionOptions = {
-  grid: {
-    items: {
-      itemsCenter: 'items-center',
-      itemsStart: 'items-start',
-      itemsEnd: 'items-end',
-      itemsStretch: 'items-stretch', // stretch to fill the grid cell
-    },
-    justify: {
-      justifyCenter: 'justify-center',
-      justifyStart: 'justify-start',
-      justifyEnd: 'justify-end',
-      justifyBetween: 'justify-between',
-      justifyAround: 'justify-around',
-      justifyEvenly: 'justify-evenly',
-    },
-  },
-  flex: {
-    items: {
-      itemsCenter: 'items-center',
-      itemsStart: 'items-start',
-      itemsEnd: 'items-end',
-      itemsBaseline: 'items-baseline', // align items along their baseline
-      itemsStretch: 'items-stretch', // stretch to fill the flex container
-    },
-    justify: {
-      justifyCenter: 'justify-center',
-      justifyStart: 'justify-start',
-      justifyEnd: 'justify-end',
-      justifyBetween: 'justify-between',
-      justifyAround: 'justify-around',
-      justifyEvenly: 'justify-evenly',
-    },
-    alignSelf: {
-      alignSelfStart: 'self-start', // align individual items as flex-start
-      alignSelfEnd: 'self-end', // align individual items as flex-end
-      alignSelfCenter: 'self-center', // align individual items as center
-      alignSelfStretch: 'self-stretch', // stretch individual items
-    },
-  },
-};
-
 export const LoginExamples = () => {
   const [layout, setLayout] = useState<string>(layoutOptions.grid2);
   const layoutType = layout.includes('grid') ? 'grid' : 'flex';
@@ -305,9 +226,12 @@ export const LoginExamples = () => {
       </div>
       <OptionButtonGroup
         title="Layout"
-        options={Object.entries(layoutOptions).map(([key, value]) => ({ key, value }))}
+        options={Object.entries(layoutOptions).map(([key, value]) => ({
+          key,
+          value,
+        }))}
         activeValue={layout}
-        setActiveValue={setLayout}
+        setActiveValue={setLayout as (value: string | number) => void}
       />
       {Object.entries(positionOptions[layoutType]).map(
         ([positionType, values]) => (
@@ -316,9 +240,14 @@ export const LoginExamples = () => {
               {_.startCase(positionType)}
             </h3>
             <OptionButtonGroup
-              options={Object.entries(values).map(([key, value]) => ({ key, value }))}
+              options={Object.entries(values).map(([key, value]) => ({
+                key,
+                value,
+              }))}
               activeValue={positions[positionType]}
-              setActiveValue={value => setPositions((prev) => ({...prev, [positionType]: value}))}
+              setActiveValue={(value) =>
+                setPositions((prev) => ({ ...prev, [positionType]: value }))
+              }
             />
           </div>
         )

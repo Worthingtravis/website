@@ -8,14 +8,16 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
+          title="Demo Components"
+          description="Demonstrating ability to create fully typed, reusable and configurable components..."
         />
       }
     >
       <div className={'flex flex-col gap-2'}>
-        The components were made for the sole purpose of demonstrating ability
-        to create reusable, configurable components...
+        <span className={'text-base'}>
+          These components were made for the sole purpose of demonstrating
+          ability to create fully typed, reusable and configurable components...
+        </span>
         <AnimatedText />
         <LoginExamples />
       </div>

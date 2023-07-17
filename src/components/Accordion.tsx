@@ -89,8 +89,8 @@ const AccordionButton: React.FC<AccordionButtonProps> = ({
   isVisible,
   exitAfterMs = 750,
 }) => {
-  const [startBuffer, setStartBuffer] = useState(false);
-  const [endBuffer, setEndBuffer] = useState(false);
+  const [startBuffer, setStartBuffer] = useState<boolean>(false);
+  const [endBuffer, setEndBuffer] = useState<boolean>(false);
   const scrollInterval = useRef<NodeJS.Timeout | null>(null);
 
   const handleScroll = React.useCallback(() => {

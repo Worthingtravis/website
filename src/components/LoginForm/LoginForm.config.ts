@@ -14,6 +14,34 @@ export type Config = {
   variant: 'default' | 'outline' | 'questionable' | 'dark';
 };
 
+export const variants = {
+  outline: {
+    background: 'bg-gray-900',
+    text: 'text-white',
+    border: 'border-gray-900',
+    focus: 'focus:ring-gray-900',
+    ring: 'ring-2',
+  },
+  default: {
+    background: 'bg-transparent',
+    text: 'text-white',
+    border: 'border-white',
+    focus: 'focus:ring-white',
+  },
+  questionable: {
+    background: 'bg-teal-500',
+    text: 'text-white',
+    border: 'border-white',
+    focus: 'focus:ring-white',
+  },
+  dark: {
+    background: 'bg-gray-950',
+    text: 'text-white',
+    border: 'border-gray-950',
+    focus: 'focus:ring-gray-900',
+  },
+};
+
 export const configs: Config[] = [
   {
     fields: [
@@ -132,3 +160,60 @@ export const configs: Config[] = [
     variant: 'dark',
   },
 ];
+
+export const layoutOptions = {
+  grid1: 'grid grid-cols-1',
+  grid2: 'grid grid-cols-2',
+  grid3: 'grid grid-cols-3',
+  grid4: 'grid grid-cols-4',
+  grid211: 'grid grid-cols-4 grid-span-2-1-1',
+  grid12: 'grid grid-cols-3 grid-span-1-2',
+  flex: 'flex',
+  flexcol: 'flex flex-col',
+  flexWrap: 'flex flex-wrap',
+  flexNoWrap: 'flex flex-no-wrap',
+  flexColWrap: 'flex flex-col flex-wrap',
+  flexColNoWrap: 'flex flex-col flex-no-wrap',
+};
+
+export const positionOptions = {
+  grid: {
+    items: {
+      itemsCenter: 'items-center',
+      itemsStart: 'items-start',
+      itemsEnd: 'items-end',
+      itemsStretch: 'items-stretch', // stretch to fill the grid cell
+    },
+    justify: {
+      justifyCenter: 'justify-center',
+      justifyStart: 'justify-start',
+      justifyEnd: 'justify-end',
+      justifyBetween: 'justify-between',
+      justifyAround: 'justify-around',
+      justifyEvenly: 'justify-evenly',
+    },
+  },
+  flex: {
+    items: {
+      itemsCenter: 'items-center',
+      itemsStart: 'items-start',
+      itemsEnd: 'items-end',
+      itemsBaseline: 'items-baseline', // align items along their baseline
+      itemsStretch: 'items-stretch', // stretch to fill the flex container
+    },
+    justify: {
+      justifyCenter: 'justify-center',
+      justifyStart: 'justify-start',
+      justifyEnd: 'justify-end',
+      justifyBetween: 'justify-between',
+      justifyAround: 'justify-around',
+      justifyEvenly: 'justify-evenly',
+    },
+    alignSelf: {
+      alignSelfStart: 'self-start', // align individual items as flex-start
+      alignSelfEnd: 'self-end', // align individual items as flex-end
+      alignSelfCenter: 'self-center', // align individual items as center
+      alignSelfStretch: 'self-stretch', // stretch individual items
+    },
+  },
+};
