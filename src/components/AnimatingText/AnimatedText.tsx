@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import type { AnimateProps } from '@/components/AnimatingText/AnimateText';
 import { AnimateText } from '@/components/AnimatingText/AnimateText';
+import type { AnimateProps } from '@/components/AnimatingText/AnimateText.config';
 import TwoColumnLayout from '@/templates/TwoColumnLayout';
 
 import { OptionButtonGroup, RadioOptionGroup } from '../OptionGroups';

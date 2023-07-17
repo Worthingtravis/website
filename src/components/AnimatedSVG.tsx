@@ -6,6 +6,7 @@ function AnimatedCheckIcon({
   isVisible = false,
   path = 'M5 13l4 4L19 7',
   duration = 0.3,
+  delay = 0,
 }) {
   return (
     <AnimatePresence initial={initial} mode={'wait'}>
@@ -37,6 +38,7 @@ function AnimatedCheckIcon({
             type: 'tween',
             duration,
             ease: isVisible ? 'easeOut' : 'easeIn',
+            delay,
           }}
           strokeLinecap="round"
           strokeLinejoin="round"
