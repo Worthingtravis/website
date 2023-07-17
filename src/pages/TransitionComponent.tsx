@@ -12,7 +12,11 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
 }) => {
   return (
     <motion.div
-      className={clsx('flex flex-col items-center justify-center ', className)}
+      className={clsx(
+        'flex flex-col items-center justify-center ',
+        'mx-auto  w-full max-w-3xl p-4',
+        className
+      )}
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
