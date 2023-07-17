@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import AnimatedCheckIcon from '@/components/AnimatedSVG';
 
 export function CopyIconAnimated({ className }: { className?: string }) {
   return (
@@ -83,7 +84,10 @@ function CheckIconAnimated({ className }: { className?: string }) {
  * />
  */
 
-export const CopyV2 = ({ text }: { text: string }) => {
+export const CopyV2 = (
+  { text }: { text: string },
+  color: string | undefined = '#10B981'
+) => {
   const [copied, setCopied] = useState(false);
   const borderRef = useRef<SVGPathElement>(null);
 
@@ -109,7 +113,7 @@ export const CopyV2 = ({ text }: { text: string }) => {
       if (copied) {
         setTimeout(() => {
           if (!borderRef.current) return;
-          borderRef.current.style.stroke = '#10B981';
+          borderRef.current.style.stroke = color;
           borderRef.current.style.strokeDashoffset = `-${length}`; // Reverse the direction
         }, 200);
       }
@@ -139,7 +143,7 @@ export const CopyV2 = ({ text }: { text: string }) => {
                 ref={borderRef}
                 d="M25 2 a23 23 0 0 1 0 46 a23 23 0 0 1 0 -46"
                 fill="transparent"
-                stroke={copied ? '#10B981' : 'transparent'}
+                stroke={copied ? color : 'transparent'}
                 strokeWidth="2"
                 strokeDasharray="0"
                 strokeLinecap="round"
@@ -168,7 +172,7 @@ export const CopyV2 = ({ text }: { text: string }) => {
                   transition={{ duration: 0.5 }} // Set the duration for the opacity animation
                   className="flex items-center justify-center space-x-1"
                 >
-                  <CheckIconAnimated className="h-4 w-4" />
+                  <AnimatedCheckIcon isVisible={true} duration={0.5} />
                 </motion.div>
               )}
             </AnimatePresence>

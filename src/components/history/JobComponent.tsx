@@ -1,4 +1,4 @@
-import { Timeline } from '@/components/timeline';
+import { Timeline } from '@/components/Timeline';
 
 import type { Job } from './JobComponent.config';
 

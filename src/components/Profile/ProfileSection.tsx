@@ -1,4 +1,6 @@
-import { Categories } from '@/components/Profile/ProfileSection.config';
+import _ from 'lodash';
+
+import type { Categories } from '@/components/Profile/ProfileSection.config';
 
 const Label = ({ text }: { text: string }) => (
   <h2 className="text-xl font-bold text-blue-300">{text}</h2>
@@ -15,7 +17,7 @@ export const ProfileSection = ({ categories }: { categories: Categories }) => (
         <h1 className="mb-4 text-2xl font-semibold text-white">{category}</h1>
         {Object.entries(items).map(([label, text]) => (
           <div key={label} className="space-y-2">
-            <Label text={label} />
+            <Label text={_.startCase(label)} />
             <Text text={text as string} />
           </div>
         ))}

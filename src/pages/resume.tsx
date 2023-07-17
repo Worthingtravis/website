@@ -3,17 +3,15 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import { Contact } from '@/components/ContactMe/Contact';
+import { contactInfo } from '@/components/ContactMe/Contact.config';
+import { JobHistory } from '@/components/history/JobComponent';
+import { jobs } from '@/components/history/JobComponent.config';
+import { ProfileSection } from '@/components/Profile/ProfileSection';
+import { categories } from '@/components/Profile/ProfileSection.config';
 import { Tabs } from '@/components/Tabs';
-import { Timeline } from '@/components/timeline';
 import { Meta } from '@/layouts/Meta';
 import TransitionComponent from '@/pages/TransitionComponent';
 import { Main } from '@/templates/Main';
-import { ProfileSection } from '@/components/Profile/ProfileSection';
-import { contactInfo } from '@/components/ContactMe/Contact.config';
-import { JobComponent } from '@/components/history/jobComponent';
-import { JobHistory } from '@/components/history/JobComponent';
-import { jobs } from '@/components/history/JobComponent.config';
-import { categories } from '@/components/Profile/ProfileSection.config';
 
 const LoadingComponent = () => {
   return (

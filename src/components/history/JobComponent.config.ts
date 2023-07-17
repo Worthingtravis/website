@@ -13,6 +13,8 @@ export const jobs: Job[] = [
     responsibilities: [
       'Contributing to the development of an NFT wallet project, primarily focusing on feature implementations using Next.js, React, and Tailwind for front-end development.',
       'Developing a private forum project with a focus on contract integration around zkSNARK, ERC20 contracts, and UniRep, utilizing Next.js and React with Tailwind for a consistent front-end experience.',
+      "Consistently align all development activities with project requirements and stakeholders' expectations while adhering to the industry's best practices for code quality, performance, and maintainability.",
+      'Demonstrate leadership and technical acumen by providing insights and solutions to overcome challenges and meet project deadlines.',
     ],
   },
   {
@@ -23,6 +25,8 @@ export const jobs: Job[] = [
       'Led a team of 3-7 developers, fostering a collaborative environment and managing project deadlines.',
       'Orchestrated the development of Bullpen, a marketplace built in ReactJS, integrated with complex EVM smart contracts to streamline NFT transactions.',
       'Launched a web3 project to simplify the sales process for our ERC20 tokens, AUX/AGX, by developing a user-friendly guide for purchasing AVAX or USDC with a credit card and facilitating seamless token swapping through a DEX.',
+      'Promoted a culture of code quality and best practices within the team, implementing code review processes and pair programming sessions to ensure maintainability and efficiency of the codebase.',
+      'Worked closely with the UX/UI team to implement user-friendly interfaces and workflows, thereby boosting platform usability and customer engagement. Used my extensive knowledge of React, NextJS, and TailwindCSS to create performant and visually appealing application interfaces.',
     ],
   },
   {
