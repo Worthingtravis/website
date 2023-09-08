@@ -9,9 +9,11 @@ export const Tabs = ({
   tab,
   setTab,
 }: {
-  tabs: ('experience' | 'contact' | 'profile')[];
+  tabs: ('experience' | 'contact' | 'skills & qualities')[];
   tab: string | undefined;
-  setTab: Dispatch<SetStateAction<'experience' | 'contact' | 'profile'>>;
+  setTab: Dispatch<
+    SetStateAction<'experience' | 'contact' | 'skills & qualities'>
+  >;
 }) => {
   return (
     <div className="flex flex-row items-center justify-start space-x-4">

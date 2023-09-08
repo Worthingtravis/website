@@ -13,21 +13,21 @@ import TransitionComponent from '@/pages/TransitionComponent';
 import { Main } from '@/templates/Main';
 
 const MainPage = () => {
-  const [tab, setTab] = useState<'experience' | 'contact' | 'profile'>(
-    'experience'
-  );
+  const [tab, setTab] = useState<
+    'experience' | 'contact' | 'skills & qualities'
+  >('experience');
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
       <Tabs
-        tabs={['experience', 'contact', 'profile']}
+        tabs={['experience', 'contact', 'skills & qualities']}
         tab={tab}
         setTab={setTab}
       />
       <br />
       <br />
       <AnimatePresence presenceAffectsLayout>
-        {tab === 'profile' && (
+        {tab === 'skills & qualities' && (
           <TransitionComponent key="profile">
             <ProfileSection categories={categories} />
           </TransitionComponent>
