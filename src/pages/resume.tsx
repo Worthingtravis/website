@@ -18,7 +18,7 @@ const MainPage = () => {
   );
 
   return (
-    <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+    <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
       <Tabs
         tabs={['experience', 'contact', 'profile']}
         tab={tab}

@@ -9,7 +9,7 @@ Beyond that, my contributions have significantly boosted operational efficiency 
 Currently, I am open to full-time job opportunities, consultancy roles, and collaborations on projects related to Web3 technologies, where I can bring my expertise to create innovative and secure tech solutions. My toolset ranges from Jest and Playwright for testing to a broad range of technologies like ReactJS, NextJS, MySQL, Express, Laravel, TailwindCSS, SCSS, and Material-UI.`,
 ];
 const About = () => (
-  <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
+  <Main meta={<Meta title="Worthing Travis" description="Worthing Travis" />}>
     <div>
       <AnimatedText
         _text={topics.join('\n')}
