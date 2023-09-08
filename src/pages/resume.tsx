@@ -19,32 +19,34 @@ const MainPage = () => {
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
-      <Tabs
-        tabs={['experience', 'contact', 'skills & qualities']}
-        tab={tab}
-        setTab={setTab}
-      />
-      <br />
-      <br />
-      <AnimatePresence presenceAffectsLayout>
-        {tab === 'skills & qualities' && (
-          <TransitionComponent key="profile">
-            <ProfileSection categories={categories} />
-          </TransitionComponent>
-        )}
+      <div className={'mx-auto flex w-full flex-col items-center'}>
+        <Tabs
+          tabs={['experience', 'contact', 'skills & qualities']}
+          tab={tab}
+          setTab={setTab}
+        />
+        <br />
+        <br />
+        <AnimatePresence presenceAffectsLayout>
+          {tab === 'skills & qualities' && (
+            <TransitionComponent key="profile">
+              <ProfileSection categories={categories} />
+            </TransitionComponent>
+          )}
 
-        {tab === 'experience' && (
-          <TransitionComponent key="experience">
-            <JobHistory jobs={jobs} />
-          </TransitionComponent>
-        )}
+          {tab === 'experience' && (
+            <TransitionComponent key="experience">
+              <JobHistory jobs={jobs} />
+            </TransitionComponent>
+          )}
 
-        {tab === 'contact' && (
-          <TransitionComponent key="contact">
-            <Contact info={contactInfo} />
-          </TransitionComponent>
-        )}
-      </AnimatePresence>
+          {tab === 'contact' && (
+            <TransitionComponent key="contact">
+              <Contact info={contactInfo} />
+            </TransitionComponent>
+          )}
+        </AnimatePresence>
+      </div>
     </Main>
   );
 };

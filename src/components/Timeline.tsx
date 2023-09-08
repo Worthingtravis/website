@@ -25,10 +25,10 @@ const TimelineItem: React.FC<{ index: number; child: React.ReactNode }> = ({
     <motion.div
       key={index}
       className={clsx(
-        'group relative -my-1 flex snap-start items-start border-gray-900 transition-colors duration-300 hover:border-emerald-400 hover:brightness-125',
+        'group relative   flex snap-start items-start rounded transition-colors duration-300  hover:brightness-125 ',
         index % 2 === 0
-          ? 'flex-row rounded-l-3xl border-b-4 border-l-4 ps-8'
-          : 'flex-row-reverse rounded-r-3xl border-b-4 border-r-4 pe-8',
+          ? 'flex-row rounded-l-3xl rounded-br-none rounded-tl-none border-4 !border-r-0 !border-t-0 border-gray-800 '
+          : 'flex-row-reverse rounded-r-2xl rounded-bl-none rounded-tr-none  border-4 !border-l-0 !border-t-0 ',
         isInView && '!border-emerald-400'
       )}
       ref={ref}
@@ -36,15 +36,15 @@ const TimelineItem: React.FC<{ index: number; child: React.ReactNode }> = ({
     >
       <motion.div
         className={clsx(
-          'z-20 -mx-12 flex h-[60px] min-w-[60px] items-center justify-center rounded-full transition-colors duration-300',
-          'border-8 bg-gray-900 text-white ring ring-gray-900 ring-offset-8 ring-offset-gray-900',
-          'border-gray-800 group-hover:border-blue-500',
-          isInView && '!border-blue-500'
+          'absolute -top-4 z-20 flex h-[40px] min-w-[40px] items-center justify-center rounded-xl text-2xl outline transition-colors duration-300',
+          'bg-gray-900 font-extrabold',
+          index % 2 === 0 ? '-left-5' : '-right-4',
+          isInView && 'text-emerald-400 outline-emerald-400'
         )}
       >
         {index + 1}
       </motion.div>
-      <div className="relative mx-8">{child}</div>
+      <div className="relative m-4 my-0 ">{child}</div>
     </motion.div>
   );
 };
@@ -52,7 +52,7 @@ const TimelineItem: React.FC<{ index: number; child: React.ReactNode }> = ({
 export const Timeline: React.FC<TimelineProps> = ({ children }) => {
   return (
     <div className="relative">
-      <div className="relative flex flex-col bg-gray-900">
+      <div className="relative flex flex-col ">
         <AnimatePresence>
           {children.map((child, index) => (
             <TimelineItem key={nanoid()} index={index} child={child} />
