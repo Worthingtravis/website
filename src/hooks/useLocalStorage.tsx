@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useLocalStorage = (key: string, initialValue: string) => {
+export const useLocalStorage = (key: string, initialValue: any) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       // Get from local storage by key
@@ -20,6 +20,7 @@ export const useLocalStorage = (key: string, initialValue: string) => {
     try {
       // Save to local storage
       const valueToStore =
+        // @ts-ignore
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));

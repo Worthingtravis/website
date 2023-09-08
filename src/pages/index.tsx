@@ -1,7 +1,7 @@
-import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 import { AnimatedText } from '@/components/AnimatingText/AnimatedText';
 import { LoginExamples } from '@/components/LoginForm/LoginForm';
+import { Meta } from '@/layouts/Meta';
+import { Main } from '@/templates/Main';
 
 const Index = () => {
   return (

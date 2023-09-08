@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function AnimatedCheckIcon({
   initial = true,

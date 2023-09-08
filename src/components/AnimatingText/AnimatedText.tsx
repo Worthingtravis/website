@@ -67,6 +67,7 @@ export function AnimatedText({ _text, className }: AnimatedTextProps) {
       />
       <hr />
       <div className="flex flex-col gap-2">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label
           aria-label={'changing animating text'}
           htmlFor={'text'}

@@ -1,6 +1,6 @@
+import { AnimatedText } from '@/components/AnimatingText/AnimatedText';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
-import { AnimatedText } from '@/components/AnimatingText/AnimatedText';
 
 const topics = [
   `Welcome! \nI'm Travis Worthing, a seasoned Full Stack Software Developer driven by two core beliefs: technology should primarily drive innovation and economic growth, and user privacy and security are paramount. Since 2017, I've been harnessing my Bachelor's Degree in Computer Science from the University of British Columbia Okanagan (UBCO) to create cutting-edge decentralized applications (dApps).

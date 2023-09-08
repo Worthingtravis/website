@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import AnimatedCheckIcon from '@/components/AnimatedSVG';
 
 export function CopyIconAnimated({ className }: { className?: string }) {
@@ -16,41 +17,6 @@ export function CopyIconAnimated({ className }: { className?: string }) {
     >
       <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
       <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
-    </svg>
-  );
-}
-
-function CheckIconAnimated({ className }: { className?: string }) {
-  const ref = useRef<SVGPathElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      const length = ref.current.getTotalLength();
-      ref.current.style.strokeDasharray = length.toString();
-      ref.current.style.strokeDashoffset = length.toString();
-      ref.current.getBoundingClientRect(); // trigger reflow
-      ref.current.style.transition =
-        'stroke-dashoffset 0.5s cubic-bezier(0.65, 0, 0.35, 1), stroke 0.5s';
-      ref.current.style.stroke = 'transparent';
-      setTimeout(() => {
-        if (!ref.current) return;
-        ref.current.style.stroke = '#10B981';
-        ref.current.style.strokeDashoffset = '0';
-      }, 200);
-    }
-  }, []);
-
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#10B981"
-      strokeWidth={4}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path ref={ref} d="M2 12l7 7 13-13" />
     </svg>
   );
 }

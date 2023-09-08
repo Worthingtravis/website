@@ -12,7 +12,6 @@ import { Meta } from '@/layouts/Meta';
 import TransitionComponent from '@/pages/TransitionComponent';
 import { Main } from '@/templates/Main';
 
-
 const MainPage = () => {
   const [tab, setTab] = useState<'experience' | 'contact' | 'profile'>(
     'experience'

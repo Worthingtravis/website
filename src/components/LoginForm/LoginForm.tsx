@@ -9,15 +9,15 @@ import { Button } from '@/components/Button';
 import { ErrorIcon, LoadingIcon, SubmitOutlineIcon } from '@/components/Icons';
 import type { Config } from '@/components/LoginForm/LoginForm.config';
 import {
-  layoutOptions,
-  variants,
-  positionOptions,
   configs,
+  layoutOptions,
+  positionOptions,
+  variants,
 } from '@/components/LoginForm/LoginForm.config';
-
 import { useIsMounted } from '@/hooks/useIsMounted';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { DynamicLayout } from '@/templates/DynamicLayout';
+
 import { OptionButtonGroup } from '../OptionGroups';
 
 export const LoginForm = ({ config }: { config: Config }) => {
@@ -69,7 +69,6 @@ export const LoginForm = ({ config }: { config: Config }) => {
         !new RegExp(field.validationRules.regex).test(value)
       ) {
         currentErrors[field.name] = `${field.label} is not valid`;
-        console.log(field.validationRules.regex, field.name, value);
       }
     });
 
@@ -127,6 +126,7 @@ export const LoginForm = ({ config }: { config: Config }) => {
         [e.target.name]: e.target.value,
       }));
       setErrors((prevErrors) => {
+        // eslint-disable-next-line unused-imports/no-unused-vars
         const { [e.target.name]: value, ...remainingErrors } = prevErrors;
         return remainingErrors;
       });
@@ -168,7 +168,7 @@ export const LoginForm = ({ config }: { config: Config }) => {
         <button
           disabled={loading || loggedIn || Object.keys(errors).length > 0}
           className={clsx(
-            'bottom-0 mx-1 my-1 flex h-12 w-[calc(100%-0.5rem)] max-w-full flex-nowrap items-center justify-between gap-4 rounded border-2 bg-transparent px-2 py-2 font-bold text-white transition-all duration-500 ease-in-out hover:ring-2 focus:outline-none disabled:text-white/70',
+            'bottom-0 m-1 flex h-12 w-[calc(100%-0.5rem)] max-w-full flex-nowrap items-center justify-between gap-4 rounded border-2 bg-transparent p-2 font-bold text-white transition-all duration-500 ease-in-out hover:ring-2 focus:outline-none disabled:text-white/70',
             Object.keys(errors).length > 0 && 'border-red-500',
             loggedIn && 'border-green-500',
             loading && 'border-blue-500'
@@ -236,14 +236,14 @@ export const LoginExamples = () => {
       {Object.entries(positionOptions[layoutType]).map(
         ([positionType, values]) => (
           <div key={positionType}>
-            <h3 className="text-lg font-semibold text-white">
-              {_.startCase(positionType)}
-            </h3>
             <OptionButtonGroup
+              title={_.startCase(positionType)}
+              // @ts-ignore
               options={Object.entries(values).map(([key, value]) => ({
                 key,
                 value,
               }))}
+              // @ts-ignore
               activeValue={positions[positionType]}
               setActiveValue={(value) =>
                 setPositions((prev) => ({ ...prev, [positionType]: value }))
