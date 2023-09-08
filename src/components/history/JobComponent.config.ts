@@ -7,7 +7,17 @@ export type Job = {
 
 export const jobs: Job[] = [
   {
-    title: 'Independent Contractor — Web3 Developer',
+    title: 'Independent Contractor — Web3/Defi',
+    period: 'July 25, 2023 - Present',
+    company: 'Ratio Software Inc',
+    responsibilities: [
+      'Conducted extensive audits on Solidity contracts, enhancing security and performance by identifying and resolving vulnerabilities and inefficiencies.',
+      'Leveraged Forge and Foundry tools to simulate contract behaviors, enabling a more robust evaluation and ensuring compliance with industry best practices.',
+      'Expanded my Solidity expertise beyond basic contract implementation, gaining a deep understanding of contract security, gas optimization, and composability.',
+    ],
+  },
+  {
+    title: 'Independent Contractor — Web3 Space',
     period: 'March 2023 - Present',
     company: 'Frequency & Sacred Finance',
     responsibilities: [
