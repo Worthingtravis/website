@@ -11,11 +11,12 @@ export const jobs: Job[] = [
     period: 'July 25, 2023 - Present',
     company: 'Ratio Software Inc',
     responsibilities: [
-      'Conducted extensive audits on Solidity contracts, enhancing security and performance by identifying and resolving vulnerabilities and inefficiencies.',
-      'Leveraged Forge and Foundry tools to simulate contract behaviors, enabling a more robust evaluation and ensuring compliance with industry best practices.',
-      'Expanded my Solidity expertise beyond basic contract implementation, gaining a deep understanding of contract security, gas optimization, and composability.',
+      'Involved in auditing Solidity contracts, focusing on identifying potential vulnerabilities and suggesting improvements for better security and performance.',
+      'Utilized Forge and Foundry tools for contract simulations, helping the team make more informed decisions and aligning with industry best practices.',
+      'Started expanding my knowledge in Solidity beyond just implementation, covering areas like contract security, gas optimization, and composability.'
     ],
   },
+
   {
     title: 'Independent Contractor — Web3 Space',
     period: 'March 2023 - Present',
