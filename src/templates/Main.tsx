@@ -54,9 +54,9 @@ const Main = (props: IMainProps) => {
     <div className="relative mx-auto max-w-screen-2xl bg-gray-900 px-1 text-white antialiased ">
       <div className="relative z-20 bg-gray-900">
         {props.meta}
-        <header className="my-20">
+        <header className="my-10">
           <nav>
-            <ul className="flex flex-wrap border-0 text-xl text-white hover:text-white/50">
+            <ul className="flex flex-wrap justify-center border-0 align-middle text-xl text-white hover:text-white/50">
               {navLinks.map((link) => (
                 <li className="group relative mr-6 border-0" key={link.href}>
                   <a
