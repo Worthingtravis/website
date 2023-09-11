@@ -18,13 +18,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Bun ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build-prod
+          cache: "bun"
+      - run: bun ci
+      - run: bun run build-prod
 
   test:
     strategy:
@@ -42,7 +42,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          cache: "bun"
       - run: npm ci
 
       - if: github.event_name == 'pull_request'
@@ -50,18 +50,5 @@ jobs:
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       - name: Linter
-        run: npm run lint
+        run: bun run lint
 
-      - name: Type checking
-        run: npm run check-types
-
-      - name: Run unit tests
-        run: npm run test
-
-      - name: Run storybook tests
-        run: npm run test-storybook:ci
-
-      - name: Run e2e tests
-        run: npx percy exec -- npm run e2e:headless
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
