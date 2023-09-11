@@ -464,7 +464,7 @@ export function ImageGridEmptyIcon() {
   );
 }
 
-export function SafeIcon2({ className = 'inline' }) {
+export function SafeIcon2({ className = 'inline' }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -486,7 +486,7 @@ export function SafeIcon2({ className = 'inline' }) {
   );
 }
 
-export function HideIcon({ className = '' }) {
+export function HideIcon({ className = '' }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -502,7 +502,7 @@ export function HideIcon({ className = '' }) {
   );
 }
 
-export function SendIcon2({ className = '' }) {
+export function SendIcon2({ className = '' }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -522,7 +522,7 @@ export function SendIcon2({ className = '' }) {
   );
 }
 
-export function ShareIcon({ className = '' }) {
+export function ShareIcon({ className = 'inline' }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -618,7 +618,11 @@ export const ExternalLinkIcon = () => {
   );
 };
 
-export const SubmitOutlineIcon = ({ className = '' }) => {
+export const SubmitOutlineIcon = ({
+  className = 'inline',
+}: {
+  className?: string;
+}) => {
   return (
     <motion.svg
       layout
@@ -639,7 +643,11 @@ export const SubmitOutlineIcon = ({ className = '' }) => {
   );
 };
 
-export const LoadingIcon = ({ className = '' }) => {
+export const LoadingIcon = ({
+  className = 'inline',
+}: {
+  className?: string;
+}) => {
   return (
     <svg
       className={clsx('h-6 w-6 animate-spin text-white', className)}
@@ -659,7 +667,7 @@ export const LoadingIcon = ({ className = '' }) => {
   );
 };
 
-export const ErrorIcon = ({ className = '' }) => {
+export const ErrorIcon = ({ className = 'inline' }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

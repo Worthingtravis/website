@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import { AnimateText } from '@/components/AnimatingText/AnimateText';
-import type { AnimateProps } from '@/components/AnimatingText/AnimateText.config';
-import TwoColumnLayout from '@/templates/TwoColumnLayout';
-
+import TwoColumnLayout from '../../templates/TwoColumnLayout';
 import { OptionButtonGroup, RadioOptionGroup } from '../OptionGroups';
+import { AnimateText } from './AnimateText';
+import type { AnimateProps } from './AnimateText.config';
 
 interface AnimationOptions {
   fade: AnimateProps['variant'];

@@ -28,7 +28,7 @@ export const Tabs = ({
               : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
           )}
         >
-          {_.capitalize(t)}
+          {_.startCase(t)}
         </Button>
       ))}
     </div>

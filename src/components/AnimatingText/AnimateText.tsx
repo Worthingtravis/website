@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Button } from '../Button';
 import type { AnimateProps } from './AnimateText.config';
@@ -14,6 +14,14 @@ export const AnimateText: React.FC<AnimateProps> = ({
   variant = 'default',
   splitBy = 'word',
   speed = 0.1,
+  restartButton = true,
+}: {
+  text: string;
+  delay?: number;
+  variant?: AnimateProps['variant'];
+  splitBy?: AnimateProps['splitBy'];
+  speed?: number;
+  restartButton?: boolean;
 }) => {
   const [isSkipping, setIsSkipping] = useState<boolean>(false);
   const textArray = useMemo(() => {
@@ -40,12 +48,15 @@ export const AnimateText: React.FC<AnimateProps> = ({
     }, []);
 
     return result;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, variant, splitBy, speed]);
   return (
     <>
-      <Button onClick={() => setIsSkipping(!isSkipping)}>
-        {isSkipping ? 'Restart' : 'Skip to end'}
-      </Button>
+      {restartButton && (
+        <Button onClick={() => setIsSkipping(!isSkipping)}>
+          {isSkipping ? 'Restart' : 'Skip to end'}
+        </Button>
+      )}
       <br />
       <div className="flex flex-wrap gap-2">
         {textArray?.map((part, index) =>

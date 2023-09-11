@@ -7,6 +7,12 @@ function AnimatedCheckIcon({
   path = 'M5 13l4 4L19 7',
   duration = 0.3,
   delay = 0,
+}: {
+  initial?: boolean;
+  isVisible?: boolean;
+  path?: string;
+  duration?: number;
+  delay?: number;
 }) {
   return (
     <AnimatePresence initial={initial} mode={'wait'}>

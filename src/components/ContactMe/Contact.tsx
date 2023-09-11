@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import type { ContactInfo } from '@/components/ContactMe/Contact.config';
-import { CopyV2 } from '@/components/CopyV2';
-import { ExternalLinkIcon } from '@/components/Icons';
+import type { ContactInfo } from './Contact.config';
+import { CopyV2 } from '../CopyV2';
+import { ExternalLinkIcon } from '../Icons';
 
 export const Contact = ({ info }: { info: ContactInfo[] }) => {
   return (

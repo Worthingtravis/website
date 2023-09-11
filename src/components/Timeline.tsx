@@ -1,64 +1,66 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { nanoid } from 'nanoid';
-import { useRef } from 'react';
+import React from 'react';
 
 type TimelineProps = {
   children: React.ReactNode[];
 };
-const TimelineItem: React.FC<{ index: number; child: React.ReactNode }> = ({
-  index,
-  child,
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 1 });
 
-  const handleClick = () => {
-    ref.current?.scrollIntoView({
-      behavior: 'smooth', // animate the scrolling
-      block: 'center', // vertically align at the center
-      inline: 'nearest', // horizontally align at the nearest edge
-    });
-  };
+const TimelineItem = React.forwardRef<
+  HTMLDivElement,
+  {
+    index: number;
+    child: React.ReactNode;
+  }
+>(({ index, child }) => {
+  // ref
+  const ref = React.useRef<HTMLDivElement>(null);
 
+  const inView = useInView(ref, { amount: 0.5 });
   return (
     <motion.div
-      key={index}
       className={clsx(
-        'group relative   flex snap-start items-start rounded transition-colors duration-300  hover:brightness-125 ',
-        index % 2 === 0
-          ? 'flex-row rounded-l-3xl rounded-br-none rounded-tl-none border-4 !border-r-0 !border-t-0 border-gray-800 '
-          : 'flex-row-reverse rounded-r-2xl rounded-bl-none rounded-tr-none  border-4 !border-l-0 !border-t-0 ',
-        isInView && '!border-emerald-400'
+        'relative my-10 flex gap-8 ',
+        index % 2 === 0 ? 'flex-row-reverse  ' : 'flex-row'
       )}
       ref={ref}
-      onClick={handleClick}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+      animate={{ opacity: 1, x: 0 }}
     >
       <motion.div
+        initial={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={inView ? { duration: 0.5, delay: 0.25 } : {}}
+        exit={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
         className={clsx(
-          'absolute -top-4 z-20 flex h-[40px] min-w-[40px] items-center justify-center rounded-xl text-2xl outline transition-colors duration-300',
-          'bg-gray-900 font-extrabold',
-          index % 2 === 0 ? '-left-5' : '-right-4',
-          isInView && 'text-emerald-400 outline-emerald-400'
+          ' z-20 flex aspect-square h-8 w-8 items-center justify-center rounded-full text-3xl font-extrabold ',
+          index % 2 === 0 ? 'flex-row-reverse' : 'flex-row ',
+          inView ? 'text-white' : 'text-gray-800'
         )}
       >
-        {index + 1}
+        {index}
       </motion.div>
-      <div className="relative m-4 my-0 ">{child}</div>
+      {child}
     </motion.div>
   );
-};
+});
 
 export const Timeline: React.FC<TimelineProps> = ({ children }) => {
   return (
-    <div className="relative">
-      <div className="relative flex flex-col ">
-        <AnimatePresence>
-          {children.map((child, index) => (
-            <TimelineItem key={nanoid()} index={index} child={child} />
-          ))}
-        </AnimatePresence>
-      </div>
+    <div className="relative flex flex-col">
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="absolute inset-y-0 left-1/2 z-0 my-10 w-1 bg-gray-800"
+        ></motion.div>
+        {children.map((child, index) => (
+          // Pass the appropriate ref to each TimelineItem
+          // eslint-disable-next-line react/no-array-index-key
+          <TimelineItem key={index} index={index} child={child} />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

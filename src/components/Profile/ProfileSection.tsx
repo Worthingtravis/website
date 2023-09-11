@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import type { Categories } from '@/components/Profile/ProfileSection.config';
+import type { Categories } from './ProfileSection.config';
 
 const Label = ({ text }: { text: string }) => (
   <h2 className="text-xl font-bold text-blue-300">{text}</h2>

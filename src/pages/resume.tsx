@@ -1,16 +1,16 @@
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-import { Contact } from '@/components/ContactMe/Contact';
-import { contactInfo } from '@/components/ContactMe/Contact.config';
-import { JobHistory } from '@/components/history/JobComponent';
-import { jobs } from '@/components/history/JobComponent.config';
-import { ProfileSection } from '@/components/Profile/ProfileSection';
-import { categories } from '@/components/Profile/ProfileSection.config';
-import { Tabs } from '@/components/Tabs';
-import { Meta } from '@/layouts/Meta';
-import TransitionComponent from '@/pages/TransitionComponent';
-import { Main } from '@/templates/Main';
+import { Contact } from '../components/ContactMe/Contact';
+import { contactInfo } from '../components/ContactMe/Contact.config';
+import { JobHistory } from '../components/history/JobComponent';
+import { jobs } from '../components/history/JobComponent.config';
+import { ProfileSection } from '../components/Profile/ProfileSection';
+import { categories } from '../components/Profile/ProfileSection.config';
+import { Tabs } from '../components/Tabs';
+import { Meta } from '../layouts/Meta';
+import TransitionComponent from './TransitionComponent';
+import { Main } from '../templates/Main';
 
 const MainPage = () => {
   const [tab, setTab] = useState<
@@ -19,7 +19,7 @@ const MainPage = () => {
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
-      <div className={'mx-auto flex w-full flex-col items-center'}>
+      <div className={'mx-auto flex w-full flex-col items-center pb-80 '}>
         <Tabs
           tabs={['experience', 'contact', 'skills & qualities']}
           tab={tab}

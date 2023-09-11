@@ -1,12 +1,11 @@
-// Libraries
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import { ExternalLinkIcon } from '@/components/Icons';
+import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '../utils/AppConfig';
 
 // Types
 type IMainProps = {
@@ -19,15 +18,17 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/resume', label: 'Resume' },
+  { href: '/projects', label: 'Projects' },
   {
     href: 'https://github.com/worthingtravis',
     label: 'GitHub',
     icon: <ExternalLinkIcon />,
     external: true,
   },
+
   {
     href: 'https://github.com/Worthingtravis/IGot99ProblemsButCodeAintOne',
-    label: 'Code for this site',
+    label: 'Source Code',
     icon: <ExternalLinkIcon />,
     external: true,
   },
@@ -51,8 +52,8 @@ const Main = (props: IMainProps) => {
   const isActiveRoute = (href: string) => router.pathname === href;
 
   return (
-    <div className="relative mx-auto max-w-screen-2xl bg-gray-900 px-1 text-white antialiased ">
-      <div className="relative z-20 bg-gray-900">
+    <div className="relative mx-auto h-full max-w-screen-2xl bg-gray-900 px-1 text-white antialiased ">
+      <div className="relative z-20 h-full bg-gray-900">
         {props.meta}
         <header className="my-10">
           <nav>
@@ -88,7 +89,7 @@ const Main = (props: IMainProps) => {
             </ul>
           </nav>
         </header>
-        <main className="content py-5 text-sm">{props.children}</main>
+        <main className="content h-full text-sm">{props.children}</main>
         <footer className="border-t border-gray-300 py-8 text-sm">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>

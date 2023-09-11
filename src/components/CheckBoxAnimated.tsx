@@ -137,6 +137,7 @@ export const CheckBox = ({ isChecked }: { isChecked: boolean }) => {
     if (initialRender && isChecked) {
       setInitialRender(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
   return (

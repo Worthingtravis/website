@@ -8,7 +8,7 @@ import type {
 } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { CaretIcon } from '@/components/Icons';
+import { CaretIcon } from './Icons';
 
 interface AccordionButtonBufferProps {
   direction: 'left' | 'right';

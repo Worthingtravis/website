@@ -10,6 +10,7 @@ export interface AnimateProps {
   variant?: 'default' | 'fade' | 'slide' | 'scale' | 'rotate';
   splitBy?: SplitBy;
   speed?: number;
+  restartButton?: boolean;
 }
 
 export const animationVariants: { [key: string]: AnimationVariants } = {

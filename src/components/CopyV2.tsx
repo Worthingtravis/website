@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import AnimatedCheckIcon from '@/components/AnimatedSVG';
+import AnimatedCheckIcon from './AnimatedSVG';
 
 export function CopyIconAnimated({ className }: { className?: string }) {
   return (
@@ -55,7 +55,7 @@ export const CopyV2 = (
   color: string | undefined = '#10B981'
 ) => {
   const [copied, setCopied] = useState(false);
-  const borderRef = useRef<SVGPathElement>(null);
+  const borderRef = useRef<SVGPathElement | null>(null);
 
   useEffect(() => {
     if (!copied) return;
@@ -68,7 +68,7 @@ export const CopyV2 = (
   }, [copied]);
 
   useEffect(() => {
-    if (borderRef.current) {
+    if (borderRef?.current) {
       const length = borderRef.current.getTotalLength();
       borderRef.current.style.strokeDasharray = length.toString();
       borderRef.current.style.strokeDashoffset = length.toString();
@@ -84,6 +84,7 @@ export const CopyV2 = (
         }, 200);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [copied]);
 
   return (

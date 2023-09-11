@@ -1,6 +1,6 @@
-import { AnimatedText } from '@/components/AnimatingText/AnimatedText';
-import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
+import { AnimatedText } from '../components/AnimatingText/AnimatedText';
+import { Meta } from '../layouts/Meta';
+import { Main } from '../templates/Main';
 
 const topics = [
   `Welcome! 

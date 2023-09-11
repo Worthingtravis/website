@@ -4,19 +4,19 @@ import _ from 'lodash';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import AnimatedCheckIcon from '@/components/AnimatedSVG';
-import { Button } from '@/components/Button';
-import { ErrorIcon, LoadingIcon, SubmitOutlineIcon } from '@/components/Icons';
-import type { Config } from '@/components/LoginForm/LoginForm.config';
+import AnimatedCheckIcon from '../AnimatedSVG';
+import { Button } from '../Button';
+import { ErrorIcon, LoadingIcon, SubmitOutlineIcon } from '../Icons';
+import type { Config } from './LoginForm.config';
 import {
   configs,
   layoutOptions,
   positionOptions,
   variants,
-} from '@/components/LoginForm/LoginForm.config';
-import { useIsMounted } from '@/hooks/useIsMounted';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { DynamicLayout } from '@/templates/DynamicLayout';
+} from './LoginForm.config';
+import { useIsMounted } from '../../hooks/useIsMounted';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { DynamicLayout } from '../../templates/DynamicLayout';
 
 import { OptionButtonGroup } from '../OptionGroups';
 
@@ -74,6 +74,7 @@ export const LoginForm = ({ config }: { config: Config }) => {
 
     setErrors(currentErrors);
     return currentErrors;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setLoading, setErrors, values]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -217,13 +218,6 @@ export const LoginExamples = () => {
 
   const leftColumn = (
     <>
-      <h3 className="text-lg font-semibold text-white">Config</h3>
-      <div className={'flex flex-wrap'}>
-        <Button onClick={() => setShowConfig(!showConfig)}>
-          {showConfig ? 'Hide' : 'Show'} Config{' '}
-          <AnimatedCheckIcon isVisible={showConfig} initial={true} />
-        </Button>
-      </div>
       <OptionButtonGroup
         title="Layout"
         options={Object.entries(layoutOptions).map(([key, value]) => ({
@@ -252,6 +246,14 @@ export const LoginExamples = () => {
           </div>
         )
       )}
+
+      <h3 className="sticky top-0 text-lg font-semibold text-white">Config</h3>
+      <div className={'flex flex-wrap'}>
+        <Button onClick={() => setShowConfig(!showConfig)}>
+          {showConfig ? 'Hide' : 'Show'} Config
+          <AnimatedCheckIcon isVisible={showConfig} initial={true} />
+        </Button>
+      </div>
     </>
   );
 
