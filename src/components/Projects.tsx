@@ -14,7 +14,7 @@ export const Projects: React.FC<{}> = () => {
         marketingSiteLink="https://toonsquadnft.io/"
         blockchain="Ethereum"
         date="March 2022"
-        additionalInfo="Integrated with ethereum contract using ethers.js and web3-react."
+        // additionalInfo="Integrated with ethereum contract using ethers.js and web3-react."
       />
       <ProjectCard
         bgImage={'/orkahideoutbg.jpg'}
@@ -25,7 +25,7 @@ export const Projects: React.FC<{}> = () => {
         marketingSiteLink="https://orkahideout.io/"
         blockchain="Canto"
         date="June 2022"
-        additionalInfo="Integrated with ethereum contract using ethers.js and web3-react."
+        // additionalInfo="Integrated with ethereum contract using ethers.js and web3-react."
       />
       <ProjectCard
         bgImage={'/superfrensbg.png'}
@@ -35,7 +35,7 @@ export const Projects: React.FC<{}> = () => {
         openSeaLink="https://opensea.io/collection/superfrens"
         blockchain="Ethereum"
         date="Nov 2021"
-        additionalInfo="Largely contributed to frontend integration."
+        // additionalInfo="Largely contributed to frontend integration."
       />
     </div>
   );

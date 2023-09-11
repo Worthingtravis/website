@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { EthLogo } from './Icons';
 import clsx from 'clsx';
+import { EthLogo } from './Icons';
 
 type ProjectCardProps = {
   title: string;
@@ -12,7 +12,6 @@ type ProjectCardProps = {
   marketingSiteLink?: string;
   blockchain?: string;
   date: string;
-  additionalInfo: string;
   bgImage?: string;
 };
 
@@ -24,7 +23,7 @@ const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded border border-sky-400 bg-gray-900 bg-opacity-50 p-4 hover:bg-opacity-25">
+    <div className="flex flex-wrap items-center gap-2 rounded border border-sky-400 bg-gray-900/50 p-4 hover:bg-gray-900/25">
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}
@@ -72,18 +71,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   marketingSiteLink,
   blockchain,
   date,
-  additionalInfo,
   bgImage,
 }) => {
   return (
     <div
       className={clsx(
         'relative flex w-full flex-col gap-2 rounded-lg bg-sky-900 p-4 ',
-        bgImage && 'bg-opacity-10  '
+        bgImage && 'bg-sky-900/10  '
       )}
     >
       {bgImage && (
-        <div className="absolute inset-0 bottom-0 left-0 right-0 top-0 -z-10  rounded ">
+        <div className="absolute inset-0 -z-10  rounded ">
           <Image
             src={bgImage}
             alt={title}
@@ -102,7 +100,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           width={250}
           height={250}
         />
-        <div className="flex w-full flex-col flex-wrap gap-2 rounded border border-sky-400 bg-gray-900 bg-opacity-50 p-4 hover:bg-opacity-25">
+        <div className="flex w-full flex-col flex-wrap gap-2 rounded border border-sky-400 bg-gray-900/50 p-4 hover:bg-gray-900/25">
           <h1 className="text-6xl">{title}</h1>
           <p className="text-lg ">{description}</p>
         </div>

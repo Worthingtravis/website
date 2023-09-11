@@ -54,7 +54,7 @@ export const Timeline: React.FC<TimelineProps> = ({ children }) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           className="absolute inset-y-0 left-1/2 z-0 my-10 w-1 bg-gray-800"
-        ></motion.div>
+        />
         {children.map((child, index) => (
           // Pass the appropriate ref to each TimelineItem
           // eslint-disable-next-line react/no-array-index-key

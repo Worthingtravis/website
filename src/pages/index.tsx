@@ -1,6 +1,6 @@
+import { motion } from 'framer-motion';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
-import { motion } from 'framer-motion';
 
 const Index = () => {
   return (
