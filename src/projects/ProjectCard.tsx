@@ -90,7 +90,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           height={250}
         />
         <h1 className="text-3xl">{title}</h1>
-        <p className="min-h-[182px]  text-lg">{description}</p>
+        <p className="min-h-[182px] text-lg">{description}</p>
         <ProjectLinks
           openSeaLink={openSeaLink}
           blankRasaLink={blankRasaLink}

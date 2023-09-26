@@ -7,7 +7,7 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Demo Components"
+          title="Home Page"
           description="Demonstrating ability to create fully typed, reusable and configurable components..."
         />
       }
