@@ -7,6 +7,7 @@ import React from 'react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
+    {/* @ts-ignore */}
     <Component {...pageProps} />
     <ToastContainer />
   </>

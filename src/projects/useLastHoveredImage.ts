@@ -16,6 +16,7 @@ export const useLastHoveredImage = (_defaultImage: string | null) => {
 
       return () => clearTimeout(timer);
     }
+    return () => {};
   }, [currentlyHoveredImage]);
 
   const handleHover = (imageSrc: string) => {

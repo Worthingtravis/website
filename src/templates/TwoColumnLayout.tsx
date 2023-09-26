@@ -9,16 +9,13 @@ const TwoColumnLayout = ({
 }) => {
   return (
     <div className="grid gap-2 text-sm sm:grid-cols-2 md:grid-cols-4">
-      <div
-        className="col-span-1 flex flex-col gap-4 overflow-auto border bg-gray-800 p-2 shadow-lg sm:order-2 md:order-0">
+      <div className="col-span-1 flex flex-col gap-4 overflow-auto border bg-gray-800 p-2 shadow-lg sm:order-2 md:order-1">
         {leftColumn}
       </div>
-      <div
-        className="scrollbar overflow-y-auto border border-gray-600 md:col-span-3 sm:order-1 md:order-0">
+      <div className="scrollbar overflow-y-auto border border-gray-600 sm:order-2 md:order-1 md:col-span-3">
         {rightColumn}
       </div>
     </div>
-
   );
 };
 

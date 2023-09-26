@@ -1,5 +1,4 @@
-import clsx from 'clsx';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 
 type TimelineProps = {
@@ -15,13 +14,7 @@ const TimelineItem = React.forwardRef<
 >(({ index, child }) => {
   // ref
   return (
-    <motion.div
-      key={index}
-      layout
-      className={clsx('relative flex gap-8', 'flex-row-reverse  ')}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-      animate={{ opacity: 1, x: 0 }}
-    >
+    <motion.div className={'rounded border '} key={index} layout>
       {child}
     </motion.div>
   );
@@ -29,13 +22,11 @@ const TimelineItem = React.forwardRef<
 
 export const Timeline: React.FC<TimelineProps> = ({ children }) => {
   return (
-    <div className="relative flex  flex-wrap justify-center gap-32 ">
+    <div className="relative mt-10  flex flex-wrap justify-center gap-12 bg-gray-900">
       <AnimatePresence>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute inset-y-0 left-1/2 z-0  w-2 bg-gray-950 shadow-2xl"
+          className="absolute inset-y-0 left-1/2 z-0  w-2 border bg-gray-950 "
         />
         {children.map((child, index) => (
           // Pass the appropriate ref to each TimelineItem

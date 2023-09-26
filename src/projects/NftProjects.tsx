@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
 import { useLastHoveredImage } from './useLastHoveredImage';
 import { projects } from './projectData';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export const NftProjects: React.FC<{}> = () => {
   const { handleHover, lastHoveredImage } = useLastHoveredImage(
@@ -12,8 +12,7 @@ export const NftProjects: React.FC<{}> = () => {
 
   return (
     <div className={'flex flex-wrap justify-center gap-10'}>
-
-      <div className={'flex flex-col justify-center gap-10 overflow-y-scroll'}>
+      <div className={'flex flex-col justify-center gap-10 '}>
         <AnimatePresence>
           <motion.div
             key={lastHoveredImage}

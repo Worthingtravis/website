@@ -89,6 +89,7 @@ export const CopyV2 = (
 
   return (
     <div className="flex justify-end">
+      {/* @ts-ignore */}
       <CopyToClipboard text={text}>
         <div className="relative">
           <button

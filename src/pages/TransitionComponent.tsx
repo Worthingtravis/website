@@ -12,7 +12,10 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
 }) => {
   return (
     <motion.div
-      className={clsx(className, 'flex w-full items-center justify-center')}
+      className={clsx(
+        className,
+        'flex min-h-screen w-full  justify-center rounded-lg  bg-gray-900 p-4'
+      )}
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}

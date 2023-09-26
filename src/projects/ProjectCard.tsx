@@ -30,7 +30,7 @@ const ProjectLinks: React.FC<{
           href={openSeaLink || blankRasaLink}
           target="_blank"
           rel="noreferrer"
-          className="text-lg text-white underline"
+          className="border-b-2 !border-b-transparent text-lg text-white underline"
         >
           {openSeaLink && 'OpenSea'}
           {blankRasaLink && 'Blank Rasa'}
@@ -43,7 +43,7 @@ const ProjectLinks: React.FC<{
             href={marketingSiteLink}
             target="_blank"
             rel="noreferrer"
-            className="text-lg text-white underline"
+            className="border-b-2 !border-b-transparent text-lg text-white underline"
           >
             Marketing Site
           </a>
@@ -76,7 +76,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onHover,
 }) => {
   return (
-    <div
+    <button
+      type="button"
       className={clsx(bgImage && 'cursor-pointer')}
       onClick={() => bgImage && onHover(bgImage)}
     >
@@ -98,6 +99,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           date={date}
         />
       </div>
-    </div>
+    </button>
   );
 };
