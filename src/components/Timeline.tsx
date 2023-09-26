@@ -14,32 +14,14 @@ const TimelineItem = React.forwardRef<
   }
 >(({ index, child }) => {
   // ref
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  const inView = useInView(ref, { amount: 0.5 });
   return (
     <motion.div
-      className={clsx(
-        'relative my-10 flex gap-8 ',
-        index % 2 === 0 ? 'flex-row-reverse  ' : 'flex-row'
-      )}
-      ref={ref}
+      key={index}
+      layout
+      className={clsx('relative flex gap-8', 'flex-row-reverse  ')}
       initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
       animate={{ opacity: 1, x: 0 }}
     >
-      <motion.div
-        initial={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={inView ? { duration: 0.5, delay: 0.25 } : {}}
-        exit={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
-        className={clsx(
-          ' z-20 flex aspect-square h-8 w-8 items-center justify-center rounded-full text-3xl font-extrabold ',
-          index % 2 === 0 ? 'flex-row-reverse' : 'flex-row ',
-          inView ? 'text-white' : 'text-gray-800'
-        )}
-      >
-        {index}
-      </motion.div>
       {child}
     </motion.div>
   );
@@ -47,13 +29,13 @@ const TimelineItem = React.forwardRef<
 
 export const Timeline: React.FC<TimelineProps> = ({ children }) => {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex  flex-wrap justify-center gap-32 ">
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute inset-y-0 left-1/2 z-0 my-10 w-1 bg-gray-800"
+          className="absolute inset-y-0 left-1/2 z-0  w-2 bg-gray-950 shadow-2xl"
         />
         {children.map((child, index) => (
           // Pass the appropriate ref to each TimelineItem

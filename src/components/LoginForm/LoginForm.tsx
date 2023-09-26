@@ -258,9 +258,9 @@ export const LoginExamples = () => {
   );
 
   const mainContent = configs.map((config) => (
-    <div key={config.variant} className={clsx('my-8 gap-8')}>
+    <div key={config.variant} className={clsx(' gap-8')}>
       <motion.div layout>
-        <h2 className="my-4 text-center text-2xl font-semibold">
+        <h2 className=" text-center text-2xl font-semibold">
           {_.startCase(config.variant)}
         </h2>
         <LoginForm config={config} />

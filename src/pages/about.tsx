@@ -13,7 +13,7 @@ const topics = [
 
 const About = () => (
   <Main meta={<Meta title="Worthing Travis" description="Worthing Travis" />}>
-    <div>
+    <div className={''}>
       <AnimatedText
         _text={topics.join('\n')}
         className="space-y-10 p-5 text-xl"

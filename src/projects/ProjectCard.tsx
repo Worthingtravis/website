@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import { EthLogo } from './Icons';
+import { EthLogo } from '../components/Icons';
 
 type ProjectCardProps = {
   title: string;
@@ -13,6 +13,7 @@ type ProjectCardProps = {
   blockchain?: string;
   date: string;
   bgImage?: string;
+  onHover: (imageSrc: string | null) => void;
 };
 
 const ProjectLinks: React.FC<{
@@ -23,7 +24,7 @@ const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded border border-sky-400 bg-gray-900/50 p-4 hover:bg-gray-900/25">
+    <div className="flex flex-wrap items-center justify-center gap-2 rounded border border-gray-400 bg-gray-900/90 p-1 hover:bg-gray-900/25">
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}
@@ -72,47 +73,31 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   blockchain,
   date,
   bgImage,
+  onHover,
 }) => {
   return (
     <div
-      className={clsx(
-        'relative flex w-full flex-col gap-2 rounded-lg bg-sky-900 p-4 ',
-        bgImage && 'bg-sky-900/10  '
-      )}
+      className={clsx(bgImage && 'cursor-pointer')}
+      onClick={() => bgImage && onHover(bgImage)}
     >
-      {bgImage && (
-        <div className="absolute inset-0 -z-10  rounded ">
-          <Image
-            src={bgImage}
-            alt={title}
-            className={'rounded-lg'}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-          />
-        </div>
-      )}
-      <div className={'flex gap-8'}>
+      <div className="flex w-full flex-col flex-wrap items-center gap-2 rounded border border-gray-400 bg-gray-900/90 p-4 shadow-2xl hover:bg-gray-900">
         <Image
           src={imageSrc}
-          className={'min-w-[250px] rounded  outline outline-1 outline-sky-400'}
+          className={' rounded bg-cover outline outline-1 outline-gray-900'}
           alt={title}
-          width={250}
+          width={200}
           height={250}
         />
-        <div className="flex w-full flex-col flex-wrap gap-2 rounded border border-sky-400 bg-gray-900/50 p-4 hover:bg-gray-900/25">
-          <h1 className="text-6xl">{title}</h1>
-          <p className="text-lg ">{description}</p>
-        </div>
+        <h1 className="text-3xl">{title}</h1>
+        <p className="min-h-[182px]  text-lg">{description}</p>
+        <ProjectLinks
+          openSeaLink={openSeaLink}
+          blankRasaLink={blankRasaLink}
+          marketingSiteLink={marketingSiteLink}
+          blockchain={blockchain}
+          date={date}
+        />
       </div>
-      <br />
-      <ProjectLinks
-        openSeaLink={openSeaLink}
-        blankRasaLink={blankRasaLink}
-        marketingSiteLink={marketingSiteLink}
-        blockchain={blockchain}
-        date={date}
-      />
     </div>
   );
 };

@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "bun"
-      - run: bun ci
       - run: bun run build-prod
 
   test:

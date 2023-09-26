@@ -21,7 +21,7 @@ export function JobComponent({ job }: { job: Job }) {
       ref={ref}
       onClick={onClick}
       className={clsx(
-        'relative z-10 rounded bg-gray-800 p-2 pt-4 text-white shadow-2xl'
+        'relative z-10 flex flex-col items-center rounded bg-gray-950 p-2 pt-4 text-white shadow-2xl'
       )}
     >
       <h1 className="mb-4 font-bold text-blue-400 sm:text-lg md:text-2xl">
@@ -38,7 +38,7 @@ export function JobComponent({ job }: { job: Job }) {
           {job.responsibilities.map((responsibility) => (
             <li
               key={responsibility}
-              className="block items-center p-3 hover:bg-gray-100 dark:hover:bg-gray-700 sm:flex"
+              className="block items-center p-3 hover:bg-gray-100 dark:hover:bg-gray-700 sm:flex "
             >
               {responsibility}
             </li>

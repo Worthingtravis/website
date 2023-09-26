@@ -7,7 +7,7 @@ import { JobHistory } from '../components/history/JobComponent';
 import { jobs } from '../components/history/JobComponent.config';
 import { ProfileSection } from '../components/Profile/ProfileSection';
 import { categories } from '../components/Profile/ProfileSection.config';
-import { Tabs } from '../components/Tabs';
+import Tabs from '../components/Tabs';
 import { Meta } from '../layouts/Meta';
 import TransitionComponent from './TransitionComponent';
 import { Main } from '../templates/Main';
@@ -19,14 +19,13 @@ const MainPage = () => {
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
-      <div className={'mx-auto flex w-full flex-col items-center pb-80 '}>
+      <div className={'my-8 flex w-full max-w-4xl flex-col items-center gap-5'}>
         <Tabs
           tabs={['experience', 'contact', 'skills & qualities']}
-          tab={tab}
-          setTab={setTab}
+          activeTab={tab}
+          setActiveTab={setTab}
         />
-        <br />
-        <br />
+
         <AnimatePresence presenceAffectsLayout>
           {tab === 'skills & qualities' && (
             <TransitionComponent key="profile">

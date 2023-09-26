@@ -14,7 +14,7 @@ const Blog = () => (
 
     {Array.from(Array(10).keys()).map((elt) => (
       <div
-        className="my-4 w-full rounded-md border-2 border-gray-400 px-2 py-1"
+        className="w-full rounded-md border-2 border-gray-400 px-2 py-1"
         key={elt}
       >
         <Link href={`/blog/blog-${elt}`}>{`Blog - ${elt}`}</Link>

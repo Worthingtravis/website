@@ -12,14 +12,6 @@ a:hover {
 
 @tailwind utilities;
 
-.content p {
-  @apply my-6;
-}
-
-.content ul {
-  @apply my-6;
-}
-
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 4px;
@@ -55,3 +47,9 @@ a:hover {
   }
 }
 
+html,
+body,
+#__next {
+  width: 100% !important;
+  height: 100% !important;
+}

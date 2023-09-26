@@ -12,7 +12,11 @@ const Index = () => {
         />
       }
     >
-      <div className={'flex  h-screen flex-col md:justify-center md:p-0'}>
+      <div
+        className={
+          'flex w-full max-w-3xl flex-col items-stretch md:justify-center '
+        }
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -20,33 +24,33 @@ const Index = () => {
           className="grid h-1/2 grid-cols-1 gap-8 text-white md:grid-cols-2"
         >
           <motion.a
-            href="/about"
+            href="/resume"
             whileHover={{ scale: 1.1 }}
-            className="flex h-48 items-center justify-center rounded-lg bg-blue-500 text-2xl text-inherit"
+            className="flex h-48 items-center justify-center rounded-lg bg-gray-950 text-2xl text-inherit hover:bg-blue-500"
           >
-            About
+            Resume
+          </motion.a>
+
+          <motion.a
+            whileHover={{ scale: 1.1 }}
+            href="/projects"
+            className="flex h-48 items-center justify-center rounded-lg bg-gray-950 text-2xl text-inherit hover:bg-blue-500"
+          >
+            Projects
           </motion.a>
           <motion.a
             href="/playground"
             whileHover={{ scale: 1.1 }}
-            className="flex h-48 items-center  justify-center rounded-lg bg-green-500 text-2xl text-white"
+            className="flex h-48 items-center justify-center rounded-lg bg-gray-950 text-2xl text-inherit hover:bg-blue-500"
           >
             Playground
           </motion.a>
-
           <motion.a
-            href="/resume"
+            href="/about"
             whileHover={{ scale: 1.1 }}
-            className="flex h-48 items-center justify-center rounded-lg bg-red-500 text-2xl text-white"
+            className="flex h-48 items-center justify-center rounded-lg bg-gray-950 text-2xl text-inherit hover:bg-blue-500"
           >
-            Resume
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            href="/projects"
-            className="z-0 flex h-48 items-center justify-center rounded-lg bg-gray-500 text-2xl text-white "
-          >
-            Projects
+            About
           </motion.a>
         </motion.div>
       </div>
