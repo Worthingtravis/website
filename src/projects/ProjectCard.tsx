@@ -24,7 +24,7 @@ const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 rounded border border-gray-400 bg-gray-900/90 p-1 hover:bg-gray-900/25">
+    <div className="flex flex-wrap items-center justify-center gap-2 rounded border border-blue-500  bg-gray-900/90 p-1 hover:bg-gray-900/25">
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}
@@ -81,7 +81,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className={clsx(bgImage && 'cursor-pointer')}
       onClick={() => bgImage && onHover(bgImage)}
     >
-      <div className="flex w-full flex-col flex-wrap items-center gap-2 rounded border border-gray-400 bg-gray-900/90 p-4 shadow-2xl hover:bg-gray-900">
+      <div className="flex w-full flex-col flex-wrap items-center gap-2 rounded border border-blue-500 bg-gray-900/90 p-4 shadow-2xl hover:bg-gray-900">
         <Image
           src={imageSrc}
           className={' rounded bg-cover outline outline-1 outline-gray-900'}

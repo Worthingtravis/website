@@ -19,20 +19,16 @@ const MainPage = () => {
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
-      <div className={'my-8 flex w-full max-w-4xl flex-col items-center gap-5'}>
+      <div
+        className={'z-[2] flex w-full max-w-4xl flex-col items-center gap-5'}
+      >
         <Tabs
           tabs={['experience', 'contact', 'skills & qualities']}
           activeTab={tab}
           setActiveTab={setTab}
         />
 
-        <AnimatePresence presenceAffectsLayout>
-          {tab === 'skills & qualities' && (
-            <TransitionComponent key="profile">
-              <ProfileSection categories={categories} />
-            </TransitionComponent>
-          )}
-
+        <AnimatePresence>
           {tab === 'experience' && (
             <TransitionComponent key="experience">
               <JobHistory jobs={jobs} />
@@ -42,6 +38,12 @@ const MainPage = () => {
           {tab === 'contact' && (
             <TransitionComponent key="contact">
               <Contact info={contactInfo} />
+            </TransitionComponent>
+          )}
+
+          {tab === 'skills & qualities' && (
+            <TransitionComponent key="profile">
+              <ProfileSection categories={categories} />
             </TransitionComponent>
           )}
         </AnimatePresence>

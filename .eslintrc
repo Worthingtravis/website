@@ -5,15 +5,7 @@
     "plugin:prettier/recommended",
     "plugin:@next/next/recommended"
   ],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "endOfLine": "auto"
-      }
-    ]
-  },
+
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -49,7 +41,12 @@
         "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
         "@typescript-eslint/consistent-type-imports": "error", // Ensure `import type` is used when it's necessary
         "react/react-in-jsx-scope": "off",
+        "react/prop-types": "warn",
+        "import/extensions": "off",
         "react/jsx-uses-react": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "jsx-a11y/heading-has-content": "off",
+
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
@@ -61,53 +58,7 @@
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": [
           "error",
-          { "argsIgnorePattern": "^_" }
-        ]
-      }
-    },
-    // Configuration for testing
-    {
-      "files": ["**/*.test.ts", "**/*.test.tsx"],
-      "plugins": [
-        "jest",
-        "jest-formatting",
-        "testing-library",
-        "jest-dom",
-        "dom"
-      ],
-      "extends": [
-        "plugin:jest/recommended",
-        "plugin:jest-formatting/recommended",
-        "plugin:testing-library/react",
-        "plugin:jest-dom/recommended"
-      ],
-      "rules": {
-        "strict": "off",
-        "jest/expect-expect": "off",
-        "jest/no-standalone-expect": "off",
-        "jest/valid-expect": "off",
-        "jest/valid-expect-in-promise": "off",
-        "jest/no-conditional-expect": "off",
-        "jest/no-restricted-matchers": "off",
-        "jest/no-try-expect": "off",
-        "jest/no-alias-methods": "off",
-        "jest-formatting/padding-around-all": "off",
-        "jest-formatting/padding-around-test-blocks": "off",
-        "react/button-has-type": "off",
-        "testing-library/prefer-screen-queries": "off"
-      }
-    },
-
-    // Configuration for Storybook
-    {
-      "files": ["*.stories.*"],
-      "extends": ["plugin:storybook/recommended"],
-      "rules": {
-        "import/no-extraneous-dependencies": [
-          "error",
-          {
-            "devDependencies": true
-          }
+          { "argsIgnorePattern": "^_|children"}
         ]
       }
     }

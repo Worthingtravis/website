@@ -14,7 +14,7 @@ const TimelineItem = React.forwardRef<
 >(({ index, child }) => {
   // ref
   return (
-    <motion.div className={'rounded border '} key={index} layout>
+    <motion.div className={'rounded  '} key={index} layout>
       {child}
     </motion.div>
   );
@@ -22,11 +22,11 @@ const TimelineItem = React.forwardRef<
 
 export const Timeline: React.FC<TimelineProps> = ({ children }) => {
   return (
-    <div className="relative mt-10  flex flex-wrap justify-center gap-12 bg-gray-900">
+    <div className="relative mt-10  flex flex-wrap justify-center gap-12 rounded bg-black/40 p-4">
       <AnimatePresence>
         <motion.div
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute inset-y-0 left-1/2 z-0  w-2 border bg-gray-950 "
+          className="absolute  left-1/2 z-0  w-4 border bg-gray-950 "
         />
         {children.map((child, index) => (
           // Pass the appropriate ref to each TimelineItem

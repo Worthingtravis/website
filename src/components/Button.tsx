@@ -13,12 +13,13 @@ export const Button = ({
   <button
     type="button"
     onClick={onClick}
+    {...props}
     className={clsx(
       'flex items-center rounded border border-blue-500 px-2 py-1 transition-colors duration-300 ease-in-out',
       active && 'bg-blue-500 ',
-      'hover:bg-blue-400 hover:text-white'
+      'hover:bg-blue-400 hover:text-white',
+      props.className
     )}
-    {...props}
   >
     {children}
   </button>

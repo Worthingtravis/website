@@ -14,12 +14,12 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
     <motion.div
       className={clsx(
         className,
-        'flex min-h-screen w-full  justify-center rounded-lg  bg-gray-900 p-4'
+        'flex min-h-screen w-full justify-center rounded-lg p-4'
       )}
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0 }}
+      transition={{ duration: 0.3 }}
     >
       {children}
     </motion.div>

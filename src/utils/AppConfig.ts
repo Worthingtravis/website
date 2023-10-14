@@ -2,7 +2,7 @@
 
 export const AppConfig = {
   site_name: 'About Me',
-  title: 'LaughingWhales',
+  title: 'Travis Worthing',
   description: '',
   locale: 'en',
 };

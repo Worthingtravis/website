@@ -25,11 +25,12 @@ function Tabs<T extends string | number>({
   customStyles = {},
   renderLabel = defaultRenderLabel, // If no renderLabel is provided, defaultRenderLabel is used
 }: TabProps<T>) {
-  const defaultActiveStyle = 'bg-gray-950 text-white hover:bg-gray-950/40';
-  const defaultInactiveStyle = 'bg-gray-900 text-gray-300 hover:bg-gray-800';
+  const defaultActiveStyle =
+    'bg-gray-900  text-white hover:bg-gray-950 ring ring-blue-500 ring-2 transition-all duration-1000';
+  const defaultInactiveStyle = 'bg-gray-900 text-gray-300 hover:bg-gray-800 ';
 
   return (
-    <div className="flex flex-row flex-wrap items-center  justify-center gap-4">
+    <div className="sticky top-20 z-[20] flex w-full flex-row flex-wrap items-center justify-center gap-4">
       {tabs.map((tab) => (
         <Button
           key={tab.toString()}

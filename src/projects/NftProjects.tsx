@@ -11,7 +11,7 @@ export const NftProjects: React.FC<{}> = () => {
   );
 
   return (
-    <div className={'flex flex-wrap justify-center gap-10'}>
+    <div className={'z-[1] flex flex-wrap justify-center gap-10'}>
       <div className={'flex flex-col justify-center gap-10 '}>
         <AnimatePresence>
           <motion.div
@@ -28,7 +28,7 @@ export const NftProjects: React.FC<{}> = () => {
             }}
             transition={{
               ease: 'easeInOut',
-              duration: 2,
+              duration: 1,
             }}
             exit={{ opacity: 0.1 }}
           />

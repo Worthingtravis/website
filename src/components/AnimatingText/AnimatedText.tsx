@@ -87,7 +87,7 @@ export function AnimatedText({ _text, className }: AnimatedTextProps) {
   );
 
   const rightColumnContent = (
-    <div className={clsx('p-4', className)}>
+    <div className={clsx(' p-4', className)}>
       <AnimateText
         text={text}
         variant={animation}

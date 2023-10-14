@@ -11,7 +11,7 @@ const Text = ({ text }: { text: string }) => (
 );
 
 export const ProfileSection = ({ categories }: { categories: Categories }) => (
-  <div className="space-y-8">
+  <div className="space-y-8 rounded border bg-gray-900 p-4">
     {Object.entries(categories).map(([category, items]) => (
       <div key={category} className={'space-y-4'}>
         <h1 className="mb-4 text-2xl font-semibold text-white">{category}</h1>

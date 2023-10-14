@@ -169,7 +169,7 @@ export const LoginForm = ({ config }: { config: Config }) => {
         <button
           disabled={loading || loggedIn || Object.keys(errors).length > 0}
           className={clsx(
-            'bottom-0 m-1 flex h-12 w-[calc(100%-0.5rem)] max-w-full flex-nowrap items-center justify-between gap-4 rounded border-2 bg-transparent p-2 font-bold text-white transition-all duration-500 ease-in-out hover:ring-2 focus:outline-none disabled:text-white/70',
+            'bottom-0 m-1 flex h-12 w-[calc(100%-0.5rem)] max-w-full flex-nowrap items-center justify-between gap-4 rounded border border-blue-500  bg-transparent p-2 font-bold text-white transition-all duration-500 ease-in-out hover:ring-2 focus:outline-none disabled:text-white/70',
             Object.keys(errors).length > 0 && 'border-red-500',
             loggedIn && 'border-green-500',
             loading && 'border-blue-500'

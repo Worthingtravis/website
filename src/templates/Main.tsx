@@ -1,8 +1,11 @@
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
 import { AppConfig } from '../utils/AppConfig';
@@ -20,6 +23,7 @@ const navLinks = [
   { href: '/resume', label: 'Resume' },
   { href: '/projects', label: 'Projects' },
   { href: '/about', label: 'About' },
+  { href: '/playground', label: 'PlayGround' },
   {
     href: 'https://github.com/worthingtravis',
     label: 'GitHub',
@@ -38,69 +42,66 @@ const navLinks = [
 const Main = (props: IMainProps) => {
   const router = useRouter();
 
-  useEffect(() => {
-    const handleRouteChange = (_url: any, { shallow }: any) => {
-      if (!shallow) {
-        window.scrollTo(0, 0);
-      }
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
   const isActiveRoute = (href: string) => router.pathname === href;
 
   return (
     <div
       className={clsx(
-        'relative mx-auto mt-8 flex h-full flex-col text-white antialiased',
-        'max-w-screen-2xl'
+        'pointer-events-none relative  mx-auto flex min-h-screen flex-col justify-between gap-12 text-white antialiased '
       )}
     >
-      <div className={'flex flex-col gap-8'}>
-        {props.meta}
-        <header className="">
-          <nav className={'flex justify-center'}>
-            <ul className="flex w-fit flex-wrap justify-center border-4 border-gray-950 bg-gray-950 p-4 align-middle  text-xl  md:rounded-lg ">
-              {navLinks.map((link) => (
-                <li className="group relative mr-6 border-0" key={link.href}>
-                  <a
-                    className={clsx(
-                      'flex items-center gap-2 rounded-md border-0 border-transparent transition-colors duration-300 hover:border-0',
-                      isActiveRoute(link.href) ? 'text-white' : 'text-white/50'
-                    )}
-                    href={link.href}
-                    {...(link.external
-                      ? {
-                          target: '_blank',
-                          rel: 'noopener noreferrer',
-                        }
-                      : {})}
-                  >
-                    {link.label}
-                    {link.icon}
-                  </a>
-                  <div
-                    className={clsx('absolute h-1 w-full bg-blue-500', {
-                      'opacity-0 group-hover:opacity-100': !isActiveRoute(
-                        link.href
-                      ),
-                      'opacity-100': isActiveRoute(link.href),
-                    })}
-                  />
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-        <main className="flex h-full w-full justify-center text-sm">
-          {props.children}
-        </main>
-      </div>
-      <div className={'mt-20 flex-1'} />
-      <footer className="z-30 border-t border-gray-300 p-4 py-8 text-center text-sm hover:bg-gray-900">
+      {props.meta}
+      <header className="pointer-events-auto sticky top-0 z-[3] mx-auto flex w-fit flex-col md:mt-24 ">
+        <nav className={'flex justify-center'}>
+          <ul className="flex w-fit flex-wrap justify-center bg-black/80  p-4 align-middle  text-xl  md:rounded-lg ">
+            {navLinks.map((link) => (
+              <motion.li
+                className="group relative mr-6 border-0"
+                key={link.href}
+              >
+                <Link
+                  className={clsx(
+                    'flex items-center gap-2 rounded-md border-0 border-transparent transition-colors duration-300 hover:border-0',
+                    isActiveRoute(link.href) ? 'text-white' : 'text-white/90'
+                  )}
+                  href={link.href}
+                  {...(link.external
+                    ? {
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                      }
+                    : {})}
+                >
+                  {link.label}
+                  {link.icon}
+                </Link>
+                <div
+                  className={clsx('absolute h-1 w-full bg-blue-500', {
+                    'opacity-0 group-hover:opacity-100': !isActiveRoute(
+                      link.href
+                    ),
+                    'opacity-100': isActiveRoute(link.href),
+                  })}
+                />
+              </motion.li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      <Image
+        src={'/castle.png'}
+        alt={'bg'}
+        className={'fixed z-[1] h-full w-full bg-fixed '}
+        height={2160}
+        width={3840}
+        quality={100}
+        priority={true}
+      />
+      <main className="pointer-events-auto relative mx-auto flex h-full w-full flex-col  items-center justify-center  text-sm">
+        {props.children}
+      </main>
+      <footer className="z-10 rounded-t border-gray-300 p-4 text-end text-sm ">
         © Copyright {new Date().getFullYear()} {AppConfig.title}
       </footer>
     </div>

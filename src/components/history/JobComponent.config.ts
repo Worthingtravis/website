@@ -18,11 +18,11 @@ export const jobs: Job[] = [
   },
   {
     title: 'Independent Contractor — Web3 Space',
-    period: 'March 2023 - Present',
+    period: 'March 2023 - June 2023',
     company: 'Frequency & Sacred Finance',
     responsibilities: [
-      'Contributing to the development of an NFT wallet project, primarily focusing on feature implementations using Next.js, React, and Tailwind for front-end development.',
-      'Developing a private forum project with a focus on contract integration around zkSNARK, ERC20 contracts, and UniRep, utilizing Next.js and React with Tailwind for a consistent front-end experience.',
+      'Contributed to the development of an NFT wallet project, primarily focused on feature implementations using Next.js, React, and Tailwind for front-end development.',
+      'Developed a private forum project with a focus on contract integration around zkSNARK, ERC20 contracts, and UniRep, utilized Next.js and React with Tailwind for a consistent front-end experience.',
       "Consistently align all development activities with project requirements and stakeholders' expectations while adhering to the industry's best practices for code quality, performance, and maintainability.",
       'Demonstrate leadership and technical acumen by providing insights and solutions to overcome challenges and meet project deadlines.',
     ],

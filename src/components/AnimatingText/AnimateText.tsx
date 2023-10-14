@@ -51,14 +51,17 @@ export const AnimateText: React.FC<AnimateProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, variant, splitBy, speed]);
   return (
-    <>
+    <div>
       {restartButton && (
-        <Button onClick={() => setIsSkipping(!isSkipping)}>
+        <Button
+          onClick={() => setIsSkipping(!isSkipping)}
+          className={'bg-blue-500'}
+        >
           {isSkipping ? 'Restart' : 'Skip to end'}
         </Button>
       )}
       <br />
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 rounded bg-gray-700 p-2">
         {textArray?.map((part, index) =>
           part.includes('\n') ? (
             <ParagraphBreak key={nanoid()} />
@@ -87,6 +90,6 @@ export const AnimateText: React.FC<AnimateProps> = ({
           )
         )}
       </div>
-    </>
+    </div>
   );
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import { AnimatedText } from '../components/AnimatingText/AnimatedText';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
@@ -12,8 +13,19 @@ const topics = [
 ];
 
 const About = () => (
-  <Main meta={<Meta title="Worthing Travis" description="Worthing Travis" />}>
-    <div className={''}>
+  <Main
+    meta={
+      <Meta
+        title="Home Page"
+        description="Demonstrating ability to create fully typed, reusable and configurable components..."
+      />
+    }
+  >
+    <div
+      className={
+        'z-30 flex w-full max-w-7xl flex-col items-stretch    md:justify-center'
+      }
+    >
       <AnimatedText
         _text={topics.join('\n')}
         className="space-y-10 p-5 text-xl"
