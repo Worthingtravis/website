@@ -8,11 +8,19 @@ interface Project {
   openSeaLink?: string;
   blankRasaLink?: string;
   marketingSiteLink?: string;
-  blockchain: string;
-  date: string;
+  blockchain?: string;
+  date?: string;
 }
 
 export const projects: Project[] = [
+  {
+    bgImage: '/robolove.png',
+    title: 'RoboLove',
+    description:
+      'Unlike my other projects, Robolove is a platform for people interested in building personal relationships with AI. The project is still in its early stages, but I am excited to see where it goes.',
+    imageSrc: '/robolove.png',
+    marketingSiteLink: 'https://robolove.ai/',
+  },
   {
     bgImage: '/toonsquadbg.avif',
     title: 'ToonSquad',

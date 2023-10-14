@@ -98,7 +98,7 @@ const Main = (props: IMainProps) => {
         quality={100}
         priority={true}
       />
-      <main className="pointer-events-auto relative mx-auto flex h-full w-full flex-col  items-center justify-center  text-sm">
+      <main className="pointer-events-auto relative mx-auto flex h-full w-full flex-col items-center justify-center  text-sm">
         {props.children}
       </main>
       <footer className="z-10 rounded-t border-gray-300 p-4 text-end text-sm ">
