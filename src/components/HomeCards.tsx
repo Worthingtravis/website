@@ -21,7 +21,7 @@ export function HomeCards() {
   return (
     <div
       className={
-        'z-30 flex w-full max-w-3xl flex-col items-stretch md:justify-center'
+        'z-30 flex w-full max-w-3xl scale-150 flex-col items-stretch md:justify-center'
       }
     >
       <motion.div
@@ -32,18 +32,13 @@ export function HomeCards() {
       >
         <MotionLink
           href="/resume"
-          initial={{
-            scale: 0,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
           transition={{
             duration: 1,
             delay: 0.2,
           }}
+          whileHover={'whileHover'}
+          initial={'hidden'}
+          animate={'visible'}
           className="flex h-48 items-center justify-center gap-2 rounded-lg bg-gray-950 text-2xl text-inherit hover:bg-blue-500"
         >
           Resume
@@ -51,38 +46,28 @@ export function HomeCards() {
         </MotionLink>
 
         <MotionLink
-          initial={{
-            scale: 0,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
           transition={{
             duration: 1,
             delay: 0.2,
           }}
+          whileHover={'whileHover'}
+          initial={'hidden'}
+          animate={'visible'}
           href="/projects"
-          className="flex h-48 items-center justify-center gap-2 rounded-lg  bg-gray-950 text-2xl text-inherit hover:bg-red-500"
+          className="group flex h-48 items-center justify-center gap-2 rounded-lg  bg-gray-950 text-2xl text-inherit hover:bg-red-500 hover:text-red-900"
         >
           Projects
           <ProjectsIcon />
         </MotionLink>
         <MotionLink
           href="/playground"
-          initial={{
-            scale: 0,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
           transition={{
             duration: 1,
             delay: 0.2,
           }}
+          whileHover={'whileHover'}
+          initial={'hidden'}
+          animate={'visible'}
           className="group flex h-48 items-center justify-center gap-2 rounded-lg  bg-gray-950 text-2xl text-inherit hover:bg-green-500 hover:text-green-900"
         >
           Playground
@@ -90,19 +75,14 @@ export function HomeCards() {
         </MotionLink>
         <MotionLink
           href="/about"
-          initial={{
-            scale: 0,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
           transition={{
             duration: 1,
             delay: 0.2,
           }}
-          className="flex h-48  items-center justify-center gap-2 rounded-lg  bg-gray-950 text-2xl text-inherit bg-blend-color mix-blend-hard-light hover:bg-yellow-500"
+          whileHover={'whileHover'}
+          initial={'hidden'}
+          animate={'visible'}
+          className="group flex h-48 items-center justify-center gap-2 rounded-lg  bg-gray-950 text-2xl text-inherit hover:bg-yellow-500 hover:text-yellow-900"
         >
           About
           <AboutIcon />
