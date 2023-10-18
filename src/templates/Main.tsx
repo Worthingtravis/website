@@ -54,6 +54,7 @@ const Main = (props: IMainProps) => {
       <header className="pointer-events-auto  sticky top-0 z-[3] flex w-full flex-col">
         <nav className="flex justify-between bg-black/80 p-4 sm:justify-center ">
           <button
+            type="button"
             className=" z-20 flex items-center rounded border border-white px-3 py-2 text-white hover:border-white hover:text-white sm:hidden"
             onClick={toggleMenu}
           >

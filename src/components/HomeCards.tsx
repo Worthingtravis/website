@@ -29,7 +29,7 @@ export function HomeCards() {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="z-10 grid h-1/2 grid-cols-1 items-end font-light  tracking-normal text-white ease-in-out gap-4 md:grid-cols-2 md:gap-8"
+        className="z-10 grid h-1/2 grid-cols-1 items-end gap-4  font-light tracking-normal text-white ease-in-out md:grid-cols-2 md:gap-8"
       >
         <MotionLink
           href="/resume"
