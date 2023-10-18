@@ -14,7 +14,6 @@ import { AppConfig } from '../utils/AppConfig';
 type IMainProps = {
   meta: ReactNode;
   children: ReactNode;
-  maxWidth?: '2xl';
 };
 
 // Navigation links
@@ -51,9 +50,9 @@ const Main = (props: IMainProps) => {
       )}
     >
       {props.meta}
-      <header className="pointer-events-auto sticky top-0 z-[3] mx-auto flex w-fit flex-col md:mt-24 ">
+      <header className="pointer-events-auto sticky top-0 z-[3]  flex  w-full flex-col ">
         <nav className={'flex justify-center'}>
-          <ul className="flex w-fit flex-wrap justify-center bg-black/80  p-4 align-middle  text-xl  md:rounded-lg ">
+          <ul className="flex w-full flex-wrap justify-center bg-black/80  p-4 align-middle  text-xl  md:rounded-lg ">
             {navLinks.map((link) => (
               <motion.li
                 className="group relative mr-6 border-0"
@@ -90,14 +89,15 @@ const Main = (props: IMainProps) => {
       </header>
 
       <Image
-        src={'/castle.png'}
+        src={'/img_1.png'}
         alt={'bg'}
-        className={'fixed z-[1] h-full w-full bg-fixed '}
+        className={'fixed z-[1] h-full w-full'}
         height={2160}
         width={3840}
         quality={100}
         priority={true}
       />
+
       <main className="pointer-events-auto relative mx-auto flex h-full w-full flex-col items-center justify-center  text-sm">
         {props.children}
       </main>

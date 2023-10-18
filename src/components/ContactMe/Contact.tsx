@@ -16,7 +16,7 @@ function getTimeZoneNameFromAbbr(abbr: string) {
 }
 
 const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
-  <div className="flex w-full flex-col items-start space-y-2">
+  <div className="mx-auto  flex flex-col items-start space-y-2">
     {Object.entries(contact).map(([key, value]) => {
       if (key === 'Time Zone' && value.isTimeZone) {
         const timeZone = value.value;
@@ -67,7 +67,7 @@ const FrontCard = ({
   iconsArray: React.ReactNode[];
 }) => (
   <motion.div
-    className="absolute flex h-full w-[400px] flex-col items-center justify-center gap-4 rounded-lg border bg-gray-950 p-4"
+    className="absolute mt-40 flex h-[500px]  w-[500px] flex-col items-center justify-evenly gap-4 rounded-lg border bg-gray-950 p-4"
     style={{
       backfaceVisibility: 'hidden',
       WebkitBackfaceVisibility: 'hidden',
@@ -84,7 +84,7 @@ const FrontCard = ({
 
 const BackCard = () => (
   <motion.div
-    className="absolute flex h-full w-[400px] flex-col items-center justify-center gap-4 rounded-lg border bg-gray-950 p-4"
+    className="absolute mt-40 flex h-[500px]  w-[500px]  flex-col items-center justify-center gap-4 rounded-lg border bg-gray-950 p-4"
     style={{
       backfaceVisibility: 'hidden',
       transform: 'rotateY(180deg) translateZ(5px)', // rotate it and give it half of the desired thickness
@@ -92,7 +92,7 @@ const BackCard = () => (
     }}
   >
     Contact Me
-    <QRCode value={generateVCard()} size={128} />
+    <QRCode value={generateVCard()} size={256} />
   </motion.div>
 );
 
