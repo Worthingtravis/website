@@ -1,10 +1,9 @@
+import type { ReactNode } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import type { ReactNode } from 'react';
-import React from 'react';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useAnimate, stagger } from 'framer-motion';
 import Image from 'next/image';
 import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
@@ -40,9 +39,11 @@ const navLinks = [
 
 const Main = (props: IMainProps) => {
   const router = useRouter();
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen((prevState) => !prevState);
+  };
   const isActiveRoute = (href: string) => router.pathname === href;
-
   return (
     <div
       className={clsx(
@@ -50,41 +51,72 @@ const Main = (props: IMainProps) => {
       )}
     >
       {props.meta}
-      <header className="pointer-events-auto sticky top-0 z-[3]  flex  w-full flex-col ">
-        <nav className={'flex justify-center'}>
-          <ul className="flex w-full flex-wrap justify-center bg-black/80  p-4 align-middle  text-xl  md:rounded-lg ">
+      <header className="pointer-events-auto  sticky top-0 z-[3] flex w-full flex-col">
+        <nav className="flex justify-between bg-black/80 p-4 sm:justify-center ">
+          <button
+            className=" z-20 flex items-center rounded border border-white px-3 py-2 text-white hover:border-white hover:text-white sm:hidden"
+            onClick={toggleMenu}
+          >
+            <svg
+              className="h-6 w-6 fill-current"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+          <motion.ul
+            className={`
+            flex w-full flex-wrap justify-center text-xl md:rounded-lg 
+            ${
+              menuOpen
+                ? 'fixed inset-0 flex flex-col items-center gap-10 bg-black/90 '
+                : 'hidden sm:flex'
+            }
+        `}
+          >
             {navLinks.map((link) => (
-              <motion.li
+              <Link
                 className="group relative mr-6 border-0"
-                key={link.href}
+                href={link.href}
+                {...(link.external
+                  ? {
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                    }
+                  : {})}
               >
-                <Link
+                <motion.li
+                  key={link.href}
                   className={clsx(
                     'flex items-center gap-2 rounded-md border-0 border-transparent transition-colors duration-300 hover:border-0',
                     isActiveRoute(link.href) ? 'text-white' : 'text-white/90'
                   )}
-                  href={link.href}
-                  {...(link.external
-                    ? {
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                      }
-                    : {})}
                 >
                   {link.label}
                   {link.icon}
-                </Link>
-                <div
-                  className={clsx('absolute h-1 w-full bg-blue-500', {
-                    'opacity-0 group-hover:opacity-100': !isActiveRoute(
-                      link.href
-                    ),
-                    'opacity-100': isActiveRoute(link.href),
-                  })}
-                />
-              </motion.li>
+                  <motion.div
+                    id={link.href}
+                    className={clsx(
+                      'absolute -bottom-1 h-1 w-full ',
+                      link.href === '/' && 'bg-purple-500',
+                      link.href === '/resume' && 'bg-blue-500',
+                      link.href === '/projects' && 'bg-red-500',
+                      link.href === '/about' && 'bg-white',
+                      link.href === '/playground' && 'bg-green-500',
+                      {
+                        'opacity-0 group-hover:opacity-50': !isActiveRoute(
+                          link.href
+                        ),
+                        'opacity-100': isActiveRoute(link.href),
+                      }
+                    )}
+                  />
+                </motion.li>
+              </Link>
             ))}
-          </ul>
+          </motion.ul>
         </nav>
       </header>
 
@@ -98,7 +130,7 @@ const Main = (props: IMainProps) => {
         priority={true}
       />
 
-      <main className="pointer-events-auto relative mx-auto flex h-full w-full flex-col items-center justify-center  text-sm">
+      <main className="pointer-events-auto relative z-[2] mx-auto flex h-full w-full flex-col items-center justify-center  text-sm">
         {props.children}
       </main>
       <footer className="z-10 rounded-t border-gray-300 p-4 text-end text-sm ">
