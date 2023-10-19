@@ -53,6 +53,7 @@ export const OptionButtonGroup = ({
           key={key}
           onClick={() => setActiveValue(value)}
           active={value.toString() === activeValue}
+          className={''}
         >
           {key}
         </Button>

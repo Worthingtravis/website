@@ -18,11 +18,11 @@ export const projects: Project[] = [
     title: 'RoboLove',
     description:
       'Unlike my other projects, Robolove is a platform for people interested in building personal relationships with AI. The project is still in its early stages, but I am excited to see where it goes.',
-    imageSrc: '/robolove.png',
+    imageSrc: '/robolove.webp',
     marketingSiteLink: 'https://robolove.ai/',
   },
   {
-    bgImage: '/toonsquadbg.avif',
+    bgImage: '/toonsquad.png',
     title: 'ToonSquad',
     description:
       'The Toon Squad is a fun collection of unique digital cartoons taking us on a journey to embrace our inner Toon. We aspire to bring joy and fun to people, while building a decentralized environment we truly believe in.',

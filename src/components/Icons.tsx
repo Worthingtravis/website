@@ -686,7 +686,7 @@ export const ErrorIcon = ({ className = 'inline' }: { className?: string }) => {
   );
 };
 
-const icon = {
+export const AnimateIcon = {
   hidden: {
     pathLength: 0,
     fill: 'currentColor',
@@ -712,11 +712,11 @@ export function PlaygroundIcon() {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1}
-      stroke="currentColor"
+      stroke="white"
       className="h-6 w-6"
     >
       <motion.path
-        variants={icon}
+        variants={AnimateIcon}
         transition={{ duration: 2 }}
         fill={'currentColor'}
         strokeLinecap="round"
@@ -733,13 +733,13 @@ export function AboutIcon() {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1}
-      stroke="currentColor"
-      className="h-6 w-6"
+      stroke="white"
+      className="h-6 w-6 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent"
     >
       <motion.path
-        variants={icon}
+        variants={AnimateIcon}
         transition={{ duration: 2 }}
-        fill={'currentColor'}
+        fill={'transparent'}
         strokeLinecap="round"
         d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
       />
@@ -758,10 +758,11 @@ export function ProjectsIcon() {
       className="h-6 w-6"
     >
       <motion.path
-        variants={icon}
+        variants={AnimateIcon}
         transition={{ duration: 2 }}
         fill={'currentColor'}
         strokeLinecap="round"
+        stroke={'white'}
         d="M10.5 3.798v5.02a3 3 0 01-.879 2.121l-2.377 2.377a9.845 9.845 0 015.091 1.013 8.315 8.315 0 005.713.636l.285-.071-3.954-3.955a3 3 0 01-.879-2.121v-5.02a23.614 23.614 0 00-3 0zm4.5.138a.75.75 0 00.093-1.495A24.837 24.837 0 0012 2.25a25.048 25.048 0 00-3.093.191A.75.75 0 009 3.936v4.882a1.5 1.5 0 01-.44 1.06l-6.293 6.294c-1.62 1.621-.903 4.475 1.471 4.88 2.686.46 5.447.698 8.262.698 2.816 0 5.576-.239 8.262-.697 2.373-.406 3.092-3.26 1.47-4.881L15.44 9.879A1.5 1.5 0 0115 8.818V3.936z"
       />
     </motion.svg>
@@ -772,16 +773,15 @@ export function ResumeIcon() {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill="transparent"
       viewBox="0 0 24 24"
       strokeWidth={1}
-      stroke="currentColor"
+      stroke="white"
       className="h-6 w-6"
     >
       <motion.path
-        variants={icon}
+        variants={AnimateIcon}
         transition={{ duration: 2 }}
-        fill={'currentColor'}
         strokeLinecap="round"
         d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
       />

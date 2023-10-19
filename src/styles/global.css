@@ -103,3 +103,6 @@
     transform: rotate(-10deg);
   }
 }
+.spotlight-gradient {
+  background: radial-gradient(circle, transparent, black 75%);
+}

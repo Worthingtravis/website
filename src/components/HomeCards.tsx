@@ -1,19 +1,17 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { AboutIcon, PlaygroundIcon, ProjectsIcon, ResumeIcon } from './Icons';
+import { AnimatedBorderGradient, CardSpotlightEffect } from './Spotlight';
 
 const MotionLink = motion(Link);
 
 const container = {
-  hidden: { opacity: 1, scale: 0 },
+  hidden: { opacity: 0 },
   visible: {
-    opacity: 1,
-    scale: 1,
-  },
-  animate: {
+    opacity: [0, 1],
     transition: {
       staggerChildren: 0.5,
-      delayChildren: 0.5,
+      duration: 0.5,
     },
   },
 };
@@ -22,28 +20,30 @@ export function HomeCards() {
   return (
     <div
       className={
-        'z-30 flex w-full max-w-3xl flex-col items-stretch md:scale-150 md:justify-center'
+        'flex w-full max-w-3xl flex-col items-stretch md:scale-150 md:justify-center'
       }
     >
       <motion.div
         variants={container}
         initial="hidden"
         animate="visible"
-        className="z-10 grid h-1/2 grid-cols-1 items-end gap-4  font-light tracking-normal text-white ease-in-out md:grid-cols-2 md:gap-8"
+        className="z-10 grid h-1/2 grid-cols-1 items-end gap-4   font-medium tracking-tight text-white ease-in-out md:grid-cols-2 md:gap-8 "
       >
         <MotionLink
           href="/resume"
-          transition={{
-            duration: 1,
-            delay: 0.2,
-          }}
           whileHover={'whileHover'}
           initial={'hidden'}
           animate={'visible'}
-          className="flex h-48 items-center justify-center gap-2 rounded-lg border-2 border-blue-500 bg-gray-950  text-2xl  text-inherit hover:border-black hover:bg-blue-500 hover:text-black "
+          className={'h-full'}
         >
-          Resume
-          <ResumeIcon />
+          <AnimatedBorderGradient>
+            <CardSpotlightEffect>
+              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+                Resume
+                <ResumeIcon />
+              </span>
+            </CardSpotlightEffect>
+          </AnimatedBorderGradient>
         </MotionLink>
 
         <MotionLink
@@ -51,38 +51,46 @@ export function HomeCards() {
           initial={'hidden'}
           animate={'visible'}
           href="/projects"
-          className="group flex h-48 items-center justify-center gap-2 rounded-lg  border-2 border-red-500 bg-gray-950 text-2xl text-inherit hover:border-black hover:bg-red-500 hover:text-black "
         >
-          Projects
-          <ProjectsIcon />
+          {' '}
+          <AnimatedBorderGradient>
+            <CardSpotlightEffect>
+              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+                Projects
+                <ProjectsIcon />
+              </span>
+            </CardSpotlightEffect>
+          </AnimatedBorderGradient>
         </MotionLink>
         <MotionLink
           href="/playground"
-          transition={{
-            duration: 1,
-            delay: 0.2,
-          }}
           whileHover={'whileHover'}
           initial={'hidden'}
           animate={'visible'}
-          className="group flex h-48 items-center justify-center gap-2 rounded-lg  border-2 border-green-500 bg-gray-950 text-2xl text-inherit hover:border-black  hover:bg-green-500 hover:text-black"
         >
-          Playground
-          <PlaygroundIcon />
+          <AnimatedBorderGradient>
+            <CardSpotlightEffect>
+              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+                Playground
+                <PlaygroundIcon />
+              </span>
+            </CardSpotlightEffect>
+          </AnimatedBorderGradient>
         </MotionLink>
         <MotionLink
           href="/about"
-          transition={{
-            duration: 1,
-            delay: 0.2,
-          }}
           whileHover={'whileHover'}
           initial={'hidden'}
           animate={'visible'}
-          className="group flex h-48 items-center justify-center gap-2 rounded-lg  border-2 border-white bg-gray-950 text-2xl text-inherit hover:border-black hover:bg-white hover:text-black"
         >
-          About
-          <AboutIcon />
+          <AnimatedBorderGradient>
+            <CardSpotlightEffect>
+              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+                About
+                <AboutIcon />
+              </span>
+            </CardSpotlightEffect>
+          </AnimatedBorderGradient>
         </MotionLink>
       </motion.div>
     </div>

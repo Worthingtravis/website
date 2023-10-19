@@ -28,7 +28,7 @@ interface AnimatedTextProps {
 export function AnimatedText({ _text, className }: AnimatedTextProps) {
   const [animation, setAnimation] = useState<AnimateProps['variant']>('fade');
   const [splitBy, setSplitBy] = useState<AnimateProps['splitBy']>('word');
-  const [text, setText] = useState<string>(_text || 'Welcome to my website!');
+  const [text, setText] = useState<string>(_text || 'Hello World!');
   const [speed, setSpeed] = useState<number>(0.5);
 
   const leftColumnContent = (

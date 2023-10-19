@@ -2,21 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { EthLogo } from '../components/Icons';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 type ProjectCardProps = {
   title: string;
-  description: string;
   imageSrc: string;
-  openSeaLink?: string;
-  blankRasaLink?: string;
-  marketingSiteLink?: string;
-  blockchain?: string;
-  date?: string;
   bgImage?: string;
   onHover: (imageSrc: string | null) => void;
 };
 
-const ProjectLinks: React.FC<{
+export const ProjectLinks: React.FC<{
   openSeaLink?: string;
   blankRasaLink?: string;
   marketingSiteLink?: string;
@@ -24,13 +19,13 @@ const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 rounded border border-blue-500  bg-gray-900/90 p-1 hover:bg-gray-900/25">
+    <div className={'items flex h-32 w-full flex-col  items-center  gap-4 '}>
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}
           target="_blank"
           rel="noreferrer"
-          className="border-b-2 !border-b-transparent text-lg text-white underline"
+          className={'hover:underline'}
         >
           {openSeaLink && 'OpenSea'}
           {blankRasaLink && 'Blank Rasa'}
@@ -41,7 +36,7 @@ const ProjectLinks: React.FC<{
           href={marketingSiteLink}
           target="_blank"
           rel="noreferrer"
-          className="border-b-2 !border-b-transparent text-lg text-white underline"
+          className={'hover:underline'}
         >
           Marketing Site
         </a>
@@ -58,40 +53,26 @@ const ProjectLinks: React.FC<{
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
-  description,
   imageSrc,
-  openSeaLink,
-  blankRasaLink,
-  marketingSiteLink,
-  blockchain,
-  date,
   bgImage,
   onHover,
 }) => {
   return (
-    <button
-      type="button"
-      className={clsx(bgImage && 'h-full cursor-pointer')}
-      onClick={() => bgImage && onHover(bgImage)}
-    >
-      <div className="flex w-full flex-col flex-wrap items-center gap-2 rounded border border-blue-500 bg-gray-900/90 p-4 shadow-2xl hover:bg-gray-900">
+    <AspectRatio ratio={1}>
+      <button
+        type="button"
+        className={clsx(
+          'relative flex h-full w-full flex-col items-center justify-center rounded-md bg-gray-800  shadow-lg'
+        )}
+        onClick={() => bgImage && onHover(bgImage)}
+      >
         <Image
           src={imageSrc}
-          className="aspect-square rounded bg-cover outline outline-1 outline-gray-900"
           alt={title}
-          width={200}
-          height={250}
+          fill
+          className={' aspect-square h-full w-full bg-contain'}
         />
-        <h1 className="text-3xl">{title}</h1>
-        <p className="min-h-[182px] text-lg">{description}</p>
-        <ProjectLinks
-          openSeaLink={openSeaLink}
-          blankRasaLink={blankRasaLink}
-          marketingSiteLink={marketingSiteLink}
-          blockchain={blockchain}
-          date={date}
-        />
-      </div>
-    </button>
+      </button>
+    </AspectRatio>
   );
 };

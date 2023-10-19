@@ -14,7 +14,11 @@ const Index = () => {
         />
       }
     >
-      <div className={'z-[2] flex flex-col gap-2 rounded bg-gray-800 p-2'}>
+      <div
+        className={
+          'z-[2] flex flex-col gap-2 rounded bg-gray-800 p-2 text-green-500'
+        }
+      >
         <h1 className={'z-10 my-2 text-center text-7xl font-bold text-white'}>
           Playground
         </h1>

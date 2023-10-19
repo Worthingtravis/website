@@ -12,7 +12,7 @@ export const useLastHoveredImage = (_defaultImage: string | null) => {
     if (currentlyHoveredImage !== null) {
       const timer = setTimeout(() => {
         setLastHoveredImage(currentlyHoveredImage);
-      }, 500); // Delay equivalent to your transition duration
+      }, 0); // Delay equivalent to your transition duration
 
       return () => clearTimeout(timer);
     }

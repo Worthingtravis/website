@@ -55,7 +55,7 @@ export const AnimateText: React.FC<AnimateProps> = ({
       {restartButton && (
         <Button
           onClick={() => setIsSkipping(!isSkipping)}
-          className={'bg-blue-500'}
+          className={'bg-inherit'}
         >
           {isSkipping ? 'Restart' : 'Skip to end'}
         </Button>

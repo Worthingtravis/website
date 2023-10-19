@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import clsx from 'clsx';
 
+import Image from 'next/image';
 import { format, utcToZonedTime } from 'date-fns-tz';
 import QRCode from 'qrcode.react';
 import type { ContactInfo } from './Contact.config';
@@ -16,7 +16,7 @@ function getTimeZoneNameFromAbbr(abbr: string) {
 }
 
 const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
-  <div className="mx-auto  flex flex-col items-start space-y-2">
+  <div className="mx-auto  flex w-full flex-col items-center space-y-2 rounded bg-gray-950/20 p-2">
     {Object.entries(contact).map(([key, value]) => {
       if (key === 'Time Zone' && value.isTimeZone) {
         const timeZone = value.value;
@@ -27,8 +27,9 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
         });
 
         return (
-          <div key={key} className="flex items-center space-x-2">
-            <span className="text-sm text-white">{key}:</span>
+          <div key={key} className="flex w-full justify-between space-x-2">
+            <span className="text-sm text-white">Local Time:</span>
+            PST
             <span className="text-sm text-blue-400">{formattedTime}</span>
           </div>
         );
@@ -39,7 +40,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
       const hasIcon = typeof value === 'object' && value.icon;
 
       return !hasIcon ? (
-        <div key={key} className="flex items-center space-x-2">
+        <div key={key} className="flex w-full justify-between space-x-2">
           <span className="text-sm text-white">{key}:</span>
           {isLink ? (
             <Link
@@ -59,76 +60,73 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
   </div>
 );
 
-const FrontCard = ({
+export const Socials = ({
   info,
-  iconsArray,
+  iconClass,
+  imageClass,
 }: {
   info: ContactInfo[];
-  iconsArray: React.ReactNode[];
-}) => (
-  <motion.div
-    className="absolute mt-40 flex h-[500px]  w-[500px] flex-col items-center justify-evenly gap-4 rounded-lg border bg-gray-950 p-4"
-    style={{
-      backfaceVisibility: 'hidden',
-      WebkitBackfaceVisibility: 'hidden',
-      transform: 'translateZ(10px)',
-    }}
-  >
-    {info.map((contact, key) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <ContactDetails key={key} contact={contact} />
-    ))}
-    <div className={'flex  gap-10'}>{iconsArray.map((icon) => icon)}</div>
-  </motion.div>
-);
-
-const BackCard = () => (
-  <motion.div
-    className="absolute mt-40 flex h-[500px]  w-[500px]  flex-col items-center justify-center gap-4 rounded-lg border bg-gray-950 p-4"
-    style={{
-      backfaceVisibility: 'hidden',
-      transform: 'rotateY(180deg) translateZ(5px)', // rotate it and give it half of the desired thickness
-      WebkitBackfaceVisibility: 'hidden',
-    }}
-  >
-    Contact Me
-    <QRCode value={generateVCard()} size={256} />
-  </motion.div>
-);
+  iconClass?: string;
+  imageClass?: string;
+}) => {
+  return (
+    <>
+      {info.flatMap((contact) =>
+        Object.entries(contact)
+          .filter(([, value]) => typeof value === 'object' && value.icon)
+          .map(([key, value]) => (
+            <Link
+              key={key}
+              href={value.value}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx(
+                'flex items-center justify-center gap-1 rounded bg-white text-sm outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white/90',
+                iconClass
+              )}
+            >
+              <Image
+                src={value.icon}
+                alt={'icon'}
+                width={50}
+                height={50}
+                className={clsx(imageClass)}
+              />
+            </Link>
+          ))
+      )}
+    </>
+  );
+};
 
 export const Contact = ({ info }: { info: ContactInfo[] }) => {
-  const iconsArray = useMemo(() => {
-    return info.flatMap((contact) =>
-      Object.entries(contact)
-        .filter(([, value]) => typeof value === 'object' && value.icon)
-        .map(([key, value]) => (
-          <Link
-            key={key}
-            href={value.value}
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <motion.div className="relative z-10 mt-10 flex  items-start justify-center">
+      <motion.div className="  flex flex-col  items-center  gap-4 rounded-lg border  bg-gray-950/90 p-4 md:flex-row">
+        <div className="flex  items-center gap-2 bg-gray-950/20 p-3">
+          {info.map((contact, key) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <ContactDetails key={key} contact={contact} />
+          ))}
+
+          <div
             className={
-              'rounded-lg !border-b-2 border-transparent bg-white bg-clip-padding p-0.5 transition-all duration-300 ease-in-out hover:rounded-b-none hover:border-green-500'
+              'flex h-full flex-col content-between justify-between gap-2 transition-opacity duration-500 ease-in-out'
             }
           >
-            <Image src={value.icon} alt={'icon'} width={50} height={50} />
-          </Link>
-        ))
-    );
-  }, [info]);
+            <Socials
+              info={info}
+              iconClass={'w-10 opacity-80  hover:opacity-100'}
+            />
+          </div>
+        </div>
 
-  const [isFlipped, setIsFlipped] = useState(false);
-  return (
-    <motion.div
-      initial={{ rotateY: 0 }}
-      onClick={() => setIsFlipped(!isFlipped)}
-      animate={{ rotateY: isFlipped ? 180 : 0 }}
-      transition={{ duration: 0.8, ease: [0.68, -0.55, 0.27, 1.55] }} // Use an exaggerated ease for more dramatic effect
-      className="relative mt-10 flex h-52  max-w-sm items-center justify-center"
-      style={{ perspective: 1500, transformStyle: 'preserve-3d' }}
-    >
-      <FrontCard info={info} iconsArray={iconsArray} />
-      <BackCard />
+        <QRCode
+          value={generateVCard()}
+          size={256}
+          className={'rounded-lg border-2 border-white '}
+        />
+      </motion.div>
     </motion.div>
   );
 };

@@ -2,7 +2,6 @@ import GithubIcon from './gitIcon.png';
 import LinkedInIcon from './linkedInIcon.png';
 
 export interface ContactInfo {
-  Title: string;
   Name: string;
   Email: string;
   'Time Zone': { isTimeZone: boolean; value: string };
@@ -12,7 +11,6 @@ export interface ContactInfo {
 
 export const contactInfo = [
   {
-    Title: 'Senior Software Developer',
     Name: 'Travis Worthing',
     Email: 'worthingtravis@gmail.com',
     'Time Zone': {
@@ -41,7 +39,6 @@ export const generateVCard = () => {
       PROFILE:VCARD
       N:${contactInfo[0].Name}
       FN:${contactInfo[0].Name}
-      TITLE:${contactInfo[0].Title}
       EMAIL:${contactInfo[0].Email}
       TZ:${contactInfo[0]['Time Zone'].value}
       END:VCARD

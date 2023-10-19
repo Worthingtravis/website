@@ -13,7 +13,7 @@ const Index = () => {
         />
       }
     >
-      <HomeCards />
+      <HomeCards />{' '}
     </Main>
   );
 };

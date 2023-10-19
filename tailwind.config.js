@@ -4,6 +4,7 @@ module.exports = {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
+    '@/components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
@@ -16,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        inner: 'inset 0px 0px 200px 75px rgba(0,0,0,1.0)',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -74,13 +78,30 @@ module.exports = {
           },
           '20%, 40%, 60%, 80%': { transform: 'rotate(-10deg)' },
         },
+        'text-gradient': {
+          to: {
+            backgroundPosition: '200% center',
+          },
+        },
+        'background-shine': {
+          from: { backgroundPosition: '0 0' },
+          to: { backgroundPosition: '-200% 0' },
+        },
+        'border-width': {
+          from: { width: '10px', opacity: '0' },
+          to: { width: '100px', opacity: '1' },
+        },
       },
       animation: {
+        'text-gradient': 'text-gradient 1.5s linear infinite',
+        'background-shine': 'background-shine 2s linear infinite',
+        'pulse-slow': 'pulse 6s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+        'border-width': 'border-width 3s infinite alternate',
         shake: 'shake 2s ease-in-out infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: ['tailwindcss-animate'],
+  plugins: ['tailwindcss-animate', 'flowbite/plugin'],
 };
