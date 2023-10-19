@@ -25,7 +25,7 @@ interface AnimatedTextProps {
   className?: string;
 }
 
-export function AnimatedText({ _text, className }: AnimatedTextProps) {
+export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
   const [animation, setAnimation] = useState<AnimateProps['variant']>('fade');
   const [splitBy, setSplitBy] = useState<AnimateProps['splitBy']>('word');
   const [text, setText] = useState<string>(_text || 'Hello World!');

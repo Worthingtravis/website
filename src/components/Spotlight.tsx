@@ -1,7 +1,13 @@
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 
-export const CardSpotlightEffect = ({ children }) => {
+export const CardSpotlightEffect = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -42,7 +48,10 @@ export const CardSpotlightEffect = ({ children }) => {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative  -inset-px  flex h-full w-full items-center justify-center overflow-hidden"
+      className={clsx(
+        'relative -inset-px  flex h-full w-full items-center justify-center overflow-hidden',
+        className
+      )}
     >
       {children}
       <div
@@ -67,16 +76,12 @@ export const AnimatedBorderGradient = ({
     <div
       className={clsx(
         className,
-        'relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-slate-800 p-[1px] backdrop-blur-3xl'
+        'group relative flex h-48 w-full items-center justify-center overflow-hidden rounded-xl border border-slate-800 p-[1px] backdrop-blur-3xl'
       )}
     >
-      <span className="absolute  inset-[-1000%]  h-full w-full animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
       <div className="inline-flex h-full w-full items-center justify-center rounded-xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl" />
-      <div
-        className={
-          'absolute inset-0 flex  h-full w-full items-center justify-center gap-8 rounded-xl'
-        }
-      >
+      <div className="absolute inset-0 flex  h-full w-full items-center justify-center gap-8 rounded-xl">
         {children}
       </div>
     </div>

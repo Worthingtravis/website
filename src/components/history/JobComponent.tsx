@@ -4,6 +4,7 @@ import React from 'react';
 import { Timeline } from '../Timeline';
 
 import type { Job } from './JobComponent.config';
+import { AnimatedText } from '../AnimatedText';
 
 export function JobComponent({ job }: { job: Job }) {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -22,11 +23,11 @@ export function JobComponent({ job }: { job: Job }) {
       ref={ref}
       onClick={onClick}
       className={clsx(
-        'relative z-10 flex flex-col rounded bg-gray-900  p-2 pt-4 text-white shadow-2xl'
+        'relative z-10 flex flex-col space-y-4 rounded  bg-gray-950/20 p-2 pt-4 text-white'
       )}
     >
       <h1 className="mb-4 font-bold text-blue-400 sm:text-lg md:text-2xl">
-        {job.title}
+        <AnimatedText variant={'pulse'}>{job.title}</AnimatedText>
       </h1>
       <time className="text-lg font-semibold text-gray-300 dark:text-white">
         {job.period}

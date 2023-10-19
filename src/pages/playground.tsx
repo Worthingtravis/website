@@ -1,4 +1,4 @@
-import { AnimatedText } from '../components/AnimatingText/AnimatedText';
+import { AnimatedTextExample } from '../components/AnimatingText/AnimatedTextExample';
 import { LoginExamples } from '../components/LoginForm/LoginForm';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
@@ -23,7 +23,7 @@ const Index = () => {
           Playground
         </h1>
         <DirectionalAnimationExample />
-        <AnimatedText />
+        <AnimatedTextExample />
         <LoginExamples />
       </div>
     </Main>

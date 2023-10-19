@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatedText } from '../components/AnimatingText/AnimatedText';
+import { AnimatedTextExample } from '../components/AnimatingText/AnimatedTextExample';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
 
@@ -26,7 +26,7 @@ const About = () => (
         'z-30 flex w-full max-w-7xl flex-col items-stretch    md:justify-center'
       }
     >
-      <AnimatedText
+      <AnimatedTextExample
         _text={topics.join('\n')}
         className="space-y-10 p-5 text-xl"
       />

@@ -94,6 +94,7 @@ module.exports = {
       },
       animation: {
         'text-gradient': 'text-gradient 1.5s linear infinite',
+        'text-gradient-slow': 'text-gradient 2.5s linear infinite',
         'background-shine': 'background-shine 2s linear infinite',
         'pulse-slow': 'pulse 6s infinite cubic-bezier(0.4, 0, 0.6, 1)',
         'border-width': 'border-width 3s infinite alternate',
