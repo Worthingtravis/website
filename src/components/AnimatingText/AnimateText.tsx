@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { nanoid } from 'nanoid';
 import React, { useMemo, useState } from 'react';
+import { Button } from '@/components/ui/button';
 
-import { Button } from '../Button';
 import type { AnimateProps } from './AnimateText.config';
 import { animationVariants } from './AnimateText.config';
 
@@ -51,17 +51,8 @@ export const AnimateText: React.FC<AnimateProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, variant, splitBy, speed]);
   return (
-    <div>
-      {restartButton && (
-        <Button
-          onClick={() => setIsSkipping(!isSkipping)}
-          className={'bg-inherit'}
-        >
-          {isSkipping ? 'Restart' : 'Skip to end'}
-        </Button>
-      )}
-      <br />
-      <div className="flex flex-wrap gap-2 rounded bg-gray-700 p-2">
+    <div className={' flex h-full flex-col  gap-4'}>
+      <div className="flex flex-wrap gap-2 rounded bg-gray-700/50  p-2">
         {textArray?.map((part, index) =>
           part.includes('\n') ? (
             <ParagraphBreak key={nanoid()} />
@@ -90,6 +81,11 @@ export const AnimateText: React.FC<AnimateProps> = ({
           )
         )}
       </div>
+      {restartButton && (
+        <Button onClick={() => setIsSkipping(!isSkipping)} variant={'default'}>
+          {isSkipping ? 'Restart' : 'Skip to end'}
+        </Button>
+      )}
     </div>
   );
 };

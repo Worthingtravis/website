@@ -18,7 +18,7 @@ const Box = React.forwardRef((props, ref: React.Ref<HTMLButtonElement>) => {
     <motion.button
       ref={ref}
       {...props}
-      className="pointer-events-auto  h-10 w-10 rounded-2xl bg-gray-950 hover:cursor-pointer"
+      className="pointer-events-auto  h-10 w-10 rounded-2xl bg-current hover:cursor-pointer"
     />
   );
 });

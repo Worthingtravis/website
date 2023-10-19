@@ -14,6 +14,7 @@ export function DirectionalAnimationExample() {
         leftColumn={
           <div
             className={clsx(
+              'space-y-4',
               items === 64 && 'h-[450px]',
               items === 128 && 'h-[900px]'
             )}

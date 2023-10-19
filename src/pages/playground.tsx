@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { AnimatedTextExample } from '../components/AnimatingText/AnimatedTextExample';
 import { LoginExamples } from '../components/LoginForm/LoginForm';
 import { Meta } from '../layouts/Meta';
@@ -14,13 +15,9 @@ const Index = () => {
         />
       }
     >
-      <div
-        className={
-          'z-[2] flex flex-col gap-2 rounded bg-gray-800 p-2 text-green-500'
-        }
-      >
-        <h1 className={'z-10 my-2 text-center text-7xl font-bold text-white'}>
-          Playground
+      <div className={'z-[2] flex flex-col gap-2 rounded  p-2 '}>
+        <h1 className={'z-10 my-2 text-center text-7xl font-bold'}>
+          {_.startCase('Playground')}
         </h1>
         <DirectionalAnimationExample />
         <AnimatedTextExample />

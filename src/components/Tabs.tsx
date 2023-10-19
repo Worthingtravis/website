@@ -1,16 +1,12 @@
-import clsx from 'clsx';
 import _ from 'lodash';
 import type { Dispatch, SetStateAction, ReactNode } from 'react';
-import { Button } from './Button';
+import { Button } from '@/components/ui/button';
 
 interface TabProps<T> {
   tabs: T[];
   activeTab: T;
   setActiveTab: Dispatch<SetStateAction<T>>;
-  customStyles?: {
-    active?: string;
-    inactive?: string;
-  };
+
   renderLabel?: (tab: T) => ReactNode; // For custom label rendering
 }
 
@@ -22,25 +18,15 @@ function Tabs<T extends string | number>({
   tabs,
   activeTab,
   setActiveTab,
-  customStyles = {},
   renderLabel = defaultRenderLabel, // If no renderLabel is provided, defaultRenderLabel is used
 }: TabProps<T>) {
-  const defaultActiveStyle =
-    'bg-gray-900  text-white hover:bg-gray-950 ring ring-blue-500 ring-2 transition-all duration-1000';
-  const defaultInactiveStyle = 'bg-gray-900 text-gray-300 hover:bg-gray-800 ';
-
   return (
     <div className="sticky top-20 z-[20] flex w-full flex-row flex-wrap items-center justify-center gap-4">
       {tabs.map((tab) => (
         <Button
           key={tab.toString()}
           onClick={() => setActiveTab(tab)}
-          className={clsx(
-            'rounded-md px-4 py-2 text-sm font-medium transition-colors duration-300',
-            activeTab === tab
-              ? customStyles.active || defaultActiveStyle
-              : customStyles.inactive || defaultInactiveStyle
-          )}
+          variant={activeTab === tab ? 'default' : 'ghost'}
         >
           {renderLabel(tab)}
         </Button>

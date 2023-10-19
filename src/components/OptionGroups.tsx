@@ -1,4 +1,4 @@
-import { Button } from './Button';
+import { Button } from '@/components/ui/button';
 
 export const RadioOptionGroup = ({
   title,
@@ -11,7 +11,7 @@ export const RadioOptionGroup = ({
   activeValue: string;
   setActiveValue: (value: string | number) => void;
 }) => (
-  <div className="flex gap-2">
+  <div className="flex justify-around gap-2">
     <h1>{title}:</h1>
     {options.map(({ key, value }) => (
       <label
@@ -45,15 +45,14 @@ export const OptionButtonGroup = ({
   activeValue: string;
   setActiveValue: (value: string | number) => void;
 }) => (
-  <div>
-    <h3 className="text-lg font-semibold text-white">{title}</h3>
-    <div className={`mt-2 grid grid-cols-2 gap-4`}>
+  <div className={'space-x-2'}>
+    <h3 className="text-lg font-semibold text-white ">{title}</h3>
+    <div className={`mt-2 grid grid-cols-2 gap-4 `}>
       {options.map(({ key, value }) => (
         <Button
           key={key}
           onClick={() => setActiveValue(value)}
-          active={value.toString() === activeValue}
-          className={''}
+          variant={value.toString() === activeValue ? 'outline' : 'ghost'}
         >
           {key}
         </Button>

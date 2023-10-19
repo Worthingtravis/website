@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import AnimatedCheckIcon from '../AnimatedSVG';
-import { Button } from '../Button';
 import { ErrorIcon, LoadingIcon, SubmitOutlineIcon } from '../Icons';
 import type { Config } from './LoginForm.config';
 import {
@@ -19,6 +18,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { DynamicLayout } from '../../templates/DynamicLayout';
 
 import { OptionButtonGroup } from '../OptionGroups';
+import { Button } from '@/components/ui/button';
 
 export const LoginForm = ({ config }: { config: Config }) => {
   const classNames = variants[config.variant];
@@ -217,7 +217,7 @@ export const LoginExamples = () => {
   if (!isMounted) return null;
 
   const leftColumn = (
-    <>
+    <div className={'space-y-4'}>
       <OptionButtonGroup
         title="Layout"
         options={Object.entries(layoutOptions).map(([key, value]) => ({
@@ -227,23 +227,23 @@ export const LoginExamples = () => {
         activeValue={layout}
         setActiveValue={setLayout as (value: string | number) => void}
       />
+
       {Object.entries(positionOptions[layoutType]).map(
         ([positionType, values]) => (
-          <div key={positionType}>
-            <OptionButtonGroup
-              title={_.startCase(positionType)}
-              // @ts-ignore
-              options={Object.entries(values).map(([key, value]) => ({
-                key,
-                value,
-              }))}
-              // @ts-ignore
-              activeValue={positions[positionType]}
-              setActiveValue={(value) =>
-                setPositions((prev) => ({ ...prev, [positionType]: value }))
-              }
-            />
-          </div>
+          <OptionButtonGroup
+            key={positionType}
+            title={_.startCase(positionType)}
+            // @ts-ignore
+            options={Object.entries(values).map(([key, value]) => ({
+              key,
+              value,
+            }))}
+            // @ts-ignore
+            activeValue={positions[positionType]}
+            setActiveValue={(value) =>
+              setPositions((prev) => ({ ...prev, [positionType]: value }))
+            }
+          />
         )
       )}
 
@@ -254,7 +254,7 @@ export const LoginExamples = () => {
           <AnimatedCheckIcon isVisible={showConfig} initial={true} />
         </Button>
       </div>
-    </>
+    </div>
   );
 
   const mainContent = configs.map((config) => (

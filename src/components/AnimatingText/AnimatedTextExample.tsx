@@ -5,6 +5,7 @@ import TwoColumnLayout from '../../templates/TwoColumnLayout';
 import { OptionButtonGroup, RadioOptionGroup } from '../OptionGroups';
 import { AnimateText } from './AnimateText';
 import type { AnimateProps } from './AnimateText.config';
+import { Textarea } from '@/ui/textarea';
 
 interface AnimationOptions {
   fade: AnimateProps['variant'];
@@ -32,7 +33,7 @@ export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
   const [speed, setSpeed] = useState<number>(0.5);
 
   const leftColumnContent = (
-    <>
+    <div className={'space-y-8'}>
       <OptionButtonGroup
         title="Animation"
         options={Object.entries(animationOptions).map(([key, value]) => ({
@@ -65,25 +66,23 @@ export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
         setActiveValue={setSplitBy as (value: any) => void}
       />
       <hr />
-      <div className="flex flex-col gap-2">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label
-          aria-label={'changing animating text'}
-          htmlFor={'text'}
-          className="text-white"
-        >
-          Text:
-        </label>
-        <textarea
-          id={'text'}
-          rows={12}
-          name="text"
-          className="scrollbar rounded-md bg-gray-700 p-2"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </div>
-    </>
+      <br />
+
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label
+        aria-label={'changing animating text'}
+        htmlFor={'text'}
+        className="sticky top-0 text-white"
+      >
+        Text:
+      </label>
+      <Textarea
+        id={'text'}
+        name="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+    </div>
   );
 
   const rightColumnContent = (
