@@ -17,8 +17,6 @@ const container = {
   },
 };
 
-
-
 export function HomeCards() {
   return (
     <div
