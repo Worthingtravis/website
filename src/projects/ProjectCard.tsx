@@ -19,7 +19,11 @@ export const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className={'items flex h-32 w-full flex-col  items-center  gap-4 '}>
+    <div
+      className={
+        'items mt-5 flex w-full flex-wrap items-center justify-center  gap-2  self-end '
+      }
+    >
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}
@@ -70,7 +74,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           src={imageSrc}
           alt={title}
           fill
-          className={' aspect-square h-full w-full bg-contain'}
+          className={'!min-w-32 h-full bg-contain '}
         />
       </button>
     </AspectRatio>

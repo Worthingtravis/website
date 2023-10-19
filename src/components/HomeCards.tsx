@@ -16,6 +16,14 @@ const container = {
   },
 };
 
+function AnimatedText({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent group-hover:via-white group-hover:to-white">
+      {children}
+    </span>
+  );
+}
+
 export function HomeCards() {
   return (
     <div
@@ -27,7 +35,7 @@ export function HomeCards() {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="z-10 grid h-1/2 grid-cols-1 items-end gap-4   font-medium tracking-tight text-white ease-in-out md:grid-cols-2 md:gap-8 "
+        className="z-10 grid h-1/2 grid-cols-1 items-end gap-4   font-medium tracking-tight  ease-in-out md:grid-cols-2 md:gap-8 "
       >
         <MotionLink
           href="/resume"
@@ -38,10 +46,10 @@ export function HomeCards() {
         >
           <AnimatedBorderGradient>
             <CardSpotlightEffect>
-              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+              <AnimatedText>
                 Resume
                 <ResumeIcon />
-              </span>
+              </AnimatedText>
             </CardSpotlightEffect>
           </AnimatedBorderGradient>
         </MotionLink>
@@ -55,10 +63,10 @@ export function HomeCards() {
           {' '}
           <AnimatedBorderGradient>
             <CardSpotlightEffect>
-              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+              <AnimatedText>
                 Projects
                 <ProjectsIcon />
-              </span>
+              </AnimatedText>
             </CardSpotlightEffect>
           </AnimatedBorderGradient>
         </MotionLink>
@@ -70,10 +78,11 @@ export function HomeCards() {
         >
           <AnimatedBorderGradient>
             <CardSpotlightEffect>
-              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+              <AnimatedText>
+                {' '}
                 Playground
                 <PlaygroundIcon />
-              </span>
+              </AnimatedText>
             </CardSpotlightEffect>
           </AnimatedBorderGradient>
         </MotionLink>
@@ -85,10 +94,10 @@ export function HomeCards() {
         >
           <AnimatedBorderGradient>
             <CardSpotlightEffect>
-              <span className="flex animate-text-gradient items-center gap-4 bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-xl text-transparent">
+              <AnimatedText>
                 About
                 <AboutIcon />
-              </span>
+              </AnimatedText>
             </CardSpotlightEffect>
           </AnimatedBorderGradient>
         </MotionLink>
