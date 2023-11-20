@@ -12,10 +12,9 @@ import { Meta } from '../layouts/Meta';
 import TransitionComponent from './TransitionComponent';
 import { Main } from '../templates/Main';
 
+type Tab = 'experience' | 'contact' | 'skills & qualities';
 const MainPage = () => {
-  const [tab, setTab] = useState<
-    'experience' | 'contact' | 'skills & qualities'
-  >('experience');
+  const [tab, setTab] = useState<Tab>('experience');
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>

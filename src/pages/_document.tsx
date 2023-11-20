@@ -9,7 +9,7 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale}>
         <Head />
-        <body className="scrollbar  h-full w-full  overflow-y-scroll ">
+        <body className="scrollbar  h-full w-full  ">
           <Main />
           <NextScript />
         </body>

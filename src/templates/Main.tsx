@@ -24,7 +24,7 @@ const navLinks = [
     href: '/projects',
     label: 'Projects',
   },
-  { href: '/about', label: 'About' },
+  // { href: '/about', label: 'About' },
   { href: '/playground', label: 'PlayGround' },
   {
     href: 'https://github.com/worthingtravis',

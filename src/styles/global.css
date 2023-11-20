@@ -103,6 +103,62 @@
     transform: rotate(-10deg);
   }
 }
-.spotlight-gradient {
-  background: radial-gradient(circle, transparent, black 75%);
+
+/*scrollbar sleek */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(123, 58, 235);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(0, 2, 6);
+}
+
+.card {
+  @apply bg-card text-card-foreground;
+}
+
+.conic-gradient {
+  background: linear-gradient(90deg, rgb(0, 2, 6) 50%, rgb(0, 2, 6) 50%);
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 200%;
+  height: 40%;
+  animation: rotate 6s linear infinite;
+  animation-direction: alternate;
+}
+
+:hover > .conic-gradient {
+  animation-play-state: paused;
+}
+
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*.cursor-glow {*/
+/*  !*mix-blend-mode: difference;*!*/
+/*  z-index: 0;*/
+/*  pointer-events: none;*/
+/*}*/
+/*hovering on body, cursor-glow will mixblenddifference, but any other element we will avoid  */
+body:hover > .cursor-glow {
+  mix-blend-mode: color-burn;
+  z-index: 1
+}
+
+.cursor-glow {
+  mix-blend-mode: difference;
+  z-index: 0;
+  pointer-events: none;
 }

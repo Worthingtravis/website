@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { AboutIcon, PlaygroundIcon, ProjectsIcon, ResumeIcon } from './Icons';
-import { AnimatedBorderGradient, CardSpotlightEffect } from './Spotlight';
+import { AnimatedBorderGradient } from './Spotlight';
 import { AnimatedText } from './AnimatedText';
 
 const MotionLink = motion(Link);
@@ -38,12 +38,10 @@ export function HomeCards() {
           className={'h-full'}
         >
           <AnimatedBorderGradient>
-            <CardSpotlightEffect>
-              <AnimatedText>
-                Resume
-                <ResumeIcon />
-              </AnimatedText>
-            </CardSpotlightEffect>
+            <AnimatedText>
+              Resume
+              <ResumeIcon />
+            </AnimatedText>
           </AnimatedBorderGradient>
         </MotionLink>
 
@@ -55,12 +53,10 @@ export function HomeCards() {
         >
           {' '}
           <AnimatedBorderGradient>
-            <CardSpotlightEffect>
-              <AnimatedText>
-                Projects
-                <ProjectsIcon />
-              </AnimatedText>
-            </CardSpotlightEffect>
+            <AnimatedText>
+              Projects
+              <ProjectsIcon />
+            </AnimatedText>
           </AnimatedBorderGradient>
         </MotionLink>
         <MotionLink
@@ -70,28 +66,24 @@ export function HomeCards() {
           animate={'visible'}
         >
           <AnimatedBorderGradient>
-            <CardSpotlightEffect>
-              <AnimatedText>
-                {' '}
-                Playground
-                <PlaygroundIcon />
-              </AnimatedText>
-            </CardSpotlightEffect>
+            <AnimatedText>
+              {' '}
+              Playground
+              <PlaygroundIcon />
+            </AnimatedText>
           </AnimatedBorderGradient>
         </MotionLink>
         <MotionLink
-          href="/about"
+          href="/"
           whileHover={'whileHover'}
           initial={'hidden'}
           animate={'visible'}
         >
           <AnimatedBorderGradient>
-            <CardSpotlightEffect>
-              <AnimatedText>
-                About
-                <AboutIcon />
-              </AnimatedText>
-            </CardSpotlightEffect>
+            <AnimatedText>
+              Nothing
+              <AboutIcon />
+            </AnimatedText>
           </AnimatedBorderGradient>
         </MotionLink>
       </motion.div>

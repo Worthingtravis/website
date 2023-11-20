@@ -1,15 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
-import clsx from 'clsx';
 import { EthLogo } from '../components/Icons';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-
-type ProjectCardProps = {
-  title: string;
-  imageSrc: string;
-  bgImage?: string;
-  onHover: (imageSrc: string | null) => void;
-};
 
 export const ProjectLinks: React.FC<{
   openSeaLink?: string;
@@ -52,31 +42,5 @@ export const ProjectLinks: React.FC<{
       )}
       {date && <p className="text-lg">Release Date: {date}</p>}
     </div>
-  );
-};
-
-export const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  imageSrc,
-  bgImage,
-  onHover,
-}) => {
-  return (
-    <AspectRatio ratio={1}>
-      <button
-        type="button"
-        className={clsx(
-          'relative flex h-full w-full flex-col items-center justify-center rounded-md bg-gray-800  shadow-lg'
-        )}
-        onClick={() => bgImage && onHover(bgImage)}
-      >
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          className={'!min-w-32 h-full bg-contain '}
-        />
-      </button>
-    </AspectRatio>
   );
 };

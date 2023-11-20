@@ -19,13 +19,7 @@ export function JobComponent({ job }: { job: Job }) {
   }, [ref]);
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div
-      ref={ref}
-      onClick={onClick}
-      className={clsx(
-        'relative z-10 flex flex-col space-y-4 rounded  bg-gray-950/20 p-2 pt-4 text-white'
-      )}
-    >
+    <div ref={ref} onClick={onClick} className={clsx()}>
       <h1 className="mb-4 font-bold text-blue-400 sm:text-lg md:text-2xl">
         <AnimatedText variant={'pulse'}>{job.title}</AnimatedText>
       </h1>
