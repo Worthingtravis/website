@@ -106,7 +106,7 @@ const Main = (props: IMainProps) => {
 
                     {isActiveRoute(link.href) && (
                       <motion.div
-                        layoutId="spotlight"
+                        layoutId={'spotlight'}
                         id={link.href}
                         className={clsx(
                           'absolute -bottom-1 h-1 w-full',

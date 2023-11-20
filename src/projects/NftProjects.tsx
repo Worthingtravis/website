@@ -42,7 +42,7 @@ export const NftProjects: React.FC<{}> = () => {
               />
               {lastHoveredImage === project.bgImage && (
                 <MotionImage
-                  layoutId={'spotlight'}
+                  layoutId={'spotlight-projects'}
                   width={400}
                   height={400}
                   className={clsx('h-96 w-96 object-cover object-center')}
