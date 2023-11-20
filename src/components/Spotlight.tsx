@@ -67,7 +67,7 @@ export const AnimatedBorderGradient = ({
     <span
       className={clsx(
         className,
-        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 text-clip rounded-xl p-[1px] backdrop-blur-[3px] hover:p-0.5'
+        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 overflow-clip rounded-xl p-[1px] backdrop-blur-[3px] hover:p-0.5'
       )}
     >
       <div className="absolute inset-0 z-[5] flex h-full w-full items-center justify-center gap-8 rounded-xl">

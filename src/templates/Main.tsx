@@ -103,27 +103,30 @@ const Main = (props: IMainProps) => {
                   >
                     {link.label}
                     {link.icon}
-                    <motion.div
-                      id={link.href}
-                      className={clsx(
-                        'absolute -bottom-1 h-1 w-full',
-                        link.href === '/resume' &&
-                          'bg-blue-500 hover:bg-blue-500',
-                        link.href === '/projects' &&
-                          'bg-red-500 hover:bg-red-500',
-                        link.href === '/about' && 'bg-white hover:bg-white',
-                        link.href === '/playground' && 'bg-green-500',
-                        link.href === '/' && 'bg-purple-500',
-                        link.external && 'bg-white hover:bg-white',
 
-                        {
-                          'opacity-0  group-hover:opacity-100 ': !isActiveRoute(
-                            link.href
-                          ),
-                          'opacity-100': isActiveRoute(link.href),
-                        }
-                      )}
-                    />
+                    {isActiveRoute(link.href) && (
+                      <motion.div
+                        layoutId="spotlight"
+                        id={link.href}
+                        className={clsx(
+                          'absolute -bottom-1 h-1 w-full',
+                          link.href === '/resume' &&
+                            'bg-blue-500 hover:bg-blue-500',
+                          link.href === '/projects' &&
+                            'bg-red-500 hover:bg-red-500',
+                          link.href === '/about' && 'bg-white hover:bg-white',
+                          link.href === '/playground' && 'bg-green-500',
+                          link.href === '/' && 'bg-purple-500',
+                          link.external && 'bg-white hover:bg-white',
+
+                          {
+                            'opacity-0  group-hover:opacity-100 ':
+                              !isActiveRoute(link.href),
+                            'opacity-100': isActiveRoute(link.href),
+                          }
+                        )}
+                      />
+                    )}
                   </motion.li>
                 </Link>
               ))}
