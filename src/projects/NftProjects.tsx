@@ -17,7 +17,9 @@ export const NftProjects: React.FC<{}> = () => {
   );
 
   return (
-    <div className={'flex  w-screen flex-col space-y-10 divide-y px-20'}>
+    <div
+      className={'flex  w-screen flex-col space-y-10 divide-y px-1 md:px-20'}
+    >
       {projects.map((project) => (
         <div
           key={project.title}
@@ -59,7 +61,9 @@ export const NftProjects: React.FC<{}> = () => {
             </AnimatePresence>
           </div>
           <h1 className="text-start text-2xl">{_.startCase(project.title)}</h1>
-          <p className="w-3/5 text-start text-sm">{project.description}</p>
+          <p className="w-full text-start text-sm md:w-3/5">
+            {project.description}
+          </p>
           <ProjectLinks
             openSeaLink={project.openSeaLink}
             blankRasaLink={project.blankRasaLink}

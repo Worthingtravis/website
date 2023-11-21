@@ -10,7 +10,6 @@ interface TabProps<T> {
   tabs: T[];
   activeTab: T;
   setActiveTab: Dispatch<SetStateAction<T>>;
-
   renderLabel?: (tab: T) => ReactNode; // For custom label rendering
 }
 
@@ -25,7 +24,18 @@ function Tabs<T extends string | number>({
   renderLabel = defaultRenderLabel, // If no renderLabel is provided, defaultRenderLabel is used
 }: TabProps<T>) {
   return (
-    <div className="  z-[20] my-[5vh]  grid w-full grid-cols-3 gap-32 ">
+    <div className=" flex w-full flex-wrap items-center justify-between">
+      <motion.div
+        layoutId={activeTab.toString()}
+        variants={tabContainer}
+        animate="animate"
+        exit="exit"
+        initial="initial"
+        className={clsx('col-start-1 justify-center text-xl md:text-7xl')}
+        key={activeTab.toString()}
+      >
+        {renderLabel(activeTab)}
+      </motion.div>
       <AnimatePresence mode={'popLayout'}>
         {tabs.map((tab) => {
           return (
@@ -43,18 +53,6 @@ function Tabs<T extends string | number>({
           );
         })}
       </AnimatePresence>
-
-      <motion.div
-        layoutId={activeTab.toString()}
-        variants={tabContainer}
-        animate="animate"
-        exit="exit"
-        initial="initial"
-        className={clsx('col-start-1 justify-center text-7xl')}
-        key={activeTab.toString()}
-      >
-        {renderLabel(activeTab)}
-      </motion.div>
     </div>
   );
 }

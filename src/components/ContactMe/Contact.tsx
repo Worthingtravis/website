@@ -17,7 +17,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     exit="exit"
   >
     <motion.div
-      className="text-7xl font-semibold"
+      className="text-4xl font-semibold md:text-7xl"
       transition={{ type: 'spring', stiffness: 120 }}
     >
       <motion.div whileHover={{ scale: 1.1 }}>{contact.name}</motion.div>
@@ -26,7 +26,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     <Link
       href={`mailto:${contact.email}`}
       target={'_blank'}
-      className="font-serif text-5xl text-blue-500 hover:text-blue-600"
+      className="font-serif text-3xl text-blue-500 hover:text-blue-600 md:text-5xl"
     >
       <motion.div whileHover={{ scale: 1.1 }}>{contact.email}</motion.div>
     </Link>

@@ -19,7 +19,7 @@ const MainPage = () => {
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
       <div
         className={
-          'relative z-[2] flex w-full max-w-4xl flex-col items-center gap-5'
+          'relative z-[50] flex w-full max-w-4xl flex-col items-center gap-32 divide-y-2 divide-gray-900 rounded-lg bg-gray-950/20 p-4'
         }
       >
         <Tabs
