@@ -25,7 +25,8 @@ export const Timeline: React.FC<TimelineProps> = ({ children }) => {
             child,
             index // Pass the appropriate ref to each TimelineItem
           ) => (
-            <motion.div transition={{ duration: 1, delay: 0.5 }}>
+            // eslint-disable-next-line react/no-array-index-key
+            <motion.div key={index} transition={{ duration: 1, delay: 0.5 }}>
               {/* eslint-disable-next-line react/no-array-index-key */}
               <TimelineItem key={index} child={child} />
             </motion.div>

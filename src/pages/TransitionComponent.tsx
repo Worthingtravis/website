@@ -16,10 +16,10 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
         className,
         'flex min-h-screen w-full justify-center rounded-lg p-4'
       )}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      variants={TransitionComponentVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       {children}
     </motion.div>
@@ -27,3 +27,27 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
 };
 
 export default TransitionComponent;
+
+export const TransitionComponentVariants = {
+  initial: () => ({
+    opacity: 0,
+  }),
+  animate: () => {
+    return {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    };
+  },
+  exit: () => {
+    return {
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
+    };
+  },
+};

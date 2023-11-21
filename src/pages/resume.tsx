@@ -2,7 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 import { Contact } from '../components/ContactMe/Contact';
-import { contactInfo } from '../components/ContactMe/Contact.config';
 import { JobHistory } from '../components/history/JobComponent';
 import { jobs } from '../components/history/JobComponent.config';
 import { ProfileSection } from '../components/Profile/ProfileSection';
@@ -12,39 +11,35 @@ import { Meta } from '../layouts/Meta';
 import TransitionComponent from './TransitionComponent';
 import { Main } from '../templates/Main';
 
-type Tab = 'experience' | 'contact' | 'skills & qualities';
+type Tab = 'experience' | 'contact' | 'profile';
 const MainPage = () => {
   const [tab, setTab] = useState<Tab>('experience');
 
   return (
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
       <div
-        className={'z-[2] flex w-full max-w-4xl flex-col items-center gap-5'}
+        className={
+          'relative z-[2] flex w-full max-w-4xl flex-col items-center gap-5'
+        }
       >
         <Tabs
-          tabs={['experience', 'contact', 'skills & qualities']}
+          tabs={['experience', 'contact', 'profile']}
           activeTab={tab}
-          setActiveTab={setTab}
+          setActiveTab={(newTab) => {
+            setTab(newTab);
+          }}
         />
-
-        <AnimatePresence>
-          {tab === 'experience' && (
-            <TransitionComponent key="experience">
-              <JobHistory jobs={jobs} />
-            </TransitionComponent>
-          )}
-
-          {tab === 'contact' && (
-            <TransitionComponent key="contact">
-              <Contact info={contactInfo} />
-            </TransitionComponent>
-          )}
-
-          {tab === 'skills & qualities' && (
-            <TransitionComponent key="profile">
-              <ProfileSection categories={categories} />
-            </TransitionComponent>
-          )}
+        <AnimatePresence mode={'wait'}>
+          {Object.entries(data).map(([key, value]) => {
+            if (tab === key) {
+              return (
+                <TransitionComponent key={key} layoutId={key}>
+                  {value.content}
+                </TransitionComponent>
+              );
+            }
+            return null;
+          })}
         </AnimatePresence>
       </div>
     </Main>
@@ -52,3 +47,30 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+const data = {
+  experience: {
+    title: 'Experience',
+    content: (
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <JobHistory jobs={jobs} />
+      </div>
+    ),
+  },
+  contact: {
+    title: 'Contact',
+    content: (
+      <div className="flex h-full w-full  flex-col justify-start">
+        <Contact />
+      </div>
+    ),
+  },
+  profile: {
+    title: 'Profile',
+    content: (
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <ProfileSection categories={categories} />
+      </div>
+    ),
+  },
+};

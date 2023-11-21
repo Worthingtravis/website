@@ -67,14 +67,14 @@ export const AnimatedBorderGradient = ({
     <span
       className={clsx(
         className,
-        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 overflow-clip text-clip rounded-xl p-[1px] backdrop-blur-[3px] hover:p-0.5'
+        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 text-clip rounded-xl p-[1px] backdrop-blur-[3px] hover:p-0.5'
       )}
     >
       <div className="absolute inset-0 z-[5] flex h-full w-full items-center justify-center gap-8 rounded-xl">
         {children}
       </div>
-      <span className="conic-gradient -z-1 absolute flex gap-2 overflow-clip " />
-      <div className="z-[1] inline-flex h-full w-full items-center justify-center overflow-clip rounded-xl  bg-slate-950 py-1 text-sm font-medium text-white filter backdrop-blur-3xl backdrop-filter" />
+      <span className="conic-gradient absolute z-[-1] flex gap-2 text-clip " />
+      <div className="z-[1] inline-flex h-full w-full items-center justify-center text-clip rounded-xl  bg-slate-950 py-1 text-sm font-medium text-white backdrop-blur-3xl " />
     </span>
   );
 };
