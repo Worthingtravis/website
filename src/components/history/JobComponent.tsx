@@ -1,7 +1,5 @@
 import clsx from 'clsx';
-
 import React from 'react';
-import { Timeline } from '../Timeline';
 
 import type { Job } from './JobComponent.config';
 import { AnimatedText } from '../AnimatedText';
@@ -47,10 +45,10 @@ export function JobComponent({ job }: { job: Job }) {
 
 export function JobHistory({ jobs }: { jobs: Job[] }) {
   return (
-    <Timeline>
+    <>
       {jobs.map((job) => (
         <JobComponent key={job.title} job={job} />
       ))}
-    </Timeline>
+    </>
   );
 }
