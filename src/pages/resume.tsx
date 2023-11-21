@@ -33,7 +33,7 @@ const MainPage = () => {
           {Object.entries(data).map(([key, value]) => {
             if (tab === key) {
               return (
-                <TransitionComponent key={key} layoutId={key}>
+                <TransitionComponent key={key}>
                   {value.content}
                 </TransitionComponent>
               );
