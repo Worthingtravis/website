@@ -10,7 +10,7 @@ const contactVariants = {
 
 const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
   <motion.div
-    className="flex max-w-3xl flex-col space-y-12 rounded-lg "
+    className="flex max-w-3xl flex-col space-y-12 rounded-lg  "
     variants={contactVariants}
     initial="initial"
     animate="animate"

@@ -29,8 +29,10 @@ interface AnimatedTextProps {
 export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
   const [animation, setAnimation] = useState<AnimateProps['variant']>('fade');
   const [splitBy, setSplitBy] = useState<AnimateProps['splitBy']>('word');
-  const [text, setText] = useState<string>(_text || 'Hello World!');
-  const [speed, setSpeed] = useState<number>(0.5);
+  const [text, setText] = useState<string>(
+    _text || 'Hey there! 👋 🤖 🤙 🤘 🤟 '
+  );
+  const [speed, setSpeed] = useState<number>(2);
 
   const leftColumnContent = (
     <div className={'space-y-8'}>

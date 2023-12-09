@@ -12,7 +12,7 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
 }) => {
   return (
     <motion.div
-      className={clsx(className, 'flex min-h-screen w-full justify-center p-4')}
+      className={clsx(className, 'flex min-h-screen w-full justify-center')}
       variants={TransitionComponentVariants}
       initial="initial"
       animate="animate"

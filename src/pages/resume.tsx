@@ -19,7 +19,7 @@ const MainPage = () => {
     <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
       <div
         className={
-          'relative z-[50] flex w-full max-w-4xl flex-col items-center gap-32 divide-y-2 divide-gray-900 rounded-lg bg-gray-950/20 p-4'
+          'relative z-[50] flex w-full max-w-4xl flex-col items-center  gap-32 rounded-lg p-4'
         }
       >
         <Tabs
@@ -29,6 +29,7 @@ const MainPage = () => {
             setTab(newTab);
           }}
         />
+
         <AnimatePresence mode={'wait'}>
           {Object.entries(data).map(([key, value]) => {
             if (tab === key) {
@@ -52,7 +53,7 @@ const data = {
   experience: {
     title: 'Experience',
     content: (
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex  w-full  flex-col justify-start">
         <JobHistory jobs={jobs} />
       </div>
     ),
@@ -60,7 +61,7 @@ const data = {
   contact: {
     title: 'Contact',
     content: (
-      <div className="flex h-full w-full  flex-col justify-start">
+      <div className="flex  w-full  flex-col justify-start">
         <Contact />
       </div>
     ),
@@ -68,7 +69,7 @@ const data = {
   profile: {
     title: 'Profile',
     content: (
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col">
         <ProfileSection categories={categories} />
       </div>
     ),

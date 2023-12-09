@@ -1,8 +1,9 @@
-import clsx from 'clsx';
 import React from 'react';
 
+import { motion } from 'framer-motion';
 import type { Job } from './JobComponent.config';
 import { AnimatedText } from '../AnimatedText';
+import { Parallax } from './Parallax';
 
 export function JobComponent({ job }: { job: Job }) {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ export function JobComponent({ job }: { job: Job }) {
   }, [ref]);
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div ref={ref} onClick={onClick} className={clsx()}>
+    <motion.div ref={ref} onClick={onClick}>
       <h1 className="mb-4 font-bold text-blue-400 sm:text-lg md:text-2xl">
         <AnimatedText variant={'pulse'}>{job.title}</AnimatedText>
       </h1>
@@ -39,16 +40,18 @@ export function JobComponent({ job }: { job: Job }) {
           ))}
         </ol>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export function JobHistory({ jobs }: { jobs: Job[] }) {
   return (
-    <>
+    <div className={'mb-[400px] flex snap-y snap-proximity flex-col gap-32'}>
       {jobs.map((job) => (
-        <JobComponent key={job.title} job={job} />
+        <Parallax offset={250}>
+          <JobComponent key={job.title} job={job} />
+        </Parallax>
       ))}
-    </>
+    </div>
   );
 }

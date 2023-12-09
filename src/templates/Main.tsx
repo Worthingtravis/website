@@ -52,7 +52,7 @@ const Main = (props: IMainProps) => {
     <CardSpotlightEffect>
       <div
         className={clsx(
-          'pointer-events-none relative mx-auto  flex min-h-screen w-full flex-col justify-between gap-12 font-medium tracking-tight text-white antialiased '
+          'pointer-events-none relative mx-auto flex min-h-screen w-full flex-col justify-between gap-12 overflow-x-clip overflow-y-scroll font-medium tracking-tight text-white antialiased '
         )}
       >
         {props.meta}

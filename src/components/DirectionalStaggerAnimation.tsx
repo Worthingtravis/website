@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import clsx from 'clsx';
 
@@ -43,7 +43,7 @@ function GridItem({
   // The measurement for all elements happens in the layoutEffect cycle
   // This ensures that when we calculate distance in the effect cycle
   // all elements have already been measured
-  useLayoutEffect(() => {
+  useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
@@ -58,7 +58,7 @@ function GridItem({
       // eslint-disable-next-line no-param-reassign
       originOffset.current = offset.current;
     }
-  }, [delayPerPixel, originIndex]);
+  }, [delayPerPixel, originIndex, originOffset, i]);
 
   useEffect(() => {
     const dx = Math.abs(offset.current.left - originOffset.current.left);
@@ -66,7 +66,7 @@ function GridItem({
     // @ts-ignore
     const d = Math.sqrt(dx ** 2 + dy ** 2);
     delayRef.current = d * delayPerPixel;
-  }, [delayPerPixel, originIndex]);
+  }, [delayPerPixel, originIndex, originOffset, i]);
 
   return (
     <Box
@@ -114,7 +114,7 @@ export function Grid({
           className,
           'fixed left-0 top-0 ',
           'grid h-full w-full grid-cols-8 place-items-center gap-2 p-2',
-          'md:grid-cols-16 md:grid-rows-12 md:gap-4 md:p-4'
+          ' md:gap-4 md:p-4'
         )}
         onHoverEnd={() => controls.start('rehide')}
       >

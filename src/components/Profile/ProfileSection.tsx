@@ -11,7 +11,7 @@ const Text = ({ text }: { text: string }) => (
 );
 
 export const ProfileSection = ({ categories }: { categories: Categories }) => (
-  <div className={'flex h-fit w-fit gap-2 bg-gray-950/20 p-2'}>
+  <div className={'flex h-fit w-fit gap-2  p-2'}>
     {Object.entries(categories).map(([category, items]) => (
       <div key={category} className={'space-x-2 space-y-4'}>
         <h1 className="mb-4 text-2xl font-semibold text-white">{category}</h1>
