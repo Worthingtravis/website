@@ -8,7 +8,7 @@ import { DirectionalAnimationExample } from '../components/directionalAnimationE
 const Index = () => {
   return (
     <Main
-      className={'max-w-7xl'}
+      className={'relative flex max-w-7xl flex-col items-center justify-center'}
       meta={
         <Meta
           title="Demo Components"

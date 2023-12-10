@@ -9,11 +9,11 @@ const TwoColumnLayout = ({
   rightColumn: React.ReactNode;
 }) => {
   return (
-    <div className={'my-12 flex w-full'}>
+    <div className={' my-24 flex w-full overflow-visible'}>
       <ScrollArea className={'flex basis-1/2 justify-center'}>
         {leftColumn}
       </ScrollArea>
-      <ScrollArea className={'h-96 basis-1/2'}>{rightColumn}</ScrollArea>
+      <ScrollArea className={'basis-1/2 '}>{rightColumn}</ScrollArea>
     </div>
   );
 };

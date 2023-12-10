@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import clsx from 'clsx';
+import AnimatedGradientBackground from '../projects/AnimatedGradientBackground';
 
 const itemVariants = {
   hidden: {
     opacity: 0.5,
-    scale: 0.5,
   },
   visible: (delayRef: { current: any }) => ({
     opacity: [0, 1],
+    scale: 0.99,
     transition: { delay: delayRef.current },
   }),
 };
@@ -18,8 +18,10 @@ const Box = React.forwardRef((props, ref: React.Ref<HTMLButtonElement>) => {
     <motion.button
       ref={ref}
       {...props}
-      className="pointer-events-auto  h-10 w-10 rounded-2xl bg-current hover:cursor-pointer"
-    />
+      className="pointer-events-auto  relative h-32 w-32 overflow-hidden  hover:cursor-pointer"
+    >
+      <AnimatedGradientBackground />
+    </motion.button>
   );
 });
 
@@ -82,12 +84,10 @@ function GridItem({
 
 export function Grid({
   delayPerPixel = 0.0008,
-  numItems = 64,
-  className,
+  numItems = 25,
 }: {
   delayPerPixel?: number;
   numItems?: number;
-  className: string;
 }) {
   const originOffset = useRef({ top: 0, left: 0 });
   const controls = useAnimation();
@@ -104,20 +104,8 @@ export function Grid({
   };
 
   return (
-    <AnimatePresence mode={'wait'}>
-      <motion.div
-        layout
-        initial="hidden"
-        animate={controls}
-        onHoverStart={() => controls.start('onHover')}
-        className={clsx(
-          className,
-          'fixed left-0 top-0 ',
-          'grid h-full w-full grid-cols-8 place-items-center gap-2 p-2',
-          ' md:gap-4 md:p-4'
-        )}
-        onHoverEnd={() => controls.start('rehide')}
-      >
+    <motion.div initial="hidden" animate={controls}>
+      <AnimatePresence mode={'popLayout'}>
         {Array.from({ length: numItems }).map((_, i) => (
           <GridItem
             // eslint-disable-next-line react/no-array-index-key
@@ -132,7 +120,7 @@ export function Grid({
             }}
           />
         ))}
-      </motion.div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </motion.div>
   );
 }

@@ -6,12 +6,12 @@ const AnimatedGradientBackground = () => {
   const backgroundPositionX = useTransform(
     scrollYProgress,
     [0, 1],
-    ['0%', '200%']
+    ['0%', '100%']
   );
 
   return (
     <motion.div
-      className="animated-gradient"
+      className="animated-gradient overflow-hidden"
       style={{
         scaleX,
         backgroundPositionX,
