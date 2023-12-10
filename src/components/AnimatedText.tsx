@@ -16,7 +16,7 @@ export function AnimatedText({
   return (
     <span
       className={clsx(
-        'relative  flex   items-center gap-4 bg-clip-text text-transparent ',
+        'relative flex items-center gap-4 bg-clip-text text-transparent ',
         variants[variant]
       )}
     >

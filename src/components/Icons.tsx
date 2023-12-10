@@ -730,7 +730,7 @@ export function ProjectsIcon() {
   );
 }
 
-function AnimatedSvgPath({ d }) {
+function AnimatedSvgPath({ d }: { d: string }) {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"

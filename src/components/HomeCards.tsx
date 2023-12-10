@@ -67,7 +67,6 @@ export function HomeCards() {
         >
           <AnimatedBorderGradient>
             <AnimatedText>
-              {' '}
               Playground
               <PlaygroundIcon />
             </AnimatedText>

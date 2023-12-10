@@ -1,117 +1,97 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, LayoutGroup, motion, useScroll } from 'framer-motion';
-import { clsx } from 'clsx';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { projects } from './projectData';
-import { useLastHoveredImage } from './useLastHoveredImage';
 import { ProjectLinks } from './ProjectCard';
+import { Parallax } from '../components/history/Parallax';
 
 const MotionImage = motion(Image);
 
-const ProjectSection = ({
-  project,
-  active,
-  setCurrentClosest,
-}: {
+interface ProjectSectionProps {
   project: (typeof projects)[0];
-  active: boolean;
-  setCurrentClosest: (title: string, distance: number) => void;
-}) => {
+}
+
+const ProjectSection = ({ project }: ProjectSectionProps) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start center', 'end center'],
+    offset: ['start end', 'end end'],
   });
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (progress) => {
-      setCurrentClosest(project.title, progress);
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress, project.title, setCurrentClosest]);
+  const fontSize = useTransform(scrollYProgress, [0, 0.5], ['2rem', '4rem']);
 
   return (
-    <div ref={ref} className={'mt-48 flex flex-col gap-10 p-12'}>
-      <h1 className="text-4xl font-semibold">{project.title}</h1>
-      <div className="flex w-full justify-around gap-2">
-        <LayoutGroup id={project.title}>
+    <motion.div
+      ref={ref}
+      className=" flex w-full max-w-7xl flex-col gap-8 p-6 will-change-transform "
+      initial={{ opacity: 0.5 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ amount: 0.75 }}
+      layoutScroll={true}
+    >
+      <motion.h1
+        className="mb-12  text-xl font-semibold md:text-3xl"
+        style={{ fontSize }}
+      >
+        {project.title}
+      </motion.h1>
+
+      <motion.div className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12">
+        <div className={'basis-1/4'}>
           <MotionImage
-            layout={'preserve-aspect'}
-            className="h-96 w-1/2 shrink-0 origin-center  self-start rounded-xl bg-cover bg-center object-cover object-center"
+            className="h-auto w-full max-w-lg rounded-xl bg-cover bg-center object-cover object-center will-change-transform "
             src={project.imageSrc}
             alt={project.title}
             width={400}
             height={400}
           />
-        </LayoutGroup>
 
-        <AnimatePresence mode={'popLayout'}>
-          {active && (
-            <MotionImage
-              layout={'preserve-aspect'}
-              layoutId={'spotlight-image'}
-              className={clsx(
-                'h-96 w-1/2 origin-center rounded-xl bg-cover bg-center object-cover object-center'
-              )}
-              src={project.bgImage}
-              alt={project.title}
-              width={400}
-              height={400}
+          <div className="flex w-full justify-center md:justify-start">
+            <ProjectLinks
+              openSeaLink={project.openSeaLink}
+              blankRasaLink={project.blankRasaLink}
+              marketingSiteLink={project.marketingSiteLink}
+              blockchain={project.blockchain}
+              date={project.date}
             />
-          )}
-        </AnimatePresence>
-      </div>
-      <motion.div
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        className="flex w-full flex-col  justify-start gap-4 "
-      >
-        <p className="text-sm">{project.description}</p>
-        <ProjectLinks
-          openSeaLink={project.openSeaLink}
-          blankRasaLink={project.blankRasaLink}
-          marketingSiteLink={project.marketingSiteLink}
-          blockchain={project.blockchain}
-          date={project.date}
-        />
+          </div>
+        </div>
+
+        <motion.span
+          className="w-full text-center text-sm md:w-1/2 md:text-left md:text-base"
+          style={{
+            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+            lineHeight: 'clamp(1.5rem, 2vw, 2.5rem)',
+          }}
+        >
+          {project.description}
+        </motion.span>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
 export const NftProjects = () => {
-  const { handleHover } = useLastHoveredImage(projects[0].bgImage);
   const containerRef = useRef(null);
-  const [closestSection, setClosestSection] = useState({
-    title: '',
-    distance: Infinity,
-  });
-
-  const setCurrentClosest = (title, distance) => {
-    // Since `distance` is already the absolute difference from 0.5, we just compare it directly.
-    if (distance < closestSection.distance) {
-      setClosestSection({ title, distance });
-    }
-    // No need to call setClosestSection if the current closest is still the closest.
-  };
-  useEffect(() => {
-    if (closestSection.title) {
-      handleHover(
-        projects.find((p) => p.title === closestSection.title).bgImage
-      );
-    }
-  }, [closestSection, handleHover]);
 
   return (
     <div ref={containerRef}>
+      <div className="flex h-52 w-full items-center justify-center">
+        <motion.h1
+          className="text-6xl font-semibold text-white"
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          Personal Projects
+        </motion.h1>
+      </div>
       {projects.map((project) => (
-        <ProjectSection
-          key={project.title}
-          project={project}
-          setCurrentClosest={setCurrentClosest}
-          active={project.title === closestSection.title}
-        />
+        <div key={project.title}>
+          <Parallax offSetY={50} offSetX={50}>
+            <ProjectSection project={project} />
+          </Parallax>
+        </div>
       ))}
     </div>
   );

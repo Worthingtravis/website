@@ -45,9 +45,9 @@ export const OptionButtonGroup = ({
   activeValue: string;
   setActiveValue: (value: string | number) => void;
 }) => (
-  <div className={'space-x-2'}>
+  <div className={'space-x-2 space-y-12'}>
     <h3 className="text-lg font-semibold text-white ">{title}</h3>
-    <div className={`mt-2 grid grid-cols-2 gap-4 `}>
+    <div className={`grid grid-cols-4 gap-4 `}>
       {options.map(({ key, value }) => (
         <Button
           key={key}

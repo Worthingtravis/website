@@ -96,7 +96,7 @@ export function Grid({
 
   useEffect(() => {
     controls.start('visible');
-  }, [originIndex]);
+  }, [originIndex, cycle, controls]);
 
   const handleBoxClick = (i) => {
     setOriginIndex(i);

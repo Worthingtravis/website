@@ -8,6 +8,7 @@ import { DirectionalAnimationExample } from '../components/directionalAnimationE
 const Index = () => {
   return (
     <Main
+      className={'max-w-7xl'}
       meta={
         <Meta
           title="Demo Components"
@@ -15,13 +16,11 @@ const Index = () => {
         />
       }
     >
-      <div className={'z-[2] flex flex-col gap-12 rounded  p-2 '}>
-        <motion.h1 className={'z-10 my-2 text-center text-7xl font-bold'}>
-          {_.startCase('Playground')}
-        </motion.h1>
-        <DirectionalAnimationExample />
-        <AnimatedTextExample />
-      </div>
+      <motion.h1 className={'z-10 my-2 text-center text-7xl font-bold'}>
+        {_.startCase('Playground')}
+      </motion.h1>
+      <DirectionalAnimationExample />
+      <AnimatedTextExample />
     </Main>
   );
 };

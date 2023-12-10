@@ -3,7 +3,7 @@ import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
 import { NftProjects } from '../projects/NftProjects';
 
-export default function Index() {
+export default function Projects() {
   return (
     <Main
       meta={

@@ -35,7 +35,7 @@ export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
   const [speed, setSpeed] = useState<number>(2);
 
   const leftColumnContent = (
-    <div className={'space-y-8'}>
+    <div className={'flex flex-col gap-12 space-y-8'}>
       <OptionButtonGroup
         title="Animation"
         options={Object.entries(animationOptions).map(([key, value]) => ({
@@ -88,7 +88,7 @@ export function AnimatedTextExample({ _text, className }: AnimatedTextProps) {
   );
 
   const rightColumnContent = (
-    <div className={clsx(' p-4', className)}>
+    <div className={clsx('p-4', className)}>
       <AnimateText
         text={text}
         variant={animation}

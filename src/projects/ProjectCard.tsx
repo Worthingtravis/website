@@ -9,7 +9,7 @@ export const ProjectLinks: React.FC<{
   date: string;
 }> = ({ openSeaLink, blankRasaLink, marketingSiteLink, blockchain, date }) => {
   return (
-    <div className="items mt-5 flex w-full flex-wrap items-center justify-start gap-2  self-end ">
+    <div className=" mt-5 flex w-full flex-wrap items-center justify-start gap-2  self-end ">
       {(blankRasaLink || openSeaLink) && (
         <a
           href={openSeaLink || blankRasaLink}

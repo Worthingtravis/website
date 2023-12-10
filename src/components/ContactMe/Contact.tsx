@@ -17,7 +17,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     exit="exit"
   >
     <motion.div
-      className="text-4xl font-semibold md:text-7xl"
+      className="text-4xl font-semibold hover:text-white  hover:brightness-150  md:text-7xl"
       transition={{ type: 'spring', stiffness: 120 }}
     >
       <motion.div whileHover={{ scale: 1.1 }}>{contact.name}</motion.div>
@@ -26,7 +26,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     <Link
       href={`mailto:${contact.email}`}
       target={'_blank'}
-      className="font-serif text-3xl text-blue-500 hover:text-blue-600 md:text-5xl"
+      className="font-serif text-3xl text-blue-500 hover:text-white  md:text-5xl"
     >
       <motion.div whileHover={{ scale: 1.1 }}>{contact.email}</motion.div>
     </Link>
@@ -34,7 +34,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     <motion.div whileHover={{ scale: 1.05 }}>
       <Link
         href={contact.linkedIn}
-        className="flex items-center space-x-2 text-4xl text-blue-500 hover:text-blue-600"
+        className="flex items-center space-x-2 text-4xl text-blue-500 hover:brightness-150"
       >
         <FaLinkedin size={96} />
         <span>LinkedIn</span>
@@ -44,7 +44,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
     <motion.div whileHover={{ scale: 1.05 }}>
       <Link
         href={contact.gitHub}
-        className="flex items-center space-x-2 text-4xl text-gray-600 hover:text-black"
+        className="flex items-center space-x-2 text-4xl text-gray-600 hover:text-white"
       >
         <FaGithub size={96} />
         <span>GitHub</span>
