@@ -46,9 +46,9 @@ export function JobComponent({ job }: { job: Job }) {
 
 export function JobHistory({ jobs }: { jobs: Job[] }) {
   return (
-    <div className={'mb-[400px] flex snap-y snap-proximity flex-col gap-32'}>
+    <div className={'my-32 flex snap-y snap-proximity flex-col gap-12'}>
       {jobs.map((job) => (
-        <Parallax offSetY={250}>
+        <Parallax offSetY={50} offSetX={50} className={'sticky left-10'}>
           <JobComponent key={job.title} job={job} />
         </Parallax>
       ))}

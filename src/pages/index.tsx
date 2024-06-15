@@ -2,10 +2,12 @@ import React from 'react';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
 import { HomeCards } from '../components/HomeCards';
+import { pageContainer } from '../components/containers';
 
 const Index = () => {
   return (
     <Main
+      className={pageContainer}
       meta={
         <Meta
           title="Home Page"
@@ -13,7 +15,7 @@ const Index = () => {
         />
       }
     >
-      <HomeCards />{' '}
+      <HomeCards />
     </Main>
   );
 };

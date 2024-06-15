@@ -1,60 +1,68 @@
 import clsx from 'clsx';
-import React, { useRef, useCallback } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
 
-export const CardSpotlightEffect = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+const SpotLight = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(-500);
   const mouseY = useMotionValue(-500);
-  const opacity = useMotionValue(0);
 
-  const calculateRelativePosition = useCallback((event) => {
-    const rect = divRef.current?.getBoundingClientRect();
-    return {
-      x: event.clientX - (rect?.left ?? -500),
-      y: event.clientY - (rect?.top ?? -500),
+  const hoveredElementDimensions = useMotionValue({
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  });
+
+  const opacity = useMotionValue(1);
+  const [hoverColor, setHoverColor] = useState('#fff');
+
+  const handleMouseMove = (e: MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+
+    if (element) {
+      const { width, height, x, y } = element.getBoundingClientRect();
+      hoveredElementDimensions.set({ width, height, x, y });
+      setHoverColor(element.getAttribute('data-hover-color') || '#ffffff50');
+    } else {
+      hoveredElementDimensions.set(undefined);
+      setHoverColor('#fff');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return;
+  const background = useTransform([mouseX, mouseY], ([x, y]) =>
+    // if we hover over the element, set the hover color, smother the element with this color
 
-    const { x, y } = calculateRelativePosition(e);
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseEnter = () => opacity.set(1);
-  const handleMouseLeave = () => opacity.set(0);
-
-  const background = useTransform(
-    [mouseX, mouseY],
-    ([x, y]) =>
-      `radial-gradient(600px circle at ${x}px ${y}px, rgba(123, 58, 235,1), transparent 40%)`
+    hoveredElementDimensions
+      ? `radial-gradient(${
+          hoveredElementDimensions?.width ?? 600
+        } circle at ${hoveredElementDimensions?.x || x}px ${hoveredElementDimensions?.y || y}px, ${hoverColor}, transparent 40%)`
+      : 'transparent'
   );
 
   return (
-    <div
+    <motion.div
       ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden ${className}`}
-    >
-      {children}
-      <motion.div
-        className="cursor-glow pointer-events-none absolute -inset-px z-0 transition duration-300"
-        style={{ opacity, background }}
-      />
-    </div>
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
+      style={{ opacity, background }}
+      className="fixed inset-0 z-[0] h-full w-full"
+    />
   );
 };
+
+export default SpotLight;
 
 export const AnimatedBorderGradient = ({
   children,
@@ -63,18 +71,5 @@ export const AnimatedBorderGradient = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return (
-    <span
-      className={clsx(
-        className,
-        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 overflow-hidden text-clip rounded-xl p-0.5 backdrop-blur-[3px] hover:p-0.5'
-      )}
-    >
-      <div className="absolute inset-0 z-[5] flex h-full w-full items-center justify-center gap-8 rounded-xl">
-        {children}
-      </div>
-      <span className="conic-gradient absolute flex gap-2 text-clip " />
-      <div className="z-[1] inline-flex  h-full w-full items-center justify-center text-clip rounded-xl  bg-slate-950 py-1 text-sm font-medium text-white backdrop-blur-3xl " />
-    </span>
-  );
+  return <span className={clsx(className)}>{children}</span>;
 };

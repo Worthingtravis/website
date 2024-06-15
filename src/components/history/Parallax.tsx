@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import type { HTMLMotionProps, MotionProps } from 'framer-motion';
 import {
   motion,
   useReducedMotion,
@@ -14,17 +15,21 @@ type ParallaxProps = {
   children: ReactNode[] | ReactNode | JSX.Element[] | JSX.Element;
   offSetY?: number;
   offSetX?: number;
-};
+  className?: string;
+} & MotionProps &
+  JSX.IntrinsicElements['div'];
 
 export const Parallax = ({
   children,
   offSetY = 50,
   offSetX = 150,
+  className,
+  ...props
 }: ParallaxProps): JSX.Element => {
   const prefersReducedMotion = useReducedMotion();
   const [elementTop, setElementTop] = useState(0);
   const [clientHeight, setClientHeight] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
 
@@ -59,7 +64,7 @@ export const Parallax = ({
   }
 
   return (
-    <motion.div ref={ref} style={{ y, x }}>
+    <motion.div ref={ref} style={{ y, x }} className={className} {...props}>
       {children}
     </motion.div>
   );

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+  scroll-behavior: smooth;
+  min-height: 100dvh;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 @layer base {
   :root {
     --background: 0 0% 10%; /* Dark background from the space */
@@ -160,19 +169,18 @@
 }
 
 .animated-gradient {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
   background-size: 200% 200%;
+  /*background-position: 0% 50%;*/
+  /*background-repeat: no-repeat;*/
+  /*background-blend-mode: difference;*/
   background-image: linear-gradient(
     -45deg,
     #ee775250,
     #e73c7e50,
     #23a6d550,
-    #23d5a50b
+    #007aff
   );
   animation: gradientAnimation 8s ease infinite;
 }
@@ -187,4 +195,31 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-beat {
+  animation: beat 1s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
 }
