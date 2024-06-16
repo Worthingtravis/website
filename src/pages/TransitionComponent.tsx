@@ -5,15 +5,18 @@ import type { FC } from 'react';
 type ITransitionComponentProps = {
   children: React.ReactNode;
   className?: string;
+  layoutId?: string;
 };
 const TransitionComponent: FC<ITransitionComponentProps> = ({
   children,
   className,
+  layoutId,
 }) => {
   return (
     <motion.div
-      className={clsx(className, 'flex min-h-screen w-full justify-center')}
+      className={clsx(className, 'flex h-full w-full flex-1 justify-center')}
       variants={TransitionComponentVariants}
+      layoutId={layoutId}
       initial="initial"
       animate="animate"
       exit="exit"

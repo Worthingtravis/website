@@ -1,77 +1,81 @@
-import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-
+import { motion } from 'framer-motion';
+import { Meta } from 'src/layouts/Meta';
+import { Main } from 'src/templates/Main';
 import { Contact } from '../components/ContactMe/Contact';
 import { JobHistory } from '../components/history/JobComponent';
 import { jobs } from '../components/history/JobComponent.config';
 import { ProfileSection } from '../components/Profile/ProfileSection';
 import { categories } from '../components/Profile/ProfileSection.config';
-import Tabs from '../components/Tabs';
-import { Meta } from '../layouts/Meta';
-import TransitionComponent from './TransitionComponent';
-import { Main } from '../templates/Main';
+import { TracingBeam } from './tracing-beam';
 
-type Tab = 'experience' | 'contact' | 'profile';
 const MainPage = () => {
-  const [tab, setTab] = useState<Tab>('experience');
+  return <TracingBeamDemo />;
+};
 
+export function TracingBeamDemo() {
   return (
-    <Main meta={<Meta title="Worthing Travis - Resume" description="" />}>
+    <Main
+      meta={
+        <Meta
+          title="Resume"
+          description="Demonstrating ability to create fully typed, reusable and configurable components..."
+        />
+      }
+    >
       <div
         className={
-          'relative z-[50] flex w-full max-w-4xl flex-col items-center  gap-32 rounded-lg p-4'
+          'fixed right-4 top-12 hidden h-full  flex-col gap-2  md:flex'
         }
       >
-        <Tabs
-          tabs={['experience', 'contact', 'profile']}
-          activeTab={tab}
-          setActiveTab={(newTab) => {
-            setTab(newTab);
-          }}
-        />
-
-        <AnimatePresence mode={'wait'}>
-          {Object.entries(data).map(([key, value]) => {
-            if (tab === key) {
-              return (
-                <TransitionComponent key={key}>
-                  {value.content}
-                </TransitionComponent>
-              );
-            }
-            return null;
-          })}
-        </AnimatePresence>
+        {Object.entries(data).map(([key, value]) => (
+          <a
+            key={key}
+            href={`#${key}`}
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            {value.title}
+          </a>
+        ))}
       </div>
+      <TracingBeam className="top-12 z-[1]">
+        <div className="relative mx-auto mb-48 max-w-2xl space-y-12 pt-4 antialiased">
+          {Object.entries(data).map(([key, value]) => (
+            <motion.div key={key} className="space-x-4 space-y-4 ">
+              <h1
+                id={key}
+                className="mb-4 scroll-mt-[40vh] text-2xl font-bold "
+              >
+                {value.title}
+              </h1>
+              {value.content}
+              <motion.div
+                onViewportEnter={() => {
+                  window.history.replaceState(null, '', `#${key}`);
+                }}
+                className="absolute bottom-0 left-0 h-0 w-0"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </TracingBeam>
     </Main>
   );
-};
+}
 
 export default MainPage;
 
 const data = {
-  experience: {
-    title: 'Experience',
-    content: (
-      <div className="flex  w-full  flex-col justify-start">
-        <JobHistory jobs={jobs} />
-      </div>
-    ),
-  },
   contact: {
     title: 'Contact',
-    content: (
-      <div className="flex  w-full  flex-col justify-start">
-        <Contact />
-      </div>
-    ),
+    content: <Contact />,
   },
+  experience: {
+    title: 'Experience',
+    content: <JobHistory jobs={jobs} />,
+  },
+
   profile: {
     title: 'Profile',
-    content: (
-      <div className="flex h-full w-full flex-col">
-        <ProfileSection categories={categories} />
-      </div>
-    ),
+    content: <ProfileSection categories={categories} />,
   },
 };

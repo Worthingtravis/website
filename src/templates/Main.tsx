@@ -11,8 +11,8 @@ import { AppConfig } from '../utils/AppConfig';
 
 // Types
 type IMainProps = {
-  meta: ReactNode;
-  children: ReactNode;
+  meta?: ReactNode;
+  children?: ReactNode;
   className?: string;
 };
 
@@ -24,8 +24,6 @@ const navLinks = [
     href: '/projects',
     label: 'Projects',
   },
-  // { href: '/about', label: 'About' },
-  { href: '/playground', label: 'PlayGround' },
   {
     href: 'https://github.com/worthingtravis',
     label: 'GitHub',
@@ -49,15 +47,12 @@ const Main = (props: IMainProps) => {
   };
   const isActiveRoute = (href: string) => router.pathname === href;
   return (
-    <CardSpotlightEffect>
-      <div
-        className={clsx(
-          'pointer-events-none relative mx-auto flex min-h-screen w-full flex-col justify-between gap-12 overflow-x-clip overflow-y-scroll font-medium tracking-tight text-white antialiased '
-        )}
-      >
-        {props.meta}
-        <header className="pointer-events-auto  sticky top-0 z-[3] flex w-full flex-col">
-          <nav className="flex justify-between bg-black/80 p-4 sm:justify-center ">
+    <div className={clsx('contents ')}>
+      {props.meta}
+
+      <CardSpotlightEffect className={'flex flex-col justify-between '}>
+        <header className="pointer-events-auto  sticky top-0 z-[3] flex max-h-12 w-full flex-col">
+          <nav className="flex justify-between bg-black/50 p-2 sm:justify-center ">
             <button
               type="button"
               className=" z-20 flex items-center rounded border border-white px-3 py-2 text-white hover:border-white hover:text-white sm:hidden"
@@ -115,7 +110,6 @@ const Main = (props: IMainProps) => {
                           link.href === '/projects' &&
                             'bg-red-500 hover:bg-red-500',
                           link.href === '/about' && 'bg-white hover:bg-white',
-                          link.href === '/playground' && 'bg-green-500',
                           link.href === '/' && 'bg-purple-500',
                           link.external && 'bg-white hover:bg-white',
 
@@ -134,21 +128,12 @@ const Main = (props: IMainProps) => {
           </nav>
         </header>
 
-        <main
-          className={clsx(
-            'pointer-events-auto relative z-[2] mx-auto flex h-full w-full flex-col items-center justify-center  ',
-            props.className
-          )}
-        >
-          {props.children}
-        </main>
-        <footer className="z-10 rounded-t border-gray-300 p-4 text-end text-sm ">
+        {props.children}
+        <footer className="sticky bottom-3 z-10 ml-auto h-3 rounded-t border-gray-300  px-4 text-end text-sm ">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>
-      </div>
-      {/* eslint-disable-next-line tailwindcss/no-contradicting-classname */}
-      <div className="fixed top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]" />
-    </CardSpotlightEffect>
+      </CardSpotlightEffect>
+    </div>
   );
 };
 

@@ -1,57 +1,75 @@
-import React from 'react';
-
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import type { Job } from './JobComponent.config';
-import { AnimatedText } from '../AnimatedText';
-import { Parallax } from './Parallax';
+import { FaBuilding, FaCalendar } from 'react-icons/fa';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
-export function JobComponent({ job }: { job: Job }) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const onClick = React.useCallback(() => {
-    if (ref.current) {
-      ref.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'end',
-      });
-    }
-  }, [ref]);
+interface JobDetails {
+  title: string;
+  period: string;
+  company: string;
+  responsibilities: string[];
+}
+
+export const JobHistory = ({ jobs }: { jobs: JobDetails[] }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <motion.div ref={ref} onClick={onClick}>
-      <h1 className="mb-4 font-bold text-blue-400 sm:text-lg md:text-2xl">
-        <AnimatedText variant={'pulse'}>{job.title}</AnimatedText>
-      </h1>
-      <time className="text-lg font-semibold text-gray-300 dark:text-white">
-        {job.period}
-      </time>
-      <h3 className="mb-4 font-medium text-gray-400 sm:text-xs md:text-sm">
-        {job.company}
-      </h3>
-      <div className="relative w-full rounded bg-gray-900 ">
-        <ol className="mt-3 ">
-          {job.responsibilities.map((responsibility) => (
-            <li
-              key={responsibility}
-              className="block items-center p-3 hover:bg-gray-700 sm:flex "
-            >
-              {responsibility}
-            </li>
-          ))}
-        </ol>
-      </div>
+    <motion.div ref={ref}>
+      <motion.div className="sticky top-0 flex w-full flex-col items-center justify-center space-y-12">
+        {jobs.map((job) => (
+          <JobComponent key={job.title} job={job} />
+        ))}
+      </motion.div>
     </motion.div>
   );
-}
+};
 
-export function JobHistory({ jobs }: { jobs: Job[] }) {
+export const JobComponent = ({ job }: { job: JobDetails }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
-    <div className={'mb-[400px] flex snap-y snap-proximity flex-col gap-32'}>
-      {jobs.map((job) => (
-        <Parallax offSetY={250}>
-          <JobComponent key={job.title} job={job} />
-        </Parallax>
-      ))}
-    </div>
+    <Card
+      className={
+        'flex flex-col gap-2 rounded bg-card/50 p-2 py-4 ring-1 backdrop-blur-3xl'
+      }
+      ref={ref}
+      onClick={() => {
+        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }}
+    >
+      <CardHeader className={'pb-4'}>
+        <CardTitle>{job.title}</CardTitle>
+
+        <CardDescription className={'ml-2 flex items-center gap-1'}>
+          <FaBuilding size={12} />
+          <span>{job.company}</span>
+        </CardDescription>
+
+        <CardDescription className={'ml-2 flex items-center gap-1'}>
+          <FaCalendar size={12} />
+          <span>{job.period}</span>
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className={'flex flex-col gap-1 '}>
+        {job.responsibilities.map((responsibility, i) => (
+          <motion.div
+            key={responsibility}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: i * 0.1 }}
+            className="text-sm leading-relaxed "
+          >
+            {responsibility}
+          </motion.div>
+        ))}
+      </CardContent>
+    </Card>
   );
-}
+};

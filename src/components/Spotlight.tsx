@@ -1,61 +1,58 @@
 import clsx from 'clsx';
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 export const CardSpotlightEffect = ({
   children,
   className,
+  maxSize = 300, // Default maximum size of the gradient
 }: {
   children: React.ReactNode;
   className?: string;
+  maxSize?: number; // Optional prop to customize max size
 }) => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(-500);
-  const mouseY = useMotionValue(-500);
+  const ref = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
   const opacity = useMotionValue(0);
 
-  const calculateRelativePosition = useCallback((event) => {
-    const rect = divRef.current?.getBoundingClientRect();
-    return {
-      x: event.clientX - (rect?.left ?? -500),
-      y: event.clientY - (rect?.top ?? -500),
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      mouseX.set(event.clientX - rect.left);
+      mouseY.set(event.clientY - rect.top);
     };
+
+    const node = ref.current;
+    node?.addEventListener('mousemove', handleMouseMove);
+    return () => node?.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return;
-
-    const { x, y } = calculateRelativePosition(e);
-    mouseX.set(x);
-    mouseY.set(y);
-  };
 
   const handleMouseEnter = () => opacity.set(1);
   const handleMouseLeave = () => opacity.set(0);
 
-  const background = useTransform(
-    [mouseX, mouseY],
-    ([x, y]) =>
-      `radial-gradient(600px circle at ${x}px ${y}px, rgba(123, 58, 235,1), transparent 40%)`
-  );
+  const background = useTransform([mouseX, mouseY], ([x, y]) => {
+    const size = Math.min(maxSize, maxSize); // Calculate the size based on constraints
+    return `radial-gradient(circle ${size}px at ${x}px ${y}px, rgba(123, 58, 235, 1) 0%, transparent 40%)`;
+  });
 
   return (
     <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
+      ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden ${className}`}
+      className={`relative flex h-full w-full items-center justify-center  ${className}`}
+      style={{ position: 'relative' }}
     >
       {children}
       <motion.div
-        className="cursor-glow pointer-events-none absolute -inset-px z-0 transition duration-300"
+        className="pointer-events-none absolute inset-0"
         style={{ opacity, background }}
       />
     </div>
   );
 };
-
 export const AnimatedBorderGradient = ({
   children,
   className,
@@ -64,17 +61,15 @@ export const AnimatedBorderGradient = ({
   className?: string;
 }) => {
   return (
-    <span
+    <div
       className={clsx(
         className,
-        'card group z-[2] flex h-48 w-full items-center justify-center gap-2 overflow-hidden text-clip rounded-xl p-0.5 backdrop-blur-[3px] hover:p-0.5'
+        ' group relative z-[2] flex h-48 w-full items-center justify-center gap-2 text-clip rounded-3xl border-2 border-gray-900/80 bg-card p-0.5   text-card-foreground     hover:border-white'
       )}
     >
-      <div className="absolute inset-0 z-[5] flex h-full w-full items-center justify-center gap-8 rounded-xl">
+      <div className="absolute inset-0 z-[20] flex w-full justify-center border-transparent  text-transparent ">
         {children}
       </div>
-      <span className="conic-gradient absolute flex gap-2 text-clip " />
-      <div className="z-[1] inline-flex  h-full w-full items-center justify-center text-clip rounded-xl  bg-slate-950 py-1 text-sm font-medium text-white backdrop-blur-3xl " />
-    </span>
+    </div>
   );
 };

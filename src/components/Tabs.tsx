@@ -24,38 +24,26 @@ function Tabs<T extends string | number>({
   renderLabel = defaultRenderLabel, // If no renderLabel is provided, defaultRenderLabel is used
 }: TabProps<T>) {
   return (
-    <div className=" flex w-full flex-wrap items-center justify-between">
-      <motion.div
-        layoutId={activeTab.toString()}
-        variants={tabContainer}
-        animate="animate"
-        exit="exit"
-        initial="initial"
-        className={clsx('col-start-1 justify-center text-xl md:text-7xl')}
-        key={activeTab.toString()}
-      >
-        {renderLabel(activeTab)}
-      </motion.div>
-      <AnimatePresence mode={'popLayout'}>
+    <div className=" sticky top-0 flex w-full flex-wrap items-center justify-between">
+      <AnimatePresence mode={'wait'}>
         {tabs.map((tab) => {
           return (
-            activeTab !== tab && (
-              <MotionButton
-                className={clsx('hover:text-gray-500')}
-                layoutId={tab.toString()}
-                variants={tabContainer}
-                key={tab.toString()}
-                onClick={() => setActiveTab(tab)}
-              >
-                {renderLabel(tab)}
-              </MotionButton>
-            )
+            <MotionButton
+              className={clsx('hover:text-gray-500')}
+              layoutId={activeTab ? `tab` : `tab-${tab}`}
+              variants={tabContainer}
+              key={tab.toString()}
+              onClick={() => setActiveTab(tab)}
+            >
+              {renderLabel(tab)}
+            </MotionButton>
           );
         })}
       </AnimatePresence>
     </div>
   );
 }
+
 const tabContainer = {
   initial: {
     opacity: 0,

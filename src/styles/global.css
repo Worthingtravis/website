@@ -4,26 +4,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 10%; /* Dark background from the space */
-    --foreground: 220.9 39.3% 70%; /* A light foreground color for contrast */
-    --card: 262.1 83.3% 50%; /* A shade from the nebula */
-    --card-foreground: 210 20% 98%; /* Bright foreground for cards */
-    --popover: 220 14.3% 40%; /* Slightly muted background for popovers */
-    --popover-foreground: 210 20% 98%; /* Bright foreground for popovers */
-    --primary: 262.1 83.3% 57.8%; /* Primary color from the planets */
-    --primary-foreground: 210 20% 98%; /* Bright text on primary */
-    --secondary: 220 14.3% 40%; /* Muted secondary color */
-    --secondary-foreground: 220.9 39.3% 70%; /* Brighter secondary foreground */
-    --muted: 220 14.3% 30%; /* Muted background color */
-    --muted-foreground: 220 8.9% 60%; /* Muted foreground color */
-    --accent: 220 14.3% 50%; /* Accent color from stars */
-    --accent-foreground: 220.9 39.3% 80%; /* Bright accent foreground */
-    --destructive: 0 84.2% 60.2%; /* Reddish color for destructive actions */
-    --destructive-foreground: 210 20% 98%; /* Bright foreground for destructive */
-    --border: 220 13% 25%; /* Muted border color */
-    --input: 220 13% 30%; /* Input field background color */
-    --ring: 262.1 83.3% 57.8%; /* Primary color for focus rings */
-    --radius: 0.5rem; /* Keeping the radius the same */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --pattern-size: 10px;
+    --pattern-color-stop: 10%;
+    --pattern-primary-color: #000;
+    --pattern-secondary-color: #00091d;
   }
 
   .dark {
@@ -55,6 +59,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    /*  overflow stable */
   }
 }
 
@@ -106,7 +111,9 @@
 
 /*scrollbar sleek */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
+  z-index: 1000;
+  position: fixed;
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(123, 58, 235);
@@ -115,12 +122,18 @@
 ::-webkit-scrollbar-track {
   background: rgb(0, 2, 6);
 }
+/*make scroll stable.*/
 
-.card {
-  @apply bg-card text-card-foreground;
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
 
-.conic-gradient {
+.conic-gradient-animation {
   background: linear-gradient(
     40deg,
     rgba(0, 2, 6, 0.5) 50%,
@@ -129,30 +142,8 @@
   display: flex;
   justify-content: stretch;
   align-items: stretch;
-  width: 200%;
-  height: 50%;
-  transform: rotate(360deg);
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-direction: normal;
-  animation-fill-mode: none;
-
-  animation-timing-function: cubic-bezier(0.1, 0.1, 0.1, 0.1);
-  animation-name: in;
-  animation-play-state: running;
+  animation: rotateAnimation 10s linear infinite;
 }
-@keyframes in {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*body:hover > .cursor-glow {*/
-/*  z-index: -1;*/
-/*}*/
 
 .cursor-glow {
   z-index: -1;

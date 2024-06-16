@@ -5,11 +5,11 @@ import { projects } from './projectData';
 import { ProjectLinks } from './ProjectCard';
 import { Parallax } from '../components/history/Parallax';
 
-const MotionImage = motion(Image);
-
 interface ProjectSectionProps {
   project: (typeof projects)[0];
 }
+
+const MotionImage = motion(Image);
 
 const ProjectSection = ({ project }: ProjectSectionProps) => {
   const ref = useRef(null);
@@ -18,55 +18,54 @@ const ProjectSection = ({ project }: ProjectSectionProps) => {
     offset: ['start end', 'end end'],
   });
 
-  const fontSize = useTransform(scrollYProgress, [0, 0.5], ['2rem', '4rem']);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1.02]);
 
   return (
     <motion.div
       ref={ref}
-      className=" flex w-full max-w-7xl flex-col gap-8 p-6 will-change-transform "
+      className="mx-auto flex w-full flex-col space-y-12 rounded-lg  bg-gradient-to-r  from-purple-500 to-pink-50 bg-clip-text p-4 shadow-lg will-change-transform"
       initial={{ opacity: 0.5 }}
       whileInView={{ opacity: 1 }}
       viewport={{ amount: 0.75 }}
-      layoutScroll={true}
+      style={{ scale }}
     >
       <motion.h1
-        className="mb-12  text-xl font-semibold md:text-3xl"
-        style={{ fontSize }}
+        className=" text-blu text-4xl font-bold text-transparent"
+        style={{
+          fontSize: 'clamp(2rem, 5vw, 3rem)',
+          textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
+        }}
       >
         {project.title}
       </motion.h1>
-
-      <motion.div className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12">
-        <div className={'basis-1/4'}>
-          <MotionImage
-            className="h-auto w-full max-w-lg rounded-xl bg-cover bg-center object-cover object-center will-change-transform "
-            src={project.imageSrc}
-            alt={project.title}
-            width={400}
-            height={400}
+      <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row">
+        <MotionImage
+          className=" rounded-xl shadow-md"
+          src={project.imageSrc}
+          alt={project.title}
+          width={400}
+          height={400}
+        />
+        <motion.div className="flex flex-1 flex-col items-start justify-center">
+          <motion.p
+            className="mix-blend-mode-difference text-white"
+            style={{
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              lineHeight: 'clamp(1.5rem, 2.5vw, 2rem)',
+              textShadow: '0 0 8px rgba(0, 0, 0, 0.7)',
+            }}
+          >
+            {project.description}
+          </motion.p>
+          <ProjectLinks
+            openSeaLink={project.openSeaLink}
+            blankRasaLink={project.blankRasaLink}
+            marketingSiteLink={project.marketingSiteLink}
+            blockchain={project.blockchain}
+            date={project.date}
           />
-
-          <div className="flex w-full justify-center md:justify-start">
-            <ProjectLinks
-              openSeaLink={project.openSeaLink}
-              blankRasaLink={project.blankRasaLink}
-              marketingSiteLink={project.marketingSiteLink}
-              blockchain={project.blockchain}
-              date={project.date}
-            />
-          </div>
-        </div>
-
-        <motion.span
-          className="w-full text-center text-sm md:w-1/2 md:text-left md:text-base"
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-            lineHeight: 'clamp(1.5rem, 2vw, 2.5rem)',
-          }}
-        >
-          {project.description}
-        </motion.span>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -75,22 +74,31 @@ export const NftProjects = () => {
   const containerRef = useRef(null);
 
   return (
-    <div ref={containerRef}>
-      <div className="flex h-52 w-full items-center justify-center">
+    <div
+      ref={containerRef}
+      className="z-20 flex min-h-screen flex-col space-y-4 pt-12"
+    >
+      <motion.div className="flex h-32 w-full   max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
         <motion.h1
-          className="text-6xl font-semibold text-white"
-          initial={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="w-full bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text text-center text-5xl font-bold text-transparent"
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
         >
           Personal Projects
         </motion.h1>
-      </div>
-      {projects.map((project) => (
-        <div key={project.title}>
-          <Parallax offSetY={50} offSetX={50}>
+      </motion.div>
+      {projects.map((project, idx) => (
+        <div
+          key={project.title}
+          className=" max-w-5xl flex-col gap-32 bg-transparent"
+        >
+          <Parallax offSetY={20} offSetX={0}>
             <ProjectSection project={project} />
           </Parallax>
+          {idx !== projects.length - 1 && (
+            <hr className="shadow-3xl h-1 w-full bg-white" />
+          )}
         </div>
       ))}
     </div>
