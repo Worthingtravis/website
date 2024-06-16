@@ -76,7 +76,7 @@ export const NftProjects = () => {
   return (
     <div
       ref={containerRef}
-      className="z-20 flex min-h-screen flex-col space-y-4 pt-12"
+      className="z-[2] flex min-h-screen flex-col space-y-4 pt-12"
     >
       <motion.div className="flex h-32 w-full   max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
         <motion.h1

@@ -12,7 +12,7 @@ const NavCard = ({ href, label }: { href: string; label: string }) => (
     whileHover={{ scale: 1.05 }}
     initial="hidden"
     animate="visible"
-    className="relative flex h-full w-full max-w-sm cursor-pointer items-center justify-center overflow-hidden rounded-lg  p-4"
+    className="contents max-w-sm"
   >
     <AnimatedBorderGradient>
       <AnimatedText>
@@ -48,7 +48,7 @@ export function HomeCards() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex w-full flex-wrap justify-center gap-0"
+        className="flex h-full w-full flex-col items-center justify-center gap-4 md:flex-row"
       >
         <NavCard href="/resume" label="Resume" />
         <NavCard href="/projects" label="Projects" />

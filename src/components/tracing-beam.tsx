@@ -27,62 +27,83 @@ export const TracingBeam = ({
   }, []);
 
   const y1 = useSpring(
-    useTransform(scrollYProgress, [0, 0.6], [50, svgHeight]),
+    useTransform(scrollYProgress, [0, 0.65], [0, svgHeight]),
     {
       stiffness: 100,
       damping: 20,
     }
   );
   const y2 = useSpring(
-    useTransform(scrollYProgress, [0, 0.9], [50, svgHeight]),
+    useTransform(scrollYProgress, [0.5, 1], [0, svgHeight]),
     {
-      stiffness: 100,
-      damping: 20,
+      stiffness: 500,
+      damping: 50,
     }
   );
+
+  // const generateDynamicSVGPath: DynamicPath = (heightFactors) => {
+  //   let d = `M 1 0 V -36`; // Start the path and move up initially
+  //
+  //   // Constants for horizontal movement and vertical segment adjustment
+  //   const horizontalMove = 18;
+  //   const verticalSegment = 24;
+  //
+  //   // Iterate over each pair of factors in the array to create in and out movements
+  //   heightFactors.forEach(([outFactor, inFactor]) => {
+  //     const outHeight = outFactor * svgHeight;
+  //     const inHeight = inFactor * svgHeight; // directly use the 'in' factor provided
+  //     d += ` l ${horizontalMove} ${verticalSegment} V ${outHeight}`;
+  //     d += ` l ${-horizontalMove} ${verticalSegment} V ${inHeight}`;
+  //   });
+  //
+  //   // Close the path by reaching the bottom of the SVG
+  //   d += ` V ${svgHeight}`;
+  //   return d;
+  // };
+  // function that returns  [0, 0.01],
+  //               [0.02, 0.03],
+  //               [0.04, 0.05],
+  // .. and so on between 0 and 1
+  function continousArray(start: number, end: number, step: number) {
+    const result = [];
+    for (let i = start; i < end; i += step) {
+      result.push([i, i + 0.1]);
+    }
+    return result;
+  }
+
+  function generateDynamicSVGPath(heightFactors: [number, number][]) {
+    let d = `M 1 -10 V -36`; // Start the path and move up initially
+    const horizontalMove = 18;
+    const verticalSegment = 24;
+    heightFactors.forEach(([outFactor, inFactor]) => {
+      const outHeight = outFactor * svgHeight;
+      const inHeight = inFactor * svgHeight; // directly use the 'in' factor provided
+      d += ` l ${horizontalMove} ${verticalSegment} V ${outHeight}`;
+      d += ` l ${-horizontalMove} ${verticalSegment} V ${inHeight}`;
+    });
+    d += ` V ${svgHeight}`;
+    return d;
+  }
 
   return (
     <motion.div
       ref={ref}
-      className={cn('relative mx-auto h-full w-full max-w-4xl', className)}
+      className={cn(
+        'relative mx-auto h-full w-full max-w-3xl border-t border-[#9091A0] border-opacity-[0.16]',
+        className
+      )}
     >
-      <div className="absolute -left-4 top-3 md:-left-20 ">
-        <motion.div
-          transition={{
-            duration: 0.2,
-            delay: 0.5,
-          }}
-          animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? 'none'
-                : 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-          }}
-          className="border-netural-200  ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
-        >
-          <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor:
-                scrollYProgress.get() > 0 ? 'white' : 'var(--emerald-500)',
-              borderColor:
-                scrollYProgress.get() > 0 ? 'white' : 'var(--emerald-600)',
-            }}
-            className="h-2 w-2  rounded-full border border-neutral-300 bg-white"
-          />
-        </motion.div>
+      <div className="absolute -left-[1.2rem] hidden justify-center self-start md:flex  ">
         <svg
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"
           height={svgHeight} // Set the SVG height
-          className="ml-4  block"
+          className=" block"
           aria-hidden="true"
         >
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={generateDynamicSVGPath(continousArray(0, 1, 0.12))}
             fill="none"
             stroke="#9091A0"
             strokeOpacity="0.16"
@@ -91,7 +112,7 @@ export const TracingBeam = ({
             }}
           />
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={generateDynamicSVGPath(continousArray(0, 1, 0.12))}
             fill="none"
             stroke="url(#gradient)"
             strokeWidth="1.25"
