@@ -151,7 +151,7 @@ export const CheckBox = ({ isChecked }: { isChecked: boolean }) => {
         isChecked={isChecked}
       />
       <CheckIconAnimated
-        className="absolute left-0 top-0 h-full w-full"
+        className="absolute left-0 top-0 size-full"
         isChecked={isChecked}
       />
     </motion.div>

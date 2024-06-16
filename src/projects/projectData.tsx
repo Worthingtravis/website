@@ -1,16 +1,32 @@
 // projectData.ts
 
+import { SunSetDesktop } from './SunSet';
+
 interface Project {
   bgImage: string;
   title: string;
   description: string;
-  imageSrc: string;
+  imageSrc?: string;
   openSeaLink?: string;
   blankRasaLink?: string;
   marketingSiteLink?: string;
   blockchain?: string;
   date?: string;
+  componentBlock?: JSX.Element;
 }
+export const currentProjects: Project[] = [
+  {
+    bgImage: '/sacred.jpg',
+    title: 'Sacred Protocol',
+    description:
+      'A decentralized forum where like-minded individuals create unstoppable communities.',
+    componentBlock: <SunSetDesktop />,
+    marketingSiteLink: 'https://www.sacredprotocol.com',
+    blockchain: 'Ethereum - Polygon - Avalanche - Orbis -',
+    date: ' - TBD - ',
+  },
+];
+
 export const projects: Project[] = [
   {
     bgImage: '/robolove.png',

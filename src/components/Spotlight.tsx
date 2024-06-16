@@ -12,8 +12,8 @@ export const CardSpotlightEffect = ({
   maxSize?: number; // Optional prop to customize max size
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-500);
+  const mouseY = useMotionValue(-500);
   const opacity = useMotionValue(0);
 
   useEffect(() => {
@@ -29,6 +29,17 @@ export const CardSpotlightEffect = ({
     return () => node?.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      mouseX.set(-500);
+      mouseY.set(-500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleMouseEnter = () => opacity.set(1);
   const handleMouseLeave = () => opacity.set(0);
 
@@ -42,7 +53,7 @@ export const CardSpotlightEffect = ({
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative flex h-full w-full items-center justify-center  ${className}`}
+      className={`relative flex size-full items-center justify-center  ${className}`}
       style={{ position: 'relative' }}
     >
       {children}
@@ -53,6 +64,7 @@ export const CardSpotlightEffect = ({
     </div>
   );
 };
+
 export const AnimatedBorderGradient = ({
   children,
   className,
@@ -67,7 +79,7 @@ export const AnimatedBorderGradient = ({
         ' group relative z-[2] flex h-48 w-full items-center justify-center gap-2 text-clip rounded-3xl border-2 border-gray-900/80 text-card-foreground backdrop-blur-3xl hover:border-white/50'
       )}
     >
-      <div className="absolute inset-0 z-[20] flex w-full justify-center border-transparent  text-transparent ">
+      <div className="absolute inset-0 z-20 flex w-full justify-center border-transparent  text-transparent ">
         {children}
       </div>
     </div>

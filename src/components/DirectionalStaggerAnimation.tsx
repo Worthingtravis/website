@@ -18,7 +18,7 @@ const Box = React.forwardRef((props, ref: React.Ref<HTMLButtonElement>) => {
     <motion.button
       ref={ref}
       {...props}
-      className="pointer-events-auto  relative h-32 w-32 overflow-hidden  hover:cursor-pointer"
+      className="pointer-events-auto  relative size-32 overflow-hidden hover:cursor-pointer"
     >
       <AnimatedGradientBackground />
     </motion.button>

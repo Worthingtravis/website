@@ -52,7 +52,7 @@ export function TracingBeamDemo() {
                 onViewportEnter={() => {
                   window.history.replaceState(null, '', `#${key}`);
                 }}
-                className="absolute bottom-0 left-0 h-0 w-0"
+                className="absolute bottom-0 left-0 size-0"
               />
             </motion.div>
           ))}

@@ -249,7 +249,7 @@ export const EthLogo = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={'inline-block h-4 w-4'}
+      className={'inline-block size-4'}
     >
       <path d="M12 2.5L1.5 12 12 21.5 22.5 12 12 2.5zM12 6.5l6.5 6.5L12 19.5 5.5 13 12 6.5zm0 3.5l3.5 3.5L12 16.5 8.5 13 12 10z" />
     </svg>
@@ -608,7 +608,7 @@ export const ExternalLinkIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-6 w-6"
+      className="size-6"
     >
       <path
         strokeLinecap="round"
@@ -632,7 +632,7 @@ export const SubmitOutlineIcon = ({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={clsx('h-6 w-6 text-white', className)}
+      className={clsx('size-6 text-white', className)}
     >
       <circle cx="12" cy="12" r="10" />
       <path
@@ -651,7 +651,7 @@ export const LoadingIcon = ({
 }) => {
   return (
     <svg
-      className={clsx('h-6 w-6 animate-spin text-white', className)}
+      className={clsx('size-6 animate-spin text-white', className)}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -676,7 +676,7 @@ export const ErrorIcon = ({ className = 'inline' }: { className?: string }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={clsx('h-6 w-6 text-red-500', className)}
+      className={clsx('size-6 text-red-500', className)}
     >
       <path
         strokeLinecap="round"
@@ -732,7 +732,7 @@ function AnimatedSvgPath({ d }: { d: string }) {
       viewBox="0 0 24 24"
       strokeWidth={1}
       stroke="currentColor"
-      className="h-6 w-6"
+      className="size-6"
     >
       <motion.path
         variants={AnimateIcon}

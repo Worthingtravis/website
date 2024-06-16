@@ -21,9 +21,9 @@ const NavCard = ({ href, label }: { href: string; label: string }) => (
     whileHover={{ scale: 1.05 }}
     initial="hidden"
     animate="visible"
-    className="contents max-w-sm"
+    className="contents"
   >
-    <AnimatedBorderGradient>
+    <AnimatedBorderGradient className={'relative'}>
       <AnimatedText>
         <motion.h1
           className="text-4xl font-bold text-transparent"
@@ -57,11 +57,11 @@ export function HomeCards() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex h-full w-full flex-col items-center justify-center gap-4 md:flex-row"
+        className="flex size-full flex-col items-center justify-center gap-4 md:flex-row"
       >
         <NavCard href="/resume" label="Resume" />
-        <NavCard href="/projects" label="Projects" />
         <ContactNavCard />
+        <NavCard href="/projects" label="Projects" />
       </motion.div>
     </div>
   );
@@ -69,17 +69,11 @@ export function HomeCards() {
 
 export function ContactNavCard() {
   return (
-    <div className="flex w-full max-w-3xl flex-col items-stretch md:justify-center">
-      <AnimatedBorderGradient className={'hover:border-gray-900/80 '}>
-        <AnimatedText>
-          <motion.h1
-            className="text-4xl font-bold text-transparent"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
-            }}
-          >
-            <Card className={'border-0 bg-transparent'}>
+    <div className="z-20 flex w-full flex-col items-stretch md:justify-center">
+      <TooltipProvider delayDuration={0.2}>
+        <AnimatedBorderGradient className={'hover:border-gray-900/80 '}>
+          <AnimatedText>
+            <Card className={'relative z-20 border-0 bg-transparent'}>
               <CardHeader className={'space-x-4 space-y-4'}>
                 <CardTitle> {contactInfo.name}</CardTitle>
 
@@ -89,16 +83,14 @@ export function ContactNavCard() {
                       'flex gap-2 text-sm  transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0.2}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <span className="text-sm">{contactInfo.email}</span>
-                        </TooltipTrigger>
-                        <TooltipContent side={'right'}>
-                          <span className="text-sm">Send me an email</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="text-sm">{contactInfo.email}</span>
+                      </TooltipTrigger>
+                      <TooltipContent side={'right'}>
+                        <span className="text-sm">Send me an email</span>
+                      </TooltipContent>
+                    </Tooltip>
                   </CardTitle>
                 </Link>
                 <Link href={contactInfo.linkedIn} passHref>
@@ -107,23 +99,21 @@ export function ContactNavCard() {
                       'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0.2}>
-                      <Tooltip>
-                        <TooltipTrigger
-                          className={
-                            'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
-                          }
-                        >
-                          <>
-                            <FaLinkedin size={24} />
-                            <span>LinkedIn</span>
-                          </>
-                        </TooltipTrigger>
-                        <TooltipContent side={'right'}>
-                          <span>Open my LinkedIn Profile</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger
+                        className={
+                          'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                        }
+                      >
+                        <>
+                          <FaLinkedin size={24} />
+                          <span>LinkedIn</span>
+                        </>
+                      </TooltipTrigger>
+                      <TooltipContent side={'right'}>
+                        <span>Open my LinkedIn Profile</span>
+                      </TooltipContent>
+                    </Tooltip>
                   </CardTitle>
                 </Link>
                 <Link href={contactInfo.gitHub} passHref>
@@ -132,30 +122,28 @@ export function ContactNavCard() {
                       'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0.2}>
-                      <Tooltip>
-                        <TooltipTrigger
-                          className={
-                            'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
-                          }
-                        >
-                          <>
-                            <FaGithub size={24} />
-                            <span>GitHub</span>
-                          </>
-                        </TooltipTrigger>
-                        <TooltipContent side={'right'}>
-                          <span className="text-sm">Check out my GitHub</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger
+                        className={
+                          'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                        }
+                      >
+                        <>
+                          <FaGithub size={24} />
+                          <span>GitHub</span>
+                        </>
+                      </TooltipTrigger>
+                      <TooltipContent side={'right'}>
+                        <span className="text-sm">Check out my GitHub</span>
+                      </TooltipContent>
+                    </Tooltip>
                   </CardTitle>
                 </Link>
               </CardHeader>
             </Card>
-          </motion.h1>
-        </AnimatedText>
-      </AnimatedBorderGradient>
+          </AnimatedText>
+        </AnimatedBorderGradient>
+      </TooltipProvider>
     </div>
   );
 }

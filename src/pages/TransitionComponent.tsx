@@ -14,7 +14,7 @@ const TransitionComponent: FC<ITransitionComponentProps> = ({
 }) => {
   return (
     <motion.div
-      className={clsx(className, 'flex h-full w-full flex-1 justify-center')}
+      className={clsx(className, 'flex size-full flex-1 justify-center')}
       variants={TransitionComponentVariants}
       layoutId={layoutId}
       initial="initial"

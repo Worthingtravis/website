@@ -59,7 +59,7 @@ const Main = (props: IMainProps) => {
               onClick={toggleMenu}
             >
               <svg
-                className="h-6 w-6 fill-current"
+                className="size-6 fill-current"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >

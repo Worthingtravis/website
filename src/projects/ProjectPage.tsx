@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { projects } from './projectData';
+import { currentProjects, projects } from './projectData';
 import { ProjectLinks } from './ProjectCard';
 import { Parallax } from '../components/history/Parallax';
 
@@ -19,33 +19,39 @@ const ProjectSection = ({ project }: ProjectSectionProps) => {
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [0.98, 1.02]);
+  const color = useTransform(scrollYProgress, [0, 0.5], ['black', 'white']);
 
   return (
     <motion.div
       ref={ref}
-      className="mx-auto flex w-full flex-col space-y-12 rounded-lg bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text p-4 shadow-lg will-change-transform"
+      className="mx-auto flex w-full  flex-col space-y-12 rounded-lg bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text p-4 shadow-lg will-change-transform"
       initial={{ opacity: 0.5 }}
       whileInView={{ opacity: 1 }}
       viewport={{ amount: 0.75 }}
       style={{ scale }}
     >
       <motion.h1
-        className="text-4xl font-bold text-transparent"
         style={{
+          scale,
+          color,
           fontSize: 'clamp(2rem, 5vw, 3rem)',
           textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
         }}
       >
         {project.title}
       </motion.h1>
-      <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row">
-        <MotionImage
-          className=" rounded-xl shadow-md"
-          src={project.imageSrc}
-          alt={project.title}
-          width={400}
-          height={400}
-        />
+      <div className="flex flex-col-reverse items-center  justify-between gap-8 md:flex-row">
+        {project.imageSrc ? (
+          <MotionImage
+            className=" rounded-xl shadow-md"
+            src={project.imageSrc}
+            alt={project.title}
+            width={400}
+            height={400}
+          />
+        ) : (
+          project.componentBlock
+        )}
         <motion.div className="flex flex-1 flex-col items-start justify-center">
           <motion.p
             className="text-white"
@@ -70,22 +76,49 @@ const ProjectSection = ({ project }: ProjectSectionProps) => {
   );
 };
 
-export const NftProjects = () => {
+export const ProjectPage = () => {
   const containerRef = useRef(null);
 
   return (
     <div
       ref={containerRef}
-      className="z-[2] flex min-h-screen flex-col space-y-4 pt-12"
+      className="z-[2] flex min-h-screen flex-col gap-4 space-y-8 pt-12"
     >
       <motion.div className="flex h-32 w-full max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
         <motion.h1
-          className="w-full bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text text-center text-5xl font-bold text-transparent"
+          className="w-full  font-bold text-white"
           initial={{ scale: 0.9 }}
+          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Personal Projects
+          Current Project
+          {currentProjects.length > 1 && <>s</>}
+        </motion.h1>
+      </motion.div>
+      {currentProjects.map((project, idx) => (
+        <div
+          key={project.title}
+          className=" max-w-5xl flex-col gap-32 bg-transparent"
+        >
+          <Parallax offSetY={20} offSetX={0}>
+            <ProjectSection project={project} />
+          </Parallax>
+          {idx !== currentProjects.length - 1 && (
+            <hr className="h-1 w-full bg-white" />
+          )}
+        </div>
+      ))}
+
+      <motion.div className="flex h-32 w-full max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
+        <motion.h1
+          className="w-full  font-bold text-white"
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          transition={{ duration: 0.5 }}
+        >
+          Past Personal Projects
         </motion.h1>
       </motion.div>
       {projects.map((project, idx) => (

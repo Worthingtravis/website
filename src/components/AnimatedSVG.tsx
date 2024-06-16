@@ -22,7 +22,7 @@ function AnimatedCheckIcon({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className={clsx('relative h-6 w-6 text-current')}
+        className={clsx('relative size-6 text-current')}
       >
         <path
           strokeLinecap="round"

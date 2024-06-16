@@ -22,7 +22,7 @@ export const RadioOptionGroup = ({
         <input
           type="radio"
           id={`radio-${key}`}
-          className="h-5 w-5"
+          className="size-5"
           name={`radio-${key}`}
           value={value}
           checked={activeValue === value}
