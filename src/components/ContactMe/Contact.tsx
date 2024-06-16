@@ -10,14 +10,14 @@ interface ContactInfo {
 }
 
 const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
-  <Card>
+  <Card className="z-10 bg-transparent ring-1 backdrop-blur-3xl">
     <CardHeader className={'space-x-4'}>
       <CardTitle> {contact.name}</CardTitle>
 
       <Link href={`mailto:${contact.email}`} passHref>
         <CardTitle
           className={
-            'flex gap-2 text-sm   transition-all duration-300 ease-in-out hover:scale-105'
+            'flex gap-2 text-sm  transition-all duration-300 ease-in-out hover:scale-105'
           }
         >
           <span className="text-sm">{contact.email}</span>
@@ -50,7 +50,7 @@ const ContactDetails = ({ contact }: { contact: ContactInfo }) => (
 export const Contact = () => {
   return <ContactDetails contact={contactInfo} />;
 };
-const contactInfo: ContactInfo = {
+export const contactInfo: ContactInfo = {
   name: 'Travis Worthing',
   email: 'worthingtravis@gmail.com',
   linkedIn: 'https://www.linkedin.com/in/travis-worthing-3676a2166/',
