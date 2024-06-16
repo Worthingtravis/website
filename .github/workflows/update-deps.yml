@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "bun"
       - run: npx npm-check-updates -u # Update dependencies
       - run: rm -Rf node_modules bun.lockb
       - run: bun install

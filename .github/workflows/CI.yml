@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "bun"
       - run: bun run build-prod
 
   test:
@@ -40,6 +41,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "bun"
       - run: npm ci
 
       - if: github.event_name == 'pull_request'
