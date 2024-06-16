@@ -23,14 +23,14 @@ const ProjectSection = ({ project }: ProjectSectionProps) => {
   return (
     <motion.div
       ref={ref}
-      className="mx-auto flex w-full flex-col space-y-12 rounded-lg  bg-gradient-to-r  from-purple-500 to-pink-50 bg-clip-text p-4 shadow-lg will-change-transform"
+      className="mx-auto flex w-full flex-col space-y-12 rounded-lg bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text p-4 shadow-lg will-change-transform"
       initial={{ opacity: 0.5 }}
       whileInView={{ opacity: 1 }}
       viewport={{ amount: 0.75 }}
       style={{ scale }}
     >
       <motion.h1
-        className=" text-blu text-4xl font-bold text-transparent"
+        className="text-4xl font-bold text-transparent"
         style={{
           fontSize: 'clamp(2rem, 5vw, 3rem)',
           textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
@@ -48,7 +48,7 @@ const ProjectSection = ({ project }: ProjectSectionProps) => {
         />
         <motion.div className="flex flex-1 flex-col items-start justify-center">
           <motion.p
-            className="mix-blend-mode-difference text-white"
+            className="text-white"
             style={{
               fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
               lineHeight: 'clamp(1.5rem, 2.5vw, 2rem)',
@@ -78,7 +78,7 @@ export const NftProjects = () => {
       ref={containerRef}
       className="z-[2] flex min-h-screen flex-col space-y-4 pt-12"
     >
-      <motion.div className="flex h-32 w-full   max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
+      <motion.div className="flex h-32 w-full max-w-full items-center justify-center bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text">
         <motion.h1
           className="w-full bg-gradient-to-r from-purple-500 to-pink-50 bg-clip-text text-center text-5xl font-bold text-transparent"
           initial={{ scale: 0.9 }}
@@ -97,7 +97,7 @@ export const NftProjects = () => {
             <ProjectSection project={project} />
           </Parallax>
           {idx !== projects.length - 1 && (
-            <hr className="shadow-3xl h-1 w-full bg-white" />
+            <hr className="h-1 w-full bg-white" />
           )}
         </div>
       ))}

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { AnimatedBorderGradient } from './Spotlight';
 import { AnimatedText } from './AnimatedText';
-import { Contact, contactInfo } from './ContactMe/Contact';
+import { contactInfo } from './ContactMe/Contact';
 import { Card, CardHeader, CardTitle } from '@/ui/card';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import {
   Tooltip,
   TooltipContent,
@@ -69,7 +69,7 @@ export function HomeCards() {
 
 export function ContactNavCard() {
   return (
-    <div className="flex  w-full max-w-3xl flex-col items-stretch md:justify-center">
+    <div className="flex w-full max-w-3xl flex-col items-stretch md:justify-center">
       <AnimatedBorderGradient className={'hover:border-gray-900/80 '}>
         <AnimatedText>
           <motion.h1
@@ -86,7 +86,7 @@ export function ContactNavCard() {
                 <Link href={`mailto:${contactInfo.email}`} passHref>
                   <CardTitle
                     className={
-                      'flex gap-2 text-sm   transition-all duration-300 ease-in-out hover:scale-105'
+                      'flex gap-2 text-sm  transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
                     <TooltipProvider delayDuration={0.2}>
@@ -104,26 +104,23 @@ export function ContactNavCard() {
                 <Link href={contactInfo.linkedIn} passHref>
                   <CardTitle
                     className={
-                      'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                      'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
                     <TooltipProvider delayDuration={0.2}>
-
-                    <Tooltip>
+                      <Tooltip>
                         <TooltipTrigger
                           className={
-                            'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                            'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                           }
                         >
                           <>
                             <FaLinkedin size={24} />
-                            <span >LinkedIn</span>
+                            <span>LinkedIn</span>
                           </>
                         </TooltipTrigger>
                         <TooltipContent side={'right'}>
-                          <span >
-                            Open my LinkedIn Profile
-                          </span>
+                          <span>Open my LinkedIn Profile</span>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
@@ -132,14 +129,14 @@ export function ContactNavCard() {
                 <Link href={contactInfo.gitHub} passHref>
                   <CardTitle
                     className={
-                      'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                      'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
                     <TooltipProvider delayDuration={0.2}>
                       <Tooltip>
                         <TooltipTrigger
                           className={
-                            'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
+                            'flex items-center gap-2 text-sm transition-all duration-300 ease-in-out hover:scale-105'
                           }
                         >
                           <>

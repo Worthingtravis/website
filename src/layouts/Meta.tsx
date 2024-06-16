@@ -12,7 +12,9 @@ const Meta = (props: IMetaProps) => {
   const router = useRouter();
 
   const fullTitle = `${props.title} | Travis Worthing - Software Developer`;
-  const fullCanonical = props.canonical ? `${props.canonical}` : `https://www.worthydev.com${router.asPath}`;
+  const fullCanonical = props.canonical
+    ? `${props.canonical}`
+    : `https://www.worthydev.com${router.asPath}`;
 
   return (
     <>

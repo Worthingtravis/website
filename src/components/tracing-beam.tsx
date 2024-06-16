@@ -42,27 +42,27 @@ export const TracingBeam = ({
   );
 
   // const generateDynamicSVGPath: DynamicPath = (heightFactors) => {
-  //   let d = `M 1 0 V -36`; // Start the path and move up initially
+  //  let d = `M 1 0 V -36`; // Start the path and move up initially
   //
-  //   // Constants for horizontal movement and vertical segment adjustment
-  //   const horizontalMove = 18;
-  //   const verticalSegment = 24;
+  //  // Constants for horizontal movement and vertical segment adjustment
+  //  const horizontalMove = 18;
+  //  const verticalSegment = 24;
   //
-  //   // Iterate over each pair of factors in the array to create in and out movements
-  //   heightFactors.forEach(([outFactor, inFactor]) => {
-  //     const outHeight = outFactor * svgHeight;
-  //     const inHeight = inFactor * svgHeight; // directly use the 'in' factor provided
-  //     d += ` l ${horizontalMove} ${verticalSegment} V ${outHeight}`;
-  //     d += ` l ${-horizontalMove} ${verticalSegment} V ${inHeight}`;
-  //   });
+  //  // Iterate over each pair of factors in the array to create in and out movements
+  //  heightFactors.forEach(([outFactor, inFactor]) => {
+  //   const outHeight = outFactor * svgHeight;
+  //   const inHeight = inFactor * svgHeight; // directly use the 'in' factor provided
+  //   d += ` l ${horizontalMove} ${verticalSegment} V ${outHeight}`;
+  //   d += ` l ${-horizontalMove} ${verticalSegment} V ${inHeight}`;
+  //  });
   //
-  //   // Close the path by reaching the bottom of the SVG
-  //   d += ` V ${svgHeight}`;
-  //   return d;
+  //  // Close the path by reaching the bottom of the SVG
+  //  d += ` V ${svgHeight}`;
+  //  return d;
   // };
-  // function that returns  [0, 0.01],
-  //               [0.02, 0.03],
-  //               [0.04, 0.05],
+  // function that returns [0, 0.01],
+  //        [0.02, 0.03],
+  //        [0.04, 0.05],
   // .. and so on between 0 and 1
   function continousArray(start: number, end: number, step: number) {
     const result = [];
@@ -94,7 +94,7 @@ export const TracingBeam = ({
         className
       )}
     >
-      <div className="absolute -left-[1.2rem] hidden justify-center self-start md:flex  ">
+      <div className="absolute left-[-1.2rem] hidden justify-center self-start md:flex ">
         <svg
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"

@@ -8,7 +8,6 @@ import { CardSpotlightEffect } from 'src/components/Spotlight';
 import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
 import { AppConfig } from '../utils/AppConfig';
-import { Meta } from 'src/layouts/Meta';
 
 // Types
 type IMainProps = {
@@ -52,7 +51,7 @@ const Main = (props: IMainProps) => {
       {props.meta}
 
       <CardSpotlightEffect className={'flex flex-col justify-between '}>
-        <header className="pointer-events-auto  sticky top-0 z-[3] flex max-h-12 w-full flex-col">
+        <header className="pointer-events-auto sticky top-0 z-[3] flex max-h-12 w-full flex-col">
           <nav className="flex justify-between bg-black/50 p-2 sm:justify-center ">
             <button
               type="button"
@@ -70,13 +69,13 @@ const Main = (props: IMainProps) => {
             </button>
             <motion.ul
               className={`
-            flex w-full flex-wrap justify-center text-xl md:rounded-lg 
-            ${
-              menuOpen
-                ? 'fixed inset-0 flex flex-col items-center gap-10 bg-black/90 '
-                : 'hidden sm:flex'
-            }
-        `}
+      flex w-full flex-wrap justify-center text-xl md:rounded-lg 
+      ${
+        menuOpen
+          ? 'fixed inset-0 flex flex-col items-center gap-10 bg-black/90 '
+          : 'hidden sm:flex'
+      }
+    `}
             >
               {navLinks.map((link) => (
                 <Link
@@ -115,7 +114,7 @@ const Main = (props: IMainProps) => {
                           link.external && 'bg-white hover:bg-white',
 
                           {
-                            'opacity-0  group-hover:opacity-100 ':
+                            'opacity-0 group-hover:opacity-100 ':
                               !isActiveRoute(link.href),
                             'opacity-100': isActiveRoute(link.href),
                           }
@@ -130,7 +129,7 @@ const Main = (props: IMainProps) => {
         </header>
 
         {props.children}
-        <footer className="sticky bottom-3 z-10 ml-auto h-3 rounded-t border-gray-300  px-4 text-end text-sm ">
+        <footer className="sticky bottom-3 z-10 ml-auto h-3 rounded-t border-gray-300 px-4 text-end text-sm ">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>
       </CardSpotlightEffect>
