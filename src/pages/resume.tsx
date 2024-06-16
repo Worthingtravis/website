@@ -6,7 +6,7 @@ import { JobHistory } from '../components/history/JobComponent';
 import { jobs } from '../components/history/JobComponent.config';
 import { ProfileSection } from '../components/Profile/ProfileSection';
 import { categories } from '../components/Profile/ProfileSection.config';
-import { TracingBeam } from './tracing-beam';
+import { TracingBeam } from '../components/tracing-beam';
 
 const MainPage = () => {
   return <TracingBeamDemo />;
