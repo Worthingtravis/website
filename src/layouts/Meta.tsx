@@ -2,8 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 
-import { AppConfig } from '../utils/AppConfig';
-
 type IMetaProps = {
   title: string;
   description: string;
@@ -13,13 +11,16 @@ type IMetaProps = {
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
 
+  const fullTitle = `${props.title} | Travis Worthing - Software Developer`;
+  const fullCanonical = props.canonical ? `${props.canonical}` : `https://www.worthydev.com${router.asPath}`;
+
   return (
     <>
       <Head>
         <meta charSet="UTF-8" key="charset" />
         <meta
           name="viewport"
-          content="width=device-width,initial-scale=1"
+          content="width=device-width, initial-scale=1"
           key="viewport"
         />
         <link
@@ -48,15 +49,29 @@ const Meta = (props: IMetaProps) => {
         />
       </Head>
       <NextSeo
-        title={props.title}
+        title={fullTitle}
         description={props.description}
-        canonical={props.canonical}
+        canonical={fullCanonical}
         openGraph={{
-          title: props.title,
+          title: fullTitle,
           description: props.description,
-          url: props.canonical,
-          locale: AppConfig.locale,
-          site_name: AppConfig.site_name,
+          url: fullCanonical,
+          locale: 'en_CA',
+          site_name: 'WorthyDev',
+          images: [
+            {
+              url: 'https://avatars.githubusercontent.com/u/11166509?v=4',
+              width: 1200,
+              height: 630,
+              alt: 'Travis Worthing, Software Developer',
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
         }}
       />
     </>

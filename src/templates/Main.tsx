@@ -8,6 +8,7 @@ import { CardSpotlightEffect } from 'src/components/Spotlight';
 import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
 import { AppConfig } from '../utils/AppConfig';
+import { Meta } from 'src/layouts/Meta';
 
 // Types
 type IMainProps = {

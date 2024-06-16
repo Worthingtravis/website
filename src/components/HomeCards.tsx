@@ -89,7 +89,7 @@ export function ContactNavCard() {
                       'flex gap-2 text-sm   transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0}>
+                    <TooltipProvider delayDuration={0.2}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <span className="text-sm">{contactInfo.email}</span>
@@ -107,8 +107,9 @@ export function ContactNavCard() {
                       'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0}>
-                      <Tooltip>
+                    <TooltipProvider delayDuration={0.2}>
+
+                    <Tooltip>
                         <TooltipTrigger
                           className={
                             'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
@@ -134,7 +135,7 @@ export function ContactNavCard() {
                       'flex items-center gap-2  text-sm transition-all duration-300 ease-in-out hover:scale-105'
                     }
                   >
-                    <TooltipProvider delayDuration={0}>
+                    <TooltipProvider delayDuration={0.2}>
                       <Tooltip>
                         <TooltipTrigger
                           className={
