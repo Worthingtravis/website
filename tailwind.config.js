@@ -84,6 +84,14 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+        aurora: {
+          from: {
+            backgroundPosition: '50% 50%, 50% 50%',
+          },
+          to: {
+            backgroundPosition: '350% 50%, 350% 50%',
+          },
+        },
         shake: {
           // pick up off table
           '5%, 25%': { transform: 'translateY(-2px)' },
@@ -108,8 +116,10 @@ module.exports = {
         },
       },
       animation: {
-        'text-gradient': 'text-gradient 1.5s linear infinite',
-        'text-gradient-slow': 'text-gradient 2.5s linear infinite',
+        aurora: 'aurora 60s linear infinite',
+
+        'text-gradient': 'text-gradient 4.5s linear infinite',
+        'text-gradient-slow': 'text-gradient 4.5s linear infinite',
         'background-shine': 'background-shine 2s linear infinite',
         'pulse-slow': 'pulse 6s infinite cubic-bezier(0.4, 0, 0.6, 1)',
         'border-width': 'border-width 3s infinite alternate',

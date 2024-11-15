@@ -31,9 +31,12 @@ export const CardSpotlightEffect = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!ref.current) return;
-      mouseX.set(-500);
-      mouseY.set(-500);
+      // if (!ref.current) return;
+      // mouseX.set(-500);
+      // mouseY.set(-500);
+      // instead, lets make the effect more subtle
+      // make it fade out when scrolling
+
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -58,6 +61,7 @@ export const CardSpotlightEffect = ({
     >
       {children}
       <motion.div
+
         className="pointer-events-none absolute inset-0"
         style={{ opacity, background }}
       />
@@ -76,10 +80,10 @@ export const AnimatedBorderGradient = ({
     <div
       className={clsx(
         className,
-        ' group relative z-[2] flex h-48 w-full items-center justify-center gap-2 text-clip rounded-3xl border-2 border-gray-900/80 text-card-foreground backdrop-blur-3xl hover:border-white/50'
+        ' group  relative z-[2] flex h-48 w-full items-center justify-center gap-2  text-clip rounded-3xl backdrop-blur-3xl hover:border-white/50'
       )}
     >
-      <div className="absolute inset-0 z-20 flex w-full justify-center border-transparent  text-transparent ">
+      <div className="absolute inset-0 z-20  flex w-full justify-center border-transparent text-transparent  backdrop-blur-3xl ">
         {children}
       </div>
     </div>

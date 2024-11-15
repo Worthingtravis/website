@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '../layouts/Meta';
 import { Main } from '../templates/Main';
 import { HomeCards } from '../components/HomeCards';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const Index = () => {
   return (
@@ -13,7 +14,7 @@ const Index = () => {
         />
       }
     >
-      <HomeCards />
+        <HomeCards />
     </Main>
   );
 };

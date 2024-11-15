@@ -8,6 +8,7 @@ import { CardSpotlightEffect } from 'src/components/Spotlight';
 import { ExternalLinkIcon } from '../components/Icons';
 // Internal imports
 import { AppConfig } from '../utils/AppConfig';
+import { TracingBeam } from 'src/components/tracing-beam';
 
 // Types
 type IMainProps = {
@@ -47,12 +48,11 @@ const Main = (props: IMainProps) => {
   };
   const isActiveRoute = (href: string) => router.pathname === href;
   return (
-    <div className={clsx('contents ')}>
-      {props.meta}
-
-      <CardSpotlightEffect className={'flex flex-col justify-between '}>
+    <CardSpotlightEffect className={'flex flex-col justify-between bg-black'}>
+      <div className={clsx('contents ')}>
+        {props.meta}
         <header className="pointer-events-auto sticky top-0 z-[3] flex max-h-12 w-full flex-col">
-          <nav className="flex justify-between bg-black/50 p-2 sm:justify-center ">
+          <nav className="flex justify-between p-2 sm:justify-center ">
             <button
               type="button"
               className=" z-20 flex items-center rounded border border-white px-3 py-2 text-white hover:border-white hover:text-white sm:hidden"
@@ -127,13 +127,12 @@ const Main = (props: IMainProps) => {
             </motion.ul>
           </nav>
         </header>
-
         {props.children}
         <footer className="sticky bottom-3 z-10 ml-auto h-3 rounded-t border-gray-300 px-4 text-end text-sm ">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
         </footer>
-      </CardSpotlightEffect>
-    </div>
+      </div>
+    </CardSpotlightEffect>
   );
 };
 
