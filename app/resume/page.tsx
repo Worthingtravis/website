@@ -1,82 +1,133 @@
 'use client';
 
-import { Contact } from 'app/components/contactMe/Contact';
-import { JobHistory } from 'app/components/history/JobComponent';
-import { jobs } from 'app/components/history/JobComponent.config';
-import { ProfileSection } from 'app/components/profile/ProfileSection';
-import { categories } from 'app/components/profile/ProfileSection.config';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { useRef } from 'react';
+import { useState, useMemo } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { jobs } from 'app/components/history/job-component.config';
+import type { Tag } from 'app/components/history/job-component.config';
+import { X } from 'lucide-react';
+import { JobHistory } from '../components/history/JobComponent';
+import { YCenter } from '../CenterAnimation';
+import { Input } from '../components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../components/ui/dropdown-menu';
+import { Button } from '../components/ui/button';
 
-const MotionLink = motion(Link);
-const MainPage = () => {
-  return <Outline />;
-};
+const headerDuration = 0.15;
+const headerDelay = 1.35;
 
-export function Outline() {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function MainPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const copyToClipboard = (key: string) => {
-    const url = new URL(window.location.href);
-    url.hash = key;
-    navigator.clipboard.writeText(url.href);
+  const allTags = useMemo(() => {
+    return Array.from(new Set(jobs.flatMap((job) => job.tags)));
+  }, []);
+
+  const filteredJobs = useMemo(() => {
+    return jobs.filter((job) => {
+      const matchesSearch =
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.responsibilities
+          .join(' ')
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.every((tag: Tag) => job.tags.includes(tag));
+
+      return matchesSearch && matchesTags;
+    });
+  }, [searchTerm, selectedTags]);
+
+  const handleTagToggle = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
   };
 
   return (
-    <motion.div
-      ref={containerRef}
-      className={
-        'relative m-8 mb-32 flex h-full grow flex-col space-y-8 2xl:mt-32'
-      }
-    >
-      <motion.div className={'space-y-8'}>
-        {Object.entries(data).map(([key, value]) => (
-          <motion.section key={key} className={'space-y-8'}>
-            <h1
-              id={key}
-              className=" scroll-mt-[40vh] text-2xl font-bold"
-              onClick={() => {
-                copyToClipboard(key);
-              }}
-            >
-              {value.title}
-            </h1>
-            {value.content}
-            <motion.div
-              onViewportEnter={() => {
-                window.history.replaceState(null, '', `#${key}`);
-              }}
-              className="absolute bottom-0 left-0 size-0"
-            />
-          </motion.section>
-        ))}
-        <Link
-          href="#/"
-          aria-description="Back to Top"
-          aria-label="Back to Top"
-          className="absolute right-4 top-full rounded-md bg-gray-800 p-2 text-white"
+    <div className="container mx-auto space-x-2 space-y-8 px-4 py-8">
+      <AnimatePresence mode="wait">
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          animate={YCenter}
+          custom={{ duration: headerDuration, delay: headerDelay }}
+          transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+          className="container mx-auto space-x-2 space-y-8 px-4 py-8"
         >
-          Back to Top
-        </Link>
-      </motion.div>
-    </motion.div>
+          <motion.div
+            layoutId={'header'}
+            className="flex gap-2 text-balance text-5xl
+            font-bold
+           md:text-7xl"
+            layoutRoot
+            layoutDependency={'header'}
+            id="header"
+            initial={{ opacity: 0, y: -100 }}
+            viewport={{
+              once: true,
+            }}
+            animate={YCenter}
+            custom={{ duration: headerDuration, delay: headerDelay }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+          >
+            Work Experience
+          </motion.div>
+
+          <div className="flex items-center space-x-2">
+            <Input
+              placeholder="Search jobs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="grow"
+            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Filter Tags</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>Select Tags</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {allTags.map((tag) => (
+                  <DropdownMenuCheckboxItem
+                    key={tag}
+                    checked={selectedTags.includes(tag)}
+                    onCheckedChange={() => handleTagToggle(tag)}
+                  >
+                    {tag}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {selectedTags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {selectedTags.map((tag) => (
+                <Button
+                  key={tag}
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => handleTagToggle(tag)}
+                >
+                  {tag}
+                  <X className="ml-2 size-4" />
+                </Button>
+              ))}
+            </div>
+          )}
+
+          <JobHistory jobs={filteredJobs} />
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
-
-export default MainPage;
-
-const data = {
-  contact: {
-    title: 'Contact',
-    content: <Contact />,
-  },
-  experience: {
-    title: 'Experience',
-    content: <JobHistory jobs={jobs} />,
-  },
-  profile: {
-    title: 'Profile',
-    content: <ProfileSection categories={categories} />,
-  },
-};

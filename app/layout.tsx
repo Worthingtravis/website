@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles/global.css';
-import { NavHeader } from './navHeader';
-import { Footer } from './footer';
+import { NavHeader } from './NavHeader';
 
 export default function RootLayout({
   children,
@@ -10,11 +9,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col font-sans text-foreground antialiased">
+      <body className="flex  min-h-screen flex-col font-sans text-foreground antialiased">
         <NavHeader />
         {children}
-
-        <Footer />
       </body>
     </html>
   );

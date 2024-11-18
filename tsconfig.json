@@ -5,9 +5,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["@/*"],
-      "@/ui/*": ["@/components/ui/*"],
-      "@/lib/*": ["@/lib/*"]
+      "@/*": ["./app/*"],
+      "@/ui/*": ["./app/components/ui/*"],
+      "@/lib/*": ["./app/lib/*"]
     },
     "strict": false,
     "forceConsistentCasingInFileNames": true,

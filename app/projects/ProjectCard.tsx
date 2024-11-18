@@ -1,7 +1,7 @@
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '../components/ui/button';
 
 interface ProjectLinksProps {
   openSeaLink?: string;
@@ -26,7 +26,7 @@ export default function ProjectLinks({
             rel="noreferrer"
           >
             {openSeaLink ? 'OpenSea' : 'Blank Rasa'}
-            <ExternalLink className="ml-1 h-4 w-4" />
+            <ExternalLink className="ml-1 size-4" />
           </Link>
         </Button>
       )}
@@ -34,7 +34,7 @@ export default function ProjectLinks({
         <Button variant="link" asChild>
           <Link href={marketingSiteLink} target="_blank" rel="noreferrer">
             Marketing Site
-            <ExternalLink className="ml-1 h-4 w-4" />
+            <ExternalLink className="ml-1 size-4" />
           </Link>
         </Button>
       )}

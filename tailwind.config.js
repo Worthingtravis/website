@@ -25,7 +25,7 @@ module.exports = {
   ],
   theme: {
     container: {
-      center: true,
+      center: 'true',
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -69,6 +69,23 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
+        },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -77,21 +94,34 @@ module.exports = {
       },
       keyframes: {
         'accordion-down': {
-          from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         shake: {
-          // pick up off table
-          '5%, 25%': { transform: 'translateY(-2px)' },
-          '0%, 100%': { transform: 'rotate(0deg)' },
+          '5%, 25%': {
+            transform: 'translateY(-2px)',
+          },
+          '0%, 100%': {
+            transform: 'rotate(0deg)',
+          },
           '10%, 30%, 50%, 70%, 90%': {
             transform: 'rotate(10deg) translateX(-2px)',
           },
-          '20%, 40%, 60%, 80%': { transform: 'rotate(-10deg)' },
+          '20%, 40%, 60%, 80%': {
+            transform: 'rotate(-10deg)',
+          },
         },
         'text-gradient': {
           to: {
@@ -99,12 +129,22 @@ module.exports = {
           },
         },
         'background-shine': {
-          from: { backgroundPosition: '0 0' },
-          to: { backgroundPosition: '-200% 0' },
+          from: {
+            backgroundPosition: '0 0',
+          },
+          to: {
+            backgroundPosition: '-200% 0',
+          },
         },
         'border-width': {
-          from: { width: '10px', opacity: '0' },
-          to: { width: '100px', opacity: '1' },
+          from: {
+            width: '10px',
+            opacity: '0',
+          },
+          to: {
+            width: '100px',
+            opacity: '1',
+          },
         },
       },
       animation: {
@@ -119,5 +159,11 @@ module.exports = {
       },
     },
   },
-  plugins: ['tailwindcss-animate', 'flowbite/plugin', addVariablesForColors],
+  plugins: [
+    'tailwindcss-animate',
+    'flowbite/plugin',
+    addVariablesForColors,
+    // eslint-disable-next-line global-require
+    require('tailwindcss-animate'),
+  ],
 };

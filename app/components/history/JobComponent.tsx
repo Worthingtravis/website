@@ -1,49 +1,41 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendar } from 'react-icons/fa';
+import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
+import type { Job } from './job-component.config';
+import { getTagLink } from './job-component.config';
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '../ui/card';
+import { Badge } from '../ui/badge';
 
-interface JobDetails {
-  title: string;
-  period: string;
-  company: string;
-  responsibilities: string[];
-}
-
-export const JobHistory = ({ jobs }: { jobs: JobDetails[] }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  return (
-    <motion.div ref={ref}>
-      <motion.div className="flex flex-col space-y-8">
-        {jobs.map((job) => (
-          <JobComponent key={job.title} job={job} />
-        ))}
-      </motion.div>
-    </motion.div>
-  );
-};
-
-export const JobComponent = ({ job }: { job: JobDetails }) => {
+export const JobHistory = ({ jobs }: { jobs: Job[] }) => (
+  <>
+    {jobs.map((job) => (
+      <JobComponent key={job.title} job={job} />
+    ))}
+  </>
+);
+export const JobComponent = ({ job }: { job: Job }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
     <Card
       className={
-        'flex flex-col gap-2 rounded bg-card/50 p-2 py-4 ring-1 backdrop-blur-3xl'
+        'flex flex-col gap-2 rounded bg-card/50 ring-1 backdrop-blur-3xl md:p-2  md:py-4'
       }
       ref={ref}
       onClick={() => {
-        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }}
     >
-      <CardHeader className={'pb-4'}>
+      <CardHeader className={'space-y-2 pb-4'}>
         <CardTitle>{job.title}</CardTitle>
 
         <CardDescription className={'ml-2 flex items-center gap-1'}>
@@ -60,7 +52,7 @@ export const JobComponent = ({ job }: { job: JobDetails }) => {
       <CardContent className={'flex flex-col gap-1 '}>
         {job.responsibilities.map((responsibility, i) => (
           <motion.div
-            key={responsibility}
+            key={responsibility.toLowerCase()}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: i * 0.1 }}
@@ -70,6 +62,20 @@ export const JobComponent = ({ job }: { job: JobDetails }) => {
           </motion.div>
         ))}
       </CardContent>
+      <CardFooter className={'flex flex-wrap gap-y-2'}>
+        {job.tags.map((tag) => (
+          <Badge key={tag} className="group relative mr-2">
+            <Link href={getTagLink(tag)}>{tag}</Link>
+            <span className="sr-only">Filter by {tag}</span>
+            <span className="hidden items-center group-hover:flex ">
+              <span className="pointer-events-none absolute bottom-full right-0 mx-auto mb-2 flex h-6 w-32 flex-nowrap items-center overflow-visible rounded-l-full border border-r-0 bg-background/90  p-1 text-center text-foreground">
+                Open External Link
+              </span>
+              <ExternalLink className="absolute bottom-full left-full mb-2  flex h-6 shrink-0 items-center overflow-visible rounded-r-full border border-l-0 bg-background/90 p-1 text-foreground" />
+            </span>
+          </Badge>
+        ))}
+      </CardFooter>
     </Card>
   );
 };

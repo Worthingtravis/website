@@ -5,7 +5,7 @@
     "plugin:prettier/recommended",
     "plugin:@next/next/recommended"
   ],
-  "ignorePatterns": ["node_modules/", ".next/", "out/", "@/components/ui/**/*"],
+  "ignorePatterns": ["node_modules/", ".next/", "out/", "app/components/ui/**/*"],
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
