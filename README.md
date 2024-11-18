@@ -4,17 +4,15 @@ Welcome to my corner of the internet! I'm a software developer based in Kelowna,
 
 ## About Me 🚀
 
-- 🏀 **Hobbies:** I'm an avid basketball player and an enthusiastic camper, always ready for an adventure in nature.
+- 🏀 **Hobbies:** I'm an avid basketball player and an indoor enthusiast. 
 - 💻 **Profession:** Full-stack software developer with a passion for frontend technologies and decentralized applications.
-- 🌍 **Location:** Kelowna, BC, where the mountains meet the tech.
+- 🌍 **Location:** Kelowna, BC, where the mountains meet the tech... or something like that.
 
 ## Skills 🛠️
 
-- **Languages:** JavaScript (ES6+), TypeScript, Solidity
-- **Frameworks/Libraries:** React, Next.js, Tailwind CSS, Node.js
-- **Tools:** Git, Docker, Webpack, Babel
-- **Databases:** MongoDB, PostgreSQL
-- **Cloud:** AWS, Firebase
+- **Languages:** JavaScript (ES6+), TypeScript, Solidity, PHP, Python
+- **Frameworks/Libraries:** React, Next.js, Laravel PHP, Python, Tailwind CSS, Node.js
+- **Databases:** MYSQL, PostgreSQL, MongoDB
 - **Blockchain:** Ethereum, Smart Contract Development, IPFS
 
 ## What I'm Working On 🔧
@@ -38,7 +36,9 @@ Feel free to reach out if you're interested in collaborating or if you just want
 
 ## Fun Fact 🎉
 
-- Besides coding and scaling mountain trails, I'm constantly exploring the evolving landscape of blockchain or experimenting with the latest tech gadgets.
+- Besides coding I enjoy mentoring and teaching others how to code.
+- In 2020, I was awarded a supervisor ubc award for my mentorship with a group of awesome co-op students.
+- https://sciencecoop.ubc.ca/employers/award#:~:text=Travis%20Worthing%2C%20Atomic47%20Labs
 
 Thank you for visiting my GitHub! Feel free to star and fork any repositories you find intriguing. Let's build the future together. 🚀
 

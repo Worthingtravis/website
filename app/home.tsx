@@ -2,24 +2,20 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
 import { cn } from './lib/utils';
-import { MotionLink } from './motionLink';
-import { YCenter } from './CenterAnimation';
+import { MotionLink } from './components/motionLink';
+import { YCenter } from './animations/center-animate';
 
 const headerDuration = 0.15;
 const headerDelay = 1.35;
 
 const Home = () => {
-  const buttonRef = useRef(null);
   return (
     <AnimatePresence mode="wait">
       <motion.div className="flex grow flex-col items-center justify-center gap-8">
         <motion.div
           layoutId={'header'}
-          className="flex gap-2 text-balance text-5xl
-            font-bold
-           md:text-7xl"
+          className="flex gap-2 text-balance text-5xl font-bold md:text-7xl"
           layoutRoot
           layoutDependency={'header'}
           id="header"
@@ -45,7 +41,6 @@ const Home = () => {
 
         <MotionLink
           initial={{ opacity: 0, y: -20 }}
-          ref={buttonRef}
           layout
           href="/resume"
           animate={YCenter}

@@ -12,8 +12,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../ui/card';
-import { Badge } from '../ui/badge';
+} from '@/ui/card';
+import { Badge } from '@/ui/badge';
 
 export const JobHistory = ({ jobs }: { jobs: Job[] }) => (
   <>

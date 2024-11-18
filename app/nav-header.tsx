@@ -14,11 +14,11 @@ interface Nav {
 }
 
 const Links: Nav[] = [
-  { label: <HomeIcon size={22} />, href: '/' },
+  { label: <HomeIcon size={28} />, href: '/' },
   { label: 'Resume', href: '/resume' },
   { label: 'Projects', href: '/projects' },
   {
-    label: <FaGithub size={22} />,
+    label: <FaGithub size={32} />,
     href: 'https://github.com/worthingtravis',
   },
 ];
@@ -29,19 +29,27 @@ export function NavHeader() {
 
 function NavHeaderItems() {
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = React.useState(pathname);
+
+  // Update the previous pathname when it changes
+  React.useEffect(() => {
+    if (pathname !== prevPathname) {
+      setPrevPathname(pathname);
+    }
+  }, [pathname, prevPathname]);
 
   return (
     <nav className="container relative flex h-14 w-full items-center border-b bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="sticky top-0 flex w-full justify-between gap-4">
+      <div className="flex w-full justify-between gap-4">
         {Links.map((item) => (
           <Link
             key={item.href}
             href={item.href}
             className={cn(
-              'relative flex w-full justify-center text-nowrap px-2 py-1 text-foreground transition-colors hover:text-foreground/80',
+              'relative flex w-full justify-center text-nowrap px-2 py-1 text-2xl text-foreground transition-colors hover:text-foreground/80',
               pathname === item.href ||
                 (item?.href && pathname === `${item.href}`)
-                ? 'font-bold text-blue-500'
+                ? ' font-bold text-blue-500'
                 : ''
             )}
           >
@@ -61,9 +69,6 @@ function NavHeaderItems() {
                     item.href === '/projects' &&
                     'bg-gradient-to-r from-fuchsia-500 to-blue-500'
                 )}
-                animate={{
-                  transformOrigin: getTransformOrigin(pathname, item.href),
-                }}
                 transition={{
                   type: 'spring',
                   stiffness: 300,
@@ -76,11 +81,4 @@ function NavHeaderItems() {
       </div>
     </nav>
   );
-}
-
-function getTransformOrigin(currentPath: string, newPath: string) {
-  const currentIndex = Links.findIndex((link) => link.href === currentPath);
-  const newIndex = Links.findIndex((link) => link.href === newPath);
-
-  return currentIndex < newIndex ? 'left' : 'right';
 }

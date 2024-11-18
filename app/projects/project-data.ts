@@ -1,5 +1,3 @@
-import { SunSetDesktop } from './SunSet';
-
 export interface Project {
   bgImage: string;
   title: string;
@@ -12,7 +10,6 @@ export interface Project {
   blockchain?: string;
   date?: string;
   buttonLabel?: string;
-  componentBlock?: JSX.Element;
 }
 
 export const currentProjects: Project[] = [
@@ -23,7 +20,6 @@ export const currentProjects: Project[] = [
     marketingSiteLink: 'https://app.sacredprotocol.com',
     description:
       'A decentralized forum enabling secure and private user interactions. Developed by Sacred Protocol, it integrates with the Sacred Social Media Engagement Chrome Extension.',
-    componentBlock: <SunSetDesktop />,
     buttonLabel: 'Visit Forum',
     blockchain: 'Ethereum, Polygon, Avalanche, Orbis',
     date: 'TBD',
@@ -33,7 +29,6 @@ export const currentProjects: Project[] = [
     title: 'Sacred Social Media Engagement Chrome Extension',
     description:
       'A Chrome extension that rewards users for engaging with forum content.',
-    componentBlock: <SunSetDesktop />,
 
     buttonLabel: 'Marketing Site',
 

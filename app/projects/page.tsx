@@ -12,13 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from '../components/ui/card';
-import type { Project } from './projectData';
-import { currentProjects, projects } from './projectData';
+import type { Project } from './project-data';
+import { currentProjects, projects } from './project-data';
 
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { buttonVariants } from '../components/ui/buttonVariantsCVA';
-import { YCenter } from '../CenterAnimation';
+import { YCenter } from '../animations/center-animate';
 
 function ProjectCard({ project }: { project: Project }) {
   return (

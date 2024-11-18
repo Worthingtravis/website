@@ -1,12 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { jobs } from 'app/components/history/job-component.config';
-import type { Tag } from 'app/components/history/job-component.config';
-import { X } from 'lucide-react';
-import { JobHistory } from '../components/history/JobComponent';
-import { YCenter } from '../CenterAnimation';
+import { ArrowRight, X } from 'lucide-react';
+import { YCenter } from '../animations/center-animate';
 import { Input } from '../components/ui/input';
 import {
   DropdownMenu,
@@ -17,6 +14,11 @@ import {
   DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu';
 import { Button } from '../components/ui/button';
+import { MotionLink } from '@/components/motionLink';
+import { cn } from '@/lib/utils';
+import type { Tag } from '@/resume/job-history/job-component.config';
+import { jobs } from '@/resume/job-history/job-component.config';
+import { JobHistory } from '@/resume/job-history/JobComponent';
 
 const headerDuration = 0.15;
 const headerDelay = 1.35;
@@ -128,6 +130,35 @@ export default function MainPage() {
           <JobHistory jobs={filteredJobs} />
         </motion.div>
       </AnimatePresence>
+
+      <MotionLink
+        initial={{ opacity: 0, y: -20 }}
+        layout
+        href="/projects"
+        animate={YCenter}
+        custom={{ duration: headerDuration, delay: headerDelay }}
+        className={cn(
+          'group relative flex items-center justify-center gap-2 border-2 border-transparent px-4 py-2 text-lg font-bold hover:bg-black hover:text-[#18CCFC]'
+        )}
+      >
+        <motion.span
+          initial={{ opacity: 0, y: -20 }}
+          layout
+          animate={YCenter}
+          custom={{ duration: headerDuration, delay: headerDelay }}
+        >
+          Projects
+        </motion.span>
+
+        <motion.span
+          initial={{ opacity: 0, y: -20 }}
+          layout
+          animate={YCenter}
+          custom={{ duration: headerDuration, delay: headerDelay }}
+        >
+          <ArrowRight size={24} />
+        </motion.span>
+      </MotionLink>
     </div>
   );
 }

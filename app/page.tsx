@@ -1,5 +1,5 @@
-import PageAnimations from './pageAnimations';
+import Home from './home';
 
 export default async function Page() {
-  return <PageAnimations />;
+  return <Home />;
 }
