@@ -135,7 +135,7 @@ const CustomCursor = () => {
     <motion.div
       ref={ref}
       className={cn(
-        "pointer-events-none fixed top-0 left-0 flex origin-center justify-center transition-colors",
+        "pointer-events-none fixed top-0 left-0 md:flex hidden origin-center justify-center transition-colors",
         specialElement
           ? "z-[51] rounded-xl bg-black mix-blend-screen blur"
           : "z-50 rounded-full",

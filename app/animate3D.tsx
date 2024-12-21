@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { Html, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { usePathname } from "next/navigation";
@@ -62,7 +62,7 @@ const SwingingCube: React.FC = () => {
   const scene = useGLTF("/rubiks.gltf");
 
   return (
-    <group>
+    <group  >
       <group position={[5, 1, 5]}>
         <PerspectiveCamera
           ref={cameraRef}
@@ -103,7 +103,7 @@ const SwingingCube: React.FC = () => {
       </group>
 
       <group ref={groupRef} receiveShadow>
-        {/*<directionalLight position={[0, 0, 5]} intensity={2} />*/}
+
         <primitive object={scene.scene} />
       </group>
     </group>
