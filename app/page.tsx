@@ -22,7 +22,7 @@ export default function HomePage() {
             animate={YCenter}
             transition={{ delay: 2 }}
             className={
-              "!text-foregound absolute top-[60vh]  sticky left-0 z-[5]  rounded-xl border !text-black left-[50vw] z-[5] -translate-x-[50%] scale-[1.2] rounded-xl border p-4 backdrop-blur-3xl"
+              "!text-foregound absolute top-[60vh]  sticky left-0 z-[5]  rounded-xl md:border !text-black left-[50vw] z-[5] -translate-x-[50%] scale-[1.2] rounded-xl border md:p-4 backdrop-blur-3xl"
             }          >
             <h1
               className="mx-auto w-fit p-4 text-lg font-light md:text-4xl"
@@ -44,7 +44,7 @@ export default function HomePage() {
           data-cursor
 
           className={
-            "!text-foregound absolute top-[60vh] left-[50vw] z-[5] -translate-x-[50%] scale-[1.2] rounded-xl border p-4 backdrop-blur-3xl"
+            "!text-foregound absolute top-[60vh] left-[50vw] z-[5] -translate-x-[50%] scale-[1.2] rounded-xl md:border md:p-4 backdrop-blur-3xl"
           }
         >
           <h1
