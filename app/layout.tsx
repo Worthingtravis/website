@@ -1,6 +1,10 @@
-import React from 'react';
-import './styles/global.css';
-import { NavHeader } from './nav-header';
+import React from "react";
+import "./styles/global.css";
+import { ToastProvider } from "@/ui/toast";
+import { NavHeader } from "./nav-header";
+
+import BgScene from "./animate3D";
+import CustomCursor from "./hooks/useMousePosition";
 
 export default function RootLayout({
   children,
@@ -8,10 +12,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={'h-full'}>
-      <body className="flex min-h-screen flex-col font-sans text-foreground antialiased">
+    <html lang="en" className={"dark h-full"}>
+      <body className="bg-background text-foreground flex min-h-screen flex-col font-sans antialiased">
         <NavHeader />
-        {children}
+        <ToastProvider>
+          <CustomCursor />
+          <BgScene />
+
+          {children}
+        </ToastProvider>
       </body>
     </html>
   );

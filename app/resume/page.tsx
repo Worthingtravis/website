@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, X } from 'lucide-react';
-import { YCenter } from '../animations/center-animate';
-import { Input } from '../components/ui/input';
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, X } from "lucide-react";
+import { YCenter } from "../animations/center-animate";
+import { Input } from "../components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -12,19 +12,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../components/ui/dropdown-menu';
-import { Button } from '../components/ui/button';
-import { MotionLink } from '@/components/motionLink';
-import { cn } from '@/lib/utils';
-import type { Tag } from '@/resume/job-history/job-component.config';
-import { jobs } from '@/resume/job-history/job-component.config';
-import { JobHistory } from '@/resume/job-history/JobComponent';
+} from "../components/ui/dropdown-menu";
+import { Button } from "../components/ui/button";
+import { MotionLink } from "@/components/motionLink";
+import { cn } from "@/lib/utils";
+import type { Tag } from "@/resume/job-history/job-component.config";
+import { jobs } from "@/resume/job-history/job-component.config";
+import { JobHistory } from "@/resume/job-history/JobComponent";
 
 const headerDuration = 0.15;
 const headerDelay = 1.35;
 
 export default function MainPage() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const allTags = useMemo(() => {
@@ -37,7 +37,7 @@ export default function MainPage() {
         job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.responsibilities
-          .join(' ')
+          .join(" ")
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
 
@@ -51,27 +51,25 @@ export default function MainPage() {
 
   const handleTagToggle = (tag: string) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
   };
 
   return (
-    <div className="container mx-auto space-x-2 space-y-8 px-4 py-8">
+    <div className="container mx-auto space-y-8 space-x-2 px-4 py-8">
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           animate={YCenter}
           custom={{ duration: headerDuration, delay: headerDelay }}
-          transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-          className="container mx-auto space-x-2 space-y-8 px-4 py-8"
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          className="container mx-auto space-y-8 space-x-2 px-4 py-8"
         >
           <motion.div
-            layoutId={'header'}
-            className="flex gap-2 text-balance text-5xl
-            font-bold
-           md:text-7xl"
+            layoutId={"header"}
+            className="flex gap-2 text-5xl font-bold text-balance md:text-7xl"
             layoutRoot
-            layoutDependency={'header'}
+            layoutDependency={"header"}
             id="header"
             initial={{ opacity: 0, y: -100 }}
             viewport={{
@@ -79,7 +77,7 @@ export default function MainPage() {
             }}
             animate={YCenter}
             custom={{ duration: headerDuration, delay: headerDelay }}
-            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
             Work Experience
           </motion.div>
@@ -130,35 +128,37 @@ export default function MainPage() {
           <JobHistory jobs={filteredJobs} />
         </motion.div>
       </AnimatePresence>
-
-      <MotionLink
-        initial={{ opacity: 0, y: -20 }}
-        layout
-        href="/projects"
-        animate={YCenter}
-        custom={{ duration: headerDuration, delay: headerDelay }}
-        className={cn(
-          'group relative flex items-center justify-center gap-2 border-2 border-transparent px-4 py-2 text-lg font-bold hover:bg-black hover:text-[#18CCFC]'
-        )}
-      >
-        <motion.span
+      <div className={"w-full"}>
+        <MotionLink
+          data-cursor
           initial={{ opacity: 0, y: -20 }}
           layout
+          href="/projects"
           animate={YCenter}
           custom={{ duration: headerDuration, delay: headerDelay }}
+          className={cn(
+            "group hover:bg-background relative mx-auto flex w-fit items-center justify-center gap-2 self-center border-2 border-transparent px-4 py-2 text-lg font-bold hover:text-[#18CCFC]",
+          )}
         >
-          Projects
-        </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            layout
+            animate={YCenter}
+            custom={{ duration: headerDuration, delay: headerDelay }}
+          >
+            Projects
+          </motion.span>
 
-        <motion.span
-          initial={{ opacity: 0, y: -20 }}
-          layout
-          animate={YCenter}
-          custom={{ duration: headerDuration, delay: headerDelay }}
-        >
-          <ArrowRight size={24} />
-        </motion.span>
-      </MotionLink>
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            layout
+            animate={YCenter}
+            custom={{ duration: headerDuration, delay: headerDelay }}
+          >
+            <ArrowRight size={24} />
+          </motion.span>
+        </MotionLink>
+      </div>
     </div>
   );
 }
