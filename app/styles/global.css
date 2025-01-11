@@ -112,3 +112,11 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
+:root {
+  --blur-value: 3rem; /* Use the same blur value as in your Tailwind configuration */
+}
+
+.backdrop-blur-instant {
+  backdrop-filter: blur(var(--blur-value));
+  -webkit-backdrop-filter: blur(var(--blur-value)); /* Ensure support in Webkit browsers */
+}

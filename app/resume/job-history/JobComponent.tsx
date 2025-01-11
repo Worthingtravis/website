@@ -32,9 +32,7 @@ export const JobComponent = ({ job }: { job: Job }) => {
 
   return (
     <Card
-      className={
-        "bg-card/50 flex flex-col gap-2 rounded ring-1 backdrop-blur-3xl md:p-2 md:py-4"
-      }
+        className="bg-card/50 flex flex-col gap-2 rounded ring-1 backdrop-blur-instant md:p-2 md:py-4"
       ref={ref}
       onClick={() => {
         ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
