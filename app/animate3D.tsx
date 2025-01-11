@@ -18,7 +18,7 @@ const SwingingCube: React.FC = () => {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime() * 0.5;
-
+// const time = 0.2;
 
     if (groupRef.current) {
       // Calculate pendulum position with longer string

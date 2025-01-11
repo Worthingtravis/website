@@ -22,19 +22,14 @@ import { YCenter } from "../animations/center-animate";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="group select-none backdrop-blur-instant bg-card/80 min-h-[600px] mb-8 flex flex-col justify-between overflow-hidden p-4 antialiased shadow-sm shadow-gray-900 transition-transform duration-300 ease-in-out md:hover:scale-105">
+    <Card className="group backdrop-blur-instant bg-card/80 mb-8 flex min-h-[600px] flex-col justify-between overflow-hidden p-4 antialiased shadow-sm shadow-gray-900 transition-transform duration-300 ease-in-out select-none md:hover:scale-105">
       <div className="relative h-48" aria-label={"Project background image"}>
         <Image
           src={project.bgImage}
           alt={project.title}
           width={400}
           height={400}
-          className="transition-transform object-cover
-           md:group-hover:scale-105
-           w-full
-           mx-auto
-           group-hover:origin-center
-           h-48 duration-300"
+          className="mx-auto h-48 w-full object-cover transition-transform duration-300 group-hover:origin-center md:group-hover:scale-105"
         />
       </div>
       <CardHeader>
@@ -46,14 +41,13 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </CardHeader>
       <CardContent className={"flex flex-col gap-2"}>
-        <CardDescription
-                                  className={"group-hover:text-foreground"}>
+        <CardDescription className={"group-hover:text-foreground"}>
           {project?.description}
         </CardDescription>
         {project?.personalDescription && (
-          <blockquote         data-cursor
-
-                              aria-label={"Personal details added about the project"}
+          <blockquote
+            data-cursor
+            aria-label={"Personal details added about the project"}
             className="text-muted-foreground group-hover:text-foreground rounded p-2 font-serif shadow-sm shadow-gray-900 transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-500"
           >
             <QuoteIcon className={"float-left mr-2"} />
@@ -181,10 +175,6 @@ export default function ProjectsPage() {
             custom={{ duration: headerDuration, delay: headerDelay }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
-            <h2 className="mb-4 text-2xl font-semibold">
-              Currently working on {currentProjects.length} Project
-              {currentProjects.length > 1 ? "s" : ""}
-            </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {currentProjects.map((project) => (
                 <ProjectCard key={project.title} project={project} />
