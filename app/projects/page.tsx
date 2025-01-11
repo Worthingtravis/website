@@ -155,7 +155,7 @@ export default function ProjectsPage() {
               Here are some of the <b>more personal</b> projects I have worked
               on in the past.
             </p>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
               {projects.map((project) => (
                 <motion.section
                   initial={{ opacity: 0, y: -100 }}
@@ -175,7 +175,7 @@ export default function ProjectsPage() {
             custom={{ duration: headerDuration, delay: headerDelay }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
               {currentProjects.map((project) => (
                 <ProjectCard key={project.title} project={project} />
               ))}
