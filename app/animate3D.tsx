@@ -1,20 +1,24 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { PerspectiveCamera, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { usePathname } from "next/navigation";
+import { useScroll, useTransform } from "framer-motion";
+
 
 const SwingingCube: React.FC = () => {
   const groupRef = useRef<THREE.Group>(null!);
+  const containerRef = useRef<THREE.Group>(null!);
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
   const spotlightRef = useRef<THREE.SpotLight>(null!);
 
-  const pathName = usePathname();
+  const { scrollY } = useScroll();
+  const zOffSet = useTransform(scrollY, [0, 1000], [1, 2]);
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime() * 1
+    const time = state.clock.getElapsedTime() * 0.5;
+
 
     if (groupRef.current) {
       // Calculate pendulum position with longer string
@@ -62,8 +66,8 @@ const SwingingCube: React.FC = () => {
   const scene = useGLTF("/rubiks.gltf");
 
   return (
-    <group  >
-      <group position={[5, 1, 5]}>
+    <group>
+      <group position={[0, 1, 10]} ref={containerRef} rotation={[0, 0, 0]}>
         <PerspectiveCamera
           ref={cameraRef}
           makeDefault
@@ -103,7 +107,6 @@ const SwingingCube: React.FC = () => {
       </group>
 
       <group ref={groupRef} receiveShadow>
-
         <primitive object={scene.scene} />
       </group>
     </group>
