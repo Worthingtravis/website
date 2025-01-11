@@ -77,15 +77,5 @@ export const projects: Project[] = [
     openSeaLink: 'https://opensea.io/collection/superfrens',
     blockchain: 'Ethereum',
     date: 'Nov 2021',
-  },
-  {
-    bgImage: '/robolove.png',
-    title: 'RoboLove',
-    description:
-      'RoboLove is a dating application that uses AI to create an ideal chatbot partner.',
-    personalDescription:
-      'As a personal favor to a friend, I assisted in building the first few prototype applications. These prototypes enabled the founder of Robolove to receive initial project funding. The Project is still in development, and I am no longer involved.',
-    imageSrc: '/robolove.webp',
-    marketingSiteLink: 'https://robolove.ai/',
-  },
+  }
 ];

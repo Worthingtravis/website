@@ -130,6 +130,7 @@ export default function MainPage() {
       </AnimatePresence>
       <div className={"w-full"}>
         <MotionLink
+          layoutId={'nav-button'}
           data-cursor
           initial={{ opacity: 0, y: -20 }}
           layout
@@ -137,7 +138,7 @@ export default function MainPage() {
           animate={YCenter}
           custom={{ duration: headerDuration, delay: headerDelay }}
           className={cn(
-            "group hover:bg-background relative mx-auto flex w-fit items-center justify-center gap-2 self-center border-2 border-transparent px-4 py-2 text-lg font-bold hover:text-[#18CCFC]",
+            "group hover:bg-background relative mx-auto 3xl:fixed 3xl:top-1/2 3xl:right-20 flex w-fit items-center justify-center gap-2 self-center border-2 border-transparent px-4 py-2 text-lg font-bold hover:text-[#18CCFC]",
           )}
         >
           <motion.span
