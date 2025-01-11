@@ -59,8 +59,8 @@ const useMousePosition = (ref: MutableRefObject<HTMLElement | null>) => {
       if (target) {
         const rect = target.getBoundingClientRect();
         setMousePosition({
-          x: rect.left + rect.width / 2.4,
-          y: rect.top + rect.height / 2.4,
+          x: rect.left + rect.width / 2.5,
+          y: rect.top + rect.height / 2.5,
           width: rect.width,
           height: rect.height,
           specialElement: target,
@@ -122,9 +122,9 @@ const CustomCursor = () => {
       opacity: isVisible ? 1 : 0,
     },
     element: {
-      x: x - width / 2.15,
+      x: x - width / 2,
       y: y - height / 2,
-      width: width * 1.1,
+      width: width * 1.2,
       height: height * 1.2,
       scale: 1,
       opacity: isVisible ? 1 : 0,

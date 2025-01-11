@@ -22,7 +22,7 @@ import { YCenter } from "../animations/center-animate";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="group select-none backdrop-blur-instant bg-card/80 h-[600px] flex flex-col justify-between overflow-hidden p-4 antialiased shadow-sm shadow-gray-900 transition-transform duration-300 ease-in-out md:hover:scale-105">
+    <Card className="group select-none backdrop-blur-instant bg-card/80 min-h-[600px] mb-8 flex flex-col justify-between overflow-hidden p-4 antialiased shadow-sm shadow-gray-900 transition-transform duration-300 ease-in-out md:hover:scale-105">
       <div className="relative h-48" aria-label={"Project background image"}>
         <Image
           src={project.bgImage}
@@ -31,6 +31,8 @@ function ProjectCard({ project }: { project: Project }) {
           height={400}
           className="transition-transform object-cover
            md:group-hover:scale-105
+           w-full
+           mx-auto
            group-hover:origin-center
            h-48 duration-300"
         />
