@@ -122,9 +122,9 @@ const CustomCursor = () => {
       opacity: isVisible ? 1 : 0,
     },
     element: {
-      x: x - width / 2,
+      x: x - width / 2.15,
       y: y - height / 2,
-      width: width * 1.2,
+      width: width * 1.1,
       height: height * 1.2,
       scale: 1,
       opacity: isVisible ? 1 : 0,
