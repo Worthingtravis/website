@@ -122,14 +122,14 @@ const headerDelay = 1.35;
 
 export default function ProjectsPage() {
   return (
-    <div className="!text-foreground container mx-auto space-y-8 space-x-2 px-4 py-8">
+    <div className="!text-foreground container mx-auto space-y-8 space-x-2  py-8">
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           animate={YCenter}
           custom={{ duration: headerDuration, delay: headerDelay }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
-          className="container mx-auto space-y-8 space-x-2 px-4 py-8"
+          className="container mx-auto space-y-8 space-x-2 py-8"
         >
           <motion.div
             layoutId={"header"}
