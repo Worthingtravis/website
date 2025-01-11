@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { YCenter } from "../animations/center-animate";
@@ -128,38 +128,7 @@ export default function MainPage() {
           <JobHistory jobs={filteredJobs} />
         </motion.div>
       </AnimatePresence>
-      <div className={"w-full"}>
-        <MotionLink
-          layoutId={'nav-button'}
-          data-cursor
-          initial={{ opacity: 0, y: -20 }}
-          layout
-          href="/projects"
-          animate={YCenter}
-          custom={{ duration: headerDuration, delay: headerDelay }}
-          className={cn(
-            "group hover:bg-background relative mx-auto 3xl:fixed 3xl:top-1/2 3xl:right-20 flex w-fit items-center justify-center gap-2 self-center border-2 border-transparent px-4 py-2 text-lg font-bold hover:text-[#18CCFC]",
-          )}
-        >
-          <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            layout
-            animate={YCenter}
-            custom={{ duration: headerDuration, delay: headerDelay }}
-          >
-            Projects
-          </motion.span>
 
-          <motion.span
-            initial={{ opacity: 0, y: -20 }}
-            layout
-            animate={YCenter}
-            custom={{ duration: headerDuration, delay: headerDelay }}
-          >
-            <ArrowRight size={24} />
-          </motion.span>
-        </MotionLink>
-      </div>
     </div>
   );
 }
