@@ -14,7 +14,7 @@ const SwingingCube: React.FC = () => {
   const pathName = usePathname();
 
   useFrame((state) => {
-    const time = state.clock.getElapsedTime() * (pathName === "/" ? 1 : 0.05);
+    const time = state.clock.getElapsedTime() * 1
 
     if (groupRef.current) {
       // Calculate pendulum position with longer string
