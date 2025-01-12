@@ -151,10 +151,7 @@ export default function ProjectsPage() {
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
             <h2 className="mb-4 text-2xl font-semibold">Past Projects</h2>
-            <p className="text-muted-foreground mb-8">
-              Here are some of the <b>more personal</b> projects I have worked
-              on in the past.
-            </p>
+            <p className="mb-8 text-lg">A collection of NFT Collections</p>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
               {projects.map((project) => (
                 <motion.section
@@ -169,6 +166,8 @@ export default function ProjectsPage() {
               ))}
             </div>
           </motion.section>
+
+          <p className="mb-8 text-lg">Work Projects</p>
           <motion.section
             initial={{ opacity: 0, y: -100 }}
             whileInView={YCenter}

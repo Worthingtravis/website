@@ -22,7 +22,7 @@ export const currentProjects: Project[] = [
       'A decentralized forum enabling secure and private user interactions. Developed by Sacred Protocol, it integrates with the Sacred Social Media Engagement Chrome Extension.',
     buttonLabel: 'Visit Forum',
     blockchain: 'Ethereum, Polygon, Avalanche, Orbis',
-    date: 'TBD',
+    date: 'Discontinued',
   },
   {
     bgImage: '/sacred.png',

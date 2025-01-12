@@ -84,18 +84,24 @@ export default function MainPage() {
 
           <div className="flex items-center space-x-2">
             <Input
-              placeholder="Search jobs..."
+              placeholder="This search totally works"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="grow"
+              className="grow bg-card/50 placeholder:text-white"
             />
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline">Filter Tags</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>Select Tags</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuCheckboxItem
+                  checked={selectedTags.length === 0}
+                  onCheckedChange={() => setSelectedTags([])}
+                >
+                  This sort of seems uneccessary
+                </DropdownMenuCheckboxItem>
                 {allTags.map((tag) => (
                   <DropdownMenuCheckboxItem
                     key={tag}

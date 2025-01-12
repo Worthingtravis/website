@@ -19,11 +19,11 @@ interface Nav {
 }
 
 const Links: Nav[] = [
-  { label: <HomeIcon size={28} />, href: "/" },
+  { label: <HomeIcon size={64} />, href: "/" },
   { label: "Experience", href: "/resume" },
   { label: "Projects", href: "/projects" },
   {
-    label: <FaGithub size={32} />,
+    label: <FaGithub size={64} />,
     href: "https://github.com/worthingtravis",
     external: true,
     hoverPopover: {
@@ -59,7 +59,7 @@ export function NavHeader() {
   return (
     <nav
       ref={navRef}
-      className="relative z-10 mx-auto mt-8 flex h-14 w-full max-w-sm items-center justify-between gap-2 px-6 backdrop-blur-sm"
+      className=" z-10 flex h-32 items-center select-none justify-center gap-2 md:gap-8 px-6 md:backdrop-blur-none backdrop-blur-sm"
     >
       {Links.map(({ label, href, external }) => (
         <Link
@@ -73,19 +73,16 @@ export function NavHeader() {
           // @ts-ignore
           ref={(el) => (linkRefs.current[href] = el)}
           className={cn(
-            "text-foreground relative flex justify-center !rounded-full p-4 hover:text-blue-400",
+            "text-foreground relative flex justify-center xl:text-2xl text-lg 2xl:text-6xl !rounded-full p-4 hover:text-blue-400",
             pathname === href ? "text-cyan-400" : "",
           )}
         >
           {label}
+
+
         </Link>
       ))}
 
-      <motion.div
-        animate={{ left: underline.left, width: underline.width }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        className="absolute bottom-0 h-1 bg-gradient-to-r from-blue-500 to-pink-500 px-4"
-      />
     </nav>
   );
 }

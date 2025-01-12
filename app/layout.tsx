@@ -18,7 +18,6 @@ export default function RootLayout({
         <ToastProvider>
           <CustomCursor />
           <BgScene />
-
           {children}
         </ToastProvider>
       </body>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ducky_MozillaHubs
+* source:	https://sketchfab.com/3d-models/ducky-mozillahubs-a4c500d7358a4a199b6a5cd35f416466
+* author:	j-conrad (https://sketchfab.com/j-conrad)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ducky_MozillaHubs" (https://sketchfab.com/3d-models/ducky-mozillahubs-a4c500d7358a4a199b6a5cd35f416466) by j-conrad (https://sketchfab.com/j-conrad) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
