@@ -1,24 +1,20 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
-  Environment,
+  AdaptiveDpr,
   PerspectiveCamera,
   Preload,
   RoundedBox,
-  Text,
+  Stats,
   useGLTF,
 } from "@react-three/drei";
-import React, {
-  FC,
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-  RefObject,
-} from "react";
+import React, { FC, Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { usePathname } from "next/navigation";
+import { GlowingBulbSpotLight } from "@/glowingBulbSpotLight";
+import { WorthyDev } from "@/worthyDev";
+import { DuckyShadowCaster } from "@/duckyShadowCaster";
 
 /**
  * Helix-like function returning a 3D position on a spiral.
@@ -34,7 +30,7 @@ function helixAt(t: number): THREE.Vector3 {
   );
 }
 
-const SwingingCube: FC = () => {
+const SwingingCube = () => {
   const groupRef = useRef<THREE.Group>(null!);
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
 
@@ -96,7 +92,11 @@ const SwingingCube: FC = () => {
       const y = -Math.cos(angle) * pendulumLength;
 
       groupRef.current.position.set(x, y + pendulumLength, 0);
-      groupRef.current.rotation.set(angle, (Math.sin((time * Math.PI) / 3) * Math.PI) / 2, angle);
+      groupRef.current.rotation.set(
+        angle,
+        (Math.sin((time * Math.PI) / 3) * Math.PI) / 2,
+        angle,
+      );
     }
 
     // === 4) Aim the spotlight at the group using camera as reference ===
@@ -130,45 +130,18 @@ const SwingingCube: FC = () => {
   return (
     <group>
       <FullscreenRoundedBox />
-      <PerspectiveCamera
-        zoom={isHome ? 0.5 : 1}
-        makeDefault
-        ref={cameraRef}
-      >
-        {/* Container group for the cube & optional text */}
-        <group position={[0, 0, -5]}>
-          <group ref={groupRef} position={[0, 0, 0]} castShadow>
-            <primitive object={scene.scene} scale={[0.5, 0.5, 0.5]} />
-          </group>
-          {isHome && <WorthyDev />}
+      <PerspectiveCamera zoom={isHome ? 0.5 : 1} makeDefault ref={cameraRef} />
+
+      {isHome && <WorthyDev />}
+
+      <group position={[0, 0, -5]}>
+        <group ref={groupRef} position={[0, 0, 0]} castShadow>
+          <primitive object={scene.scene} scale={[0.5, 0.5, 0.5]} />
         </group>
-      </PerspectiveCamera>
+      </group>
+      <Stats />
       <GlowingBulbSpotLight />
       <DuckyShadowCaster />
-    </group>
-  );
-};
-
-
-/**
- * Simple point-light “bulb” + environment, with all extra references removed.
- */
-const GlowingBulbSpotLight = () => {
-
-  return (
-    <group>
-      {/* Single point light to match the original visuals */}
-      <pointLight
-        intensity={1000}
-        color="#fff"
-        castShadow
-        position={[0, 25, 20]}
-        // Reduced shadow map size to 1024 for performance; feel free to revert to 4096 if needed
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-bias={-0.0005}
-      />
-      <Environment preset="night" />
     </group>
   );
 };
@@ -180,72 +153,11 @@ const FullscreenRoundedBox: FC = () => {
     <RoundedBox
       ref={boxRef}
       args={[45, 45, 45]}
-      position={[0, 0, 10]}
+      position={[0, 0, 0]}
       receiveShadow
     >
-      <meshPhongMaterial shininess={1} side={THREE.BackSide} color="#934fd9" />
+      <meshPhongMaterial side={THREE.BackSide} color="#934fd9" />
     </RoundedBox>
-  );
-};
-
-const WorthyDev: FC = () => {
-  const [fontSizeLarge, setFontSizeLarge] = useState(1);
-
-  useEffect(() => {
-    const updateFontSizes = () => {
-      const isMobile = window.innerWidth <= 768;
-      setFontSizeLarge(isMobile ? 0.6 : 2);
-    };
-
-    updateFontSizes();
-    window.addEventListener("resize", updateFontSizes);
-    return () => window.removeEventListener("resize", updateFontSizes);
-  }, []);
-
-  return (
-    <group position={[0, 0, 4]} rotation={[0, 0, 0]} receiveShadow>
-      <Text
-        receiveShadow
-        fontSize={fontSizeLarge}
-        color="#fff"
-        position={[0, 1, -7]}
-      >
-        Travis Worthing
-      </Text>
-      <Text fontSize={fontSizeLarge} color="lime" position={[0, -1, -7]}>
-        @WorthyDev.com
-      </Text>
-    </group>
-  );
-};
-
-const DuckyShadowCaster: FC = () => {
-  const { scene } = useGLTF("./ducky/scene.gltf");
-  const duckyRef = useRef<THREE.Group>(null!);
-
-  useEffect(() => {
-    scene.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
-        (child as THREE.Mesh).castShadow = true;
-      }
-    });
-  }, [scene]);
-
-  useFrame(() => {
-    if (duckyRef.current) {
-      duckyRef.current.rotation.y = Math.abs(Date.now() * 0.001);
-    }
-  });
-
-  return (
-    <group
-      ref={duckyRef}
-      position={[0, 1, -3]}
-      rotation={[0, -Math.PI / 2, 0]}
-      castShadow
-    >
-      <primitive object={scene} scale={[2, 3, 3]} />
-    </group>
   );
 };
 
@@ -254,18 +166,28 @@ const DuckyShadowCaster: FC = () => {
  */
 export const BgScene: FC = React.memo(() => {
   const ref = useRef<HTMLDivElement>(null!);
+  const [isSwinging, setIsSwinging] = useState(true);
+  const onClick = () => {
+    setIsSwinging((prev) => !prev);
+  };
 
   return (
-    <div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
-      <Canvas className="h-full w-full" shadows>
-        <Suspense fallback={null}>
-          <group rotation={[0, 0, 0]} position={[0, 0, 0]}>
+    <>
+
+      <div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
+        <Canvas
+          dpr={[1, 2]}
+          className="h-full w-full"
+          shadows
+        >
+          <Suspense fallback={null}>
             <SwingingCube />
-          </group>
-          <Preload all />
-        </Suspense>
-      </Canvas>
-    </div>
+            <Preload all />
+            <AdaptiveDpr pixelated />
+          </Suspense>
+        </Canvas>
+      </div>
+    </>
   );
 });
 
