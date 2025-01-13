@@ -2,9 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  AccumulativeShadows,
   Environment,
-  OrbitControls,
   PerspectiveCamera,
   Preload,
   RoundedBox,
@@ -141,7 +139,7 @@ const SwingingCube: React.FC = () => {
     <group>
       <FullscreenRoundedBox />
       <PerspectiveCamera
-        zoom={isHome ? 1 : 1.5}
+        zoom={isHome ? 0.5 : 1}
         frames={60}
         makeDefault
         ref={cameraRef}
@@ -208,13 +206,13 @@ const GlowingBulbSpotLight: FC<GlowingBulbSpotLightProps> = ({ targetRef }) => {
     <group ref={groupRef}>
       <pointLight
         intensity={1000}
-        color={"#fff"}
+        color={"#db9292"}
         castShadow
         ref={spotLightRef}
-        position={[0, -0.5, 7]}
+        position={[0, 15, 50]}
         shadow-mapSize-width={4096}
         shadow-mapSize-height={4096}
-        shadow-bias={-0.00005}
+        shadow-bias={-0.0005}
       />
 
       <Environment preset="night" />
@@ -245,16 +243,13 @@ const FullscreenRoundedBox: React.FC = () => {
   );
 };
 
-
 const WorthyDev = () => {
   const [fontSizeLarge, setFontSizeLarge] = useState(1);
-  const [fontSizeSmall, setFontSizeSmall] = useState(0.11);
 
   useEffect(() => {
     const updateFontSizes = () => {
       const isMobile = window.innerWidth <= 768; // Example breakpoint for mobile
-      setFontSizeLarge(isMobile ? 0.6 : 1); // Adjust large text size
-      setFontSizeSmall(isMobile ? 0.08 : 0.11); // Adjust small text size
+      setFontSizeLarge(isMobile ? 0.6 : 2); // Adjust large text size
     };
 
     updateFontSizes(); // Initial setup
@@ -274,12 +269,7 @@ const WorthyDev = () => {
         Travis Worthing
       </Text>
 
-      <Text
-        fontSize={fontSizeLarge}
-        color={"lime"}
-        position={[0, -1, -7]}
-
-      >
+      <Text fontSize={fontSizeLarge} color={"lime"} position={[0, -1, -7]}>
         @WorthyDev.com
       </Text>
     </group>
