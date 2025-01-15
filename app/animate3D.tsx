@@ -176,14 +176,12 @@ export const BgScene: FC = React.memo(() => {
 
       <div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
         <Canvas
-          dpr={[1, 2]}
           className="h-full w-full"
           shadows
         >
           <Suspense fallback={null}>
             <SwingingCube />
             <Preload all />
-            <AdaptiveDpr pixelated />
           </Suspense>
         </Canvas>
       </div>
