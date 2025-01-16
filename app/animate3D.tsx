@@ -1,12 +1,10 @@
 "use client";
 
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  AdaptiveDpr,
   PerspectiveCamera,
   Preload,
   RoundedBox,
-  Stats,
   useGLTF,
 } from "@react-three/drei";
 import React, { FC, Suspense, useEffect, useRef, useState } from "react";
@@ -14,6 +12,8 @@ import * as THREE from "three";
 import { usePathname } from "next/navigation";
 import { GlowingBulbSpotLight } from "@/glowingBulbSpotLight";
 import { WorthyDev } from "@/worthyDev";
+import { AiOutlineLoading } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 /**
  * Helix-like function returning a 3D position on a spiral.
@@ -138,7 +138,6 @@ const SwingingCube = () => {
           <primitive object={scene.scene} scale={[0.5, 0.5, 0.5]} />
         </group>
       </group>
-      <Stats />
       <GlowingBulbSpotLight />
     </group>
   );
@@ -168,17 +167,24 @@ export const BgScene: FC = React.memo(() => {
   useEffect(() => {
     setTimeout(() => setMounted(true), 1000);
   }, []);
-  if (!mounted) return null;
+  if (!mounted)
+    return (
+      <AiOutlineLoading className="fixed top-1/2 left-1/2 size-52 -translate-x-1/2 -translate-y-1/2 animate-spin" />
+    );
   return (
     <>
-      <div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
+
+      <motion.div
+        className="fixed inset-0 top-0 z-[-1]"
+        ref={ref}
+      >
         <Canvas className="h-full w-full" shadows>
           <Suspense fallback={null}>
             <SwingingCube />
             <Preload all />
           </Suspense>
         </Canvas>
-      </div>
+      </motion.div>
     </>
   );
 });

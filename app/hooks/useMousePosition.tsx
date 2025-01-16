@@ -116,12 +116,14 @@ const CustomCursor = () => {
     },
   };
 
+  if (width === 0 || height === 0 || width <= 500 || height <= 500) return null;
+
   return (
     <AnimatePresence>
       <motion.div ref={ref}>
         <motion.div
           className={cn(
-            "pointer-events-none fixed top-0 left-0 z-50 hidden origin-center justify-center md:flex ",
+            "pointer-events-none fixed top-0 left-0 z-50 hidden origin-center justify-center md:flex",
           )}
           initial={{ opacity: 0 }}
           animate={specialElement ? "element" : "default"}
