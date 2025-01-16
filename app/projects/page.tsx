@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import type { Project } from "./project-data";
+import { contractWork, Project } from "./project-data";
 import { currentProjects, projects } from "./project-data";
 
 import { Badge } from "../components/ui/badge";
@@ -167,7 +167,28 @@ export default function ProjectsPage() {
             </div>
           </motion.section>
 
-          <p className="mb-8 text-lg">Work Projects</p>
+          <motion.section
+            initial={{ opacity: 0, y: -100 }}
+            whileInView={YCenter}
+            custom={{ duration: headerDuration, delay: headerDelay }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          >
+            <h2 className="mb-4 text-2xl font-semibold">Memorable Contract Work</h2>
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+              {contractWork.map((project) => (
+                <motion.section
+                  initial={{ opacity: 0, y: -100 }}
+                  whileInView={YCenter}
+                  key={project.title}
+                  custom={{ duration: headerDuration, delay: headerDelay }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                >
+                  <ProjectCard project={project} />
+                </motion.section>
+              ))}
+            </div>
+          </motion.section>
+
           <motion.section
             initial={{ opacity: 0, y: -100 }}
             whileInView={YCenter}

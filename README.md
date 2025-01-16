@@ -42,3 +42,6 @@ Feel free to reach out if you're interested in collaborating or if you just want
 
 Thank you for visiting my GitHub! Feel free to star and fork any repositories you find intriguing. Let's build the future together. 🚀
 
+     Cartoony Rubber Ducky (https://skfb.ly/oBoUE) by Xabier Garcia is
+        licensed under Creative Commons Attribution
+        (http://creativecommons.org/licenses/by/4.0/).

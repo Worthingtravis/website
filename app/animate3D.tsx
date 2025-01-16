@@ -128,11 +128,8 @@ const SwingingCube = () => {
 
   return (
     <group>
-      <FullscreenRoundedBox />
-      <PerspectiveCamera zoom={isHome ? 0.5 : 1} makeDefault ref={cameraRef} />
-
+      <PerspectiveCamera makeDefault ref={cameraRef} position={[0, 0, 5]} />
       {isHome && <WorthyDev />}
-
       <group position={[0, 0, -5]}>
         <group ref={groupRef} position={[0, 0, 0]} castShadow>
           <primitive object={scene.scene} scale={[0.5, 0.5, 0.5]} />
@@ -140,21 +137,6 @@ const SwingingCube = () => {
       </group>
       <GlowingBulbSpotLight />
     </group>
-  );
-};
-
-const FullscreenRoundedBox: FC = () => {
-  const boxRef = useRef<THREE.Mesh>(null!);
-
-  return (
-    <RoundedBox
-      ref={boxRef}
-      args={[45, 45, 45]}
-      position={[0, 0, 0]}
-      receiveShadow
-    >
-      <meshPhongMaterial side={THREE.BackSide} color="#934fd9" />
-    </RoundedBox>
   );
 };
 
@@ -173,11 +155,7 @@ export const BgScene: FC = React.memo(() => {
     );
   return (
     <>
-
-      <motion.div
-        className="fixed inset-0 top-0 z-[-1]"
-        ref={ref}
-      >
+      <motion.div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
         <Canvas className="h-full w-full" shadows>
           <Suspense fallback={null}>
             <SwingingCube />

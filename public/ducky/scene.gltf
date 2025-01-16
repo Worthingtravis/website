@@ -3,172 +3,112 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 478,
+      "count": 1405,
       "max": [
-        12.363382339477539,
-        34.620880126953125,
-        20.87137222290039
+        5.044952869415283,
+        3.228074073791504,
+        9.828036308288574
       ],
       "min": [
-        -11.759834289550781,
-        2.5892293453216553,
-        -14.80372142791748
+        -4.9444780349731445,
+        -3.228074073791504,
+        -0.045389000326395035
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 5736,
+      "byteOffset": 16860,
       "componentType": 5126,
-      "count": 478,
+      "count": 1405,
       "max": [
-        0.9942849278450012,
-        1.0,
-        0.9996569156646729
+        0.9982295036315918,
+        0.9989432096481323,
+        0.9999717473983765
       ],
       "min": [
-        -0.994284987449646,
-        -1.0,
-        -0.9999498128890991
+        -0.9985859990119934,
+        -0.9989432096481323,
+        -0.9999925494194031
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 3,
       "componentType": 5126,
-      "count": 478,
+      "count": 1405,
       "max": [
-        1.0,
-        0.9768306612968445,
-        1.0,
+        0.9989938139915466,
+        0.9999808073043823,
+        0.992313027381897,
         1.0
       ],
       "min": [
-        -0.9639670848846436,
-        -0.9999463558197021,
-        -0.9999633431434631,
-        -1.0
+        -0.9995778799057007,
+        -0.9999997615814209,
+        -0.9841717481613159,
+        1.0
       ],
       "type": "VEC4"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 478,
+      "count": 1405,
       "max": [
-        0.9960943460464478,
-        0.9917910695075989
+        0.9885129928588867,
+        0.9888669848442078
       ],
       "min": [
-        0.004941076040267944,
-        0.010549873113632202
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 1,
-      "byteOffset": 3824,
-      "componentType": 5126,
-      "count": 478,
-      "max": [
-        0.9960943460464478,
-        0.9917910695075989
-      ],
-      "min": [
-        0.004941076040267944,
-        0.010549873113632202
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 1,
-      "byteOffset": 7648,
-      "componentType": 5126,
-      "count": 478,
-      "max": [
-        0.9960943460464478,
-        0.9917910695075989
-      ],
-      "min": [
-        0.004941076040267944,
-        0.010549873113632202
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 1,
-      "byteOffset": 11472,
-      "componentType": 5126,
-      "count": 478,
-      "max": [
-        0.9960943460464478,
-        0.9917910695075989
-      ],
-      "min": [
-        0.004941076040267944,
-        0.010549873113632202
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 1,
-      "byteOffset": 15296,
-      "componentType": 5126,
-      "count": 478,
-      "max": [
-        0.9960943460464478,
-        0.9917910695075989
-      ],
-      "min": [
-        0.004941076040267944,
-        0.010549873113632202
+        0.00897900015115738,
+        0.03013000078499317
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 1662,
+      "count": 7428,
       "type": "SCALAR"
     }
   ],
   "asset": {
     "extras": {
-      "author": "j-conrad (https://sketchfab.com/j-conrad)",
+      "author": "Xabier Garcia (https://sketchfab.com/XabS11)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/ducky-mozillahubs-a4c500d7358a4a199b6a5cd35f416466",
-      "title": "Ducky_MozillaHubs"
+      "source": "https://sketchfab.com/3d-models/cartoony-rubber-ducky-8a6e661916b74f9caa1c20dd6fdf77ad",
+      "title": "Cartoony Rubber Ducky"
     },
-    "generator": "Sketchfab-12.68.0",
+    "generator": "Sketchfab-14.58.0",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 6648,
+      "byteLength": 29712,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 19120,
-      "byteOffset": 6648,
+      "byteLength": 11240,
+      "byteOffset": 29712,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 11472,
-      "byteOffset": 25768,
+      "byteLength": 33720,
+      "byteOffset": 40952,
       "byteStride": 12,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 7648,
-      "byteOffset": 37240,
+      "byteLength": 22480,
+      "byteOffset": 74672,
       "byteStride": 16,
       "name": "floatBufferViews",
       "target": 34962
@@ -176,29 +116,27 @@
   ],
   "buffers": [
     {
-      "byteLength": 44888,
+      "byteLength": 97152,
       "uri": "scene.bin"
     }
   ],
   "images": [
     {
-      "uri": "textures/DuckyMat_baseColor.jpeg"
+      "uri": "textures/lambert2SG_baseColor.jpeg"
     },
     {
-      "uri": "textures/DuckyMat_metallicRoughness.png"
+      "uri": "textures/lambert2SG_metallicRoughness.png"
     },
     {
-      "uri": "textures/DuckyMat_normal.png"
+      "uri": "textures/lambert2SG_normal.png"
     }
   ],
   "materials": [
     {
-      "name": "DuckyMat",
+      "doubleSided": true,
+      "name": "lambert2SG",
       "normalTexture": {
         "index": 2
-      },
-      "occlusionTexture": {
-        "index": 1
       },
       "pbrMetallicRoughness": {
         "baseColorTexture": {
@@ -212,20 +150,16 @@
   ],
   "meshes": [
     {
-      "name": "Ducky_DuckyMat_0",
+      "name": "Object_0",
       "primitives": [
         {
           "attributes": {
             "NORMAL": 1,
             "POSITION": 0,
             "TANGENT": 2,
-            "TEXCOORD_0": 3,
-            "TEXCOORD_1": 4,
-            "TEXCOORD_2": 5,
-            "TEXCOORD_3": 6,
-            "TEXCOORD_4": 7
+            "TEXCOORD_0": 3
           },
-          "indices": 8,
+          "indices": 4,
           "material": 0,
           "mode": 4
         }
@@ -238,17 +172,17 @@
         1
       ],
       "matrix": [
-        0.009999999776482582,
+        0.03331158682703972,
         0.0,
         0.0,
         0.0,
         0.0,
-        2.2204459996194763e-18,
-        -0.009999999776482582,
+        7.396658136435912e-18,
+        -0.03331158682703972,
         0.0,
         0.0,
-        0.009999999776482582,
-        2.2204459996194763e-18,
+        0.03331158682703972,
+        7.396658136435912e-18,
         0.0,
         0.0,
         0.0,
@@ -261,41 +195,11 @@
       "children": [
         2
       ],
-      "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0,
-        0.0,
-        0.0,
-        -1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ],
-      "name": "ed3d3236066a404ca3cd9ec4e3be5927.fbx"
-    },
-    {
-      "children": [
-        3
-      ],
-      "name": "RootNode"
-    },
-    {
-      "children": [
-        4
-      ],
-      "name": "Ducky"
+      "name": "Duck.obj.cleaner.materialmerger.gles"
     },
     {
       "mesh": 0,
-      "name": "Ducky_DuckyMat_0"
+      "name": "Object_2"
     }
   ],
   "samplers": [

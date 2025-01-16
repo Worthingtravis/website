@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Text } from "@react-three/drei";
+import { Resize, Text } from "@react-three/drei";
 
 export const WorthyDev: FC = () => {
   const [fontSizeLarge, setFontSizeLarge] = useState(1);
@@ -16,18 +16,21 @@ export const WorthyDev: FC = () => {
   }, []);
 
   return (
-    <group position={[0, 0, -1]} rotation={[0, 0, 0]} receiveShadow>
-      <Text
-        receiveShadow
-        fontSize={fontSizeLarge}
-        color="#fff"
-        position={[0, 1, -7]}
-      >
-        Travis Worthing
-      </Text>
-      <Text fontSize={fontSizeLarge} color="lime" position={[0, -1, -7]}>
-        @WorthyDev.com
-      </Text>
+    <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
+      <Resize>
+        <Text
+          receiveShadow
+          fontSize={fontSizeLarge}
+          color="#fff"
+          position={[0, 1, -7]}
+          castShadow
+        >
+          Travis Worthing
+        </Text>
+        <Text fontSize={fontSizeLarge} color="lime" position={[0, -1, -7]}>
+          @WorthyDev.com
+        </Text>
+      </Resize>
     </group>
   );
 };
