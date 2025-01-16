@@ -14,7 +14,6 @@ import * as THREE from "three";
 import { usePathname } from "next/navigation";
 import { GlowingBulbSpotLight } from "@/glowingBulbSpotLight";
 import { WorthyDev } from "@/worthyDev";
-import { DuckyShadowCaster } from "@/duckyShadowCaster";
 
 /**
  * Helix-like function returning a 3D position on a spiral.
@@ -141,7 +140,6 @@ const SwingingCube = () => {
       </group>
       <Stats />
       <GlowingBulbSpotLight />
-      <DuckyShadowCaster />
     </group>
   );
 };
@@ -166,19 +164,15 @@ const FullscreenRoundedBox: FC = () => {
  */
 export const BgScene: FC = React.memo(() => {
   const ref = useRef<HTMLDivElement>(null!);
-  const [isSwinging, setIsSwinging] = useState(true);
-  const onClick = () => {
-    setIsSwinging((prev) => !prev);
-  };
-
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setTimeout(() => setMounted(true), 1000);
+  }, []);
+  if (!mounted) return null;
   return (
     <>
-
       <div className="fixed inset-0 top-0 z-[-1]" ref={ref}>
-        <Canvas
-          className="h-full w-full"
-          shadows
-        >
+        <Canvas className="h-full w-full" shadows>
           <Suspense fallback={null}>
             <SwingingCube />
             <Preload all />
