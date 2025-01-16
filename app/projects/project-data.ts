@@ -71,7 +71,7 @@ export const contractWork: Project[] = [
     date: "2023",
   },
   {
-    bgImage: "/sacred-forum.png",
+    bgImage: "/sacred-forum-2.png",
     imageSrc: "/sacred.png",
     title: "Sacred Forum Application",
     marketingSiteLink: "https://app.sacredprotocol.com",
