@@ -50,7 +50,7 @@ const jobs: Job[] = [
     period: "Jul 2023 - Sep 2023",
     responsibilities: [
       "Implemented front-end interfaces for blockchain interaction, focusing on user experience and technical optimization.",
-      "Built testing frameworks for web3 integrations using React Testing Library and Cypress.",
+      "Built testing frameworks for web3 integrations using React Testing Library and PlayWright.",
       "Collaborated with blockchain engineers to ensure seamless integration between front-end applications and smart contract functionality.",
       "Optimized application performance and network interactions for better handling of web3 transactions.",
     ],
@@ -111,6 +111,30 @@ const jobs: Job[] = [
     ],
     tags: ["Ionic", "React", "TypeScript", "Microsoft Auth", "Responsive Design", "AWS"],
   },
+
+  {
+    id: "developer",
+    title: "Applications Developer",
+    company: "Lode",
+    period: "2017 - Jun 2021",
+    responsibilities: [
+      "Developed and maintained customer-facing websites for the stable token cryptocurrency platform backed by silver.",
+      "Built dashboards and admin interfaces to facilitate user interaction and system control.",
+      "Implemented scalable and responsive web designs using modern frameworks and technologies.",
+      "Collaborated with cross-functional teams to deliver key features and enhance overall user experience.",
+      "Ensured code quality and performance optimizations to meet enterprise-grade standards.",
+      "Integrated and optimized Laravel API endpoints to enhance backend functionality and data management."
+    ],
+    tags: [
+      "React",
+      "TypeScript",
+      "Dashboard Development",
+      "Admin Panel",
+      "Responsive Design",
+      "Cryptocurrency",
+      "Laravel"
+    ]
+  }
 ];
 
 // Helper function to choose an icon per job
