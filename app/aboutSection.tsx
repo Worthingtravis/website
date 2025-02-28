@@ -30,21 +30,16 @@ export const AboutSection = () => {
           >
             <h3 className="text-2xl font-bold text-cyan-400">Who I Am</h3>
             <p className="text-lg leading-relaxed text-gray-300">
-              I'm a seasoned Web3 developer with expertise in building
-              decentralized applications, NFT collections, and blockchain-based
-              solutions. With a background spanning both contract work and
-              full-time positions, I've developed a deep understanding of
-              blockchain technologies and smart contract implementation.
+              I&#39;m a seasoned full-stack developer with extensive experience in React, TypeScript and modern web technologies.
+              Having thrived in fast-paced startup environments, I excel at rapid iteration and delivering high-quality applications
+              under tight deadlines.
             </p>
             <p className="text-lg leading-relaxed text-gray-300">
-              My journey in web development began with traditional frameworks,
-              but I quickly became fascinated with the possibilities of
-              blockchain technology. Now I specialize in bridging the gap
-              between conventional web applications and the decentralized
-              ecosystem.
+              My journey in web development has led me to specialize in creating intuitive,
+              responsive user interfaces and seamless web experiences. I have particular expertise in
+              web3 integrations, having built multiple wallet implementations across Ethereum-based chains
+              and Solana.
             </p>
-
-
           </motion.div>
 
           {/* Right column: Skills */}
@@ -59,23 +54,24 @@ export const AboutSection = () => {
 
             {/* Skill Categories */}
             <div className="space-y-8">
-              {/* Blockchain Skills */}
+              {/* Frontend Skills */}
               <div>
-                <h4 className="mb-3 text-xl font-medium">Blockchain</h4>
+                <h4 className="mb-3 text-xl font-medium">Frontend</h4>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "Solidity",
-                    "Ethereum",
-                    "Smart Contracts",
-                    "ERC20",
-                    "ERC721",
-                    "Web3.js",
-                    "Avalanche",
-                    "NFTs",
+                    "React",
+                    "TypeScript",
+                    "Next.js",
+                    "Tailwind CSS",
+                    "Framer Motion",
+                    "Material-UI",
+                    "Three.js",
+                    "Redux",
+                    "React Query",
                   ].map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full bg-cyan-900/30 px-3 py-1 text-sm text-cyan-300"
+                      className="rounded-full bg-indigo-900/30 px-3 py-1 text-sm text-indigo-300"
                     >
                       {skill}
                     </span>
@@ -83,22 +79,23 @@ export const AboutSection = () => {
                 </div>
               </div>
 
-              {/* Frontend Skills */}
+              {/* Web3 Skills */}
               <div>
-                <h4 className="mb-3 text-xl font-medium">Frontend</h4>
+                <h4 className="mb-3 text-xl font-medium">Web3</h4>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Tailwind CSS",
-                    "Framer Motion",
-                    "Material-UI",
-                    "Three.js",
+                    "Web3.js",
+                    "Ethers.js",
+                    "Wallet Integration",
+                    "dApp Development",
+                    "Avalanche",
+                    "Ethereum",
+                    "Solana",
+                    "NFT Platforms",
                   ].map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full bg-indigo-900/30 px-3 py-1 text-sm text-indigo-300"
+                      className="rounded-full bg-cyan-900/30 px-3 py-1 text-sm text-cyan-300"
                     >
                       {skill}
                     </span>
@@ -112,10 +109,12 @@ export const AboutSection = () => {
                 <div className="flex flex-wrap gap-2">
                   {[
                     "Node.js",
+                    "Express",
                     "Laravel",
                     "MySQL",
                     "AWS",
                     "API Integration",
+                    "Firebase",
                   ].map((skill) => (
                     <span
                       key={skill}
@@ -153,15 +152,14 @@ export const AboutSection = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                <line x1="16" y1="8" x2="2" y2="22"></line>
-                <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                <path d="M16 18l6-6-6-6"></path>
+                <path d="M8 6l-6 6 6 6"></path>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold">NFT Development</h3>
+            <h3 className="mb-2 text-xl font-bold">Frontend Development</h3>
             <p className="text-gray-300">
-              Designing and implementing unique NFT collections with custom
-              smart contracts and engaging frontend interfaces.
+              Creating responsive, interactive web applications with modern React, TypeScript, and Next.js
+              to deliver exceptional user experiences.
             </p>
           </div>
 
@@ -185,10 +183,10 @@ export const AboutSection = () => {
                 <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold">DApp Development</h3>
+            <h3 className="mb-2 text-xl font-bold">Web3 Integration</h3>
             <p className="text-gray-300">
-              Building decentralized applications that connect traditional web
-              interfaces with blockchain functionality.
+              Implementing blockchain functionality into web applications, including wallet connections,
+              NFT marketplaces, and decentralized platforms.
             </p>
           </div>
 
@@ -207,14 +205,16 @@ export const AboutSection = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold">Smart Contract Auditing</h3>
+            <h3 className="mb-2 text-xl font-bold">Startup-Ready Development</h3>
             <p className="text-gray-300">
-              Ensuring smart contract security through comprehensive code
-              reviews and industry best practices implementation.
+              Delivering rapid iterations and MVPs for startups, with a focus on clean code,
+              scalable architecture, and quick time-to-market.
             </p>
           </div>
         </motion.div>

@@ -2,8 +2,6 @@ import React from "react";
 import "./styles/global.css";
 import { ToastProvider } from "@/ui/toast";
 import { Exo } from "next/font/google";
-import BgScene from "./animate3D";
-import CustomCursor from "./hooks/useMousePosition";
 import { cn } from "@/lib/utils";
 import { NavHeader } from "./nav-header";
 

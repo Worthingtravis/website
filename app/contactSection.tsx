@@ -23,24 +23,31 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
+    try {
+      // Simulate form submission process
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-      // Reset form after success
-      setTimeout(() => {
-        setFormState({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
-        });
-        setSubmitSuccess(false);
-      }, 3000);
-    }, 1500);
+      // Create email mailto link with form data
+      const { name, email, subject, message } = formState;
+      const mailtoSubject = encodeURIComponent(subject);
+      const mailtoBody = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\n${message}`
+      );
+
+      // Open email client with pre-filled data
+      window.location.href = `mailto:worthingtravis@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+      setSubmitSuccess(true);
+    } catch (error) {
+      console.error("Error in form submission:", error);
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitSuccess(false), 3000); // Reset success state after 3 seconds
+    }
   };
 
+  
+  
+  
   return (
     <section
       id="contact"
@@ -55,7 +62,7 @@ export const ContactSection = () => {
         >
           <h2 className="text-4xl font-bold mb-4 text-center">Get In Touch</h2>
           <p className="text-xl text-gray-400 text-center max-w-2xl mx-auto mb-16">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+            Have a project in mind or want to discuss opportunities? I&#39;d love to hear from you!
           </p>
         </motion.div>
 

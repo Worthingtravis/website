@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { FaEthereum, FaPaintBrush, FaReact } from "react-icons/fa";
+import { FaReact, FaJs, FaPaintBrush } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
-import { GiSpermWhale } from "react-icons/gi";
+import { SiTypescript } from "react-icons/si";
 
 export const HeroSection = () => {
   return (
@@ -66,9 +66,9 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h2 className="mb-8 text-2xl font-light text-cyan-400 md:text-3xl">
-              Web3 Developer & Smart Contract Specialist
-            </h2>
+              <h2 className="mb-8 text-2xl font-light text-cyan-400 md:text-3xl">
+                Senior Full-Stack Developer
+              </h2>
           </motion.div>
 
           <motion.p
@@ -77,9 +77,9 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            I build exceptional digital experiences with a focus on NFT
-            collections, smart contracts, and decentralized applications.
-            Transforming ideas into powerful blockchain solutions.
+            I build exceptional digital experiences with a focus on modern React applications
+            and web3 integrations. Specializing in fast-paced startup environments where
+            quality and speed are essential.
           </motion.p>
 
           <motion.div
@@ -126,10 +126,10 @@ export const HeroSection = () => {
       >
         <div className="flex gap-6 rounded-full bg-black/20 px-4 py-2 backdrop-blur-sm">
           <span className="text-3xl text-cyan-500"><FaReact /></span>
-          <span className="text-3xl text-purple-500"><FaEthereum /></span>
+          <span className="text-3xl text-blue-500"><SiTypescript /></span>
           <span className="text-3xl text-gray-800"><RiNextjsFill /></span>
-          <span className="text-3xl text-blue-500"><GiSpermWhale /></span>
-          <span className="text-3xl text-yellow-500"><FaPaintBrush /></span>
+          <span className="text-3xl text-yellow-500"><FaJs /></span>
+          <span className="text-3xl text-pink-500"><FaPaintBrush /></span>
         </div>
       </motion.div>
 

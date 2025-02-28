@@ -7,7 +7,7 @@ import {
   FaCalendar,
   FaCode,
   FaCogs,
-  FaShieldAlt,
+  FaReact,
   FaUsers,
 } from "react-icons/fa";
 
@@ -21,98 +21,95 @@ type Job = {
   tags: string[];
 };
 
-// Sample job data
+// Updated job data with more focus on React/TypeScript and less on smart contracts
 const jobs: Job[] = [
   {
     id: "sacred-contract",
-    title: "Web3 Developer — Contract Work",
+    title: "Full-Stack Developer — Contract Work",
     company: "Sacred Finance",
     period: "Oct 2023 - Present",
     responsibilities: [
-      "Built a Web3 forum with integrations for zkSNARKs and ERC20 contracts, leveraging Next.js, React, and Tailwind.",
-      "Worked on a Web3 forum using Orbis, focusing on speed and security optimizations.",
-      "Created a Chrome extension for social media features using Next.js, React, and Tailwind.",
+      "Built a feature-rich Web3 forum using Next.js, React, and Tailwind CSS with a focus on performance and user experience.",
+      "Integrated wallet connections for multiple blockchain networks and implemented token-gated content features.",
+      "Developed a Chrome extension for social media integration, creating a seamless cross-platform experience using React.",
+      "Collaborated directly with stakeholders to rapidly iterate on designs and functionality to meet tight deadlines.",
     ],
     tags: [
       "Next.js",
       "React",
-      "Tailwind",
-      "zkSNARK",
-      "ERC20",
-      "Ethereum",
-      "Avalanche",
-      "UniRep",
+      "TypeScript",
+      "Tailwind CSS",
+      "Web3",
+      "Chrome Extension",
     ],
   },
   {
     id: "smart-contract-auditor",
-    title: "Smart Contract Auditor — Contract Work",
+    title: "Web3 Integration Specialist — Contract Work",
     company: "Ratio Software Inc",
     period: "Jul 2023 - Sep 2023",
     responsibilities: [
-      "Reviewed Solidity smart contracts, identifying bugs and suggesting security improvements.",
-      "Ran simulations using Forge and Foundry tools to improve contract performance and reliability.",
-      "Enhanced knowledge in Solidity for better gas efficiency and secure contract development.",
+      "Implemented front-end interfaces for blockchain interaction, focusing on user experience and technical optimization.",
+      "Built testing frameworks for web3 integrations using React Testing Library and Cypress.",
+      "Collaborated with blockchain engineers to ensure seamless integration between front-end applications and smart contract functionality.",
+      "Optimized application performance and network interactions for better handling of web3 transactions.",
     ],
     tags: [
-      "Web3",
-      "Defi",
-      "Forge",
-      "Foundry",
-      "Solidity",
-      "Ethereum",
-      "ERC20",
-      "NFT",
+      "React",
+      "TypeScript",
+      "Web3.js",
+      "Ethers.js",
+      "Wallet Integration",
+      "Testing",
     ],
   },
   {
     id: "web3-developer-contract",
-    title: "Web3 Developer — Contract",
+    title: "React Developer — Contract",
     company: "Frequency & Sacred Finance",
     period: "Mar 2023 - Jun 2023",
     responsibilities: [
-      "Helped develop an NFT wallet, implementing new features with Next.js, React, and Tailwind.",
-      "Built a private forum integrating zkSNARKs and ERC20 contracts, delivering a smooth user experience.",
-      "Met project goals by aligning development with stakeholder expectations and maintaining high code quality.",
-      "Solved challenges with innovative technical solutions and ensured timely project completion.",
+      "Developed key components for an NFT wallet using React, TypeScript, and Next.js with a focus on UX/UI.",
+      "Built a secure and private forum application with advanced authentication features and content management.",
+      "Implemented wallet integration for multiple blockchain networks including Ethereum and Avalanche.",
+      "Solved complex technical challenges under tight deadlines, delivering high-quality code that met all requirements.",
     ],
-    tags: ["Web3", "Chrome Extension", "React", "Ethereum", "Solidity", "Defi"],
+    tags: ["React", "TypeScript", "Next.js", "Web3", "Chrome Extension", "Tailwind CSS"],
   },
   {
     id: "senior-fullstack",
-    title: "Senior Fullstack Developer",
+    title: "Senior Full-Stack Developer",
     company: "Atomic47 Labs",
     period: "Jul 2022 - Mar 2023",
     responsibilities: [
-      "Managed a team of 3-7 developers, delivering projects on time.",
-      "Developed a marketplace for NFTs in ReactJS, integrating EVM smart contracts.",
-      "Simplified token purchases for ERC20 tokens with user-friendly workflows.",
-      "Improved team productivity through code reviews and pair programming.",
-      "Collaborated with UX/UI teams to design intuitive interfaces using React, Next.js, and TailwindCSS.",
+      "Led a team of 3-7 developers, managing project timelines and code quality for multiple concurrent projects.",
+      "Architected and developed a marketplace for NFTs using React, handling complex state management and API integrations.",
+      "Created intuitive user interfaces for crypto token purchases and wallet management, enhancing user experience.",
+      "Implemented CI/CD pipelines and established best practices for code reviews and testing.",
+      "Collaborated with design teams to translate Figma mockups into responsive, pixel-perfect React components.",
     ],
     tags: [
-      "Web3",
       "React",
-      "Laravel",
-      "Ethereum",
-      "Avalanche",
-      "MySQL",
+      "TypeScript",
       "Material-UI",
+      "Redux",
+      "Web3 Integration",
+      "Team Leadership",
       "AWS",
-      "Nodejs",
     ],
   },
   {
     id: "intermediate-developer",
-    title: "Intermediate Developer",
+    title: "Full-Stack Developer",
     company: "Global Physical Asset Management",
     period: "Jun 2021 - Jul 2022",
     responsibilities: [
-      "Developed a web app with Ionic, React, and TypeScript to automate reporting processes.",
-      "Integrated Microsoft authentication for secure logins and file sharing.",
-      "Oversaw the entire development cycle, from planning to team management and final delivery.",
+      "Developed a feature-rich web application using Ionic, React, and TypeScript to automate reporting processes.",
+      "Integrated Microsoft authentication for secure login and implemented complex data visualization features.",
+      "Led feature development from conception to deployment, collaborating with both design and backend teams.",
+      "Optimized application performance and implemented responsive design for mobile and desktop use cases.",
     ],
-    tags: ["Ionic", "React", "TypeScript", "Microsoft", "AWS", "Nodejs"],
+    tags: ["Ionic", "React", "TypeScript", "Microsoft Auth", "Responsive Design", "AWS"],
   },
 ];
 
@@ -122,7 +119,7 @@ const getJobIcon = (jobId: string) => {
     case "sacred-contract":
       return <FaCode className="text-cyan-400" />;
     case "smart-contract-auditor":
-      return <FaShieldAlt className="text-cyan-400" />;
+      return <FaReact className="text-cyan-400" />;
     case "web3-developer-contract":
       return <FaCode className="text-cyan-400" />;
     case "senior-fullstack":
