@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, BriefcaseIcon, FolderIcon, UserIcon, MailIcon } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { cn } from "./lib/utils";
 
@@ -12,77 +10,86 @@ interface Nav {
   label: React.ReactNode;
   href: string;
   external?: boolean;
-  hoverPopover?: {
-    content: string;
-    position: "top" | "right" | "bottom" | "left";
-  };
+  tooltip?: string;
 }
 
 const Links: Nav[] = [
-  { label: <HomeIcon size={64} />, href: "/" },
-  { label: "Experience", href: "/resume" },
-  { label: "Projects", href: "/projects" },
+  { label: <HomeIcon size={24} />, href: "#hero", tooltip: "Home" },
+  { label: <UserIcon size={24} />, href: "#about", tooltip: "About" },
+  { label: <FolderIcon size={24} />, href: "#projects", tooltip: "Projects" },
+  { label: <BriefcaseIcon size={24} />, href: "#experience", tooltip: "Experience" },
+  { label: <MailIcon size={24} />, href: "#contact", tooltip: "Contact" },
   {
-    label: <FaGithub size={64} />,
+    label: <FaGithub size={24} />,
     href: "https://github.com/worthingtravis",
     external: true,
-    hoverPopover: {
-      content: "GitHub",
-      position: "right",
-    },
+    tooltip: "GitHub",
   },
 ];
 
 export function NavHeader() {
-  const pathname = usePathname();
-  const [underline, setUnderline] = useState<{ left: number; width: number }>({
-    left: 0,
-    width: 0,
-  });
+  const [activeSection, setActiveSection] = React.useState<string>("#hero");
   const navRef = useRef<HTMLDivElement>(null);
-  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
+  // Track scroll position to highlight active nav item
   useEffect(() => {
-    const activeLink = linkRefs.current[pathname];
-    if (activeLink && navRef.current) {
-      const containerRect = navRef.current.getBoundingClientRect();
-      const linkRect = activeLink.getBoundingClientRect();
-      setUnderline({
-        left: linkRect.left - containerRect.left,
-        width: linkRect.width,
-      });
-    }
-  }, [pathname]);
+    const handleScroll = () => {
+      const sections = document.querySelectorAll("section[id]");
+      const scrollPosition = window.scrollY + 100; // Adding offset for better UX
 
-  // if the screen resizes, update the underline
+      sections.forEach(section => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = section.clientHeight;
+        const sectionId = section.getAttribute("id");
+
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          setActiveSection(`#${sectionId}`);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
       ref={navRef}
-      className=" z-10 flex h-32 items-center select-none justify-center gap-2 md:gap-8 px-6 md:backdrop-blur-none backdrop-blur-sm"
+      className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center select-none justify-center gap-2 md:gap-8 backdrop-blur-sm bg-background/70"
     >
-      {Links.map(({ label, href, external }) => (
-        <Link
-          {...(external
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
-
-          data-cursor
-          key={href}
-          href={href}
-          // @ts-ignore
-          ref={(el) => (linkRefs.current[href] = el)}
-          className={cn(
-            "text-foreground relative flex justify-center xl:text-2xl text-lg 2xl:text-6xl !rounded-full p-4 hover:text-blue-400",
-            pathname === href ? "text-cyan-400" : "",
-          )}
-        >
-          {label}
-
-
-        </Link>
-      ))}
-
+      <div className="flex items-center justify-center gap-4 md:gap-8 px-4">
+        {Links.map(({ label, href, external, tooltip }) => (
+          <a
+            key={href}
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            onClick={(e) => {
+              if (!external) {
+                e.preventDefault();
+                document.querySelector(href)?.scrollIntoView({
+                  behavior: "smooth"
+                });
+              }
+            }}
+            data-cursor
+            className={cn(
+              "relative flex justify-center items-center rounded-full p-3 hover:bg-gray-800/50 transition-colors duration-300",
+              activeSection === href ? "text-cyan-400" : "text-foreground",
+            )}
+          >
+            {label}
+            {tooltip && (
+              <span className="absolute -bottom-8 text-xs bg-background/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                {tooltip}
+              </span>
+            )}
+          </a>
+        ))}
+      </div>
     </nav>
   );
 }
