@@ -1,153 +1,167 @@
-import { motion } from "framer-motion";
 import React from "react";
 import { FaReact, FaJs, FaPaintBrush } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
+import { Section } from "@/components/section";
+import { FadeIn, ScaleIn } from "@/components/motion";
+import { Button } from "@/components/button";
+import { SkipLink } from "@/components/accessibility";
+import { useMotionPreferences } from "@/components/motion-preferences";
+import { useAnalytics } from "@/hooks/use-analytics";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/interactive";
 
 export const HeroSection = () => {
+  const { prefersReducedMotion } = useMotionPreferences();
+  const { trackEvent } = useAnalytics();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+      trackEvent("section_scroll", { sectionId });
+    }
+  };
+
   return (
-    <section
-      id="hero"
-      className="relative flex h-screen items-center justify-center overflow-hidden"
-    >
+    <Section id="hero" fullHeight className="relative overflow-hidden">
+      <SkipLink />
+      
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <motion.div
+        <div
           className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-cyan-500/10 blur-xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            rotate: [0, 90],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          role="presentation"
+          aria-hidden="true"
         />
-        <motion.div
+        <div
           className="absolute right-1/3 bottom-1/3 h-72 w-72 rounded-full bg-indigo-500/10 blur-xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
-            rotate: [0, -90],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          role="presentation"
+          aria-hidden="true"
         />
       </div>
 
       <div className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-4xl px-4 text-center"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 inline-block"
-          >
+        <FadeIn className="mx-auto max-w-4xl px-4 text-center">
+          <ScaleIn className="mb-4 inline-block">
             <div className="relative inline-block">
               <span className="font-mono text-sm tracking-wider text-cyan-400 md:text-base">
                 Hello, I&#39;m
               </span>
             </div>
-          </motion.div>
+          </ScaleIn>
 
-          <motion.h1
-            className="mb-6 text-5xl font-bold md:text-7xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <h1 className="mb-6 text-5xl font-bold md:text-7xl">
             Travis Worthing
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-              <h2 className="mb-8 text-2xl font-light text-cyan-400 md:text-3xl">
-                Senior Full-Stack Developer
-              </h2>
-          </motion.div>
+          <h2 className="mb-8 text-2xl font-light text-cyan-400 md:text-3xl">
+            Senior Full-Stack Developer
+          </h2>
 
-          <motion.p
-            className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl">
             I build exceptional digital experiences with a focus on modern React applications
             and web3 integrations. Specializing in fast-paced startup environments where
             quality and speed are essential.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-12 flex flex-wrap justify-center gap-4"
-          >
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector("#projects")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="rounded-full bg-cyan-500 px-8 py-3 text-lg font-bold text-black transition-colors duration-300 hover:bg-cyan-600"
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <Button
+              size="lg"
+              onClick={() => scrollToSection("#projects")}
+              aria-label="View my work"
+              className="focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               View My Work
-            </a>
+            </Button>
 
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector("#contact")?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-              className="rounded-full border border-cyan-500 px-8 py-3 text-lg font-bold text-cyan-400 transition-colors duration-300 hover:bg-cyan-500/10"
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => scrollToSection("#contact")}
+              aria-label="Get in touch"
+              className="focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               Get In Touch
-            </a>
-          </motion.div>
-        </motion.div>
+            </Button>
+          </div>
+        </FadeIn>
       </div>
 
       {/* Tech stack icons - subtle in background */}
-      <motion.div
+      <div
         className="absolute right-0 bottom-20 left-0 flex justify-center gap-6 opacity-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 1.2, duration: 1 }}
+        role="presentation"
+        aria-hidden="true"
       >
         <div className="flex gap-6 rounded-full bg-black/20 px-4 py-2 backdrop-blur-sm">
-          <span className="text-3xl text-cyan-500"><FaReact /></span>
-          <span className="text-3xl text-blue-500"><SiTypescript /></span>
-          <span className="text-3xl text-gray-800"><RiNextjsFill /></span>
-          <span className="text-3xl text-yellow-500"><FaJs /></span>
-          <span className="text-3xl text-pink-500"><FaPaintBrush /></span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-3xl text-cyan-500 cursor-help" aria-hidden="true">
+                  <FaReact />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>React</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-3xl text-blue-500 cursor-help" aria-hidden="true">
+                  <SiTypescript />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>TypeScript</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-3xl text-gray-800 cursor-help" aria-hidden="true">
+                  <RiNextjsFill />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Next.js</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-3xl text-yellow-500 cursor-help" aria-hidden="true">
+                  <FaJs />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>JavaScript</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-3xl text-pink-500 cursor-help" aria-hidden="true">
+                  <FaPaintBrush />
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>UI/UX Design</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
-      </motion.div>
+      </div>
 
       {/* Down arrow indicator */}
-      <motion.div
+      <div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 transform"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
+        role="presentation"
+        aria-hidden="true"
       >
-        <a
-          href="#about"
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector("#about")?.scrollIntoView({
-              behavior: "smooth",
-            });
-          }}
-          className="text-gray-400 transition-colors duration-300 hover:text-white"
+        <button
+          onClick={() => scrollToSection("#about")}
+          className="text-gray-400 transition-colors duration-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-full p-2"
           aria-label="Scroll to About section"
         >
           <svg
@@ -163,8 +177,8 @@ export const HeroSection = () => {
           >
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
-        </a>
-      </motion.div>
-    </section>
+        </button>
+      </div>
+    </Section>
   );
 };

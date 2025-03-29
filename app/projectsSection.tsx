@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { Section } from "@/components/section";
+import { FadeIn, SlideIn } from "@/components/motion";
+import { Button } from "@/components/button";
 
 // Project type definition
 type Project = {
@@ -117,73 +120,67 @@ export const ProjectsSection = () => {
   );
 
   return (
-    <section
+    <Section
       id="projects"
-      className="min-h-screen flex items-center justify-center py-20"
+      title="My Projects"
+      subtitle="A showcase of my work in NFT collections, blockchain applications, and web development"
     >
-      <div className="max-w-6xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
+      {/* Project Tabs */}
+      <SlideIn className="mb-12">
+        <div
+          role="tablist"
+          aria-label="Project categories"
+          className="flex flex-wrap justify-center gap-2"
         >
-          <h2 className="text-4xl font-bold mb-4 text-center">My Projects</h2>
-          <p className="text-xl text-gray-400 text-center max-w-2xl mx-auto">
-            A showcase of my work in NFT collections, blockchain applications, and web development
-          </p>
-        </motion.div>
+          <Button
+            variant={filter === "all" ? "primary" : "secondary"}
+            size="sm"
+            onClick={() => setFilter("all")}
+            role="tab"
+            aria-selected={filter === "all"}
+            aria-controls="all-projects"
+          >
+            All Projects
+          </Button>
+          <Button
+            variant={filter === "nft" ? "primary" : "secondary"}
+            size="sm"
+            onClick={() => setFilter("nft")}
+            role="tab"
+            aria-selected={filter === "nft"}
+            aria-controls="nft-projects"
+          >
+            NFT Collections
+          </Button>
+          <Button
+            variant={filter === "contract" ? "primary" : "secondary"}
+            size="sm"
+            onClick={() => setFilter("contract")}
+            role="tab"
+            aria-selected={filter === "contract"}
+            aria-controls="contract-projects"
+          >
+            Contract Work
+          </Button>
+        </div>
+      </SlideIn>
 
-        {/* Project Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-12 flex justify-center"
-        >
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-full p-1 inline-flex flex-wrap justify-center">
-            <button
-              className={`py-2 px-6 rounded-full ${filter === "all" ? "bg-cyan-500 text-black font-medium" : "text-gray-300 hover:text-white transition-colors"}`}
-              onClick={() => setFilter("all")}
-            >
-              All Projects
-            </button>
-            <button
-              className={`py-2 px-6 rounded-full ${filter === "nft" ? "bg-cyan-500 text-black font-medium" : "text-gray-300 hover:text-white transition-colors"}`}
-              onClick={() => setFilter("nft")}
-            >
-              NFT Collections
-            </button>
-            <button
-              className={`py-2 px-6 rounded-full ${filter === "contract" ? "bg-cyan-500 text-black font-medium" : "text-gray-300 hover:text-white transition-colors"}`}
-              onClick={() => setFilter("contract")}
-            >
-              Contract Work
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300"
-            >
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {filteredProjects.map((project, index) => (
+          <FadeIn key={project.id} delay={0.1 * index}>
+            <div className="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300">
               <div className="relative h-56 overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  priority={index < 3}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div className="absolute bottom-4 left-4">
+                <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                   {project.tags.map(tag => (
                     <span
                       key={tag}
@@ -192,6 +189,8 @@ export const ProjectsSection = () => {
                           ? 'bg-cyan-500/90 text-black'
                           : 'bg-indigo-500/90 text-black'
                       } text-xs font-medium rounded-full`}
+                      role="status"
+                      aria-label={`Project tag: ${tag}`}
                     >
                       {tag}
                     </span>
@@ -206,14 +205,14 @@ export const ProjectsSection = () => {
                 </p>
 
                 {project.personalNote && (
-                  <div className="italic text-sm text-gray-400 border-l-2 border-cyan-500 pl-3 mb-4">
-                    "{project.personalNote}"
+                  <div className="italic text-sm text-gray-400 border-l-2 border-cyan-500 pl-3 mb-4" role="note">
+                    &ldquo;{project.personalNote}&rdquo;
                   </div>
                 )}
 
-                <div className="flex justify-between items-center pt-2">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
                   <span className="text-gray-400 text-sm">{project.date}</span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-4">
                     {project.links.map(link => (
                       <a
                         key={link.label}
@@ -221,6 +220,7 @@ export const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors"
+                        aria-label={`${link.label} - Opens in new tab`}
                       >
                         <span>{link.label}</span>
                         <ExternalLinkIcon />
@@ -229,29 +229,21 @@ export const ProjectsSection = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* View More Projects Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          viewport={{ once: true, margin: "-50px" }}
-          className="mt-12 text-center"
-        >
-          <a
-            href="https://github.com/worthingtravis"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gray-800/70 hover:bg-gray-700/70 text-white font-medium py-3 px-6 rounded-full transition-colors duration-300"
-          >
-            <span>View More on GitHub</span>
-            <ExternalLinkIcon />
-          </a>
-        </motion.div>
+            </div>
+          </FadeIn>
+        ))}
       </div>
-    </section>
+
+      {/* View More Projects Button */}
+      <FadeIn delay={0.7} className="mt-12 text-center">
+        <Button
+          variant="outline"
+          onClick={() => window.open("https://github.com/worthingtravis", "_blank")}
+          rightIcon={<ExternalLinkIcon />}
+        >
+          View More on GitHub
+        </Button>
+      </FadeIn>
+    </Section>
   );
 };

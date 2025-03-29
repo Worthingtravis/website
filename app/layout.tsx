@@ -1,9 +1,10 @@
-import React from "react";
+'use client'
+import React, { Suspense } from "react";
 import "./styles/global.css";
 import { ToastProvider } from "@/ui/toast";
 import { Exo } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { NavHeader } from "./nav-header";
+import { NavHeader } from "@/components/nav-header";
 
 const inter = Exo({
   subsets: ["latin"],

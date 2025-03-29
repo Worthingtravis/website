@@ -1,170 +1,73 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Section } from "@/components/section";
+import { SlideIn } from "@/components/motion";
+import { Button } from "@/components/button";
 
 export const ContactSection = () => {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormState(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate form submission process
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Create email mailto link with form data
-      const { name, email, subject, message } = formState;
-      const mailtoSubject = encodeURIComponent(subject);
-      const mailtoBody = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\n${message}`
-      );
-
-      // Open email client with pre-filled data
-      window.location.href = `mailto:worthingtravis@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-      setSubmitSuccess(true);
-    } catch (error) {
-      console.error("Error in form submission:", error);
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitSuccess(false), 3000); // Reset success state after 3 seconds
-    }
-  };
-
-  
-  
-  
   return (
-    <section
+    <Section
       id="contact"
-      className="min-h-screen flex items-center justify-center py-20"
+      title="Get In Touch"
+      subtitle="Have a project in mind or want to discuss opportunities? I'd love to hear from you!"
     >
-      <div className="max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-4xl font-bold mb-4 text-center">Get In Touch</h2>
-          <p className="text-xl text-gray-400 text-center max-w-2xl mx-auto mb-16">
-            Have a project in mind or want to discuss opportunities? I&#39;d love to hear from you!
-          </p>
-        </motion.div>
+      <div className="grid grid-cols-1 gap-12">
+        {/* Contact Form */}
+        <SlideIn>
+          <form className="space-y-6 max-w-xl mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white"
+                placeholder="Your name"
+                aria-required="true"
+              />
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/70 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                  placeholder="John Doe"
-                />
-              </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white"
+                placeholder="your@email.com"
+                aria-required="true"
+              />
+            </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/70 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                  placeholder="john@example.com"
-                />
-              </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="w-full px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white resize-none"
+                placeholder="Your message"
+                aria-required="true"
+              />
+            </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formState.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/70 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
-                  placeholder="Project Inquiry"
-                />
-              </div>
+            <Button type="submit" fullWidth>
+              Send Message
+            </Button>
+          </form>
+        </SlideIn>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formState.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-gray-800/70 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white resize-none"
-                  placeholder="Tell me about your project or inquiry..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg text-center text-black font-bold transition-all duration-300 ${
-                  submitSuccess
-                    ? 'bg-green-500 hover:bg-green-600'
-                    : 'bg-cyan-500 hover:bg-cyan-600'
-                } disabled:opacity-70`}
-              >
-                {isSubmitting
-                  ? 'Sending...'
-                  : submitSuccess
-                    ? 'Message Sent!'
-                    : 'Send Message'}
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-8"
-          >
+        {/* Contact Information */}
+        <SlideIn delay={0.2}>
+          <div className="space-y-8 max-w-xl mx-auto text-center">
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
               <p className="text-gray-300 mb-6">
@@ -172,11 +75,15 @@ export const ContactSection = () => {
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <FaEnvelope className="text-cyan-400" />
+                    <FaEnvelope className="text-cyan-400" aria-hidden="true" />
                   </div>
-                  <a href="mailto:worthingtravis@gmail.com" className="text-cyan-400 hover:underline">
+                  <a 
+                    href="mailto:worthingtravis@gmail.com" 
+                    className="text-cyan-400 hover:underline"
+                    aria-label="Email: worthingtravis@gmail.com"
+                  >
                     worthingtravis@gmail.com
                   </a>
                 </div>
@@ -185,47 +92,39 @@ export const ContactSection = () => {
 
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">Connect With Me</h3>
-              <div className="flex space-x-4">
+              <div className="flex justify-center space-x-4">
                 <a
                   href="https://github.com/worthingtravis"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  aria-label="GitHub Profile"
                 >
-                  <FaGithub size={24} />
+                  <FaGithub size={24} aria-hidden="true" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/travis-worthing-3676a2166/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  aria-label="LinkedIn Profile"
                 >
-                  <FaLinkedin size={24} />
+                  <FaLinkedin size={24} aria-hidden="true" />
                 </a>
                 <a
                   href="https://twitter.com/laughing_whales"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  aria-label="Twitter Profile"
                 >
-                  <FaTwitter size={24} />
+                  <FaTwitter size={24} aria-hidden="true" />
                 </a>
               </div>
             </div>
-
-            <div className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-white mb-3">Availability</h3>
-              <p className="text-gray-300">
-                Currently open to contract opportunities in Web3 development, NFT creation, and smart contract implementation.
-              </p>
-              <div className="mt-4 flex items-center">
-                <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                <span className="text-green-400">Available for new projects</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </SlideIn>
       </div>
-    </section>
+    </Section>
   );
 };

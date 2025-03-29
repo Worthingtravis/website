@@ -1,15 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  FaBuilding,
-  FaCalendar,
-  FaCode,
-  FaCogs,
-  FaReact,
-  FaUsers,
-} from "react-icons/fa";
+import { Section } from "@/components/section";
+import { FadeIn } from "@/components/motion";
+import { FaReact, FaJs, FaLaravel } from "react-icons/fa";
+import { SiIonic } from "react-icons/si";
 
 // Job type definition
 type Job = {
@@ -137,109 +132,79 @@ const jobs: Job[] = [
   }
 ];
 
-// Helper function to choose an icon per job
 const getJobIcon = (jobId: string) => {
   switch (jobId) {
-    case "sacred-contract":
-      return <FaCode className="text-cyan-400" />;
-    case "smart-contract-auditor":
-      return <FaReact className="text-cyan-400" />;
-    case "web3-developer-contract":
-      return <FaCode className="text-cyan-400" />;
-    case "senior-fullstack":
-      return <FaUsers className="text-cyan-400" />;
+    case "senior-developer":
+      return <FaReact className="text-3xl text-cyan-400" aria-hidden="true" />;
     case "intermediate-developer":
-      return <FaCogs className="text-cyan-400" />;
+      return <SiIonic className="text-3xl text-blue-400" aria-hidden="true" />;
+    case "developer":
+      return <FaLaravel className="text-3xl text-red-400" aria-hidden="true" />;
     default:
-      return <FaBuilding className="text-cyan-400" />;
+      return <FaJs className="text-3xl text-yellow-400" aria-hidden="true" />;
   }
 };
 
 export const ExperienceSection = () => {
   return (
-    <section
+    <Section
       id="experience"
-      className="flex min-h-screen items-center justify-center bg-gray-900/30 py-20 backdrop-blur-sm"
+      title="Work Experience"
     >
-      <div className="mx-auto max-w-4xl px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="mb-16 text-center text-4xl font-bold">
-            Work Experience
-          </h2>
-        </motion.div>
-
-        <div className="space-y-12">
-          {jobs.map((job, index) => {
-            const isLast = index === jobs.length - 1;
-            return (
-              <motion.div
-                key={job.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="relative grid grid-cols-[auto,1fr] gap-4"
-              >
+      <div className="space-y-12">
+        {jobs.map((job, index) => {
+          const isLast = index === jobs.length - 1;
+          return (
+            <FadeIn key={job.id} delay={0.1 * index}>
+              <div className="relative grid grid-cols-[auto,1fr] gap-4">
                 {/* Timeline marker */}
                 <div className="relative">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gray-700 bg-gray-800/70">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500/20">
-                      {getJobIcon(job.id)}
-                    </div>
-                  </div>
+                  <div className="h-16" />
                   {!isLast && (
                     <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-gray-700" />
                   )}
                 </div>
 
                 {/* Job content */}
-                <div className="rounded-xl border border-gray-700/50 bg-gray-800/40 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/50">
-                  <h3 className="mb-1 text-xl font-bold text-white">
-                    {job.title}
-                  </h3>
-
-                  <div className="mb-3 flex items-center gap-2 text-cyan-400">
-                    <FaBuilding className="text-sm" />
-                    <span>{job.company}</span>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-800/50">
+                      {getJobIcon(job.id)}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">{job.title}</h3>
+                      <p className="text-lg text-cyan-400">{job.company}</p>
+                      <p className="text-sm text-gray-400">{job.period}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-6 flex items-center gap-2 text-gray-400">
-                    <FaCalendar className="text-sm" />
-                    <span>{job.period}</span>
-                  </div>
-
-                  <div className="mb-6 space-y-3">
+                  <ul className="space-y-2">
                     {job.responsibilities.map((responsibility, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <div className="mt-1.5 flex-shrink-0">
-                          <div className="h-1.5 w-1.5 rounded-full bg-cyan-400"></div>
-                        </div>
-                        <p className="text-gray-300">{responsibility}</p>
-                      </div>
+                      <li key={i} className="flex items-start gap-2 text-gray-300">
+                        <span className="mt-1 text-cyan-400">•</span>
+                        {responsibility}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
 
                   <div className="flex flex-wrap gap-2">
                     {job.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300"
+                        className="rounded-full bg-gray-800/50 px-3 py-1 text-sm text-gray-300"
+                        role="status"
+                        aria-label={`Technology: ${tag}`}
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </FadeIn>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 };
