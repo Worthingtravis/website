@@ -5,6 +5,7 @@ import { Section } from "@/components/section";
 import { FadeIn } from "@/components/motion";
 import { FaReact, FaJs, FaLaravel } from "react-icons/fa";
 import { SiIonic } from "react-icons/si";
+import { IconBrandReact, IconDeviceMobile, IconCode, IconBrandJavascript } from "@tabler/icons-react";
 
 // Job type definition
 type Job = {
@@ -132,18 +133,20 @@ const jobs: Job[] = [
   }
 ];
 
-const getJobIcon = (jobId: string) => {
+function getJobIcon(jobId: string) {
   switch (jobId) {
     case "senior-developer":
-      return <FaReact className="text-3xl text-cyan-400" aria-hidden="true" />;
+      return <IconBrandReact className="text-3xl text-cyan-400" aria-hidden="true" />;
     case "intermediate-developer":
-      return <SiIonic className="text-3xl text-blue-400" aria-hidden="true" />;
+      return <IconDeviceMobile className="text-3xl text-blue-400" aria-hidden="true" />;
     case "developer":
-      return <FaLaravel className="text-3xl text-red-400" aria-hidden="true" />;
+      return <IconCode className="text-3xl text-green-400" aria-hidden="true" />;
+    case "junior-developer":
+      return <IconBrandJavascript className="text-3xl text-yellow-400" aria-hidden="true" />;
     default:
-      return <FaJs className="text-3xl text-yellow-400" aria-hidden="true" />;
+      return null;
   }
-};
+}
 
 export const ExperienceSection = () => {
   return (

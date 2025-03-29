@@ -1,14 +1,20 @@
+"use client";
+
 import React from "react";
-import { FaReact, FaJs, FaPaintBrush } from "react-icons/fa";
-import { RiNextjsFill } from "react-icons/ri";
-import { SiTypescript } from "react-icons/si";
+import { IconBrandReact, IconBrandNextjs, IconBrandTailwind, IconBrandTypescript } from "@tabler/icons-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { SlideIn } from "@/components/motion";
 import { Section } from "@/components/section";
 import { FadeIn, ScaleIn } from "@/components/motion";
 import { Button } from "@/components/button";
 import { SkipLink } from "@/components/accessibility";
 import { useMotionPreferences } from "@/components/motion-preferences";
 import { useAnalytics } from "@/hooks/use-analytics";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/interactive";
 
 export const HeroSection = () => {
   const { prefersReducedMotion } = useMotionPreferences();
@@ -98,7 +104,7 @@ export const HeroSection = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="text-3xl text-cyan-500 cursor-help" aria-hidden="true">
-                  <FaReact />
+                  <IconBrandReact />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
@@ -108,19 +114,8 @@ export const HeroSection = () => {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="text-3xl text-blue-500 cursor-help" aria-hidden="true">
-                  <SiTypescript />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>TypeScript</p>
-              </TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="text-3xl text-gray-800 cursor-help" aria-hidden="true">
-                  <RiNextjsFill />
+                <span className="text-3xl text-gray-300 cursor-help" aria-hidden="true">
+                  <IconBrandNextjs />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
@@ -130,23 +125,23 @@ export const HeroSection = () => {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="text-3xl text-yellow-500 cursor-help" aria-hidden="true">
-                  <FaJs />
+                <span className="text-3xl text-blue-400 cursor-help" aria-hidden="true">
+                  <IconBrandTailwind />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                <p>JavaScript</p>
+                <p>Tailwind CSS</p>
               </TooltipContent>
             </Tooltip>
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="text-3xl text-pink-500 cursor-help" aria-hidden="true">
-                  <FaPaintBrush />
+                <span className="text-3xl text-blue-600 cursor-help" aria-hidden="true">
+                  <IconBrandTypescript />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                <p>UI/UX Design</p>
+                <p>TypeScript</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

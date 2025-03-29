@@ -1,15 +1,42 @@
-'use client'
-import React, { Suspense } from "react";
-import "./styles/global.css";
-import { ToastProvider } from "@/ui/toast";
 import { Exo } from "next/font/google";
+import "./styles/global.css";
 import { cn } from "@/lib/utils";
-import { NavHeader } from "@/components/nav-header";
+import type { Metadata } from 'next';
+import { ClientLayout } from "@/components/client-layout";
 
 const inter = Exo({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://worthydev.com'),
+  title: 'WorthyDev - Travis Worthing',
+  description: 'Professional portfolio and blog of Travis Worthing, a full-stack developer specializing in modern web technologies.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: 'WorthyDev',
+    title: 'WorthyDev - Travis Worthing',
+    description: 'Professional portfolio and blog of Travis Worthing, a full-stack developer specializing in modern web technologies.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'WorthyDev',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WorthyDev - Travis Worthing',
+    description: 'Professional portfolio and blog of Travis Worthing, a full-stack developer specializing in modern web technologies.',
+    images: ['/og-image.jpg'],
+    creator: '@laughing_whales',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -17,28 +44,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cn("dark h-full scroll-smooth", inter.className)}
-    >
-      <head>
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <title>Travis Worthing - Web3 Developer</title>
-        <meta
-          name="description"
-          content="Web3 Developer specializing in NFT collections, smart contracts, and decentralized applications"
-        />
-      </head>
+    <html lang="en" className={cn("dark", inter.className)}>
       <body className="bg-background text-foreground flex min-h-screen flex-col font-sans antialiased">
-        <NavHeader />
-        <ToastProvider>
-          <main className="flex-grow">{children}</main>
-        </ToastProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

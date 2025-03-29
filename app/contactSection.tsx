@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { IconMail, IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from "@tabler/icons-react";
 import { Section } from "@/components/section";
 import { SlideIn } from "@/components/motion";
 import { Button } from "@/components/button";
@@ -77,7 +77,7 @@ export const ContactSection = () => {
               <div className="space-y-4">
                 <div className="flex items-center justify-center gap-3">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <FaEnvelope className="text-cyan-400" aria-hidden="true" />
+                    <IconMail className="text-cyan-400" aria-hidden={true} />
                   </div>
                   <a 
                     href="mailto:worthingtravis@gmail.com" 
@@ -97,28 +97,35 @@ export const ContactSection = () => {
                   href="https://github.com/worthingtravis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  className="text-gray-400 hover:text-cyan-500 transition-colors"
                   aria-label="GitHub Profile"
                 >
-                  <FaGithub size={24} aria-hidden="true" />
+                  <IconBrandGithub className="w-6 h-6" aria-hidden={true} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/travis-worthing-3676a2166/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  className="text-gray-400 hover:text-cyan-500 transition-colors"
                   aria-label="LinkedIn Profile"
                 >
-                  <FaLinkedin size={24} aria-hidden="true" />
+                  <IconBrandLinkedin className="w-6 h-6" aria-hidden={true} />
                 </a>
                 <a
                   href="https://twitter.com/laughing_whales"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center rounded-full transition-colors duration-300"
+                  className="text-gray-400 hover:text-cyan-500 transition-colors"
                   aria-label="Twitter Profile"
                 >
-                  <FaTwitter size={24} aria-hidden="true" />
+                  <IconBrandTwitter className="w-6 h-6" aria-hidden={true} />
+                </a>
+                <a
+                  href="mailto:worthingtravis@gmail.com"
+                  className="text-gray-400 hover:text-cyan-500 transition-colors"
+                  aria-label="Email"
+                >
+                  <IconMail className="w-6 h-6" aria-hidden={true} />
                 </a>
               </div>
             </div>

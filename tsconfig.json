@@ -1,31 +1,36 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./app/*"],
-      "@/ui/*": ["./app/components/ui/*"],
-      "@/lib/*": ["./app/lib/*"]
-    },
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "noEmit": true,
-    "incremental": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "preserve",
     "isolatedModules": true,
-    "target": "ES2017",
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/*": ["./app/*"],
+      "@/components/*": ["./app/components/*"],
+      "@/lib/*": ["./app/lib/*"],
+      "@/ui/*": ["./app/components/ui/*"]
+    },
+    "types": ["react-icons"],
+    "forceConsistentCasingInFileNames": true,
+    "jsxImportSource": "react"
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
