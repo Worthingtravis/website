@@ -13,10 +13,10 @@ export const ContactSection = () => {
       title="Get In Touch"
       subtitle="Have a project in mind or want to discuss opportunities? I'd love to hear from you!"
     >
-      <div className="grid grid-cols-1 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Contact Form */}
         <SlideIn>
-          <form className="space-y-6 max-w-xl mx-auto" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                 Name
@@ -67,7 +67,7 @@ export const ContactSection = () => {
 
         {/* Contact Information */}
         <SlideIn delay={0.2}>
-          <div className="space-y-8 max-w-xl mx-auto text-center">
+          <div className="space-y-8 text-center md:text-left">
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
               <p className="text-gray-300 mb-6">
@@ -75,7 +75,7 @@ export const ContactSection = () => {
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-center justify-center gap-3">
+                <div className="flex items-center gap-3 md:justify-start justify-center">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
                     <IconMail className="text-cyan-400" aria-hidden={true} />
                   </div>
@@ -92,7 +92,7 @@ export const ContactSection = () => {
 
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">Connect With Me</h3>
-              <div className="flex justify-center space-x-4">
+              <div className="flex space-x-4 md:justify-start justify-center">
                 <a
                   href="https://github.com/worthingtravis"
                   target="_blank"
