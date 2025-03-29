@@ -135,16 +135,20 @@ const jobs: Job[] = [
 
 function getJobIcon(jobId: string) {
   switch (jobId) {
-    case "senior-developer":
+    case "sacred-contract":
+      return <IconBrandReact className="text-3xl text-cyan-400" aria-hidden="true" />;
+    case "smart-contract-auditor":
+      return <IconBrandJavascript className="text-3xl text-yellow-400" aria-hidden="true" />;
+    case "web3-developer-contract":
+      return <IconCode className="text-3xl text-green-400" aria-hidden="true" />;
+    case "senior-fullstack":
       return <IconBrandReact className="text-3xl text-cyan-400" aria-hidden="true" />;
     case "intermediate-developer":
       return <IconDeviceMobile className="text-3xl text-blue-400" aria-hidden="true" />;
     case "developer":
       return <IconCode className="text-3xl text-green-400" aria-hidden="true" />;
-    case "junior-developer":
-      return <IconBrandJavascript className="text-3xl text-yellow-400" aria-hidden="true" />;
     default:
-      return null;
+      return <IconCode className="text-3xl text-gray-400" aria-hidden="true" />;
   }
 }
 
