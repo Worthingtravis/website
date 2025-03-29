@@ -8,7 +8,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-gray-900">
       <NavHeader />
       <ToastProvider>
-        <main className="container mx-auto px-4 py-8">{children}</main>
+        <main className="md:container mx-auto md:px-4 py-8">{children}</main>
       </ToastProvider>
     </div>
   );
