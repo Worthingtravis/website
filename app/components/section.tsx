@@ -16,7 +16,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       <section
         ref={ref}
         className={cn(
-          "relative w-full py-16 md:py-24",
+          "relative w-full py-16 md:py-24 scroll-mt-8",
           fullHeight && "min-h-screen flex items-center",
           className
         )}
@@ -29,7 +29,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
                 <h2 className="text-4xl font-bold mb-4">{title}</h2>
               )}
               {subtitle && (
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-400 max-w-2xl mx-auto">
                   {subtitle}
                 </p>
               )}

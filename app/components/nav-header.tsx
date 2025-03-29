@@ -183,9 +183,9 @@ export function NavHeader() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center select-none justify-center gap-2 md:gap-8 backdrop-blur-sm bg-background/70"
+      className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center select-none justify-center gap-2 md:gap-8 backdrop-blur-sm bg-gray-900/70"
     >
-      <div className="flex items-center relative bg-teal-950 justify-center gap-4 md:gap-8 px-4 rounded-full">
+      <div className="flex items-center relative bg-gray-800/50 justify-center gap-4 md:gap-8 px-4 rounded-full">
         {NAV_ITEMS.map(({ label, href, external, tooltip }, index) => (
           <a
             key={href}

@@ -158,7 +158,7 @@ export const ExperienceSection = () => {
       id="experience"
       title="Work Experience"
     >
-      <div className="space-y-12">
+      <div className="space-y-8">
         {jobs.map((job, index) => {
           const isLast = index === jobs.length - 1;
           return (
