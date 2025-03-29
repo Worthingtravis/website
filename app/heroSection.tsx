@@ -8,6 +8,7 @@ import { Button } from "@/components/button";
 import { SkipLink } from "@/components/accessibility";
 import { useMotionPreferences } from "@/components/motion-preferences";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { motion } from "framer-motion";
 
 export const HeroSection = () => {
   const { prefersReducedMotion } = useMotionPreferences();
@@ -27,20 +28,43 @@ export const HeroSection = () => {
       
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-cyan-500/10 blur-xl"
+        <motion.div
+          className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-cyan-500/20 flex items-center justify-center blur-xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           role="presentation"
           aria-hidden="true"
-        />
-        <div
-          className="absolute right-1/3 bottom-1/3 h-72 w-72 rounded-full bg-indigo-500/10 blur-xl"
+        >
+          <div className="h-32 w-32 rounded-full bg-cyan-500/5 blur-lg" />
+        </motion.div>
+        <motion.div
+          className="absolute right-1/3 bottom-1/3 h-72 w-72 rounded-full bg-indigo-500/20 flex items-center justify-center blur-xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.2, 0.25, 0.2],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
           role="presentation"
           aria-hidden="true"
-        />
+        >
+          <div className="h-36 w-36 rounded-full bg-indigo-500/5 blur-lg" />
+        </motion.div>
       </div>
 
       <div className="relative z-10">
-        <FadeIn className="mx-auto max-w-4xl px-4 text-center">
+        <FadeIn className="mx-auto max-w-4xl px-0 md:px-4 text-center">
           <ScaleIn className="mb-4 inline-block">
             <div className="relative inline-block">
               <span className="font-mono text-sm tracking-wider text-cyan-400 md:text-base">

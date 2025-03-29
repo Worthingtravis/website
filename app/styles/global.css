@@ -30,6 +30,24 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @layer base {
   :root {
     --background: var(--color-black);
@@ -85,6 +103,7 @@
     --chart-5: hsl(340 75% 55%);
   }
 }
+
 .charts-gradient {
   background: linear-gradient(
     90deg,
@@ -96,27 +115,56 @@
   );
 }
 
-
+.bg-sidebar {
+  background: linear-gradient(
+    135deg,
+    hsl(220 20% 3.9%),
+    hsl(220 20% 5.9%),
+    hsl(220 20% 7.9%),
+    hsl(220 20% 5.9%),
+    hsl(220 20% 3.9%)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 20s ease-in-out infinite;
+}
 
 h1:hover,
 p:hover {
   animation: none;
 }
 
-
-
 html {
-  scrollbar-width: 10px;
+  scrollbar-width: thin;
   overscroll-behavior: none;
-  scrollbar-color: var(--background) var(--foreground);
+  scrollbar-color: hsl(0 0% 14.9%) transparent;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
+
+/* Webkit scrollbar styles */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 14.9%);
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 0% 20%);
+}
+
 :root {
-  --blur-value: 3rem; /* Use the same blur value as in your Tailwind configuration */
+  --blur-value: 3rem;
 }
 
 .backdrop-blur-instant {
   backdrop-filter: blur(var(--blur-value));
-  -webkit-backdrop-filter: blur(var(--blur-value)); /* Ensure support in Webkit browsers */
+  -webkit-backdrop-filter: blur(var(--blur-value));
 }

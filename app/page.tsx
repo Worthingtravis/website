@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Worthy Dev Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // You'll need to add this image to your public folder
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Portfolio Preview",

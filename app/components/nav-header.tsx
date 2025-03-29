@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { FaGithub, FaHome, FaUser, FaFolder, FaBriefcase, FaEnvelope, FaCheck, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { IconHome, IconUser, IconFolder, IconBriefcase, IconMail, IconBrandGithub, IconCheck, IconArrowUp, IconArrowDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { IconBaseProps, IconType } from "react-icons";
-import { CheckIcon } from "lucide-react";
-
+import { IconBaseProps } from "react-icons";
 
 interface NavItem {
   label: React.ElementType<IconBaseProps>;
@@ -14,32 +12,27 @@ interface NavItem {
   tooltip?: string;
 }
 
-
-
 interface BarStyle {
   left: number;
   width: number;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: FaHome as React.ElementType<IconBaseProps>, href: "#hero", tooltip: "Home" },
-  { label: FaUser as React.ElementType<IconBaseProps>, href: "#about", tooltip: "About" },
-  { label: FaFolder as React.ElementType<IconBaseProps>, href: "#projects", tooltip: "Projects" },
-  { label: FaBriefcase as React.ElementType<IconBaseProps>, href: "#experience", tooltip: "Experience" },
-  { label: FaEnvelope as React.ElementType<IconBaseProps>, href: "#contact", tooltip: "Contact" },
+  { label: IconHome as React.ElementType<IconBaseProps>, href: "#hero", tooltip: "Home" },
+  { label: IconUser as React.ElementType<IconBaseProps>, href: "#about", tooltip: "About" },
+  { label: IconFolder as React.ElementType<IconBaseProps>, href: "#projects", tooltip: "Projects" },
+  { label: IconBriefcase as React.ElementType<IconBaseProps>, href: "#experience", tooltip: "Experience" },
+  { label: IconMail as React.ElementType<IconBaseProps>, href: "#contact", tooltip: "Contact" },
   {
-    label: FaGithub as React.ElementType<IconBaseProps>,
+    label: IconBrandGithub as React.ElementType<IconBaseProps>,
     href: "https://github.com/worthingtravis",
     external: true,
     tooltip: "GitHub ↗",
   },
 ];
 
-
-
-const ArrowIcon = ({ icon: Icon }: { icon: IconType }): React.ReactElement => {
-  const Component = Icon as React.ElementType;
-  return <Component className="h-3 w-3" />;
+const ArrowIcon = ({ icon: IconComponent }: { icon: React.ComponentType<{ className?: string }> }): React.ReactElement => {
+  return <IconComponent className="h-3 w-3" />;
 };
 
 // Debounce helper
@@ -83,8 +76,8 @@ export function NavHeader() {
     
     const sectionTop = section.offsetTop;
     return scrollPosition > sectionTop 
-      ? <ArrowIcon icon={FaArrowUp} />
-      : <ArrowIcon icon={FaArrowDown} />;
+      ? <ArrowIcon icon={IconArrowUp} />
+      : <ArrowIcon icon={IconArrowDown} />;
   }, [scrollPosition]);
 
   const updateBarPosition = useCallback(() => {
@@ -208,7 +201,7 @@ export function NavHeader() {
                 {tooltip}
                 {!external && (
   activeSection === href ? (
-    <CheckIcon className="text-cyan-400 h-3 w-3" />
+    <IconCheck className="text-cyan-400 h-3 w-3" />
   ) : (
     <span className="text-cyan-400">{arrowDirections[href]}</span>
   )
