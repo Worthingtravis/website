@@ -3,6 +3,7 @@
 import { Section } from "@/components/section";
 import { FadeIn } from "@/components/motion";
 import { IconBrandReact, IconDeviceMobile, IconCode, IconBrandJavascript } from "@tabler/icons-react";
+import { ImageRotation } from "../components/image-rotation";
 
 // Job type definition
 type Job = {
@@ -154,60 +155,89 @@ export const ExperienceSection = () => {
     <Section
       id="experience"
       title="Work Experience"
+      fullHeight={false}
+      className="overflow-visible"
     >
-      <div className="space-y-8">
-        {jobs.map((job, index) => {
-          const isLast = index === jobs.length - 1;
-          return (
-            <FadeIn key={job.id} delay={0.1 * index}>
-              <div className="relative grid grid-cols-[auto,1fr] gap-4">
-                {/* Timeline marker */}
-                <div className="relative">
-                  <div className="h-16" />
-                  {!isLast && (
-                    <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-gray-700" />
-                  )}
-                </div>
-
-                {/* Job content */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-800/50">
-                      {getJobIcon(job.id)}
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-white">{job.title}</h3>
-                      <p className="text-lg text-cyan-400">{job.company}</p>
-                      <p className="text-sm text-gray-400">{job.period}</p>
-                    </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Experience Timeline */}
+        <div className="md:col-span-2 space-y-8">
+          {jobs.map((job, index) => {
+            const isLast = index === jobs.length - 1;
+            return (
+              <FadeIn key={job.id} delay={0.1 * index}>
+                <div className="relative grid grid-cols-[auto,1fr] gap-4">
+                  {/* Timeline marker */}
+                  <div className="relative">
+                    <div className="h-16" />
+                    {!isLast && (
+                      <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-gray-700" />
+                    )}
                   </div>
 
-                  <ul className="space-y-2">
-                    {job.responsibilities.map((responsibility, i) => (
-                      <li key={i} className="flex items-start gap-2 text-gray-300">
-                        <span className="mt-1 text-cyan-400">•</span>
-                        {responsibility}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Job content */}
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-800/50">
+                        {getJobIcon(job.id)}
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-white">{job.title}</h3>
+                        <p className="text-lg text-cyan-400">{job.company}</p>
+                        <p className="text-sm text-gray-400">{job.period}</p>
+                      </div>
+                    </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {job.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-gray-800/50 px-3 py-1 text-sm text-gray-300"
-                        role="status"
-                        aria-label={`Technology: ${tag}`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    <ul className="space-y-2">
+                      {job.responsibilities.map((responsibility, i) => (
+                        <li key={i} className="flex items-start gap-2 text-gray-300">
+                          <span className="mt-1 text-cyan-400">•</span>
+                          {responsibility}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2">
+                      {job.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-gray-800/50 px-3 py-1 text-sm text-gray-300"
+                          role="status"
+                          aria-label={`Technology: ${tag}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </FadeIn>
-          );
-        })}
+              </FadeIn>
+            );
+          })}
+        </div>
+
+        {/* Flipping Image Container */}
+        <div className="relative">
+          {/* Sticky Image Wrapper */}
+          <div className="md:sticky md:top-24">
+            <div className="relative h-[400px] w-full md:h-[600px]">
+              <FadeIn delay={0.2}>
+                <ImageRotation
+                  frontImage={{
+                    src: "/winter-coffee.png",
+                    alt: "Winter Coffee"
+                  }}
+                  backImage={{
+                    src: "/winter-spill.png",
+                    alt: "Winter Spill"
+                  }}
+                  rotationFactor={2}
+                  transitionDuration={500}
+                  gradientColor="from-coffee-500/20"
+                />
+              </FadeIn>
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   );
