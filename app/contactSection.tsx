@@ -18,18 +18,25 @@ export const ContactSection = () => {
       const rect = imageRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Calculate how far the element is in the viewport
-      const elementTop = rect.top;
-      const elementBottom = rect.bottom;
+      // Calculate the center point of the element
+      const elementCenter = rect.top + (rect.height / 2);
+      const windowCenter = windowHeight / 2;
       
-      // Calculate the percentage of the element that's visible
-      const visibleHeight = Math.min(elementBottom, windowHeight) - Math.max(elementTop, 0);
-      const totalHeight = rect.height;
-      const visibilityPercentage = visibleHeight / totalHeight;
+      // Calculate distance from center of viewport
+      const distanceFromCenter = elementCenter - windowCenter;
       
-      // Calculate rotation based on visibility
-      // Rotate from 0 to 180 degrees as the element comes into view
-      const newRotation = Math.min(Math.max(visibilityPercentage * 180, 0), 180);
+      // Calculate rotation based on distance from center
+      // Max rotation of 180 degrees when element is at center
+      const maxRotation = 180;
+      const rotationFactor = 0.5; // Adjust this to control rotation speed
+      const newRotation = Math.min(
+        Math.max(
+          (distanceFromCenter / windowHeight) * maxRotation * rotationFactor,
+          -maxRotation
+        ),
+        maxRotation
+      );
+      
       setRotation(newRotation);
     };
 
@@ -55,7 +62,7 @@ export const ContactSection = () => {
               className="relative aspect-square w-full max-w-md mx-auto"
             >
               <div 
-                className="relative w-full h-full transition-transform duration-100"
+                className="relative w-full h-full transition-transform duration-300 ease-out"
                 style={{ 
                   transformStyle: 'preserve-3d',
                   transform: `rotateY(${rotation}deg)`
