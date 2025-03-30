@@ -27,19 +27,19 @@ export const AboutSection = () => {
               }}
               rotationFactor={2}
               transitionDuration={500}
-              gradientColor="from-coffee-500/20"
+              gradientColor="from-cyan-500/20"
             />
           </SlideIn>
 
           {/* Right: Who I Am */}
           <SlideIn delay={0.1} className="space-y-6">
-            <h3 className="text-2xl font-bold text-coffee-100">Who I Am</h3>
-            <p className="text-lg leading-relaxed text-coffee-200">
+            <h3 className="text-2xl font-bold text-white">Who I Am</h3>
+            <p className="text-lg leading-relaxed text-gray-200">
               I&apos;m a seasoned full-stack developer specializing in React, TypeScript, and Web3 technologies.
               With experience in fast-paced startup environments, I excel at delivering high-quality applications
               while maintaining clean, scalable code.
             </p>
-            <p className="text-lg leading-relaxed text-coffee-200">
+            <p className="text-lg leading-relaxed text-gray-200">
               My expertise includes building intuitive user interfaces and implementing complex Web3 integrations
               across multiple blockchain platforms, from Ethereum to Solana.
             </p>
@@ -47,12 +47,12 @@ export const AboutSection = () => {
         </div>
 
         {/* Skills Section */}
-        <SlideIn delay={0.2} className="space-y-6">
-          <h3 className="text-2xl font-bold text-coffee-100">My Skills</h3>
+        <SlideIn delay={0.2} className="space-y-6 bg-cyan-500/5 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold text-cyan-100">My Skills</h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {/* Frontend Skills */}
             <div className="space-y-4">
-              <h4 className="text-xl font-medium text-coffee-300">Frontend</h4>
+              <h4 className="text-xl font-medium text-cyan-300">Frontend</h4>
               <div className="flex flex-wrap gap-2">
                 {[
                   "React",
@@ -67,7 +67,7 @@ export const AboutSection = () => {
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-coffee-900/30 px-3 py-1 text-sm text-coffee-300"
+                    className="rounded-full bg-white/10 px-3 py-1 text-sm text-white"
                     role="status"
                     aria-label={`Frontend skill: ${skill}`}
                   >
@@ -79,7 +79,7 @@ export const AboutSection = () => {
 
             {/* Web3 Skills */}
             <div className="space-y-4">
-              <h4 className="text-xl font-medium text-coffee-300">Web3</h4>
+              <h4 className="text-xl font-medium text-cyan-300">Web3</h4>
               <div className="flex flex-wrap gap-2">
                 {[
                   "Web3.js",
@@ -93,7 +93,7 @@ export const AboutSection = () => {
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-coffee-900/30 px-3 py-1 text-sm text-coffee-300"
+                    className="rounded-full bg-white/10 px-3 py-1 text-sm text-white"
                     role="status"
                     aria-label={`Web3 skill: ${skill}`}
                   >
@@ -105,7 +105,7 @@ export const AboutSection = () => {
 
             {/* Backend Skills */}
             <div className="space-y-4">
-              <h4 className="text-xl font-medium text-coffee-300">Backend</h4>
+              <h4 className="text-xl font-medium text-cyan-300">Backend</h4>
               <div className="flex flex-wrap gap-2">
                 {[
                   "Node.js",
@@ -118,7 +118,7 @@ export const AboutSection = () => {
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-coffee-900/30 px-3 py-1 text-sm text-coffee-300"
+                    className="rounded-full bg-white/10 px-3 py-1 text-sm text-white"
                     role="status"
                     aria-label={`Backend skill: ${skill}`}
                   >
@@ -134,10 +134,10 @@ export const AboutSection = () => {
         <FadeIn delay={0.4} className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Service 1 */}
           <div 
-            className="rounded-xl border border-coffee-700/50 bg-coffee-900/20 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-coffee-500/50"
+            className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-white/20"
             role="article"
           >
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-coffee-500/20">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -145,7 +145,7 @@ export const AboutSection = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                className="text-coffee-400"
+                className="text-white"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -155,8 +155,8 @@ export const AboutSection = () => {
                 <path d="M8 6l-6 6 6 6"></path>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-coffee-300">Frontend Development</h3>
-            <p className="text-coffee-200">
+            <h3 className="mb-2 text-xl font-bold text-white">Frontend Development</h3>
+            <p className="text-gray-200">
               Creating responsive, interactive web applications with modern React, TypeScript, and Next.js
               to deliver exceptional user experiences.
             </p>
@@ -164,10 +164,10 @@ export const AboutSection = () => {
 
           {/* Service 2 */}
           <div 
-            className="rounded-xl border border-coffee-700/50 bg-coffee-900/20 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-coffee-500/50"
+            className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-white/20"
             role="article"
           >
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-coffee-500/20">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -175,7 +175,7 @@ export const AboutSection = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                className="text-coffee-400"
+                className="text-white"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -186,8 +186,8 @@ export const AboutSection = () => {
                 <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-coffee-300">Web3 Integration</h3>
-            <p className="text-coffee-200">
+            <h3 className="mb-2 text-xl font-bold text-white">Web3 Integration</h3>
+            <p className="text-gray-200">
               Implementing blockchain functionality into web applications, including wallet connections,
               NFT marketplaces, and decentralized platforms.
             </p>
@@ -195,10 +195,10 @@ export const AboutSection = () => {
 
           {/* Service 3 */}
           <div 
-            className="rounded-xl border border-coffee-700/50 bg-coffee-900/20 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-coffee-500/50"
+            className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors duration-300 hover:border-white/20"
             role="article"
           >
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-coffee-500/20">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -206,7 +206,7 @@ export const AboutSection = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                className="text-coffee-400"
+                className="text-white"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -218,8 +218,8 @@ export const AboutSection = () => {
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-coffee-300">Startup-Ready Development</h3>
-            <p className="text-coffee-200">
+            <h3 className="mb-2 text-xl font-bold text-white">Startup-Ready Development</h3>
+            <p className="text-gray-200">
               Delivering rapid iterations and MVPs for startups, with a focus on clean code,
               scalable architecture, and quick time-to-market.
             </p>

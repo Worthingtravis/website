@@ -3,8 +3,15 @@ import "./styles/global.css";
 import { cn } from "@/lib/utils";
 import type { Metadata } from 'next';
 import { ClientLayout } from "@/components/client-layout";
+import { Inter, Space_Grotesk } from "next/font/google";
 
-const inter = Exo({
+const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"],
+  variable: '--font-space-grotesk',
+});
+
+const exo = Exo({
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("dark", inter.className)}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${cn("dark", exo.className)}`}>
       <body className="bg-background text-foreground flex min-h-screen flex-col font-sans antialiased">
         <ClientLayout>{children}</ClientLayout>
       </body>

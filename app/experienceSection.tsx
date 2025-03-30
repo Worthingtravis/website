@@ -170,20 +170,20 @@ export const ExperienceSection = () => {
                   <div className="relative">
                     <div className="h-16" />
                     {!isLast && (
-                      <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-gray-700" />
+                      <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-cyan-500/20" />
                     )}
                   </div>
 
                   {/* Job content */}
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-800/50">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/10">
                         {getJobIcon(job.id)}
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white">{job.title}</h3>
                         <p className="text-lg text-cyan-400">{job.company}</p>
-                        <p className="text-sm text-gray-400">{job.period}</p>
+                        <p className="text-sm text-cyan-500/60">{job.period}</p>
                       </div>
                     </div>
 
@@ -200,7 +200,7 @@ export const ExperienceSection = () => {
                       {job.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full bg-gray-800/50 px-3 py-1 text-sm text-gray-300"
+                          className="rounded-full bg-cyan-500/10 px-3 py-1 text-sm text-cyan-400"
                           role="status"
                           aria-label={`Technology: ${tag}`}
                         >
@@ -232,7 +232,7 @@ export const ExperienceSection = () => {
                   }}
                   rotationFactor={2}
                   transitionDuration={500}
-                  gradientColor="from-coffee-500/20"
+                  gradientColor="from-cyan-500/20"
                 />
               </FadeIn>
             </div>
