@@ -13,10 +13,92 @@ export const ContactSection = () => {
       title="Get In Touch"
       subtitle="Have a project in mind or want to discuss opportunities? I'd love to hear from you!"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div className="space-y-12">
+        {/* Top Section: Image and Contact Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Profile Image */}
+          <SlideIn delay={0.1}>
+            <div className="relative aspect-square w-full max-w-md mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl" />
+              <img
+                src="/contactme.png"
+                alt="Travis Worthing"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+            </div>
+          </SlideIn>
+
+          {/* Contact Information */}
+          <SlideIn delay={0.2}>
+            <div className="flex flex-col space-y-8 text-center md:text-left">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
+                <p className="text-gray-300 mb-6">
+                  Feel free to reach out through the form or via email for any inquiries or collaboration opportunities.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 md:justify-start justify-center">
+                    <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                      <IconMail className="text-cyan-400" aria-hidden={true} />
+                    </div>
+                    <a 
+                      href="mailto:worthingtravis@gmail.com" 
+                      className="text-cyan-400 hover:underline"
+                      aria-label="Email: worthingtravis@gmail.com"
+                    >
+                      worthingtravis@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Connect With Me</h3>
+                <div className="flex space-x-4 md:justify-start justify-center">
+                  <a
+                    href="https://github.com/worthingtravis"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-cyan-500 transition-colors"
+                    aria-label="GitHub Profile"
+                  >
+                    <IconBrandGithub className="w-6 h-6" aria-hidden={true} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/travis-worthing-3676a2166/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-cyan-500 transition-colors"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <IconBrandLinkedin className="w-6 h-6" aria-hidden={true} />
+                  </a>
+                  <a
+                    href="https://twitter.com/laughing_whales"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-cyan-500 transition-colors"
+                    aria-label="Twitter Profile"
+                  >
+                    <IconBrandTwitter className="w-6 h-6" aria-hidden={true} />
+                  </a>
+                  <a
+                    href="mailto:worthingtravis@gmail.com"
+                    className="text-gray-400 hover:text-cyan-500 transition-colors"
+                    aria-label="Email"
+                  >
+                    <IconMail className="w-6 h-6" aria-hidden={true} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </SlideIn>
+        </div>
+
         {/* Contact Form */}
         <SlideIn>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6 max-w-2xl mx-auto" onSubmit={(e) => e.preventDefault()}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                 Name
@@ -63,73 +145,6 @@ export const ContactSection = () => {
               Send Message
             </Button>
           </form>
-        </SlideIn>
-
-        {/* Contact Information */}
-        <SlideIn delay={0.2}>
-          <div className="space-y-8 text-center md:text-left">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
-              <p className="text-gray-300 mb-6">
-                Feel free to reach out through the form or via email for any inquiries or collaboration opportunities.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 md:justify-start justify-center">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <IconMail className="text-cyan-400" aria-hidden={true} />
-                  </div>
-                  <a 
-                    href="mailto:worthingtravis@gmail.com" 
-                    className="text-cyan-400 hover:underline"
-                    aria-label="Email: worthingtravis@gmail.com"
-                  >
-                    worthingtravis@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Connect With Me</h3>
-              <div className="flex space-x-4 md:justify-start justify-center">
-                <a
-                  href="https://github.com/worthingtravis"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-cyan-500 transition-colors"
-                  aria-label="GitHub Profile"
-                >
-                  <IconBrandGithub className="w-6 h-6" aria-hidden={true} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/travis-worthing-3676a2166/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-cyan-500 transition-colors"
-                  aria-label="LinkedIn Profile"
-                >
-                  <IconBrandLinkedin className="w-6 h-6" aria-hidden={true} />
-                </a>
-                <a
-                  href="https://twitter.com/laughing_whales"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-cyan-500 transition-colors"
-                  aria-label="Twitter Profile"
-                >
-                  <IconBrandTwitter className="w-6 h-6" aria-hidden={true} />
-                </a>
-                <a
-                  href="mailto:worthingtravis@gmail.com"
-                  className="text-gray-400 hover:text-cyan-500 transition-colors"
-                  aria-label="Email"
-                >
-                  <IconMail className="w-6 h-6" aria-hidden={true} />
-                </a>
-              </div>
-            </div>
-          </div>
         </SlideIn>
       </div>
     </Section>

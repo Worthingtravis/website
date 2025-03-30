@@ -1,10 +1,7 @@
 "use client";
 
-import React from "react";
 import { Section } from "@/components/section";
 import { FadeIn } from "@/components/motion";
-import { FaReact, FaJs, FaLaravel } from "react-icons/fa";
-import { SiIonic } from "react-icons/si";
 import { IconBrandReact, IconDeviceMobile, IconCode, IconBrandJavascript } from "@tabler/icons-react";
 
 // Job type definition
