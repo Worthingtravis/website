@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback, useMemo } from "react"
 import { IconHome, IconUser, IconFolder, IconBriefcase, IconMail, IconBrandGithub, IconCheck, IconArrowUp, IconArrowDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { IconBaseProps } from "react-icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NavItem {
   label: React.ElementType<IconBaseProps>;
@@ -169,6 +170,12 @@ export function NavHeader() {
     };
   }, [isMounted, handleScroll, debouncedResize, updateBarPosition]);
 
+  const iconVariants = {
+    hidden: { rotateY: 0 },
+    visible: { rotateY: 180 },
+    exit: { rotateY: 0 }
+  };
+
   if (!isMounted) {
     return null;
   }
@@ -195,17 +202,24 @@ export function NavHeader() {
               activeSection === href ? "text-cyan-400" : "text-foreground",
             )}
           >
-            {React.createElement(label, { size: 24 })}
+            {React.createElement(label, {
+              size: 24,
+              className: "relative",
+              style: {
+                transformStyle: 'preserve-3d',
+                ...(activeSection === href ? { transform: 'rotateY(180deg)' } : {})
+              }
+            })}
             {tooltip && (
               <span className="absolute -bottom-8 text-xs bg-background/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap flex items-center gap-1">
                 {tooltip}
                 {!external && (
-  activeSection === href ? (
-    <IconCheck className="text-cyan-400 h-3 w-3" />
-  ) : (
-    <span className="text-cyan-400">{arrowDirections[href]}</span>
-  )
-)}
+                  activeSection === href ? (
+                    <IconCheck className="text-cyan-400 h-3 w-3" />
+                  ) : (
+                    <span className="text-cyan-400">{arrowDirections[href]}</span>
+                  )
+                )}
               </span>
             )}
           </a>

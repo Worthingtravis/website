@@ -16,7 +16,6 @@ interface ImageRotationProps {
   className?: string;
   rotationFactor?: number;
   transitionDuration?: number;
-  gradientColor?: string;
 }
 
 export const ImageRotation = ({
@@ -25,7 +24,6 @@ export const ImageRotation = ({
   className = "",
   rotationFactor = 1,
   transitionDuration = 500,
-  gradientColor = "from-coffee-500/20",
 }: ImageRotationProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 1 });
@@ -56,7 +54,6 @@ export const ImageRotation = ({
           className="absolute inset-0"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className={`absolute inset-0 bg-gradient-to-b ${gradientColor} to-transparent rounded-2xl`} />
           <Image
             src={backImage.src}
             alt={backImage.alt}
@@ -74,7 +71,6 @@ export const ImageRotation = ({
             transform: 'rotateY(180deg)'
           }}
         >
-          <div className={`absolute inset-0 bg-gradient-to-b ${gradientColor} to-transparent rounded-2xl`} />
           <Image
             src={frontImage.src}
             alt={frontImage.alt}

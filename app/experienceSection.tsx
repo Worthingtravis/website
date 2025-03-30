@@ -218,8 +218,8 @@ export const ExperienceSection = () => {
         {/* Flipping Image Container */}
         <div className="relative">
           {/* Sticky Image Wrapper */}
-          <div className="md:sticky md:top-24">
-            <div className="relative h-[400px] w-full md:h-[600px]">
+          <div className="md:sticky md:top-[50vh] md:bottom-0">
+            <div className="relative h-[300px] w-full md:h-[400px]">
               <FadeIn delay={0.2}>
                 <ImageRotation
                   frontImage={{
@@ -232,7 +232,6 @@ export const ExperienceSection = () => {
                   }}
                   rotationFactor={2}
                   transitionDuration={500}
-                  gradientColor="from-cyan-500/20"
                 />
               </FadeIn>
             </div>
