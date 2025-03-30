@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { IconMail, IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from "@tabler/icons-react";
 import { Section } from "@/components/section";
 import { SlideIn } from "@/components/motion";
@@ -20,10 +21,13 @@ export const ContactSection = () => {
           <SlideIn delay={0.1}>
             <div className="relative aspect-square w-full max-w-md mx-auto">
               <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl" />
-              <img
+              <Image
                 src="/contactme.png"
                 alt="Travis Worthing"
+                width={500}
+                height={500}
                 className="w-full h-full object-cover rounded-2xl"
+                priority
               />
             </div>
           </SlideIn>
