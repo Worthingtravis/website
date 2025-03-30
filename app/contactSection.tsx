@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { IconMail, IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from "@tabler/icons-react";
 import { Section } from "@/components/section";
@@ -8,6 +8,37 @@ import { SlideIn } from "@/components/motion";
 import { Button } from "@/components/button";
 
 export const ContactSection = () => {
+  const [rotation, setRotation] = useState(0);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!imageRef.current) return;
+      
+      const rect = imageRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate how far the element is in the viewport
+      const elementTop = rect.top;
+      const elementBottom = rect.bottom;
+      
+      // Calculate the percentage of the element that's visible
+      const visibleHeight = Math.min(elementBottom, windowHeight) - Math.max(elementTop, 0);
+      const totalHeight = rect.height;
+      const visibilityPercentage = visibleHeight / totalHeight;
+      
+      // Calculate rotation based on visibility
+      // Rotate from 0 to 180 degrees as the element comes into view
+      const newRotation = Math.min(Math.max(visibilityPercentage * 180, 0), 180);
+      setRotation(newRotation);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial calculation
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Section
       id="contact"
@@ -19,16 +50,50 @@ export const ContactSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Profile Image */}
           <SlideIn delay={0.1}>
-            <div className="relative aspect-square w-full max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl" />
-              <Image
-                src="/contactme.png"
-                alt="Travis Worthing"
-                width={500}
-                height={500}
-                className="w-full h-full object-cover rounded-2xl"
-                priority
-              />
+            <div 
+              ref={imageRef}
+              className="relative aspect-square w-full max-w-md mx-auto"
+            >
+              <div 
+                className="relative w-full h-full transition-transform duration-100"
+                style={{ 
+                  transformStyle: 'preserve-3d',
+                  transform: `rotateY(${rotation}deg)`
+                }}
+              >
+                {/* Front */}
+                <div 
+                  className="absolute inset-0"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl" />
+                  <Image
+                    src="/contactme-flip.png"
+                    alt="Travis Worthing"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover rounded-2xl"
+                    priority
+                  />
+                </div>
+                {/* Back */}
+                <div 
+                  className="absolute inset-0"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent rounded-2xl" />
+                  <Image
+                    src="/contactme2.png"
+                    alt="Travis Worthing - Back"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+              </div>
             </div>
           </SlideIn>
 
