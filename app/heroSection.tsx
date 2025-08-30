@@ -1,17 +1,19 @@
 "use client";
 
-import React from "react";
-import { Section } from "@/components/section";
-import { FadeIn, ScaleIn } from "@/components/motion";
-import { Button } from "@/components/button";
 import { SkipLink } from "@/components/accessibility";
-import { useMotionPreferences } from "@/components/motion-preferences";
-import { useAnalytics } from "@/hooks/use-analytics";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useNavContext } from "@/contexts/nav-context";
+import { Button } from "@/components/button";
 import dynamic from "next/dynamic";
-import LottieAnimation from "@/components/lottie-animation";
 
+const LottieAnimation = dynamic(() => import("@/components/lottie-animation"), {
+  ssr: false,
+});
+import { FadeIn, ScaleIn } from "@/components/motion";
+import { useMotionPreferences } from "@/components/motion-preferences";
+import { Section } from "@/components/section";
+import { useNavContext } from "@/contexts/nav-context";
+import { useAnalytics } from "@/hooks/use-analytics";
+import { useInView, useScroll } from "framer-motion";
+import React from "react";
 
 export const HeroSection = () => {
   const { prefersReducedMotion } = useMotionPreferences();
@@ -22,27 +24,30 @@ export const HeroSection = () => {
   const isInView = useInView(sectionRef, { amount: 0.5 });
   const [shouldAnimate, setShouldAnimate] = React.useState(false);
   const prevSectionRef = React.useRef(activeSection);
-  const [animationData, setAnimationData] = React.useState<Record<string, any> | null>(null);
+  const [animationData, setAnimationData] = React.useState<Record<
+    string,
+    any
+  > | null>(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     setIsLoading(true);
     setError(null);
-    fetch('/coffee.json')
-      .then(response => {
+    fetch("/coffee.json")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to load animation');
+          throw new Error("Failed to load animation");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setAnimationData(data);
         setIsLoading(false);
       })
-      .catch(error => {
-        console.error('Error loading animation:', error);
-        setError('Failed to load animation');
+      .catch((error) => {
+        console.error("Error loading animation:", error);
+        setError("Failed to load animation");
         setIsLoading(false);
       });
   }, []);
@@ -59,7 +64,9 @@ export const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+      element.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
       trackEvent("section_scroll", { sectionId });
     }
   };
@@ -67,8 +74,8 @@ export const HeroSection = () => {
   return (
     <Section id="hero" fullHeight className="relative overflow-hidden">
       <SkipLink />
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full max-w-7xl mx-auto px-6">
+
+      <div className="mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-8 px-6 lg:grid-cols-2">
         {/* Left column - Text content */}
         <div className="relative z-10 text-left lg:pl-8">
           <FadeIn className="max-w-xl">
@@ -80,7 +87,7 @@ export const HeroSection = () => {
               </div>
             </ScaleIn>
 
-            <h1 className="mb-6 text-6xl font-bold tracking-tight md:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-200">
+            <h1 className="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-6xl font-bold tracking-tight text-transparent md:text-7xl">
               Travis
               <br />
               Worthing
@@ -90,10 +97,11 @@ export const HeroSection = () => {
               Senior Full-Stack Developer
             </h2>
 
-            <p className="text-lg leading-relaxed text-gray-300/90 md:text-xl mb-12">
-              I build exceptional digital experiences with a focus on modern React applications
-              and web3 integrations. Specializing in fast-paced startup environments where
-              quality and speed are essential.
+            <p className="mb-12 text-lg leading-relaxed text-gray-300/90 md:text-xl">
+              I build exceptional digital experiences with a focus on modern
+              React applications and web3 integrations. Specializing in
+              fast-paced startup environments where quality and speed are
+              essential.
             </p>
 
             <div className="flex flex-wrap gap-6">
@@ -101,7 +109,7 @@ export const HeroSection = () => {
                 size="lg"
                 onClick={() => scrollToSection("#projects")}
                 aria-label="View my work"
-                className="bg-gradient-to-r from-[#00E5FF] to-[#0066FF] hover:from-[#00E5FF] hover:to-[#0052CC] text-black font-medium px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
+                className="rounded-full bg-gradient-to-r from-[#00E5FF] to-[#0066FF] px-8 py-3 font-medium text-black transition-all duration-300 hover:from-[#00E5FF] hover:to-[#0052CC] hover:shadow-lg hover:shadow-cyan-500/20"
               >
                 View My Work
               </Button>
@@ -111,7 +119,7 @@ export const HeroSection = () => {
                 size="lg"
                 onClick={() => scrollToSection("#contact")}
                 aria-label="Get in touch"
-                className="border-2 border-[#00E5FF] text-[#00E5FF] px-8 py-3 rounded-full transition-all duration-300 hover:bg-[#00E5FF]/10"
+                className="rounded-full border-2 border-[#00E5FF] px-8 py-3 text-[#00E5FF] transition-all duration-300 hover:bg-[#00E5FF]/10"
               >
                 Get In Touch
               </Button>
@@ -120,17 +128,17 @@ export const HeroSection = () => {
         </div>
 
         {/* Right column - Animation */}
-        <div className="relative z-0 lg:z-10 h-full flex items-center justify-center lg:-mr-24">
+        <div className="relative z-0 flex h-full items-center justify-center lg:z-10 lg:-mr-24">
           {isLoading && (
-            <div className="absolute inset-0 w-full h-full bg-transparent animate-pulse" />
+            <div className="absolute inset-0 h-full w-full animate-pulse bg-transparent" />
           )}
           {error && (
-            <div className="absolute inset-0 w-full h-full bg-transparent" />
+            <div className="absolute inset-0 h-full w-full bg-transparent" />
           )}
           {animationData && !isLoading && !error && (
-            <LottieAnimation 
+            <LottieAnimation
               animationData={animationData}
-              className="w-[150%] h-[150%] max-w-5xl opacity-90"
+              className="h-[300%] w-[300%] max-w-none opacity-90"
             />
           )}
         </div>

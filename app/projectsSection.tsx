@@ -48,8 +48,7 @@ const projects: Project[] = [
     category: "nft",
     tags: ["Canto"],
     links: [
-      { label: "BlankRasa", url: "https://www.blankrasa.com/collection/0x10a64af86267ad75a96865ee3b3db831e6d2baed" },
-      { label: "Website", url: "https://orkahideout.io/" }
+      { label: "BlankRasa", url: "https://www.blankrasa.com/collection/0x10a64af86267ad75a96865ee3b3db831e6d2baed" }
     ],
     date: "June 2022"
   },
@@ -74,9 +73,7 @@ const projects: Project[] = [
     image: "/spearbit.png",
     category: "contract",
     tags: ["Contract Work"],
-    links: [
-      { label: "Website", url: "https://spearbit.com/" }
-    ],
+    links: [],
     date: "2023"
   },
   {
@@ -87,9 +84,7 @@ const projects: Project[] = [
     image: "/sacred-forum-2.png",
     category: "contract",
     tags: ["Contract Work"],
-    links: [
-      { label: "Visit Forum", url: "https://app.sacredprotocol.com" }
-    ],
+    links: [],
     date: "2023"
   },
   {
