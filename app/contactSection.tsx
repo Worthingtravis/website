@@ -248,13 +248,11 @@ export const ContactSection = () => {
             
             <form 
               ref={formRef}
-              className="space-y-6 bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl relative overflow-hidden"
+              className="space-y-6 relative"
               onSubmit={handleSubmit}
             >
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 pointer-events-none" />
               
-              <div className="relative space-y-6">
+              <div className="space-y-8">
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
@@ -265,7 +263,7 @@ export const ContactSection = () => {
                     onChange={handleChange}
                     error={validationErrors.name}
                     placeholder="Your full name"
-                    className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
+                    className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                     required
                   />
                   
@@ -278,7 +276,7 @@ export const ContactSection = () => {
                     onChange={handleChange}
                     error={validationErrors.email}
                     placeholder="your@email.com"
-                    className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
+                    className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                     required
                   />
                 </div>
@@ -292,23 +290,25 @@ export const ContactSection = () => {
                   onChange={handleChange}
                   error={validationErrors.message}
                   placeholder="Tell me about your project, ideas, or just say hello..."
-                  className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 min-h-[120px]"
+                  className="bg-white/5 border-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-200 min-h-[120px] hover:bg-white/10"
                   isTextArea
                   required
                 />
 
                 {/* Submit Button */}
-                <Button 
-                  type="submit" 
-                  fullWidth 
-                  size="lg"
-                  disabled={!isFormValid || isSubmitting}
-                  isLoading={isSubmitting}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:opacity-50"
-                  leftIcon={!isSubmitting ? <IconSend className="w-5 h-5" /> : undefined}
-                >
-                  {isSubmitting ? "Preparing Message..." : "Send Message"}
-                </Button>
+                <div className="pt-4">
+                  <Button 
+                    type="submit" 
+                    fullWidth 
+                    size="lg"
+                    disabled={!isFormValid || isSubmitting}
+                    isLoading={isSubmitting}
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 transform hover:scale-[1.02] disabled:hover:scale-100 disabled:opacity-50"
+                    leftIcon={!isSubmitting ? <IconSend className="w-5 h-5" /> : undefined}
+                  >
+                    {isSubmitting ? "Preparing Message..." : "Send Message"}
+                  </Button>
+                </div>
               </div>
             </form>
           </div>

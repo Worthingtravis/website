@@ -78,8 +78,8 @@ export const HeroSection = () => {
               </h1>
               
               {/* Floating Lottie Animation */}
-              <div className="absolute -top-4 -right-16 sm:-right-24 md:-right-32 lg:-right-40 xl:-right-48 z-20 pointer-events-none">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
+              <div className="absolute -top-4 -right-16 sm:-right-24 md:-right-32 lg:-right-48 xl:-right-152 2xl:-right-152 z-20 pointer-events-none">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-152 xl:h-152 2xl:w-152 2xl:h-152">
                   {error ? (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
