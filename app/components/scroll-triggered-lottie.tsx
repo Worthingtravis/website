@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useScrollContext } from "@/contexts/scroll-context";
+
+// Dynamically import Lottie to prevent SSR issues
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-gray-200/20 rounded" />
+});
 
 interface ScrollTriggeredLottieProps {
   animationData: Record<string, any>; // JSON animation data
@@ -16,59 +23,30 @@ export function ScrollTriggeredLottie({
   triggerOffset = 100 
 }: ScrollTriggeredLottieProps) {
   const lottieRef = useRef<any>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [shouldPlay, setShouldPlay] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { isScrolling } = useScrollContext();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
-      
-      // Only trigger if we're actually scrolling (not just at the same position)
-      if (isScrollingDown || isScrollingUp) {
-        setIsScrolling(true);
-        setShouldPlay(true);
-
-        // Clear existing timeout
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current);
-        }
-
-        // Set a timeout to detect when scrolling stops
-        scrollTimeoutRef.current = setTimeout(() => {
-          setIsScrolling(false);
-          setShouldPlay(false); // Stop playing when scrolling stops
-        }, 150); // 150ms of no scroll activity = stopped scrolling
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
-    if (!lottieRef.current) return;
+    if (!lottieRef.current || !isClient) return;
 
-    if (shouldPlay && isScrolling) {
+    if (isScrolling) {
       // Start playing when scrolling
       lottieRef.current.play();
-    } else if (!shouldPlay) {
-      // Stop playing when should not play
+    } else {
+      // Stop playing when scrolling stops
       lottieRef.current.stop();
     }
-  }, [isScrolling, shouldPlay]);
+  }, [isScrolling, isClient]);
+
+  if (!isClient) {
+    return (
+      <div className={`w-full h-full animate-pulse bg-gray-200/20 rounded ${className}`} />
+    );
+  }
 
   return (
     <motion.div

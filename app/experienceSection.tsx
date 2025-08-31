@@ -159,8 +159,31 @@ export const ExperienceSection = () => {
       className="overflow-visible"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Flipping Image Container - Mobile First */}
+        <div className="relative md:order-2 mb-8 md:mb-0">
+          {/* Sticky Image Wrapper - Only sticky on desktop */}
+          <div className="md:sticky md:top-[50vh] md:bottom-0">
+            <div className="relative h-[250px] w-full md:h-[400px] max-w-sm mx-auto md:max-w-none">
+              <FadeIn delay={0.2}>
+                <ImageRotation
+                  frontImage={{
+                    src: "/winter-coffee.png",
+                    alt: "Winter Coffee"
+                  }}
+                  backImage={{
+                    src: "/winter-spill.png",
+                    alt: "Winter Spill"
+                  }}
+                  rotationFactor={2}
+                  transitionDuration={500}
+                />
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+
         {/* Experience Timeline */}
-        <div className="md:col-span-2 space-y-8">
+        <div className="md:col-span-2 md:order-1 space-y-8">
           {jobs.map((job, index) => {
             const isLast = index === jobs.length - 1;
             return (
@@ -213,29 +236,6 @@ export const ExperienceSection = () => {
               </FadeIn>
             );
           })}
-        </div>
-
-        {/* Flipping Image Container */}
-        <div className="relative">
-          {/* Sticky Image Wrapper */}
-          <div className="md:sticky md:top-[50vh] md:bottom-0">
-            <div className="relative h-[300px] w-full md:h-[400px]">
-              <FadeIn delay={0.2}>
-                <ImageRotation
-                  frontImage={{
-                    src: "/winter-coffee.png",
-                    alt: "Winter Coffee"
-                  }}
-                  backImage={{
-                    src: "/winter-spill.png",
-                    alt: "Winter Spill"
-                  }}
-                  rotationFactor={2}
-                  transitionDuration={500}
-                />
-              </FadeIn>
-            </div>
-          </div>
         </div>
       </div>
     </Section>

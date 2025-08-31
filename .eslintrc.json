@@ -71,6 +71,6 @@
     }
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": true
   }
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface MotionPreferencesContextType {
@@ -12,8 +14,15 @@ export const useMotionPreferences = () => useContext(MotionPreferencesContext);
 
 export const MotionPreferencesProvider = ({ children }: { children: React.ReactNode }) => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || typeof window === "undefined") return;
+    
     // Check initial preference
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
@@ -25,7 +34,7 @@ export const MotionPreferencesProvider = ({ children }: { children: React.ReactN
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [isMounted]);
 
   return (
     <MotionPreferencesContext.Provider value={{ prefersReducedMotion }}>

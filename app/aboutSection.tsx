@@ -341,26 +341,6 @@ export const AboutSection = () => {
           </div>
         </FadeIn>
 
-        {/* Call to action */}
-        <FadeIn>
-          <motion.div 
-            className="text-center bg-gradient-to-r from-cyan-500/10 to-blue-500/10 p-8 rounded-2xl border border-cyan-500/20"
-            whileHover={{ scale: 1.02 }}
-          >
-            <h3 className="text-xl font-bold text-cyan-400 mb-3">
-              Ready to Build Something Amazing?
-            </h3>
-            <p className="text-gray-300 mb-4">
-              Let&rsquo;s grab a coffee (virtually) and discuss your next project. 
-              I promise to keep the spills to a minimum.
-            </p>
-            <div className="flex justify-center items-center gap-2 text-sm text-gray-400">
-              <IconCoffee className="size-4" />
-              <span>Current coffee level: Optimally caffeinated</span>
-            </div>
-          </motion.div>
-        </FadeIn>
-
       </div>
     </Section>
   );

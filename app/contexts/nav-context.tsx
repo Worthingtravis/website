@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useScrollContext } from "./scroll-context";
 
 interface NavContextType {
   activeSection: string;
@@ -11,25 +12,23 @@ const NavContext = createContext<NavContextType | undefined>(undefined);
 
 export function NavProvider({ children }: { children: React.ReactNode }) {
   const [activeSection, setActiveSection] = useState<string>("#hero");
+  const { scrollY } = useScrollContext();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]");
-      const scrollPosition = window.scrollY + 100;
+    if (typeof window === "undefined") return;
+    
+    const sections = document.querySelectorAll("section[id]");
+    const scrollPosition = scrollY + 100;
 
-      sections.forEach((section) => {
-        const sectionElement = section as HTMLElement;
-        const sectionTop = sectionElement.offsetTop;
-        const sectionHeight = sectionElement.clientHeight;
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(`#${section.id}`);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    sections.forEach((section) => {
+      const sectionElement = section as HTMLElement;
+      const sectionTop = sectionElement.offsetTop;
+      const sectionHeight = sectionElement.clientHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        setActiveSection(`#${section.id}`);
+      }
+    });
+  }, [scrollY]);
 
   return (
     <NavContext.Provider value={{ activeSection, setActiveSection }}>

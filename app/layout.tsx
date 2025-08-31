@@ -5,6 +5,9 @@ import type { Metadata } from 'next';
 import { ClientLayout } from "@/components/client-layout";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { NavProvider } from "./contexts/nav-context";
+import { ScrollProvider } from "./contexts/scroll-context";
+import { MotionPreferencesProvider } from "./components/motion-preferences";
+import { MotionProvider } from "./components/motion-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ 
@@ -54,9 +57,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${cn("dark", exo.className)}`}>
       <body className="bg-background text-foreground flex min-h-screen flex-col font-sans antialiased">
-        <NavProvider>
-          <ClientLayout>{children}</ClientLayout>
-        </NavProvider>
+        <MotionPreferencesProvider>
+          <MotionProvider>
+            <ScrollProvider>
+              <NavProvider>
+                <ClientLayout>{children}</ClientLayout>
+              </NavProvider>
+            </ScrollProvider>
+          </MotionProvider>
+        </MotionPreferencesProvider>
       </body>
     </html>
   );

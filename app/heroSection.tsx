@@ -6,12 +6,15 @@ import dynamic from "next/dynamic";
 
 const LottieAnimation = dynamic(() => import("@/components/lottie-animation"), {
   ssr: false,
+  loading: () => null, // We'll handle loading state ourselves
 });
+
 import { FadeIn, ScaleIn } from "@/components/motion";
 import { useMotionPreferences } from "@/components/motion-preferences";
 import { Section } from "@/components/section";
 import { useNavContext } from "@/contexts/nav-context";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { useCoffeeLottie } from "@/hooks/use-lottie-data";
 import { useInView, useScroll } from "framer-motion";
 import React from "react";
 
@@ -24,33 +27,9 @@ export const HeroSection = () => {
   const isInView = useInView(sectionRef, { amount: 0.5 });
   const [shouldAnimate, setShouldAnimate] = React.useState(false);
   const prevSectionRef = React.useRef(activeSection);
-  const [animationData, setAnimationData] = React.useState<Record<
-    string,
-    any
-  > | null>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
-
-  React.useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    fetch("/coffee.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load animation");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setAnimationData(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error loading animation:", error);
-        setError("Failed to load animation");
-        setIsLoading(false);
-      });
-  }, []);
+  
+  // Use the new data fetching hook
+  const { data: animationData, isLoading, error } = useCoffeeLottie();
 
   React.useEffect(() => {
     if (activeSection !== prevSectionRef.current) {
@@ -61,23 +40,27 @@ export const HeroSection = () => {
     prevSectionRef.current = activeSection;
   }, [activeSection]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-      });
-      trackEvent("section_scroll", { sectionId });
-    }
-  };
+  const scrollToSection = React.useCallback(
+    (sectionId: string) => {
+      if (typeof document === "undefined") return;
+      const element = document.querySelector(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        trackEvent("section_scroll", { sectionId });
+      }
+    },
+    [prefersReducedMotion, trackEvent]
+  );
 
   return (
-    <Section id="hero" fullHeight className="relative overflow-hidden">
+    <Section id="hero" fullHeight className="relative overflow-hidden lg:overflow-visible">
       <SkipLink />
 
-      <div className="mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-8 px-6 lg:grid-cols-2">
-        {/* Left column - Text content */}
-        <div className="relative z-10 text-left lg:pl-8">
+      <div className="mx-auto flex h-full max-w-7xl items-center px-6">
+        {/* Main content with floating animation */}
+        <div className="relative z-10 text-left w-full max-w-4xl">
           <FadeIn className="max-w-xl">
             <ScaleIn className="mb-6 inline-block">
               <div className="relative inline-block">
@@ -87,11 +70,32 @@ export const HeroSection = () => {
               </div>
             </ScaleIn>
 
-            <h1 className="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-6xl font-bold tracking-tight text-transparent md:text-7xl">
-              Travis
-              <br />
-              Worthing
-            </h1>
+            <div className="relative mb-6">
+              <h1 className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-6xl font-bold tracking-tight text-transparent md:text-7xl">
+                Travis
+                <br />
+                Worthing
+              </h1>
+              
+              {/* Floating Lottie Animation */}
+              <div className="absolute -top-4 -right-16 sm:-right-24 md:-right-32 lg:-right-40 xl:-right-48 z-20 pointer-events-none">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
+                  {error ? (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-4xl mb-2">☕</div>
+                        <p className="text-gray-400 text-xs">Failed to load</p>
+                      </div>
+                    </div>
+                  ) : animationData ? (
+                    <LottieAnimation
+                      animationData={animationData}
+                      className="w-full h-full opacity-90"
+                    />
+                  ) : null}
+                </div>
+              </div>
+            </div>
 
             <h2 className="mb-8 text-2xl font-light text-[#00E5FF] md:text-3xl">
               Senior Full-Stack Developer
@@ -125,22 +129,6 @@ export const HeroSection = () => {
               </Button>
             </div>
           </FadeIn>
-        </div>
-
-        {/* Right column - Animation */}
-        <div className="relative z-0 flex h-full items-center justify-center lg:z-10 lg:-mr-24">
-          {isLoading && (
-            <div className="absolute inset-0 h-full w-full animate-pulse bg-transparent" />
-          )}
-          {error && (
-            <div className="absolute inset-0 h-full w-full bg-transparent" />
-          )}
-          {animationData && !isLoading && !error && (
-            <LottieAnimation
-              animationData={animationData}
-              className="h-[300%] w-[300%] max-w-none opacity-90"
-            />
-          )}
         </div>
       </div>
     </Section>

@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { IconHome, IconUser, IconFolder, IconBriefcase, IconMail, IconBrandGithub, IconCheck, IconArrowUp, IconArrowDown } from "@tabler/icons-react";
+import { IconHome, IconHomeFilled, IconUser, IconUserFilled, IconFolder, IconFolderFilled, IconBriefcase, IconBriefcaseFilled, IconMail, IconMailFilled, IconBrandGithub, IconCheck, IconArrowUp, IconArrowDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { IconBaseProps } from "react-icons";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavItem {
   label: React.ElementType<IconBaseProps>;
+  activeLabel: React.ElementType<IconBaseProps>;
   href: string;
   external?: boolean;
   tooltip?: string;
@@ -19,13 +20,39 @@ interface BarStyle {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: IconHome as React.ElementType<IconBaseProps>, href: "#hero", tooltip: "Home" },
-  { label: IconUser as React.ElementType<IconBaseProps>, href: "#about", tooltip: "About" },
-  { label: IconFolder as React.ElementType<IconBaseProps>, href: "#projects", tooltip: "Projects" },
-  { label: IconBriefcase as React.ElementType<IconBaseProps>, href: "#experience", tooltip: "Experience" },
-  { label: IconMail as React.ElementType<IconBaseProps>, href: "#contact", tooltip: "Contact" },
+  { 
+    label: IconHome as React.ElementType<IconBaseProps>, 
+    activeLabel: IconHomeFilled as React.ElementType<IconBaseProps>,
+    href: "#hero", 
+    tooltip: "Home" 
+  },
+  { 
+    label: IconUser as React.ElementType<IconBaseProps>, 
+    activeLabel: IconUserFilled as React.ElementType<IconBaseProps>,
+    href: "#about", 
+    tooltip: "About" 
+  },
+  { 
+    label: IconFolder as React.ElementType<IconBaseProps>, 
+    activeLabel: IconFolderFilled as React.ElementType<IconBaseProps>,
+    href: "#projects", 
+    tooltip: "Projects" 
+  },
+  { 
+    label: IconBriefcase as React.ElementType<IconBaseProps>, 
+    activeLabel: IconBriefcaseFilled as React.ElementType<IconBaseProps>,
+    href: "#experience", 
+    tooltip: "Experience" 
+  },
+  { 
+    label: IconMail as React.ElementType<IconBaseProps>, 
+    activeLabel: IconMailFilled as React.ElementType<IconBaseProps>,
+    href: "#contact", 
+    tooltip: "Contact" 
+  },
   {
     label: IconBrandGithub as React.ElementType<IconBaseProps>,
+    activeLabel: IconBrandGithub as React.ElementType<IconBaseProps>,
     href: "https://github.com/worthingtravis",
     external: true,
     tooltip: "GitHub ↗",
@@ -170,11 +197,7 @@ export function NavHeader() {
     };
   }, [isMounted, handleScroll, debouncedResize, updateBarPosition]);
 
-  const iconVariants = {
-    hidden: { rotateY: 0 },
-    visible: { rotateY: 180 },
-    exit: { rotateY: 0 }
-  };
+
 
   if (!isMounted) {
     return null;
@@ -185,44 +208,45 @@ export function NavHeader() {
       ref={navRef}
       className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center select-none justify-center gap-2 md:gap-8 backdrop-blur-sm bg-gray-900/70"
     >
-      <div className="flex items-center relative bg-gray-800/50 justify-center gap-4 md:gap-8 px-4 rounded-full">
-        {NAV_ITEMS.map(({ label, href, external, tooltip }, index) => (
-          <a
-            key={href}
-            ref={(el) => {
-              if (el) linksRef.current[index] = el;
-            }}
-            href={href}
-            target={external ? "_blank" : undefined}
-            rel={external ? "noopener noreferrer" : undefined}
-            onClick={(e) => handleClick(e, href, !!external)}
-            data-cursor
-            className={cn(
-              "relative flex justify-center items-center rounded-full p-3 hover:bg-gray-800/50 transition-colors duration-300 group",
-              activeSection === href ? "text-cyan-400" : "text-foreground",
+      <div className="flex items-center relative bg-gray-800/50 justify-center gap-2 md:gap-4 px-4 rounded-full">
+        {NAV_ITEMS.map(({ label, activeLabel, href, external, tooltip }, index) => (
+          <React.Fragment key={href}>
+            {/* Add separator before external links */}
+            {external && index > 0 && (
+              <div className="h-6 w-px bg-gray-600/50 mx-1 md:mx-2" />
             )}
-          >
-            {React.createElement(label, {
+            <a
+              ref={(el) => {
+                if (el) linksRef.current[index] = el;
+              }}
+              href={href}
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
+              onClick={(e) => handleClick(e, href, !!external)}
+              data-cursor
+              className={cn(
+                "relative flex justify-center items-center rounded-full p-3 hover:bg-gray-800/50 transition-colors duration-300 group",
+                activeSection === href ? "text-cyan-400" : "text-foreground",
+              )}
+            >
+                          {React.createElement(activeSection === href ? activeLabel : label, {
               size: 24,
-              className: "relative",
-              style: {
-                transformStyle: 'preserve-3d',
-                ...(activeSection === href ? { transform: 'rotateY(180deg)' } : {})
-              }
+              className: "relative transition-all duration-300"
             })}
-            {tooltip && (
-              <span className="absolute -bottom-8 text-xs bg-background/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap flex items-center gap-1">
-                {tooltip}
-                {!external && (
-                  activeSection === href ? (
-                    <IconCheck className="text-cyan-400 h-3 w-3" />
-                  ) : (
-                    <span className="text-cyan-400">{arrowDirections[href]}</span>
-                  )
-                )}
-              </span>
-            )}
-          </a>
+              {tooltip && (
+                <span className="absolute -bottom-8 text-xs bg-background/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap flex items-center gap-1">
+                  {tooltip}
+                  {!external && (
+                    activeSection === href ? (
+                      <IconCheck className="text-cyan-400 h-3 w-3" />
+                    ) : (
+                      <span className="text-cyan-400">{arrowDirections[href]}</span>
+                    )
+                  )}
+                </span>
+              )}
+            </a>
+          </React.Fragment>
         ))}
         <div 
           className="absolute bottom-0 h-1 bg-white rounded-full transition-all duration-300 ease-in-out"
