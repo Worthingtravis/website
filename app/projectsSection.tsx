@@ -94,7 +94,7 @@ const projects: Project[] = [
     personalNote: "Developed seamless integration between web browsers and blockchain technology for user engagement rewards.",
     image: "/sacred.png",
     category: "contract",
-    tags: ["Contract Work"],
+    tags: ["Contract Work", "Solana", "Ethereum"],
     links: [
       { label: "Marketing Site", url: "https://www.sacredprotocol.com" }
     ],

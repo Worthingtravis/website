@@ -22,35 +22,35 @@ import { cn } from "@/lib/utils";
 const storyChapters = [
   {
     id: "origin",
-    title: "The Origin Story",
-    emoji: "🌱",
-    year: "2015",
-    content: "It all started with a simple question: 'How do I make this button do something?' Eight years later, I'm still asking questions—just slightly more sophisticated ones involving blockchain protocols and scalable web applications.",
-    highlight: "Curiosity-driven from day one"
+    title: "The Grind Begins",
+    emoji: "🎯",
+    year: "Early Days",
+    content: "Like many things worth mastering, programming didn't come easy at first. After barely passing that first Java class, everything clicked when a friend explained variables using salt and pepper shakers—suddenly the abstract became tangible. That drive to excel, whether on the basketball court or in code, meant grinding until concepts made sense.",
+    highlight: "Persistence over perfection"
   },
   {
     id: "evolution", 
-    title: "The Coffee Chronicles",
-    emoji: "☕",
-    year: `2016-${new Date().getFullYear()}`,
-    content: "Through startup sprints, midnight deploys, and those 'just-one-more-feature' moments, coffee became my constant companion. Current stats: ∞ cups consumed, 6 strategically spilled (we don't talk about spill #3).",
-    highlight: "Fueled by caffeine, driven by passion"
+    title: "Finding My Edge",
+    emoji: "♟️",
+    year: "College Years",
+    content: "Building a chess application with a talented partner showed me what was possible when you push beyond basic requirements. That competitive drive—wanting to be as efficient as the best programmers around me—became the foundation for everything that followed.",
+    highlight: "Excellence through collaboration and competition"
   },
   {
     id: "mastery",
-    title: "The Tech Journey", 
-    emoji: "🚀",
-    year: "Present",
-    content: "From React components to Web3 protocols, I've built my craft across the full stack. Whether it's crafting pixel-perfect UIs or architecting scalable backends, I bridge the gap between what's possible and what's profitable.",
-    highlight: "Full-stack expertise with startup speed"
+    title: "The Web3 Gateway", 
+    emoji: "⛓️",
+    year: "Professional Era",
+    content: "While working on road safety analytics using crash data, a coffee meeting about a silver-backed token project opened the door to blockchain development. That introduction led to leading teams at Atomic47 Labs and delivering solutions for Sacred Finance, Ratio Software and other innovative startups.",
+    highlight: "From data analysis to decentralized solutions"
   },
   {
     id: "personal",
     title: "The Human Side",
-    emoji: "🐕",
+    emoji: "🏀",
     year: "Always",
-    content: "When I'm not debugging React components, you'll find me with my Australian Shepherd, who's mastered the art of judging my code from across the room. He's particularly critical of my variable naming conventions.",
-    highlight: "Code reviewer: 1 very opinionated dog"
+    content: "A former college basketball athlete at UBC Okanagan, I bring teamwork, resilience and a hands-on mentoring leadership style to every project. Whether on the court or in code, it's about elevating the whole team's performance.",
+    highlight: "Athlete mindset meets engineering excellence"
   }
 ];
 
@@ -69,30 +69,30 @@ const skillCategories: SkillCategory[] = [
     skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion", "Material-UI", "Three.js", "React Query"],
     color: "from-blue-500 to-cyan-500",
     icon: <IconCode className="size-5" />,
-    description: "Crafting interfaces that users actually enjoy"
+    description: "Pixel-perfect UIs backed by clean, maintainable code"
   },
   {
     title: "Web3 Innovation", 
-    skills: ["Web3.js", "Ethers.js", "Wallet Integration", "dApp Development", "Avalanche", "Ethereum", "Solana", "NFT Platforms"],
+    skills: ["Web3.js", "Ethers.js", "Multi-chain Wallets", "dApp Development", "NFT Marketplaces", "Ethereum", "Solana", "Blockchain Integrations"],
     color: "from-purple-500 to-pink-500",
     icon: <IconBrain className="size-5" />,
-    description: "Building the decentralized future"
+    description: "Scalable dApps and blockchain solutions"
   },
   {
     title: "Backend Architecture",
-    skills: ["Node.js", "Express", "Laravel", "MySQL", "AWS", "API Integration"],
+    skills: ["Node.js", "Express", "Laravel", "MySQL", "AWS", "API Integration", "LLM Integration"],
     color: "from-green-500 to-emerald-500", 
     icon: <IconRocket className="size-5" />,
     description: "Servers that scale and APIs that sing"
   }
 ];
 
-// Coffee-themed stats
+// Professional stats
 const coffeeStats = [
   { label: "Years of Experience", value: "8+", icon: <IconSparkles />, color: "text-cyan-400" },
-  { label: "Cups of Coffee", value: "∞", icon: <IconCoffee />, color: "text-coffee-400" },
-  { label: "Strategic Spills", value: "6", icon: <IconCoffee />, color: "text-coffee-600" },
-  { label: "Furry Code Reviewers", value: "1", icon: <IconPaw />, color: "text-latte-400" }
+  { label: "Location", value: "Kelowna, BC", icon: <IconWorld />, color: "text-blue-400" },
+  { label: "Specialization", value: "Full-Stack", icon: <IconCode />, color: "text-purple-400" },
+  { label: "College Athlete", value: "UBC", icon: <IconHeart />, color: "text-orange-400" }
 ];
 
 // Interactive card component
@@ -197,7 +197,7 @@ export const AboutSection = () => {
     <Section
       id="about"
       title="The Developer Behind the Code"
-      subtitle="A story told through coffee stains, code commits, and one very judgmental dog 🐕"
+      subtitle="Senior engineer, team leader, and former college athlete building the future of Web3 🚀"
       className="py-8 md:py-16 relative overflow-hidden"
     >
 
@@ -211,13 +211,13 @@ export const AboutSection = () => {
                 Meet Travis Worthing
               </h3>
               <p className="text-lg text-gray-300 leading-relaxed">
-                A seasoned full-stack developer who turns coffee into code and ideas into 
-                digital reality. Specializing in React ecosystems, Web3 innovations, and 
-                fast-paced startup environments where &ldquo;impossible&rdquo; is just another challenge.
+                A Kelowna-based software engineer with a Computer Science degree from UBC Okanagan. 
+                Specializing in React, TypeScript, and Web3 development, with a competitive drive 
+                for building clean, scalable solutions that make a difference.
               </p>
               <div className="flex items-center gap-4 text-cyan-400">
                 <IconWorld className="size-5" />
-                <span>Building the web, one component at a time</span>
+                <span>Building scalable dApps with pixel-perfect UIs</span>
               </div>
             </div>
             
@@ -271,7 +271,7 @@ export const AboutSection = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-black px-2 py-1 rounded text-xs font-semibold"
                   >
-                    {index === 2 ? "We don't talk about #3" : "Essential metric"}
+                    {index === 3 ? "UBC Okanagan basketball" : "Professional milestone"}
                   </motion.div>
                 )}
               </motion.div>
