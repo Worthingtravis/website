@@ -45,29 +45,7 @@ export function CoffeeLottieSkeleton({ className = "" }: { className?: string })
   );
 }
 
-// Hero Section Skeleton
-export function HeroSkeleton() {
-  return (
-    <div className="mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-8 px-6 lg:grid-cols-2">
-      {/* Left column - Text content */}
-      <div className="relative z-10 text-left lg:pl-8 space-y-6">
-        <Skeleton className="h-6 w-32" /> {/* Hello, I'm */}
-        <Skeleton className="h-20 w-full max-w-lg" /> {/* Name */}
-        <Skeleton className="h-8 w-80" /> {/* Title */}
-        <Skeleton className="h-24 w-full" /> {/* Description */}
-        <div className="flex gap-6">
-          <Skeleton className="h-12 w-32 rounded-full" />
-          <Skeleton className="h-12 w-32 rounded-full" />
-        </div>
-      </div>
 
-      {/* Right column - Animation */}
-      <div className="relative flex h-full items-center justify-center lg:justify-end">
-        <CoffeeLottieSkeleton className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[500px] xl:h-[500px]" />
-      </div>
-    </div>
-  );
-}
 
 // Astronaut Animation Skeleton
 export function AstronautSkeleton() {

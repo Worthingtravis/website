@@ -9,7 +9,7 @@ import React, { useState, useEffect } from "react";
 // Dynamically import Lottie to prevent SSR issues
 const Lottie = dynamic(() => import("lottie-react"), {
   ssr: false,
-  loading: () => <div className="w-full h-full animate-pulse bg-gray-200/20 rounded" />
+  loading: () => null
 });
 
 interface ErrorBoundaryState {
@@ -70,9 +70,7 @@ export default function LottieAnimation({
   }, []);
 
   if (!isClient) {
-    return (
-      <div className={`w-full h-full animate-pulse bg-gray-200/20 rounded ${className}`} />
-    );
+    return null;
   }
 
   return (

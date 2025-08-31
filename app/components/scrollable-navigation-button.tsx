@@ -2,7 +2,6 @@
 
 import { Suspense, useState, useEffect } from "react";
 import { useAstronautLottie } from "@/hooks/use-lottie-data";
-import { AstronautSkeleton } from "./loading-skeleton";
 import { ScrollTriggeredLottie } from "./scroll-triggered-lottie";
 import { ClientOnlyWrapper } from "./client-only-wrapper";
 import { useScrollContext } from "@/contexts/scroll-context";
@@ -109,7 +108,7 @@ export function ScrollableNavigationButton({
         
         {/* Astronaut animation */}
         <div className={sizeClasses[size]}>
-          <Suspense fallback={<AstronautSkeleton />}>
+          <Suspense fallback={null}>
             <ScrollTriggeredLottie
               animationData={astronautAnimation}
               className="w-full h-full"

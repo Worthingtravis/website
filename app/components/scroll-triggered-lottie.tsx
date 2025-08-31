@@ -8,7 +8,7 @@ import { useScrollContext } from "@/contexts/scroll-context";
 // Dynamically import Lottie to prevent SSR issues
 const Lottie = dynamic(() => import("lottie-react"), {
   ssr: false,
-  loading: () => <div className="w-full h-full animate-pulse bg-gray-200/20 rounded" />
+  loading: () => null
 });
 
 interface ScrollTriggeredLottieProps {
@@ -43,9 +43,7 @@ export function ScrollTriggeredLottie({
   }, [isScrolling, isClient]);
 
   if (!isClient) {
-    return (
-      <div className={`w-full h-full animate-pulse bg-gray-200/20 rounded ${className}`} />
-    );
+    return null;
   }
 
   return (
