@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback, useMemo } from "react"
 import { IconHome, IconHomeFilled, IconUser, IconUserFilled, IconFolder, IconFolderFilled, IconBriefcase, IconBriefcaseFilled, IconMail, IconMailFilled, IconBrandGithub, IconCheck, IconArrowUp, IconArrowDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { IconBaseProps } from "react-icons";
+import { HiExternalLink } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavItem {
@@ -55,7 +56,7 @@ const NAV_ITEMS: NavItem[] = [
     activeLabel: IconBrandGithub as React.ElementType<IconBaseProps>,
     href: "https://github.com/worthingtravis",
     external: true,
-    tooltip: "GitHub ↗",
+    tooltip: "GitHub",
   },
 ];
 
@@ -236,7 +237,9 @@ export function NavHeader() {
               {tooltip && (
                 <span className="absolute -bottom-8 text-xs bg-background/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap flex items-center gap-1">
                   {tooltip}
-                  {!external && (
+                  {external ? (
+                    <HiExternalLink className="text-cyan-400 h-3 w-3" />
+                  ) : (
                     activeSection === href ? (
                       <IconCheck className="text-cyan-400 h-3 w-3" />
                     ) : (
